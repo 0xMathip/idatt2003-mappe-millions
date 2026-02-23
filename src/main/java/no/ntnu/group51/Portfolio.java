@@ -3,7 +3,6 @@ package no.ntnu.group51;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class Portfolio {
     private List<Share> shares;
@@ -25,8 +24,7 @@ public class Portfolio {
     }
 
     public List<Share> getShares() {
-        List<Share> getList = new ArrayList<>(shares);
-        return Collections.unmodifiableList(getList);
+        return Collections.unmodifiableList(shares);
     }
 
     public List<Share> getShares(String symbol) {
@@ -41,6 +39,6 @@ public class Portfolio {
     public boolean contains (Share share){
         if (share == null)
             throw new IllegalArgumentException("Share cannot be null.");
-        List<Share> result = shares.stream().filter(s -> s.contains(share));
+        return shares.contains(share);
     }
 }
