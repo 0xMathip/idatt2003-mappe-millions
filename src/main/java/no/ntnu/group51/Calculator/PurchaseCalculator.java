@@ -7,8 +7,8 @@ import no.ntnu.group51.Share;
  * Calculator for purchases.
  */
 public class PurchaseCalculator implements TransactionCalculator {
-  private BigDecimal purchasePrice;
-  private BigDecimal quantity;
+  private final BigDecimal purchasePrice;
+  private final BigDecimal quantity;
 
   /**
    * Creates a purchase calculator for a share.
@@ -20,38 +20,22 @@ public class PurchaseCalculator implements TransactionCalculator {
     this.quantity = share.getQuantity();
   }
 
-  /**
-   * Calculates the gross.
-   *
-   * @return Purchase price multiplied by the quantity
-   */
+  @Override
   public BigDecimal calculateGross() {
     return purchasePrice.multiply(quantity);
   }
 
-  /**
-   * Calculates the commission. Commission is supposed to be 0.5% of the gross.
-   *
-   * @return The gross multiplied by the commission
-   */
+  @Override
   public BigDecimal calculateCommission() {
     return calculateGross().multiply(new BigDecimal("0.005"));
   }
 
-  /**
-   * Calculates the tax.
-   *
-   * @return There is no tax for purchases, so it returns 0
-   */
+  @Override
   public BigDecimal calculateTax() {
     return new BigDecimal("0");
   }
 
-  /**
-   * Calculates the total.
-   *
-   * @return The gross + the commission
-   */
+  @Override
   public BigDecimal calculateTotal() {
     return calculateGross().add(calculateCommission());
   }
