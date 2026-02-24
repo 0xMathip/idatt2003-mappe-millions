@@ -1,6 +1,7 @@
 package no.ntnu.group51;
 
 import java.math.BigDecimal;
+import no.ntnu.group51.Stocks.Stock;
 
 public class Share {
     private final Stock stock;

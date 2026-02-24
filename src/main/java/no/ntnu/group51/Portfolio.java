@@ -3,6 +3,7 @@ package no.ntnu.group51;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import no.ntnu.group51.Share;
 
 public class Portfolio {
     private List<Share> shares;
@@ -31,7 +32,7 @@ public class Portfolio {
         if (symbol == null)
             throw new IllegalArgumentException("Symbol cannot be null.");
         List<Share> indexedList = shares.stream()
-                .filter(s -> s.getSymbol().equalsIgnoreCase(symbol))
+                .filter(s -> s.getStock().getSymbol().equalsIgnoreCase(symbol))
                 .toList();
         return indexedList;
     }
