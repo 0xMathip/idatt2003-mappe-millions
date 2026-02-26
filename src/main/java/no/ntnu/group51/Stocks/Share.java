@@ -38,7 +38,7 @@ public class Share {
      *
      * @return the stock instance.
      */
-    public Stock getStock(){
+    public Stock getStock() {
         return stock;
     }
 
