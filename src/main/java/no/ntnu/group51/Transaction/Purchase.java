@@ -4,6 +4,9 @@ import no.ntnu.group51.Calculator.PurchaseCalculator;
 import no.ntnu.group51.Player.Player;
 import no.ntnu.group51.Share;
 
+/**
+ * Class for a purchase transaction.
+ */
 public class Purchase extends Transaction {
 
   /**
