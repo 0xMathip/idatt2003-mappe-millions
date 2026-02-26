@@ -1,7 +1,7 @@
 package no.ntnu.group51.Player;
 
 import java.math.BigDecimal;
-import no.ntnu.group51.Portfolio;
+import no.ntnu.group51.Portfolio.Portfolio;
 import no.ntnu.group51.Transaction.TransactionArchive;
 
 /**

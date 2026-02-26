@@ -2,7 +2,7 @@ package no.ntnu.group51.Transaction;
 
 import no.ntnu.group51.Calculator.SaleCalculator;
 import no.ntnu.group51.Player.Player;
-import no.ntnu.group51.Share;
+import no.ntnu.group51.Stocks.Share;
 
 /**
  * Class for a sale transaction.
