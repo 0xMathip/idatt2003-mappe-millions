@@ -19,13 +19,12 @@ public class Stock {
    * @param company The name of the company.
    * @param salesPrice The sales price of the stock.
    */
-  public Stock(String symbol, String company, String salesPrice) {
+  public Stock(String symbol, String company, BigDecimal salesPrice) {
     this.symbol = symbol;
     this.company = company;
 
-    BigDecimal price = new BigDecimal(salesPrice);
     prices = new ArrayList<>();
-    prices.add(price);
+    prices.add(salesPrice);
   }
 
   /**

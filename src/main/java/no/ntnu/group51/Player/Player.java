@@ -11,8 +11,8 @@ public class Player {
   private final String name;
   private BigDecimal startingMoney;
   private BigDecimal money;
-  private Portfolio portfolio;
-  private TransactionArchive transactionArchive;
+  private final Portfolio portfolio;
+  private final TransactionArchive transactionArchive;
 
   /**
    * Creates a new player.
@@ -22,9 +22,9 @@ public class Player {
    */
   public Player(String name, BigDecimal startingMoney) {
     this.name = name;
-    this.startingMoney = startingMoney;
-    Portfolio portfolio = new Portfolio();
-    TransactionArchive transactionArchive = new TransactionArchive();
+    this.money = startingMoney;
+    this.portfolio = new Portfolio();
+    this.transactionArchive = new TransactionArchive();
   }
 
   /**

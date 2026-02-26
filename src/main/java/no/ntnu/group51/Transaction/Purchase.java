@@ -24,11 +24,11 @@ public class Purchase extends Transaction {
     if (committed) {
       System.out.println("Purchase is already committed");
 
-    } else if (player.getMoney().compareTo(share.getPurchasePrice()) < 0) {
+    } else if (player.getMoney().compareTo(share.getStock().getSalesPrice()) < 0) {
       System.out.println("Insufficient funds.");
 
     } else {
-      player.withdrawMoney(share.getPurchasePrice());
+      player.withdrawMoney(share.getStock().getSalesPrice());
       player.getPortfolio().addShare(share);
       committed = true;
     }
