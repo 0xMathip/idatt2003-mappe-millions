@@ -10,7 +10,7 @@ class StockTest {
 
   @Test
     public void testGet() {
-    Stock stock = new Stock("AAPL", "Apple", "4.7392781");
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
     assertEquals("AAPL", stock.getSymbol());
     assertEquals("Apple", stock.getCompany());
 
@@ -22,7 +22,7 @@ class StockTest {
 
   @Test
     public void testAddPrice() {
-    Stock stock = new Stock("AAPL", "Apple", "4.7392781");
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
 
     BigDecimal expected1 = new BigDecimal("4.7392781");
     BigDecimal actual1 = stock.getSalesPrice();

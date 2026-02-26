@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PurchaseCalculatorTest {
 
-  Stock stock = new Stock("AAPL", "Apple", "3.55");
+  Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"));
   Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("4.55"));
   PurchaseCalculator calc = new PurchaseCalculator(share);
 

@@ -14,7 +14,7 @@ class SaleCalculatorTest {
   // Negative tax
   @Test
   void testSaleCalculator() {
-    Stock stock = new Stock("AAPL", "Apple", "3.55");
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"));
     Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("4.55"));
     SaleCalculator calc = new SaleCalculator(share);
 
@@ -34,7 +34,7 @@ class SaleCalculatorTest {
   // Positive tax
   @Test
   void testSaleCalculator2() {
-    Stock stock = new Stock("AAPL", "Apple", "4.55");
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.55"));
     Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("3.55"));
     SaleCalculator calc = new SaleCalculator(share);
 
