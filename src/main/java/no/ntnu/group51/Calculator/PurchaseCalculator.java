@@ -1,7 +1,7 @@
 package no.ntnu.group51.Calculator;
 
 import java.math.BigDecimal;
-import no.ntnu.group51.Share;
+import no.ntnu.group51.Stocks.Share;
 
 /**
  * Calculator for purchases.
