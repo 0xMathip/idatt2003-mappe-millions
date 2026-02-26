@@ -14,7 +14,7 @@ public class TransactionArchive {
    * Creates a new transaction archive.
    */
   public TransactionArchive() {
-    List<Transaction> transactions = new ArrayList<>();
+    this.transactions = new ArrayList<>();
   }
 
   /**
