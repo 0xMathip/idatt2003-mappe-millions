@@ -41,4 +41,11 @@ class PurchaseTest {
     assertFalse(purchase2.isCommitted());
   }
 
+  @Test
+  void testExceptions() {
+    assertThrows(IllegalArgumentException.class, () -> new Purchase(null, 3));
+    assertThrows(IllegalArgumentException.class, () -> new Purchase(share, 0));
+    assertThrows(IllegalArgumentException.class, () -> new Purchase(null, -4));
+  }
+
 }

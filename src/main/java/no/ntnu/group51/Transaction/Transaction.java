@@ -21,6 +21,17 @@ public abstract class Transaction {
    * @param calculator The type of calculator being made (Sale- or PurchaseCalculator)
    */
   public Transaction(Share share, int week, TransactionCalculator calculator) {
+    if (share == null) {
+      throw new IllegalArgumentException("share is null");
+    }
+
+    if (week <= 0) {
+      throw new IllegalArgumentException("week is negative");
+    }
+
+    if (calculator == null) {
+      throw new IllegalArgumentException("calculator is null");
+    }
     this.share = share;
     this.week = week;
     this.calculator = calculator;

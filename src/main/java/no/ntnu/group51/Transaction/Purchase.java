@@ -16,6 +16,14 @@ public class Purchase extends Transaction {
    * @param week The week the transaction is happening
    */
   public Purchase(Share share, int week) {
+    if (share == null) {
+      throw new IllegalArgumentException("share is null");
+    }
+
+    if (week <= 0) {
+      throw new IllegalArgumentException("week is 0 or negative");
+    }
+
     super(share, week, new PurchaseCalculator(share));
   }
 

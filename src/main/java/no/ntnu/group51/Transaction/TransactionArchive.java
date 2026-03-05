@@ -8,7 +8,7 @@ import java.util.List;
  * Every transaction will be archived in this archive.
  */
 public class TransactionArchive {
-  private List<Transaction> transactions;
+  private final List<Transaction> transactions;
 
   /**
    * Creates a new transaction archive.
@@ -45,6 +45,9 @@ public class TransactionArchive {
    * @return A list of the transactions in the given week
    */
   public List<Transaction> getTransactions(int week) {
+    if (week <= 0) {
+      throw new IllegalArgumentException("week is 0 or negative");
+    }
     return transactions.stream()
         .filter(t -> t.getWeek() == week)
         .toList();
@@ -59,6 +62,9 @@ public class TransactionArchive {
    * @return A list of the purchases in the given week
    */
   public List<Purchase> getPurchases(int week) {
+    if (week <= 0) {
+      throw new IllegalArgumentException("week is 0 or negative");
+    }
     return transactions.stream()
         .filter(t -> t.getWeek() == week)
         .filter(t -> t instanceof Purchase)
@@ -75,6 +81,9 @@ public class TransactionArchive {
    * @return A list of the sales in the given week
    */
   public List<Sale> getSales(int week) {
+    if (week <= 0) {
+      throw new IllegalArgumentException("week is 0 or negative");
+    }
     return transactions.stream()
         .filter(t -> t.getWeek() == week)
         .filter(t -> t instanceof Sale)

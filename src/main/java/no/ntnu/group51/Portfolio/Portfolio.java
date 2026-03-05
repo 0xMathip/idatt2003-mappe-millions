@@ -69,9 +69,9 @@ public class Portfolio {
     if (symbol == null) {
       throw new IllegalArgumentException("Symbol cannot be null.");
     }
-    List<Share> indexedList =
-        shares.stream().filter(s -> s.getStock().getSymbol().equalsIgnoreCase(symbol)).toList();
-    return indexedList;
+    return shares.stream()
+        .filter(s -> s.getStock().getSymbol().equalsIgnoreCase(symbol))
+        .toList();
   }
 
   /**

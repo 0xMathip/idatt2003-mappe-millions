@@ -16,6 +16,9 @@ public class PurchaseCalculator implements TransactionCalculator {
    * @param share The share you want to create a calculator for
    */
   public PurchaseCalculator(Share share) {
+    if (share == null) {
+      throw new IllegalArgumentException("share cannot be null");
+    }
     this.purchasePrice = share.getPurchasePrice();
     this.quantity = share.getQuantity();
   }

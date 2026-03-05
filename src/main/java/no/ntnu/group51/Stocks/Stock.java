@@ -20,6 +20,17 @@ public class Stock {
    * @param salesPrice The sales price of the stock.
    */
   public Stock(String symbol, String company, BigDecimal salesPrice) {
+    if (symbol == null) {
+      throw new IllegalArgumentException("symbol cannot be null");
+    }
+
+    if (company == null) {
+      throw new IllegalArgumentException("company cannot be null");
+    }
+
+    if (salesPrice == null) {
+      throw new IllegalArgumentException("salesPrice cannot be null");
+    }
     this.symbol = symbol;
     this.company = company;
 
@@ -33,6 +44,9 @@ public class Stock {
    * @param price The price you want to add.
    */
   public void addNewSalesPrice(String price) {
+    if (price == null) {
+      throw new IllegalArgumentException("price cannot be null");
+    }
     BigDecimal newPrice = new BigDecimal(price);
     prices.add(newPrice);
   }
@@ -50,5 +64,3 @@ public class Stock {
   }
 
 }
-
-// ? - String salesPrice or BigDecimal?

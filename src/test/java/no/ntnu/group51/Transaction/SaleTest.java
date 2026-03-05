@@ -55,4 +55,11 @@ class SaleTest {
     assertEquals(beforeMoney, player.getMoney());
     assertEquals(beforeShares, player.getPortfolio().getShares().size());
   }
+
+  @Test
+  void testExceptions() {
+    assertThrows(IllegalArgumentException.class, () -> new Sale(null, 3));
+    assertThrows(IllegalArgumentException.class, () -> new Sale(share, 0));
+    assertThrows(IllegalArgumentException.class, () -> new Sale(null, -4));
+  }
 }
