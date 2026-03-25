@@ -76,6 +76,14 @@ public class Player {
         && totalWeeks >= 10
         && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(1.2))) >= 0) {
       this.playerLevel = PlayerLevel.INVESTOR;
+
+    } else if (this.playerLevel == PlayerLevel.SPECULATOR
+        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) <= 0) {
+      this.playerLevel = PlayerLevel.INVESTOR;
+
+    } else if (this.playerLevel == PlayerLevel.INVESTOR
+        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(1.2))) <= 0) {
+      this.playerLevel = PlayerLevel.NOVICE;
     }
   }
 
