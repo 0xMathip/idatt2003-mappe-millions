@@ -2,7 +2,9 @@ package no.ntnu.group51.Stocks;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The Stock class represents a stock for a company.
@@ -53,6 +55,34 @@ public class Stock {
 
   public String getSymbol() {
     return symbol;
+  }
+
+  public List<BigDecimal> getHistoricalPrices() {
+    return List.copyOf(prices);
+  }
+
+  public BigDecimal getHighestPrice() {
+
+    return prices.stream()
+                 .max(BigDecimal::compareTo)
+                 .orElse(BigDecimal.ZERO);
+  }
+
+  public BigDecimal getLowestPrice() {
+    return prices.stream()
+                 .min(BigDecimal::compareTo)
+                 .orElse(BigDecimal.ZERO);
+  }
+
+  public BigDecimal getLatestPriceChange() {
+    if (prices == null || prices.size() < 2) {
+      return BigDecimal.ZERO;
+    }
+
+    BigDecimal lastChange = prices.get(prices.size() - 1);
+    BigDecimal secondLastChange = prices.get(prices.size() - 2);
+
+    return lastChange.subtract(secondLastChange).abs();
   }
 
   public String getCompany() {

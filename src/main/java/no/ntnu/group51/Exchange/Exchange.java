@@ -135,6 +135,13 @@ public class Exchange {
         || s.getCompany().toLowerCase().contains(term)).collect(Collectors.toList());
   }
 
+  public List<Stock> getGainers(int limit) {
+
+  }
+
+  public List<Stock> getLosers(int limit) {
+
+  }
   /**
    * Buys a given quantity of a stock for a player.
    *
