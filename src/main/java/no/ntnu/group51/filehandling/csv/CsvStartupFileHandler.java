@@ -11,8 +11,17 @@ import java.util.List;
 import no.ntnu.group51.Stocks.Stock;
 import no.ntnu.group51.filehandling.StartupFileHandler;
 
+/**
+ * CSV-based implementation of {@link StartupFileHandler}.
+ *
+ * <p>Reads and writes startup data in the format:
+ * symbol,company,price.
+ */
 public class CsvStartupFileHandler implements StartupFileHandler {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Stock> readStocks(Path path) throws IOException {
     if (path == null) {
@@ -37,6 +46,15 @@ public class CsvStartupFileHandler implements StartupFileHandler {
     return loadedStocks;
   }
 
+  /**
+   * Helper method for parsing stocks on a single line in the file.
+   *
+   * <p>Validates that the data is formatted correctly
+   * and creates a Stock object from the data parsed.
+   *
+   * @param line the line to be parsed
+   * @return the parsed stock object
+   */
   private Stock parseStockLine(String line) {
     if (line == null) {
       throw new IllegalArgumentException("Line cannot be null.");
@@ -63,6 +81,9 @@ public class CsvStartupFileHandler implements StartupFileHandler {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void writeStocks(Path path, List<Stock> stocks) throws IOException {
     if (path == null) {
@@ -73,14 +94,14 @@ public class CsvStartupFileHandler implements StartupFileHandler {
     }
 
     try (BufferedWriter writer = Files.newBufferedWriter(path))  {
-      for (Stock s : stocks) {
-        if (s == null) {
+      for (Stock stock : stocks) {
+        if (stock == null) {
           throw new IllegalArgumentException("Stocks list cannot contain null.");
         }
 
-        writer.write(s.getSymbol()
-            + "," + s.getCompany()
-            + "," + s.getHistoricalPrices().get(0));
+        writer.write(stock.getSymbol()
+            + "," + stock.getCompany()
+            + "," + stock.getHistoricalPrices().get(0));
         writer.newLine();
       }
     }
