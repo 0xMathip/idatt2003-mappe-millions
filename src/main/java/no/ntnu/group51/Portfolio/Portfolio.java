@@ -1,8 +1,10 @@
 package no.ntnu.group51.Portfolio;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import no.ntnu.group51.Calculator.SaleCalculator;
 import no.ntnu.group51.Stocks.Share;
 
 /**
@@ -86,5 +88,15 @@ public class Portfolio {
       throw new IllegalArgumentException("Share cannot be null.");
     }
     return shares.contains(share);
+  }
+
+  public BigDecimal getNetWorth() {
+    BigDecimal netWorth = BigDecimal.ZERO;
+
+    for (Share share : getShares()) {
+      SaleCalculator saleCalc = new SaleCalculator(share);
+         netWorth = netWorth.add(saleCalc.calculateTotal());
+    }
+    return netWorth;
   }
 }

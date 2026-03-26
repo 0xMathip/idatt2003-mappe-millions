@@ -28,6 +28,7 @@ public class Player {
     }
     this.name = Objects.requireNonNullElse(name, "Player");
     this.money = startingMoney;
+    this.startingMoney = startingMoney;
     this.portfolio = new Portfolio();
     this.transactionArchive = new TransactionArchive();
   }
@@ -71,4 +72,9 @@ public class Player {
   public TransactionArchive getTransactionArchive() {
     return transactionArchive;
   }
+
+  public BigDecimal getNetWorth() {
+    return money.add(portfolio.getNetWorth());
+  }
+
 }
