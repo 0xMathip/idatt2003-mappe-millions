@@ -27,7 +27,7 @@ public class Stock {
     }
 
     if (company == null) {
-      throw new IllegalArgumentException("company cannot be null");
+     git  throw new IllegalArgumentException("company cannot be null");
     }
 
     if (salesPrice == null) {
@@ -82,7 +82,7 @@ public class Stock {
     BigDecimal lastChange = prices.get(prices.size() - 1);
     BigDecimal secondLastChange = prices.get(prices.size() - 2);
 
-    return lastChange.subtract(secondLastChange).abs();
+    return lastChange.subtract(secondLastChange);
   }
 
   public String getCompany() {
