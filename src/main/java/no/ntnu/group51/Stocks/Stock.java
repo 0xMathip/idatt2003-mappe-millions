@@ -25,7 +25,7 @@ public class Stock {
     }
 
     if (company == null) {
-      throw new IllegalArgumentException("company cannot be null");
+     throw new IllegalArgumentException("company cannot be null");
     }
 
     if (salesPrice == null) {
@@ -42,17 +42,51 @@ public class Stock {
    * Adds a new sales price to the list of prices.
    *
    * @param price The price you want to add.
+   * @throws IllegalArgumentException if price is null or invalid price format
    */
   public void addNewSalesPrice(String price) {
     if (price == null) {
       throw new IllegalArgumentException("price cannot be null");
     }
-    BigDecimal newPrice = new BigDecimal(price);
-    prices.add(newPrice);
+
+    try {
+      BigDecimal newPrice = new BigDecimal(price);
+      prices.add(newPrice);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("Invalid format", e);
+    }
   }
 
   public String getSymbol() {
     return symbol;
+  }
+
+  public List<BigDecimal> getHistoricalPrices() {
+    return List.copyOf(prices);
+  }
+
+  public BigDecimal getHighestPrice() {
+
+    return prices.stream()
+                 .max(BigDecimal::compareTo)
+                 .orElse(BigDecimal.ZERO);
+  }
+
+  public BigDecimal getLowestPrice() {
+    return prices.stream()
+                 .min(BigDecimal::compareTo)
+                 .orElse(BigDecimal.ZERO);
+  }
+
+  public BigDecimal getLatestPriceChange() {
+    if (prices.size() < 2) {
+      return BigDecimal.ZERO;
+    }
+
+    BigDecimal lastChange = prices.get(prices.size() - 1);
+    BigDecimal secondLastChange = prices.get(prices.size() - 2);
+
+    return lastChange.subtract(secondLastChange);
   }
 
   public String getCompany() {

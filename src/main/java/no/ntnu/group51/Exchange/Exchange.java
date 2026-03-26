@@ -1,6 +1,7 @@
 package no.ntnu.group51.Exchange;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,6 +136,23 @@ public class Exchange {
         || s.getCompany().toLowerCase().contains(term)).collect(Collectors.toList());
   }
 
+  public List<Stock> getGainers(int limit) {
+    if(limit < 0) {
+      throw new IllegalArgumentException("Limit cannot be negative.");
+    }
+    return stockMap.values().stream()
+              .sorted(Comparator.comparing(Stock::getLatestPriceChange)
+              .reversed()).limit(limit).toList();
+  }
+
+  public List<Stock> getLosers(int limit) {
+    if(limit < 0) {
+      throw new IllegalArgumentException("Limit cannot be negative.");
+    }
+    return stockMap.values().stream()
+              .sorted(Comparator.comparing(Stock::getLatestPriceChange))
+              .limit(limit).toList();
+  }
   /**
    * Buys a given quantity of a stock for a player.
    *
