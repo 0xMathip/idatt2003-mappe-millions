@@ -2,9 +2,7 @@ package no.ntnu.group51.Stocks;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The Stock class represents a stock for a company.
@@ -44,13 +42,19 @@ public class Stock {
    * Adds a new sales price to the list of prices.
    *
    * @param price The price you want to add.
+   * @throws IllegalArgumentException if price is null or invalid price format
    */
   public void addNewSalesPrice(String price) {
     if (price == null) {
       throw new IllegalArgumentException("price cannot be null");
     }
-    BigDecimal newPrice = new BigDecimal(price);
-    prices.add(newPrice);
+
+    try {
+      BigDecimal newPrice = new BigDecimal(price);
+      prices.add(newPrice);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("Invalid format", e);
+    }
   }
 
   public String getSymbol() {
@@ -75,7 +79,7 @@ public class Stock {
   }
 
   public BigDecimal getLatestPriceChange() {
-    if (prices == null || prices.size() < 2) {
+    if (prices.size() < 2) {
       return BigDecimal.ZERO;
     }
 
