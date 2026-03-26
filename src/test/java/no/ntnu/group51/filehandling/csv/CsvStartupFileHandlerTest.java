@@ -36,6 +36,15 @@ class CsvStartupFileHandlerTest {
   }
 
   @Test
+  void readStocksWithRealFile() throws IOException {
+    Path file = Path.of("src/main/resources/sp500.csv");
+
+    List<Stock> stocks = csv.readStocks(file);
+    assertFalse(stocks.isEmpty());
+    assertEquals("NVDA", stocks.get(0).getSymbol());
+  }
+
+  @Test
   void readStocksIgnoresEmptyLinesAndComments() throws IOException {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
