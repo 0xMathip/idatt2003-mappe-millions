@@ -27,7 +27,7 @@ public class Stock {
     }
 
     if (company == null) {
-     git  throw new IllegalArgumentException("company cannot be null");
+     throw new IllegalArgumentException("company cannot be null");
     }
 
     if (salesPrice == null) {
