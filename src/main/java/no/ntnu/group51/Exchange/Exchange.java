@@ -136,6 +136,12 @@ public class Exchange {
         || s.getCompany().toLowerCase().contains(term)).collect(Collectors.toList());
   }
 
+  /**
+   * Returns the best performing stocks in the last week.
+   *
+   * @param limit the limit for total stocks returned
+   * @return a list of top gaining stocks
+   */
   public List<Stock> getGainers(int limit) {
     if(limit < 0) {
       throw new IllegalArgumentException("Limit cannot be negative.");
@@ -145,6 +151,12 @@ public class Exchange {
               .reversed()).limit(limit).toList();
   }
 
+  /**
+   * Returns the worst performing stocks in the last week.
+   *
+   * @param limit the limit for total stocks returned
+   * @return a list of the top losing stocks
+   */
   public List<Stock> getLosers(int limit) {
     if(limit < 0) {
       throw new IllegalArgumentException("Limit cannot be negative.");
