@@ -1,5 +1,9 @@
 package no.ntnu.group51.Player;
 
+import no.ntnu.group51.Calculator.SaleCalculator;
+import no.ntnu.group51.Portfolio.Portfolio;
+import no.ntnu.group51.Stocks.Share;
+import no.ntnu.group51.Stocks.Stock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,12 +41,35 @@ class PlayerTest {
     player.withdrawMoney(new BigDecimal("200"));
     assertEquals(new BigDecimal("800"), player.getMoney());
     assertThrows(IllegalArgumentException.class, () -> player.withdrawMoney(null));
-    assertThrows(IllegalArgumentException.class, () -> player.withdrawMoney(new BigDecimal("1000")));
+    assertThrows(IllegalArgumentException.class, () -> player.withdrawMoney(new BigDecimal("1001")));
   }
 
   @Test
   void portfolioAndArchiveAreInitialized() {
     assertNotNull(player.getPortfolio());
     assertNotNull(player.getTransactionArchive());
+  }
+
+  @Test
+  void getNetWorthReturnsMoneyWhenZeroPortfolioValue() {
+    assertEquals(player.getMoney(), player.getNetWorth());
+  }
+
+  @Test
+  void getNetWorthReturnsMoneyAndPortfolioValue() {
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Share appleShareTest = new Share(appleStockTest, new BigDecimal("120"), new BigDecimal("4.92322"));
+
+    player.getPortfolio().addShare(appleShareTest);
+
+    BigDecimal expected = new BigDecimal("1000").add(new SaleCalculator(appleShareTest).calculateTotal());
+    assertEquals(expected, player.getNetWorth());
+  }
+
+  @Test
+  void getNetWorthReturnsZeroWhenPortfolioAndMoneyValueAreZero() {
+    player.withdrawMoney(new BigDecimal("1000"));
+
+    assertEquals(BigDecimal.ZERO, player.getNetWorth());
   }
 }

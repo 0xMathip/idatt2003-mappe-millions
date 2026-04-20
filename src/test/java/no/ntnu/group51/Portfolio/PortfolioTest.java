@@ -2,6 +2,7 @@ package no.ntnu.group51.Portfolio;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import no.ntnu.group51.Calculator.SaleCalculator;
 import no.ntnu.group51.Stocks.Share;
 import no.ntnu.group51.Stocks.Stock;
 import org.junit.jupiter.api.BeforeEach;
@@ -115,5 +116,32 @@ class PortfolioTest {
         portfolio.addShare(appleShareTest1);
         portfolio.addShare(appleShareTest2);
         assertFalse(portfolio.contains(googleShareTest));
+    }
+
+    @Test
+    void getNetWorthReturnsNetWorthWithOneShare() {
+        portfolio.addShare(googleShareTest);
+
+        BigDecimal expected =
+            new SaleCalculator(googleShareTest).calculateTotal();
+
+        assertEquals(expected, portfolio.getNetWorth());
+    }
+
+    @Test
+    void getNetWorthReturnsNetWorthWithMultipleShares() {
+        portfolio.addShare(googleShareTest);
+        portfolio.addShare(appleShareTest1);
+
+        BigDecimal expected =
+            new SaleCalculator(googleShareTest).calculateTotal()
+                .add(new SaleCalculator(appleShareTest1).calculateTotal());
+
+        assertEquals(expected, portfolio.getNetWorth());
+    }
+
+    @Test
+    void getNetWorthReturnsZeroWhenNoShares() {
+        assertEquals(BigDecimal.ZERO, portfolio.getNetWorth());
     }
 }
