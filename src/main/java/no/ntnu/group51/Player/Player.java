@@ -66,7 +66,7 @@ public class Player {
    *
    * @param totalWeeks The total weeks the player has been trading
    */
-  public void checkPlayerLevel(int totalWeeks) {
+  public void updatePlayerLevel(int totalWeeks) {
     if (this.playerLevel == PlayerLevel.INVESTOR
         && totalWeeks >= 20
         && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) >= 0) {
