@@ -1,0 +1,51 @@
+package no.ntnu.group51.model.transaction;
+
+import no.ntnu.group51.model.player.Player;
+import no.ntnu.group51.model.stocks.Share;
+import no.ntnu.group51.model.stocks.Stock;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PurchaseTest {
+
+  Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"));
+  Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("4.55"));
+
+  @Test
+  void testEnoughMoney() {
+    Player shorty = new Player("Shorty", new BigDecimal("3.56"));
+    Purchase purchase = new Purchase(share, 1);
+    purchase.commit(shorty);
+    assertTrue(purchase.isCommitted());
+  }
+
+  @Test
+  void testNotEnoughMoney() {
+    Player shorty = new Player("Shorty", new BigDecimal("3.54"));
+    Purchase purchase = new Purchase(share, 1);
+    purchase.commit(shorty);
+    assertFalse(purchase.isCommitted());
+  }
+
+  @Test
+  void alreadyCommitted() {
+    Player shorty = new Player("Shorty", new BigDecimal("300"));
+    Purchase purchase = new Purchase(share, 1);
+    purchase.commit(shorty);
+    assertTrue(purchase.isCommitted());
+
+    Purchase purchase2 = new Purchase(share, 1);
+    assertFalse(purchase2.isCommitted());
+  }
+
+  @Test
+  void testExceptions() {
+    assertThrows(IllegalArgumentException.class, () -> new Purchase(null, 3));
+    assertThrows(IllegalArgumentException.class, () -> new Purchase(share, 0));
+    assertThrows(IllegalArgumentException.class, () -> new Purchase(null, -4));
+  }
+
+}
