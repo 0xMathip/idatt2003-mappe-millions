@@ -8,14 +8,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import no.ntnu.group51.controller.MainMenuController;
+import no.ntnu.group51.controller.SceneManager;
 
 public class MainMenuView implements View {
 
   private final BorderPane root = new BorderPane();
-  private final VBox menuButtons = new VBox();
-  private final HBox title = new HBox();
 
-  public MainMenuView() {
+  public MainMenuView(SceneManager sceneManager) {
 
     Button cont = new Button("CONTINUE");
     Button newG = new Button("NEW GAME");
@@ -24,6 +23,7 @@ public class MainMenuView implements View {
     newG.getStyleClass().add("button");
     exit.getStyleClass().add("button");
 
+    VBox menuButtons = new VBox();
     menuButtons.getChildren().addAll(cont, newG, exit);
     root.setCenter(menuButtons);
 
@@ -43,15 +43,12 @@ public class MainMenuView implements View {
     root.setBackground(background);
 
     ImageView titleImage = new ImageView(new Image("images/Million.png"));
+    HBox title = new HBox();
     root.setTop(title);
     title.getChildren().add(titleImage);
     title.setAlignment(Pos.CENTER);
     title.setTranslateY(120);
     titleImage.setPreserveRatio(true);
-
-
-
-
 
     double scale = 2;
     menuButtons.setAlignment(Pos.CENTER);
@@ -59,6 +56,8 @@ public class MainMenuView implements View {
     menuButtons.setScaleX(scale);
     menuButtons.setScaleY(scale);
     menuButtons.setTranslateY(100);
+
+    newG.setOnAction(e -> sceneManager.changeScene(new SidebarView()));
 
     exit.setOnAction(e -> Platform.exit());
 
