@@ -20,7 +20,7 @@ public class MainApp extends Application {
     Scene scene = new Scene(view.getRoot(), width, height);
     scene.getStylesheets().add(css);
     stage.setScene(scene);
-    stage.setTitle("Main Menu");
+    stage.setTitle("MILLION$");
     stage.show();
   }
 
