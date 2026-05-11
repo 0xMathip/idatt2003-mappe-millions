@@ -13,6 +13,7 @@ public class MainMenuView implements View {
 
   private final BorderPane root = new BorderPane();
   private final VBox menuButtons = new VBox();
+  private final HBox title = new HBox();
 
   public MainMenuView() {
 
@@ -42,8 +43,12 @@ public class MainMenuView implements View {
     root.setBackground(background);
 
     ImageView titleImage = new ImageView(new Image("images/Million.png"));
-    root.getChildren().add(titleImage);
+    root.setTop(title);
+    title.getChildren().add(titleImage);
+    title.setAlignment(Pos.CENTER);
+    title.setTranslateY(120);
     titleImage.setPreserveRatio(true);
+
 
 
 
@@ -53,7 +58,7 @@ public class MainMenuView implements View {
     menuButtons.setSpacing(20);
     menuButtons.setScaleX(scale);
     menuButtons.setScaleY(scale);
-    menuButtons.setTranslateY(150);
+    menuButtons.setTranslateY(100);
 
     exit.setOnAction(e -> Platform.exit());
 

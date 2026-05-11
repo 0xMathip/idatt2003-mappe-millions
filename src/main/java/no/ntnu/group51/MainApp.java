@@ -10,12 +10,6 @@ public class MainApp extends Application {
 
   @Override
   public void start(Stage stage) {
-    Font f = Font.loadFont(
-      getClass().getResource("/fonts/Almarai-Bold.ttf").toExternalForm(),
-      20
-    );
-
-    System.out.println("Loaded font: " + f);
 
     MainMenuView view = new MainMenuView();
 
