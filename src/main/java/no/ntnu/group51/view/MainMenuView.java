@@ -10,10 +10,18 @@ import javafx.scene.layout.*;
 import no.ntnu.group51.controller.MainMenuController;
 import no.ntnu.group51.controller.SceneManager;
 
+/**
+ * The view for the main menu.
+ */
 public class MainMenuView implements View {
 
   private final BorderPane root = new BorderPane();
 
+  /**
+   * Creates the main menu view.
+   *
+   * @param sceneManager The scene manager for the stage.
+   */
   public MainMenuView(SceneManager sceneManager) {
 
     Button cont = new Button("CONTINUE");
@@ -50,17 +58,13 @@ public class MainMenuView implements View {
     title.setTranslateY(120);
     titleImage.setPreserveRatio(true);
 
-    double scale = 2;
     menuButtons.setAlignment(Pos.CENTER);
-    menuButtons.setSpacing(20);
-    menuButtons.setScaleX(scale);
-    menuButtons.setScaleY(scale);
+    menuButtons.setSpacing(30);
     menuButtons.setTranslateY(100);
 
     newG.setOnAction(e -> sceneManager.changeScene(new SidebarView()));
 
     exit.setOnAction(e -> Platform.exit());
-
   }
 
   public Parent getRoot() {

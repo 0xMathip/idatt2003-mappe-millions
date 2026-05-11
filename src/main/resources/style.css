@@ -11,19 +11,35 @@
 .main-menu-button {
     -fx-background-color: yellow;
     -fx-text-fill: black;
-    -fx-pref-height: 40;
-    -fx-pref-width: 130;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-}
+    -fx-pref-height: 106;
+    -fx-pref-width: 340;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
 
-.main-menu-button .text {
     -fx-font-family: "Almarai Bold";
-    -fx-font-size: 18;
+    -fx-font-size: 48px;
+    -fx-text-alignment: center;
+    -fx-text-overrun: CLIP;
 }
 
 .main-menu-button:hover {
-    -fx-background-color: #858500;
+    -fx-background-color: #a1a100;
+}
+
+.sidebar-button-active {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-pref-height: 70;
+    -fx-pref-width: 250;
+    -fx-background-radius: 30px;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-font-smoothing-type: gray;
+}
+
+.sidebar-button-active:hover {
+    -fx-background-color: #a1a100;
 }
 
 /* muligens noe sånt?
