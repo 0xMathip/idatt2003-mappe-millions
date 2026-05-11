@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "Almarai-Bold";
+    src: url("/fonts/Almarai-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Almarai-ExtraBold";
+    src: url("/fonts/Almarai-ExtraBold.ttf");
+}
+
+.button {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+    -fx-pref-height: 40;
+    -fx-pref-width: 130;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.button .text {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 18;
+}
+
+.button:hover {
+    -fx-background-color: #858500;
+}
+
+/* muligens noe sånt?
+.button:hover .text {
+    -fx-font-family: "Almarai ExtraBold";
+}
+*/
+
