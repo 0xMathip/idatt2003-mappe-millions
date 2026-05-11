@@ -8,7 +8,7 @@
     src: url("/fonts/Almarai-ExtraBold.ttf");
 }
 
-.button {
+.main-menu-button {
     -fx-background-color: yellow;
     -fx-text-fill: black;
     -fx-pref-height: 40;
@@ -17,12 +17,12 @@
     -fx-border-radius: 8;
 }
 
-.button .text {
+.main-menu-button .text {
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 18;
 }
 
-.button:hover {
+.main-menu-button:hover {
     -fx-background-color: #858500;
 }
 

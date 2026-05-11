@@ -19,9 +19,9 @@ public class MainMenuView implements View {
     Button cont = new Button("CONTINUE");
     Button newG = new Button("NEW GAME");
     Button exit = new Button("EXIT");
-    cont.getStyleClass().add("button");
-    newG.getStyleClass().add("button");
-    exit.getStyleClass().add("button");
+    cont.getStyleClass().add("main-menu-button");
+    newG.getStyleClass().add("main-menu-button");
+    exit.getStyleClass().add("main-menu-button");
 
     VBox menuButtons = new VBox();
     menuButtons.getChildren().addAll(cont, newG, exit);
