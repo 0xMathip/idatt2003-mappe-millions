@@ -2,9 +2,10 @@ package no.ntnu.group51.view;
 
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -16,6 +17,7 @@ public class SidebarView implements View {
 
     ToggleGroup sidebar = new ToggleGroup();
 
+    // Dashboard button
     ToggleButton dashboardButton = new ToggleButton("Dashboard");
     dashboardButton.getStyleClass().add("sidebar-button");
     dashboardButton.setToggleGroup(sidebar);
@@ -27,6 +29,7 @@ public class SidebarView implements View {
     dashboardButton.setAlignment(Pos.CENTER_LEFT);
     dashboardButton.setGraphicTextGap(12);
 
+    // Market button
     ToggleButton marketButton = new ToggleButton("Market");
     marketButton.setToggleGroup(sidebar);
     marketButton.getStyleClass().add("sidebar-button");
@@ -37,6 +40,7 @@ public class SidebarView implements View {
     marketButton.setAlignment(Pos.CENTER_LEFT);
     marketButton.setGraphicTextGap(12);
 
+    // Portfolio button
     ToggleButton portfolioButton = new ToggleButton("Portfolio");
     portfolioButton.setToggleGroup(sidebar);
     portfolioButton.getStyleClass().add("sidebar-button");
@@ -47,6 +51,7 @@ public class SidebarView implements View {
     portfolioButton.setAlignment(Pos.CENTER_LEFT);
     portfolioButton.setGraphicTextGap(12);
 
+    // Transaction button
     ToggleButton transactionsButton = new ToggleButton("Transactions");
     transactionsButton.setToggleGroup(sidebar);
     transactionsButton.getStyleClass().add("sidebar-button");
@@ -57,10 +62,48 @@ public class SidebarView implements View {
     transactionsButton.setAlignment(Pos.CENTER_LEFT);
     transactionsButton.setGraphicTextGap(12);
 
+    // Level box
+    Image novice = new Image("/images/novice.png");
+    Image investor = new Image("/images/investor.png");
+    Image speculator = new Image("/images/speculator.png");
+    ImageView currentLevel = new ImageView(speculator);
+    currentLevel.setFitHeight(103);
+    currentLevel.setFitWidth(120);
+    StackPane yellowContainer = new StackPane();
+    yellowContainer.getChildren().add(currentLevel);
+    yellowContainer.getStyleClass().add("yellow-boss-baby-box");
+    ProgressBar progressBar = new ProgressBar();
 
-    root.getChildren().addAll(dashboardButton, marketButton, portfolioButton, transactionsButton);
+    VBox levelBox = new VBox();
+    Label playerLevelLabel = new Label("Player level");
+    playerLevelLabel.getStyleClass().add("player-level-label");
+    Label currentLevelLabel = new Label("<CURRENT_LEVEL>");
+    currentLevelLabel.getStyleClass().add("current-level-label");
+    Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
+    nextLevelLabel.getStyleClass().add("next-level-label");
 
-    root.setSpacing(30);
+    levelBox.getChildren().addAll(
+        playerLevelLabel,
+        yellowContainer,
+        currentLevelLabel,
+        progressBar,
+        nextLevelLabel
+    );
+
+    levelBox.getStyleClass().add("level-box");
+    levelBox.setAlignment(Pos.CENTER);
+    levelBox.setSpacing(12);
+
+
+    root.getChildren().addAll(
+        dashboardButton,
+        marketButton,
+        portfolioButton,
+        transactionsButton,
+        levelBox
+    );
+
+    root.setSpacing(15);
     root.setAlignment(Pos.CENTER);
     root.setPrefWidth(362);
     root.setStyle("-fx-background-color: #171717");
