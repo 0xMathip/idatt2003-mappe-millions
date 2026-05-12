@@ -26,25 +26,52 @@
     -fx-background-color: #a1a100;
 }
 
-.sidebar-button-active {
+.sidebar-button:selected {
     -fx-background-color: yellow;
     -fx-text-fill: black;
     -fx-pref-height: 70;
-    -fx-pref-width: 250;
+    -fx-pref-width: 240;
     -fx-background-radius: 30px;
 
     -fx-font-family: "Almarai Bold";
-    -fx-font-size: 32px;
+    -fx-font-size: 26px;
     -fx-font-smoothing-type: gray;
+    -fx-text-alignment: left;
 }
 
-.sidebar-button-active:hover {
+.sidebar-button:selected:hover {
     -fx-background-color: #a1a100;
 }
 
-/* muligens noe sånt?
-.button:hover .text {
-    -fx-font-family: "Almarai ExtraBold";
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-pref-height: 70;
+    -fx-pref-width: 240;
+    -fx-background-radius: 30px;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 26px;
+    -fx-font-smoothing-type: gray;
+    -fx-text-alignment: left;
 }
-*/
+
+.sidebar-button .ikonli-font-icon {
+    -fx-fill: white;
+    -fx-stroke: white;
+}
+
+.sidebar-button:selected .ikonli-font-icon {
+    -fx-fill: black;
+    -fx-stroke: black
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #505050;
+}
+
+.ikonli-font-icon {
+    -fx-fill: black;
+    -fx-stroke: black;
+}
 
