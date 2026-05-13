@@ -13,6 +13,13 @@
     src: url("/fonts/Almarai-Regular.ttf");
 }
 
+
+
+
+/*
+    Main menu
+ */
+
 .main-menu-button {
     -fx-background-color: #F6DA36;
     -fx-text-fill: black;
@@ -30,6 +37,12 @@
 .main-menu-button:hover {
     -fx-background-color: #a1a100;
 }
+
+
+
+/*
+    Sidebar
+ */
 
 .sidebar-button {
     -fx-background-color: transparent;
@@ -80,6 +93,12 @@
     -fx-fill: black;
     -fx-stroke: black;
 }
+
+
+
+/*
+    Box that shows level on the sidebar
+ */
 
 .level-box {
     -fx-pref-width: 245;
@@ -142,6 +161,12 @@
     -fx-background-color: #F6DA36;
 }
 
+
+
+/*
+    Current week showing top of the sidebar
+ */
+
 .current-week-label {
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 32px;
@@ -155,4 +180,46 @@
 .current-week-icon {
     -fx-fill: #F6DA36;
     -fx-stroke: #F6DA36;
+}
+
+
+
+/*
+    Dashboard portfolio
+ */
+.dashboard-portfolio-symbol {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-subtext {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-amount-shares {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-amount-cash {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-diff-gain{
+    -fx-pref-width: 61;
+    -fx-max-width: 61;
+    -fx-pref-height: 20;
+    -fx-max-height: 20;
+    -fx-background-radius: 13px;
+    -fx-background-color: #0B0B0B;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #33E35C;
 }

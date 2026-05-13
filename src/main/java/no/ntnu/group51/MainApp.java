@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import no.ntnu.group51.controller.SceneManager;
+import no.ntnu.group51.view.Dashboard.DashboardPortfolioView;
 import no.ntnu.group51.view.MainMenuView;
 
 public class MainApp extends Application {
@@ -21,7 +22,7 @@ public class MainApp extends Application {
     scene.getStylesheets().add(css);
 
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new MainMenuView(sceneManager));
+    sceneManager.changeScene(new DashboardPortfolioView());
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");

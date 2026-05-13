@@ -132,7 +132,6 @@ public class SidebarView implements View {
         spacer2,
         levelBox
     );
-
     root.setSpacing(15);
     root.setAlignment(Pos.CENTER);
     root.setPrefWidth(362);
