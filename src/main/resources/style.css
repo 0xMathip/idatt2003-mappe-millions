@@ -141,3 +141,18 @@
     -fx-background-radius: 46px;
     -fx-background-color: #F6DA36;
 }
+
+.current-week-label {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-background-color: #0E0E0E;
+    -fx-pref-height: 64px;
+    -fx-pref-width: 250px;
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+}
+
+.current-week-icon {
+    -fx-fill: #F6DA36;
+    -fx-stroke: #F6DA36;
+}

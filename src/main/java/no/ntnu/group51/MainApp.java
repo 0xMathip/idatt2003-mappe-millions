@@ -26,6 +26,7 @@ public class MainApp extends Application {
     stage.setScene(scene);
     stage.setTitle("MILLION$");
     stage.show();
+    stage.setMaximized(true);
   }
 
   public static void main(String[] args) {

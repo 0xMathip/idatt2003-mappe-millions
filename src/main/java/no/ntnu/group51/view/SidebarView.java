@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -66,22 +67,27 @@ public class SidebarView implements View {
     Image novice = new Image("/images/novice.png");
     Image investor = new Image("/images/investor.png");
     Image speculator = new Image("/images/speculator.png");
+
     ImageView currentLevel = new ImageView(speculator);
     currentLevel.setFitHeight(103);
     currentLevel.setFitWidth(120);
+
     StackPane yellowContainer = new StackPane();
     yellowContainer.getChildren().add(currentLevel);
     yellowContainer.getStyleClass().add("yellow-boss-baby-box");
+
     ProgressBar progressBar = new ProgressBar();
 
-    VBox levelBox = new VBox();
     Label playerLevelLabel = new Label("Player level");
     playerLevelLabel.getStyleClass().add("player-level-label");
+
     Label currentLevelLabel = new Label("<CURRENT_LEVEL>");
     currentLevelLabel.getStyleClass().add("current-level-label");
+
     Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
     nextLevelLabel.getStyleClass().add("next-level-label");
 
+    VBox levelBox = new VBox();
     levelBox.getChildren().addAll(
         playerLevelLabel,
         yellowContainer,
@@ -94,12 +100,31 @@ public class SidebarView implements View {
     levelBox.setAlignment(Pos.CENTER);
     levelBox.setSpacing(12);
 
+    Label currentWeek = new Label("<Week 11>");
+    FontIcon currentWeekIcon = new FontIcon("cil-calendar");
+    currentWeekIcon.getStyleClass().add("current-week-icon");
+    currentWeek.setGraphic(currentWeekIcon);
+    currentWeek.setContentDisplay(ContentDisplay.LEFT);
+    currentWeek.setAlignment(Pos.CENTER);
+    currentWeek.setGraphicTextGap(12);
+
+    currentWeek.getStyleClass().add("current-week-label");
+
+    Region spacer1 = new Region();
+    spacer1.setPrefHeight(70);
+    Region spacer2 = new Region();
+    spacer2.setPrefHeight(70);
+
+
 
     root.getChildren().addAll(
+        currentWeek,
+        spacer1,
         dashboardButton,
         marketButton,
         portfolioButton,
         transactionsButton,
+        spacer2,
         levelBox
     );
 
