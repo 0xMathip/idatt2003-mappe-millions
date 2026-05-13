@@ -1,12 +1,21 @@
 package no.ntnu.group51;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import no.ntnu.group51.controller.SceneManager;
+import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.model.exchange.Exchange;
+import no.ntnu.group51.model.player.Player;
+import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.MainMenuView;
+import no.ntnu.group51.view.components.TradePanel;
+import no.ntnu.group51.view.pages.MarketView;
 
 public class MainApp extends Application {
 
@@ -20,8 +29,9 @@ public class MainApp extends Application {
     Scene scene = new Scene(new Pane(), width, height);
     scene.getStylesheets().add(css);
 
+    List<Stock> stocks = new ArrayList<>();
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new MainMenuView(sceneManager));
+    sceneManager.changeScene(new MarketView(new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks))));
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");
