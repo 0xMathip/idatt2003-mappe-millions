@@ -13,6 +13,20 @@
     src: url("/fonts/Almarai-Regular.ttf");
 }
 
+
+/* ===================
+    GLOBAL
+ ===================*/
+.page-title {
+    -fx-text-fill: #F6DA36;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 64px;
+    -fx-font-weight: 700;
+}
+
+/* ===================
+    MAIN MENU
+ ===================*/
 .main-menu-button {
     -fx-background-color: #F6DA36;
     -fx-text-fill: black;
@@ -157,6 +171,12 @@
     -fx-stroke: #F6DA36;
 }
 
+/* ===================
+    MarketView styling
+ ===================*/
+.market-view{
+    -fx-background-color: black;
+}
 
 /*
 Tradepanel styling
@@ -340,6 +360,18 @@ Tradepanel styling
     -fx-border-width: 2px;
 }
 
+.trade-panel-buy-button:hover {
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-background-color: #22913b;
+}
+
+.trade-panel-buy-button:armed {
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-background-color: #1b7a31;
+}
+
 .trade-panel-sell-button {
     -fx-background-color: #E34233;
     -fx-background-radius: 70px;
@@ -359,6 +391,18 @@ Tradepanel styling
 
     -fx-border-color: transparent;
     -fx-border-width: 2px;
+}
+
+.trade-panel-sell-button:hover{
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-background-color: #c43a2c;
+}
+
+.trade-panel-sell-button:armed{
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-background-color: #ad3326;
 }
 
 .trade-panel-selected {
