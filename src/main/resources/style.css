@@ -8,27 +8,151 @@
     src: url("/fonts/Almarai-ExtraBold.ttf");
 }
 
-.button {
-    -fx-background-color: yellow;
+@font-face {
+    font-family: "Almarai-Regular";
+    src: url("/fonts/Almarai-Regular.ttf");
+}
+
+.main-menu-button {
+    -fx-background-color: #F6DA36;
     -fx-text-fill: black;
-    -fx-pref-height: 40;
-    -fx-pref-width: 130;
-    -fx-background-radius: 8;
-    -fx-border-radius: 8;
-}
+    -fx-pref-height: 106;
+    -fx-pref-width: 340;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
 
-.button .text {
     -fx-font-family: "Almarai Bold";
-    -fx-font-size: 18;
+    -fx-font-size: 48px;
+    -fx-text-alignment: center;
+    -fx-text-overrun: CLIP;
 }
 
-.button:hover {
-    -fx-background-color: #858500;
+.main-menu-button:hover {
+    -fx-background-color: #a1a100;
 }
 
-/* muligens noe sånt?
-.button:hover .text {
-    -fx-font-family: "Almarai ExtraBold";
-}
-*/
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-pref-height: 60;
+    -fx-pref-width: 240;
+    -fx-background-radius: 30px;
 
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 26px;
+    -fx-font-smoothing-type: gray;
+    -fx-text-alignment: left;
+}
+
+.sidebar-button:selected {
+    -fx-background-color: #F6DA36;
+    -fx-text-fill: black;
+    -fx-pref-height: 60;
+    -fx-pref-width: 240;
+    -fx-background-radius: 30px;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 26px;
+    -fx-font-smoothing-type: gray;
+    -fx-text-alignment: left;
+}
+
+.sidebar-button:selected:hover {
+    -fx-background-color: #a1a100;
+}
+
+
+.sidebar-button .ikonli-font-icon {
+    -fx-fill: white;
+    -fx-stroke: white;
+}
+
+.sidebar-button:selected .ikonli-font-icon {
+    -fx-fill: black;
+    -fx-stroke: black
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #505050;
+}
+
+.ikonli-font-icon {
+    -fx-fill: black;
+    -fx-stroke: black;
+}
+
+.level-box {
+    -fx-pref-width: 245;
+    -fx-max-width: 245;
+    -fx-pref-height: 359;
+    -fx-max-height: 359;
+    -fx-background-radius: 30px;
+    -fx-background-color: #0E0E0E;
+}
+
+.yellow-boss-baby-box {
+    -fx-pref-height: 166;
+    -fx-max-height: 166;
+    -fx-pref-width: 166;
+    -fx-max-width: 166;
+    -fx-background-radius: 40px;
+    -fx-background-color: #F6DA36;
+}
+
+.player-level-label {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 30px;
+    -fx-text-fill: white;
+}
+
+.current-level-label {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 30px;
+    -fx-text-fill: #F6DA36;
+}
+
+.next-level-label {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 16px;
+}
+/*
+.progress-bar {
+    -fx-pref-width: 151;
+    -fx-max-width: 151;
+    -fx-pref-height: 18;
+    -fx-max-height: 18;
+    -fx-background-radius: 46px;
+    -fx-background-color: #616161;
+}*/
+
+.progress-bar .track {
+    -fx-pref-width: 151;
+    -fx-max-width: 151;
+    -fx-pref-height: 18;
+    -fx-max-height: 18;
+    -fx-background-radius: 46px;
+    -fx-background-color: #616161;
+}
+
+.progress-bar .bar {
+    -fx-pref-height: 18;
+    -fx-max-height: 18;
+    -fx-max-width: 151;
+    -fx-background-radius: 46px;
+    -fx-background-color: #F6DA36;
+}
+
+.current-week-label {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-background-color: #0E0E0E;
+    -fx-pref-height: 64px;
+    -fx-pref-width: 250px;
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+}
+
+.current-week-icon {
+    -fx-fill: #F6DA36;
+    -fx-stroke: #F6DA36;
+}
