@@ -17,6 +17,11 @@ public class SidebarView implements View {
   public SidebarView() {
 
     ToggleGroup sidebar = new ToggleGroup();
+    sidebar.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+      if (newToggle == null) {
+        oldToggle.setSelected(true);
+      }
+    });
 
     // Dashboard button
     ToggleButton dashboardButton = new ToggleButton("Dashboard");
