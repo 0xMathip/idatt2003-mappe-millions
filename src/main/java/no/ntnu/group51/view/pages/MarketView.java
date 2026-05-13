@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.StockChartCard;
 import no.ntnu.group51.view.components.StockSelectorCard;
@@ -12,7 +13,7 @@ import no.ntnu.group51.view.components.TradePanel;
 public class MarketView implements View {
   private final VBox root = new VBox();
 
-  public MarketView(){
+  public MarketView(GameModel gameModel){
     root.getStyleClass().add("market-view");
 
     Label title = new Label("Market");
@@ -24,10 +25,10 @@ public class MarketView implements View {
     VBox leftColumn = new VBox();
     leftColumn.getStyleClass().add("market-left-column");
 
-    //leftColumn.getChildren().addAll(
-       // new StockSelectorCard().getRoot(),
-        //new TradePanel().getRoot()
-   // );
+    leftColumn.getChildren().addAll(
+       new StockSelectorCard().getRoot(),
+        new TradePanel(gameModel).getRoot()
+   );
 
     body.getChildren().addAll(
         leftColumn,

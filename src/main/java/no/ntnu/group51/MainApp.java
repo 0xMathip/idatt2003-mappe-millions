@@ -15,6 +15,7 @@ import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.MainMenuView;
 import no.ntnu.group51.view.components.TradePanel;
+import no.ntnu.group51.view.pages.MarketView;
 
 public class MainApp extends Application {
 
@@ -30,7 +31,7 @@ public class MainApp extends Application {
 
     List<Stock> stocks = new ArrayList<>();
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new TradePanel(new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks))));
+    sceneManager.changeScene(new MarketView(new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks))));
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");

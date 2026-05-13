@@ -156,3 +156,212 @@
     -fx-fill: #F6DA36;
     -fx-stroke: #F6DA36;
 }
+
+
+/*
+Tradepanel styling
+ */
+
+.trade-panel {
+    -fx-background-color: #0E0E0E;
+
+    -fx-background-radius: 30px;
+    -fx-pref-height: 558px;
+    -fx-max-height: 558px;
+    -fx-min-height: 558px;
+
+    -fx-pref-width: 368px;
+    -fx-min-width: 368px;
+    -fx-max-width: 368px;
+
+    -fx-border-radius: 30px;
+    -fx-border-width: 3px;
+    -fx-border-color: #202020;
+}
+
+.trade-panel-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+}
+
+.trade-panel-cash {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 36px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.trade-panel-cashbox {
+    -fx-background-color: #202020;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 91px;
+    -fx-pref-width: 322px;
+    -fx-max-width: 322px;
+    -fx-max-height: 91px;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-mode-button {
+    -fx-background-color: #202020;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 38px;
+    -fx-max-height: 38px;
+    -fx-min-height: 38px;
+
+    -fx-pref-width: 153px;
+    -fx-min-width: 153px;
+    -fx-max-width: 153px;
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai-Bold";
+    -fx-font-size: 20px;
+    -fx-padding: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.trade-panel-mode-button:hover {
+    -fx-border-color: #F6DA36;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+}
+
+.trade-panel-input{
+    -fx-background-color: #202020;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-line-height: normal;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-estimate {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-line-height: normal;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-row {
+    -fx-background-color: #202020;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+}
+
+.trade-panel-row-value {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-line-height: normal;
+    -fx-padding: 0 20 0 0;
+}
+
+.trading-panel-lev-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.trade-panel-leverage-button {
+    -fx-background-color: #202020;
+    -fx-background-radius: 15px;
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+
+    -fx-pref-width: 50px;
+    -fx-min-width: 50px;
+    -fx-max-width: 50px;
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 15px;
+    -fx-font-style: normal;
+    -fx-line-height: normal;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.trade-panel-leverage-button:hover {
+    -fx-border-color: #F6DA36;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+}
+
+.trade-panel-buy-button {
+    -fx-background-color: #2FBE51;
+    -fx-background-radius: 70px;
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-min-height: 70px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+
+    -fx-text-fill: #000000;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 32px;
+    -fx-font-weight: 500;
+    -fx-padding: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.trade-panel-sell-button {
+    -fx-background-color: #E34233;
+    -fx-background-radius: 70px;
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-min-height: 70px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+
+    -fx-text-fill: #000000;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 32px;
+    -fx-font-weight: 500;
+    -fx-padding: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.trade-panel-selected {
+    -fx-background-color: #F6DA36;
+    -fx-text-fill: BLACK;
+}

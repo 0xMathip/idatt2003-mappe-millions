@@ -1,9 +1,13 @@
 package no.ntnu.group51.view.components;
 
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
@@ -21,18 +25,26 @@ public class TradePanel implements View, Observer {
   private Label cashLabel;
   private Button buyButton;
   private Button sellButton;
+
   private Button shareButton;
   private Button amountButton;
+
   private Button leverageOffButton;
   private Button leverage5Button;
   private Button leverage10Button;
   private Button leverage20Button;
+
+  private TextField inputField;
+  private Label estimateTitleLabel;
+  private Label estimateValueLabel;
 
 
   public TradePanel(GameModel gameModel) {
     this.gameModel = gameModel;
 
     root.getStyleClass().add("trade-panel");
+    root.setAlignment(Pos.CENTER);
+    root.setSpacing(17);
 
     createLayout();
     registerEvents();
@@ -48,12 +60,39 @@ public class TradePanel implements View, Observer {
     cashLabel = new Label();
     cashLabel.getStyleClass().add("trade-panel-cash");
 
+    VBox cashBox = new VBox(-6, cashTitle, cashLabel);
+    cashBox.getStyleClass().add("trade-panel-cashbox");
+    cashBox.setAlignment(Pos.CENTER_LEFT);
+
     shareButton = createButton("Shares", "trade-panel-mode-button");
     amountButton = createButton("Amount", "trade-panel-mode-button");
 
     HBox modeButtons = new HBox(8, shareButton, amountButton);
-    modeButtons.getStyleClass().add("trade-panel-mode-buttons");
 
+
+    inputField = new TextField();
+    inputField.getStyleClass().add("trade-panel-input");
+
+    estimateTitleLabel = new Label();
+    estimateTitleLabel.getStyleClass().add("trade-panel-estimate");
+
+    estimateValueLabel = new Label();
+    estimateValueLabel.getStyleClass().add("trade-panel-row-value");
+
+    Region spacer = new Region();
+    HBox.setHgrow(spacer, Priority.ALWAYS);
+
+    HBox estimateRow = new HBox(
+        estimateTitleLabel,
+        spacer,
+        estimateValueLabel
+    );
+
+    estimateRow.getStyleClass().add("trade-panel-row");
+    estimateRow.setAlignment(Pos.CENTER_LEFT);
+
+    Label leverageLabel = new Label("Leverage");
+    leverageLabel.getStyleClass().add("trading-panel-lev-label");
     leverageOffButton = createButton("Off","trade-panel-leverage-button");
     leverage5Button = createButton("5x","trade-panel-leverage-button");
     leverage10Button = createButton("10x","trade-panel-leverage-button");
@@ -61,11 +100,15 @@ public class TradePanel implements View, Observer {
 
     HBox leverageButtons = new HBox(
         8,
+        leverageLabel,
         leverageOffButton,
         leverage5Button,
         leverage10Button,
         leverage20Button
     );
+
+    modeButtons.setAlignment(Pos.CENTER);
+    leverageButtons.setAlignment(Pos.CENTER);
 
     leverageButtons.getStyleClass().add("trade-panel-leverage-buttons");
 
@@ -75,9 +118,10 @@ public class TradePanel implements View, Observer {
 
 
     root.getChildren().addAll(
-        cashTitle,
-        cashLabel,
+        cashBox,
         modeButtons,
+        inputField,
+        estimateRow,
         leverageButtons,
         buyButton,
         sellButton);
@@ -119,7 +163,7 @@ public class TradePanel implements View, Observer {
   private void updateDisplay(){
     Player player = gameModel.getPlayer();
 
-    cashLabel.setText(player.getMoney().toString());
+    cashLabel.setText("$" + player.getMoney().toString());
   }
 
   private Button createButton(String text, String styleClass) {
@@ -134,8 +178,14 @@ public class TradePanel implements View, Observer {
 
     if (tradeMode == TradeMode.SHARES) {
       shareButton.getStyleClass().add("trade-panel-selected");
+      inputField.setPromptText("Shares");
+      estimateTitleLabel.setText("Estimated cost");
+      estimateValueLabel.setText("$" + "Soon");
     } else{
       amountButton.getStyleClass().add("trade-panel-selected");
+      inputField.setPromptText("Amount");
+      estimateTitleLabel.setText("Estimated shares");
+      estimateValueLabel.setText("Soon");
     }
 
     leverageOffButton.getStyleClass().remove("trade-panel-selected");
@@ -165,6 +215,14 @@ public class TradePanel implements View, Observer {
 
   public Leverage getSelectedLeverage() {
     return selectedLeverage;
+  }
+
+  public String getInputText() {
+    return inputField.getText();
+  }
+
+  public void setEstimateText(String text) {
+    estimateValueLabel.setText(text);
   }
 
 
