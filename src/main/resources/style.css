@@ -55,6 +55,15 @@
     -fx-font-size: 26px;
     -fx-font-smoothing-type: gray;
     -fx-text-alignment: left;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.sidebar-button:hover {
+    -fx-border-color: #F6DA36;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
 }
 
 .sidebar-button:selected {
@@ -70,9 +79,10 @@
     -fx-text-alignment: left;
 }
 
+/*
 .sidebar-button:selected:hover {
     -fx-background-color: #a1a100;
-}
+}*/
 
 
 .sidebar-button .ikonli-font-icon {
@@ -85,9 +95,6 @@
     -fx-stroke: black
 }
 
-.sidebar-button:hover {
-    -fx-background-color: #505050;
-}
 
 .ikonli-font-icon {
     -fx-fill: black;
