@@ -3,6 +3,8 @@ package no.ntnu.group51.view.pages;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
@@ -25,8 +27,13 @@ public class MarketView implements View {
     VBox leftColumn = new VBox();
     leftColumn.getStyleClass().add("market-left-column");
 
+    Region spacer = new Region();
+    leftColumn.setPrefHeight(800);
+    VBox.setVgrow(spacer, Priority.ALWAYS);
+
     leftColumn.getChildren().addAll(
-       new StockSelectorCard().getRoot(),
+       new StockSelectorCard(gameModel).getRoot(),
+        spacer,
         new TradePanel(gameModel).getRoot()
    );
 

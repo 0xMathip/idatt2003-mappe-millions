@@ -1,27 +1,34 @@
 @font-face {
-    font-family: "Almarai-Bold";
+    -fx-font-family: "Almarai Bold";
     src: url("/fonts/Almarai-Bold.ttf");
 }
 
 @font-face {
-    font-family: "Almarai-ExtraBold";
+    -fx-font-family: "Almarai ExtraBold";
     src: url("/fonts/Almarai-ExtraBold.ttf");
 }
 
 @font-face {
-    font-family: "Almarai-Regular";
+    -fx-font-family: "Almarai Regular";
     src: url("/fonts/Almarai-Regular.ttf");
 }
-
 
 /* ===================
     GLOBAL
  ===================*/
 .page-title {
     -fx-text-fill: #F6DA36;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 64px;
     -fx-font-weight: 700;
+}
+
+.negative-price-change {
+    -fx-text-fill: #E34233;
+}
+
+.positive-price-change {
+    -fx-text-fill: #2FBE51;
 }
 
 /* ===================
@@ -240,7 +247,7 @@ Tradepanel styling
     -fx-max-width: 153px;
 
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: "Almarai-Bold";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 20px;
     -fx-padding: 0;
 
@@ -266,7 +273,7 @@ Tradepanel styling
     -fx-max-width: 322px;
 
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
     -fx-font-style: normal;
     -fx-line-height: normal;
@@ -275,7 +282,7 @@ Tradepanel styling
 
 .trade-panel-estimate {
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
     -fx-font-style: normal;
     -fx-line-height: normal;
@@ -296,7 +303,7 @@ Tradepanel styling
 
 .trade-panel-row-value {
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
     -fx-font-style: normal;
     -fx-line-height: normal;
@@ -305,7 +312,7 @@ Tradepanel styling
 
 .trading-panel-lev-label {
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
     -fx-font-style: normal;
     -fx-font-weight: 400;
@@ -324,7 +331,7 @@ Tradepanel styling
     -fx-max-width: 50px;
 
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 15px;
     -fx-font-style: normal;
     -fx-line-height: normal;
@@ -351,7 +358,7 @@ Tradepanel styling
     -fx-max-width: 322px;
 
     -fx-text-fill: #000000;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 32px;
     -fx-font-weight: 500;
     -fx-padding: 0;
@@ -384,7 +391,7 @@ Tradepanel styling
     -fx-max-width: 322px;
 
     -fx-text-fill: #000000;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 32px;
     -fx-font-weight: 500;
     -fx-padding: 0;
@@ -408,4 +415,108 @@ Tradepanel styling
 .trade-panel-selected {
     -fx-background-color: #F6DA36;
     -fx-text-fill: BLACK;
+}
+
+/* ===================
+    StockSelectorCard styling
+ ===================*/
+
+.stock-selector-card {
+    -fx-background-color: #0E0E0E;
+
+    -fx-background-radius: 30px;
+    -fx-pref-height: 107px;
+    -fx-max-height: 107px;
+    -fx-min-height: 107px;
+
+    -fx-pref-width: 368px;
+    -fx-min-width: 368px;
+    -fx-max-width: 368px;
+
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: #F6DA36;
+
+    -fx-spacing: 25;
+    -fx-padding: 0 20 0 20;
+}
+
+.stock-selector-card-ticker-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 36px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+    -fx-padding: 0 0 2px 0;
+}
+
+.stock-selector-card-company-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+    -fx-padding: 2px 0 0 0;
+}
+
+.stock-selector-card-price-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+    -fx-padding: 0 0 2px 0;
+}
+
+.stock-selector-card-change-label {
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+    -fx-padding: 2px 0 0 0;
+}
+
+.stock-selector-card-content{
+    -fx-pref-width: 200px;
+    -fx-min-width: 270px;
+    -fx-max-width: 270px;
+
+    -fx-pref-height: 70px;
+    -fx-min-height: 70px;
+    -fx-max-height: 70px;
+
+    -fx-alignment: center-left;
+    -fx-spacing: 0;
+}
+
+.stock-selector-card-row {
+    -fx-pref-height: 30px;
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+
+    -fx-alignment: center-left;
+}
+
+.stock-selector-card-arrow {
+    -fx-fill: #ffffff;
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 22px;
+
+    -fx-pref-width: 22px;
+    -fx-min-width: 22px;
+    -fx-max-width: 22px;
+
+    -fx-pref-height:22px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
 }

@@ -21,7 +21,6 @@ public class MainApp extends Application {
 
   @Override
   public void start(Stage stage) {
-
     int width = 1400;
     int height = 800;
     String css = getClass().getResource("/style.css").toExternalForm();
@@ -30,8 +29,18 @@ public class MainApp extends Application {
     scene.getStylesheets().add(css);
 
     List<Stock> stocks = new ArrayList<>();
+    Stock aapl = new Stock("AAPL", "Apple", new BigDecimal("4.73927"));
+    Stock goog = new Stock("GOOG", "Google", new BigDecimal("6.53433"));
+
+    aapl.addNewSalesPrice("5.43232");
+    stocks.add(aapl);
+    stocks.add(goog);
+
+    GameModel gameModel = new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks));
+    gameModel.setSelectedStock(aapl);
+
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new MarketView(new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks))));
+    sceneManager.changeScene(new MarketView(gameModel));
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");
