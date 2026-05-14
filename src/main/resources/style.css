@@ -185,7 +185,7 @@
 
 
 /*
-    Dashboard portfolio
+    Dashboard portfolio panel
  */
 .dashboard-portfolio-symbol {
     -fx-font-family: "Almarai Bold";
@@ -222,4 +222,46 @@
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #33E35C;
+}
+
+.dashboard-portfolio-diff-loss{
+    -fx-pref-width: 61;
+    -fx-max-width: 61;
+    -fx-pref-height: 20;
+    -fx-max-height: 20;
+    -fx-background-radius: 13px;
+    -fx-background-color: #0B0B0B;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #FF4736;
+}
+
+.dashboard-portfolio-bottom-text {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-return-gain {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #2FBE51;
+}
+
+.dashboard-portfolio-return-loss {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #2FBE51;
+}
+
+.separator {
+    -fx-background-color: transparent;
+    -fx-pref-width: 415;
+    -fx-max-width: 415;
+}
+
+.separator .line {
+    -fx-background-color: black;
+    -fx-border-color: black;
 }

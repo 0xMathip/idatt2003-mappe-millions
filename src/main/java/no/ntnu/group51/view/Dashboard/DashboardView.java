@@ -1,12 +1,12 @@
 package no.ntnu.group51.view.Dashboard;
 
 import javafx.scene.Parent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
 import no.ntnu.group51.view.View;
 
 public class DashboardView implements View {
 
-  private final Pane root =  new Pane();
+  private final GridPane root =  new GridPane();
 
   public DashboardView() {
 
