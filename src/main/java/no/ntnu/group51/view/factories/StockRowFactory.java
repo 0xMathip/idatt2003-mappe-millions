@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.factories;
 
+import java.math.BigDecimal;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -9,9 +10,12 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stocks.Stock;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class StockRowFactory {
+public final class StockRowFactory {
 
-  public Parent createStockRow(Stock stock) {
+  private StockRowFactory() {
+  }
+
+  public static Parent createStockRow(Stock stock) {
     HBox row = new HBox();
     row.getStyleClass().add("factory-stock-row");
 
@@ -24,14 +28,17 @@ public class StockRowFactory {
     Label price = new Label(stock.getSalesPrice().toString());
     price.getStyleClass().add("factory-stock-row-price");
 
-    Label priceChange = new Label("$" + stock.getLatestPriceChange().toString());
+    BigDecimal latestChange = stock.getLatestPriceChange();
+
+    Label priceChange = new Label(valueExpression(latestChange, "$"));
     priceChange.getStyleClass().add("factory-stock-row-change");
 
-    Label priceChangePercentage = new Label(stock.getLatestPriceChangePercent().toString() + "%");
+    Label priceChangePercentage = new Label(
+        valueExpression(stock.getLatestPriceChangePercent(),"%"));
     priceChangePercentage.getStyleClass().add("factory-stock-row-change-percent");
 
-    applyStyleChange(priceChange, stock);
-    applyStyleChange(priceChangePercentage, stock);
+    applyStyleChange(priceChange, latestChange);
+    applyStyleChange(priceChangePercentage, latestChange);
 
     Region topSpacer = new Region();
     HBox.setHgrow(topSpacer, Priority.ALWAYS);
@@ -40,20 +47,19 @@ public class StockRowFactory {
     HBox.setHgrow(botSpacer, Priority.ALWAYS);
 
     HBox topRow = new HBox(
+        8,
         ticker,
         topSpacer,
         price
     );
 
     HBox botRow = new HBox(
+        8,
         company,
         botSpacer,
         priceChange,
         priceChangePercentage
     );
-
-    topRow.getStyleClass().add("factory-stock-row-top");
-    botRow.getStyleClass().add("factory-stock-row-bot");
 
     VBox content = new VBox(topRow, botRow);
     content.getStyleClass().add("factory-stock-content");
@@ -66,14 +72,14 @@ public class StockRowFactory {
     return row;
   }
 
-  private void applyStyleChange(Label label, Stock stock) {
+  private static void applyStyleChange(Label label, BigDecimal latestChange) {
     label.getStyleClass().removeAll(
         "positive-price-change",
         "negative-price-change",
         "neutral-price-change"
     );
 
-    int sign = stock.getLatestPriceChange().signum();
+    int sign = latestChange.signum();
 
     if (sign < 0) {
       label.getStyleClass().add("negative-price-change");
@@ -82,5 +88,22 @@ public class StockRowFactory {
     } else {
       label.getStyleClass().add("neutral-price-change");
     }
+  }
+
+  private static String valueExpression(BigDecimal value, String symbol) {
+    BigDecimal absValue = value.abs().stripTrailingZeros();
+
+    String prefix = "$".equals(symbol) ? symbol : "";
+    String suffix = "%".equals(symbol) ? symbol : "";
+
+    if (value.signum() > 0) {
+      return "+" + prefix + absValue + suffix;
+    }
+
+    if (value.signum() < 0 ) {
+      return "-" + prefix + absValue + suffix;
+    }
+
+    return prefix + absValue.toString() + suffix;
   }
 }

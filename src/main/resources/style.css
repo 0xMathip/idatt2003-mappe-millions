@@ -577,3 +577,90 @@ Tradepanel styling
     -fx-max-width: infinity;
     -fx-alignment: center;
 }
+
+
+.factory-stock-row {
+    -fx-background-color: #0E0E0E;
+
+    -fx-background-radius: 30px;
+    -fx-pref-height: 107px;
+    -fx-max-height: 107px;
+    -fx-min-height: 107px;
+
+    -fx-pref-width: 368px;
+    -fx-min-width: 368px;
+    -fx-max-width: 368px;
+
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: #202020;
+}
+
+.factory-stock-row-ticker {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 36px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.factory-stock-row-company {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.factory-stock-row-price {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.factory-stock-row-change {
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.factory-stock-row-change-percent {
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.factory-stock-row-content {
+    -fx-pref-width: 200px;
+    -fx-min-width: 270px;
+    -fx-max-width: 270px;
+
+    -fx-pref-height: 70px;
+    -fx-min-height: 70px;
+    -fx-max-height: 70px;
+}
+
+.factory-stock-row-arrow {
+    -fx-fill: #ffffff;
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 22px;
+
+    -fx-pref-width: 22px;
+    -fx-min-width: 22px;
+    -fx-max-width: 22px;
+
+    -fx-pref-height:22px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
+}
