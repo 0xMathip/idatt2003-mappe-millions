@@ -1,6 +1,7 @@
 package no.ntnu.group51.model.stocks;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,6 +118,26 @@ public class Stock {
     BigDecimal secondLastChange = prices.get(prices.size() - 2);
 
     return lastChange.subtract(secondLastChange);
+  }
+
+  /**
+   * Returns the percentage change between the most recent price
+   * and the previous price
+   *
+   * @return the latest price change in percent, or {@code BigDecimal.ZERO}
+   *         if fewer than two prices have been recorded
+   */
+  public BigDecimal getLatestPriceChangePercent() {
+    if (prices.size() < 2) {
+      return BigDecimal.ZERO;
+    }
+
+    BigDecimal previousPrice = prices.get(prices.size() - 2);
+
+
+    return getLatestPriceChange()
+        .divide(previousPrice, 4, RoundingMode.HALF_UP)
+        .multiply(BigDecimal.valueOf(100));
   }
 
   /**
