@@ -68,14 +68,11 @@ public class StockSelectorCard implements View, Observer {
         changeLabel
     );
 
-
     topRow.getStyleClass().add("stock-selector-card-row");
     botRow.getStyleClass().add("stock-selector-card-row");
 
     VBox content = new VBox(topRow, botRow);
     content.getStyleClass().add("stock-selector-card-content");
-
-
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-down-alt");
     arrowIcon.getStyleClass().add("stock-selector-card-arrow");
