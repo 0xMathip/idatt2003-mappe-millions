@@ -86,7 +86,7 @@ public class MarketView implements View {
 
     stockSearchMenu = new StockSearchMenu(gameModel);
 
-    marketContent.setEffect(new GaussianBlur());
+    marketContent.setEffect((new GaussianBlur(15)));
 
     root.getChildren().addAll(
         overlay,

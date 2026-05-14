@@ -17,7 +17,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class StockSearchMenu implements View, Observer {
   private final StackPane root = new StackPane();
   private TextField searchField;
-  private final VBox stockList = new VBox();
+  private final VBox stockList = new VBox(8);
   private Runnable onClose;
   private FontIcon closeIcon;
 
@@ -36,8 +36,8 @@ public class StockSearchMenu implements View, Observer {
 
   private void createLayout() {
     searchField = new TextField();
-    searchField.setPromptText("Search text");
-    searchField.getStyleClass().add("stock-search-menu-prompt");
+    searchField.setPromptText("Search stocks");
+    searchField.getStyleClass().add("stock-search-menu-text-field");
 
     closeIcon = new FontIcon("cil-x");
     closeIcon.getStyleClass().add("stock-search-menu-close");
@@ -46,9 +46,12 @@ public class StockSearchMenu implements View, Observer {
         searchField,
         closeIcon
     );
+    topBar.getStyleClass().add("stock-search-menu-top-bar");
+
     HBox.setHgrow(searchField, Priority.ALWAYS);
 
     ScrollPane scrollPane = new ScrollPane(stockList);
+    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     scrollPane.setFitToWidth(true);
     scrollPane.getStyleClass().add("stock-search-menu-scroll");
 

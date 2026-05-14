@@ -1,6 +1,8 @@
 package no.ntnu.group51;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
@@ -13,6 +15,7 @@ import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 import no.ntnu.group51.view.MainMenuView;
 import no.ntnu.group51.view.components.TradePanel;
 import no.ntnu.group51.view.pages.MarketView;
@@ -28,15 +31,20 @@ public class MainApp extends Application {
     Scene scene = new Scene(new Pane(), width, height);
     scene.getStylesheets().add(css);
 
+    CsvStartupFileHandler csv = new CsvStartupFileHandler();
     List<Stock> stocks = new ArrayList<>();
-    Stock aapl = new Stock("AAPL", "Apple", new BigDecimal("4.73927"));
-    Stock goog = new Stock("GOOG", "Google", new BigDecimal("6.53433"));
 
-    stocks.add(aapl);
-    stocks.add(goog);
+    Path file = Path.of("src/main/resources/dummy.csv");
+    try {
+       stocks = csv.readStocks(file);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+
 
     GameModel gameModel = new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks));
-    gameModel.setSelectedStock(aapl);
+    gameModel.setSelectedStock(gameModel.getExchange().getStock("AAPL"));
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();

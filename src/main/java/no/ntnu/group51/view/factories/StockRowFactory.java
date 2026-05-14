@@ -33,8 +33,8 @@ public final class StockRowFactory {
     Label priceChange = new Label(valueExpression(latestChange, "$"));
     priceChange.getStyleClass().add("factory-stock-row-change");
 
-    Label priceChangePercentage = new Label(
-        valueExpression(stock.getLatestPriceChangePercent(),"%"));
+    Label priceChangePercentage = new Label("(" +
+        valueExpression(stock.getLatestPriceChangePercent(),"%") + ")");
     priceChangePercentage.getStyleClass().add("factory-stock-row-change-percent");
 
     applyStyleChange(priceChange, latestChange);
@@ -53,6 +53,8 @@ public final class StockRowFactory {
         price
     );
 
+    topRow.getStyleClass().add("factory-stock-row-top");
+
     HBox botRow = new HBox(
         8,
         company,
@@ -60,14 +62,20 @@ public final class StockRowFactory {
         priceChange,
         priceChangePercentage
     );
+    botRow.getStyleClass().add("factory-stock-row-bot");
 
     VBox content = new VBox(topRow, botRow);
-    content.getStyleClass().add("factory-stock-content");
+    content.getStyleClass().add("factory-stock-row-content");
+
+    HBox.setHgrow(content, Priority.ALWAYS);
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
     arrowIcon.getStyleClass().add("factory-stock-row-arrow");
 
-    row.getChildren().addAll(content, arrowIcon);
+
+    row.getChildren().addAll(
+        content,
+        arrowIcon);
 
     return row;
   }
