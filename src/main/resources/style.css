@@ -21,6 +21,8 @@
     -fx-font-family: "Almarai Regular";
     -fx-font-size: 64px;
     -fx-font-weight: 700;
+
+    -fx-padding: 0 0 0 50px;
 }
 
 .negative-price-change {
@@ -181,8 +183,20 @@
 /* ===================
     MarketView styling
  ===================*/
-.market-view{
+.market-view {
     -fx-background-color: black;
+}
+
+.market-body {
+    -fx-padding: 0 50 0 50;
+}
+
+.market-left-column {
+
+}
+
+.market-chart {
+    -fx-alignment: center-right;
 }
 
 /*
@@ -523,4 +537,43 @@ Tradepanel styling
     -fx-pref-height:22px;
     -fx-min-height: 22px;
     -fx-max-height: 22px;
+}
+
+/* ===================
+    StockChartCard styling
+ ===================*/
+
+.stock-chart-card {
+    -fx-background-radius: 30px;
+    -fx-pref-height: 830px;
+    -fx-max-height: 830px;
+    -fx-min-height: 830px;
+
+    -fx-pref-width: 1500px;
+    -fx-min-width: 1400px;
+    -fx-max-width: 1400px;
+
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: #202020;
+}
+
+.chart-plot-background{
+    -fx-background-color: #0E0E0E;
+    -fx-background-radius: 30px;
+}
+
+.chart-series-line {
+    -fx-stroke: #2F95BE;
+}
+
+.stock-chart-card-chart {
+    -fx-background-color: #0E0E0E;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 830px;
+    -fx-max-height: infinity;
+
+    -fx-pref-width: 1400px;
+    -fx-max-width: infinity;
+    -fx-alignment: center;
 }

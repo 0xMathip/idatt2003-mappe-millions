@@ -118,7 +118,7 @@ public class StockSelectorCard implements View, Observer {
   }
 
   @Override
-  public void update(){
+  public void update() {
     updateDisplay();
   }
 }

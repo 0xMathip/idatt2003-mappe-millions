@@ -1,6 +1,7 @@
 package no.ntnu.group51.model.exchange;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -241,12 +242,10 @@ public class Exchange {
       double change = (random.nextDouble() * 0.10) - 0.05;
 
       BigDecimal fac = BigDecimal.valueOf(1.0 + change);
-      BigDecimal updatedPrice = currentPrice.multiply(fac);
-
-      BigDecimal min = new BigDecimal("0.01");
-      if (updatedPrice.compareTo(min) < 0) {
-        updatedPrice = min;
-      }
+      BigDecimal updatedPrice = currentPrice
+          .multiply(fac)
+          .max(new BigDecimal("0.01"))
+          .setScale(5, RoundingMode.HALF_UP);
       stock.addNewSalesPrice(updatedPrice.toString());
     }
   }

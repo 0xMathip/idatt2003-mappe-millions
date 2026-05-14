@@ -31,6 +31,11 @@ public class MarketView implements View {
     leftColumn.setPrefHeight(800);
     VBox.setVgrow(spacer, Priority.ALWAYS);
 
+    HBox stockChart = new HBox();
+    HBox.setHgrow(stockChart, Priority.ALWAYS);
+    stockChart.getChildren().addAll(new StockChartCard(gameModel).getRoot());
+    stockChart.getStyleClass().add("market-chart");
+
     leftColumn.getChildren().addAll(
        new StockSelectorCard(gameModel).getRoot(),
         spacer,
@@ -39,7 +44,7 @@ public class MarketView implements View {
 
     body.getChildren().addAll(
         leftColumn,
-        new StockChartCard().getRoot()
+        stockChart
     );
 
     root.getChildren().addAll(title, body);

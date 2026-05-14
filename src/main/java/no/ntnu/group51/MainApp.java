@@ -32,13 +32,26 @@ public class MainApp extends Application {
     Stock aapl = new Stock("AAPL", "Apple", new BigDecimal("4.73927"));
     Stock goog = new Stock("GOOG", "Google", new BigDecimal("6.53433"));
 
-    aapl.addNewSalesPrice("1.43232");
     stocks.add(aapl);
     stocks.add(goog);
 
     GameModel gameModel = new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks));
     gameModel.setSelectedStock(aapl);
-
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
     SceneManager sceneManager = new SceneManager(scene);
     sceneManager.changeScene(new MarketView(gameModel));
 
