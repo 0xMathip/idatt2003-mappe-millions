@@ -9,7 +9,10 @@ public class DashboardView implements View {
   private final GridPane root =  new GridPane();
 
   public DashboardView() {
+    DashboardPortfolioView dashboardPortfolioView = new DashboardPortfolioView();
 
+    root.setStyle("-fx-background-color: black;");
+    root.getChildren().add(dashboardPortfolioView.getRoot());
   }
 
 

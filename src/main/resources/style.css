@@ -194,6 +194,23 @@
 /*
     Dashboard portfolio panel
  */
+
+.dashboard-portfolio {
+    -fx-background-radius: 30px;
+    -fx-background-color: #F6DA36;
+    -fx-pref-width: 476;
+    -fx-max-width: 476;
+    -fx-pref-height: 563;
+    -fx-max-height: 563;
+}
+
+.dashboard-portfolio-title {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 0 28;
+}
+
 .dashboard-portfolio-symbol {
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 32px;

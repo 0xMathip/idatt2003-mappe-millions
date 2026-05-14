@@ -17,6 +17,11 @@ public class DashboardPortfolioView implements View {
 
     VBox portView = new VBox();
 
+    Label portfolioTitle = new Label("Portfolio");
+    portfolioTitle.setAlignment(Pos.CENTER_LEFT);
+    portfolioTitle.getStyleClass().add("dashboard-portfolio-title");
+    portView.getChildren().add(portfolioTitle);
+
     for (int i = 0; i < 4; i++) {
       HBox stock1 = new HBox();
 
@@ -79,10 +84,10 @@ public class DashboardPortfolioView implements View {
     Separator separator = new Separator(Orientation.HORIZONTAL);
 
     root.getChildren().addAll(portView, separator, bottom);
-    root.setStyle("-fx-background-color: #F6DA36;");
     root.setAlignment(Pos.CENTER);
     portView.setSpacing(30);
     root.setSpacing(30);
+    root.getStyleClass().add("dashboard-portfolio");
 
   }
 
