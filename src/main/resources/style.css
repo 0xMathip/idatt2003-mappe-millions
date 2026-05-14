@@ -441,6 +441,10 @@ Tradepanel styling
     -fx-padding: 0 20 0 20;
 }
 
+.stock-selector-card:hover {
+    -fx-border-color: #F6DA36;
+}
+
 .stock-selector-card-ticker-label {
     -fx-text-fill: #FFFFFF;
     -fx-font-family: "Almarai";

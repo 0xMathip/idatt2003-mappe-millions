@@ -32,7 +32,7 @@ public class MainApp extends Application {
     Stock aapl = new Stock("AAPL", "Apple", new BigDecimal("4.73927"));
     Stock goog = new Stock("GOOG", "Google", new BigDecimal("6.53433"));
 
-    aapl.addNewSalesPrice("5.43232");
+    aapl.addNewSalesPrice("1.43232");
     stocks.add(aapl);
     stocks.add(goog);
 

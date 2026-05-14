@@ -137,7 +137,8 @@ public class Stock {
 
     return getLatestPriceChange()
         .divide(previousPrice, 4, RoundingMode.HALF_UP)
-        .multiply(BigDecimal.valueOf(100));
+        .multiply(BigDecimal.valueOf(100))
+        .stripTrailingZeros();
   }
 
   /**

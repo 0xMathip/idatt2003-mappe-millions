@@ -97,7 +97,7 @@ public class StockSelectorCard implements View, Observer {
     tickerLabel.setText(stock.getSymbol());
     companyLabel.setText(stock.getCompany());
     priceLabel.setText("$" + stock.getSalesPrice().toString());
-    changeLabel.setText(stock.getLatestPriceChange().toString());
+    changeLabel.setText(stock.getLatestPriceChangePercent().toString() + "%");
 
     if (stock.getLatestPriceChange().signum() == -1) {
       changeLabel.getStyleClass().remove("positive-price-change");
