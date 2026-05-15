@@ -1,6 +1,7 @@
 package no.ntnu.group51.view.components;
 
 import java.util.List;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -26,7 +27,8 @@ public class StockSearchMenu implements View, Observer {
   public StockSearchMenu(GameModel gameModel) {
     this.gameModel = gameModel;
 
-    root.getStyleClass().add("stock-search-menu");
+    root.getStyleClass().addAll("card","stock-search-menu");
+    root.setAlignment(Pos.CENTER);
     createLayout();
     registerEvents();
 
@@ -37,7 +39,7 @@ public class StockSearchMenu implements View, Observer {
   private void createLayout() {
     searchField = new TextField();
     searchField.setPromptText("Search stocks");
-    searchField.getStyleClass().add("stock-search-menu-text-field");
+    searchField.getStyleClass().addAll("card","stock-search-menu-text-field");
 
     closeIcon = new FontIcon("cil-x");
     closeIcon.getStyleClass().add("stock-search-menu-close");
@@ -60,6 +62,7 @@ public class StockSearchMenu implements View, Observer {
         topBar,
         scrollPane);
     content.getStyleClass().add("stock-search-menu-content");
+    content.setAlignment(Pos.CENTER);
 
     root.getChildren().add(content);
   }

@@ -1,6 +1,7 @@
 package no.ntnu.group51.view.factories;
 
 import java.math.BigDecimal;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -17,7 +18,8 @@ public final class StockRowFactory {
 
   public static Parent createStockRow(Stock stock) {
     HBox row = new HBox();
-    row.getStyleClass().add("factory-stock-row");
+    row.getStyleClass().addAll("card","factory-stock-row");
+    row.setAlignment(Pos.CENTER);
 
     Label ticker = new Label(stock.getSymbol());
     ticker.getStyleClass().add("factory-stock-row-ticker");
@@ -52,8 +54,7 @@ public final class StockRowFactory {
         topSpacer,
         price
     );
-
-    topRow.getStyleClass().add("factory-stock-row-top");
+    topRow.setAlignment(Pos.CENTER_LEFT);
 
     HBox botRow = new HBox(
         8,
@@ -62,10 +63,11 @@ public final class StockRowFactory {
         priceChange,
         priceChangePercentage
     );
-    botRow.getStyleClass().add("factory-stock-row-bot");
+    botRow.setAlignment(Pos.CENTER_LEFT);
 
     VBox content = new VBox(topRow, botRow);
     content.getStyleClass().add("factory-stock-row-content");
+    content.setAlignment(Pos.CENTER_LEFT);
 
     HBox.setHgrow(content, Priority.ALWAYS);
 

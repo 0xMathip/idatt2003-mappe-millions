@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.StockChartCard;
 import no.ntnu.group51.view.components.StockSearchMenu;
@@ -86,7 +85,9 @@ public class MarketView implements View {
 
     stockSearchMenu = new StockSearchMenu(gameModel);
 
-    marketContent.setEffect((new GaussianBlur(15)));
+    GaussianBlur blur = new GaussianBlur(15);
+    marketContent.getChildren()
+        .forEach(child -> child.setEffect(blur));
 
     root.getChildren().addAll(
         overlay,
@@ -98,7 +99,8 @@ public class MarketView implements View {
   }
 
   private void closeStockSearchMenu() {
-    marketContent.setEffect(null);
+    marketContent.getChildren()
+        .forEach(child -> child.setEffect(null));
 
     root.getChildren().removeAll(
         overlay,
