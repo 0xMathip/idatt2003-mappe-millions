@@ -2,19 +2,33 @@ package no.ntnu.group51.view.pages;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.StockChartCard;
+import no.ntnu.group51.view.components.StockSearchMenu;
 import no.ntnu.group51.view.components.StockSelectorCard;
 import no.ntnu.group51.view.components.TradePanel;
 
 public class MarketView implements View {
-  private final VBox root = new VBox();
+  private final StackPane root = new StackPane();
+  private VBox marketContent;
+  private StockSearchMenu stockSearchMenu;
+  private Pane overlay;
+  private final GameModel gameModel;
 
   public MarketView(GameModel gameModel){
-    root.getStyleClass().add("market-view");
+    this.gameModel = gameModel;
+
+    marketContent = new VBox();
+    marketContent.getStyleClass().add("market-view");
 
     Label title = new Label("Market");
     title.getStyleClass().add("page-title");
@@ -25,17 +39,74 @@ public class MarketView implements View {
     VBox leftColumn = new VBox();
     leftColumn.getStyleClass().add("market-left-column");
 
+    Region spacer = new Region();
+    leftColumn.setPrefHeight(800);
+    VBox.setVgrow(spacer, Priority.ALWAYS);
+
+    StockSelectorCard stockSelectorCard = new StockSelectorCard(gameModel);
+    TradePanel tradePanel = new TradePanel(gameModel);
+    StockChartCard stockChartCard = new StockChartCard(gameModel);
+
+    HBox stockChart = new HBox();
+    HBox.setHgrow(stockChart, Priority.ALWAYS);
+    stockChart.getChildren().addAll(stockChartCard.getRoot());
+    stockChart.getStyleClass().add("market-chart");
+
     leftColumn.getChildren().addAll(
-       new StockSelectorCard().getRoot(),
-        new TradePanel(gameModel).getRoot()
+       stockSelectorCard.getRoot(),
+        spacer,
+        tradePanel.getRoot()
    );
 
     body.getChildren().addAll(
         leftColumn,
-        new StockChartCard().getRoot()
+        stockChart
     );
 
-    root.getChildren().addAll(title, body);
+    marketContent.getChildren().addAll(
+        title,
+        body
+    );
+
+    root.getChildren().addAll(marketContent);
+    registerEvents(stockSelectorCard);
+  }
+
+  private void registerEvents(StockSelectorCard stockSelectorCard) {
+    stockSelectorCard.getRoot().setOnMouseClicked(e -> showStockSearchMenu());
+  }
+
+  private void showStockSearchMenu() {
+    if (stockSearchMenu != null) {
+      return;
+    }
+
+    overlay = new Pane();
+    overlay.getStyleClass().add("market-overlay");
+
+    stockSearchMenu = new StockSearchMenu(gameModel);
+
+    marketContent.setEffect((new GaussianBlur(15)));
+
+    root.getChildren().addAll(
+        overlay,
+        stockSearchMenu.getRoot()
+    );
+
+    overlay.setOnMouseClicked(e -> closeStockSearchMenu());
+    stockSearchMenu.setOnClose(this::closeStockSearchMenu);
+  }
+
+  private void closeStockSearchMenu() {
+    marketContent.setEffect(null);
+
+    root.getChildren().removeAll(
+        overlay,
+        stockSearchMenu.getRoot()
+    );
+
+    overlay = null;
+    stockSearchMenu = null;
   }
 
   @Override

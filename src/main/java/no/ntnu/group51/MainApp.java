@@ -1,6 +1,8 @@
 package no.ntnu.group51;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
@@ -13,6 +15,8 @@ import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
+import no.ntnu.group51.view.GameView;
 import no.ntnu.group51.view.MainMenuView;
 import no.ntnu.group51.view.components.TradePanel;
 import no.ntnu.group51.view.pages.MarketView;
@@ -21,7 +25,6 @@ public class MainApp extends Application {
 
   @Override
   public void start(Stage stage) {
-
     int width = 1400;
     int height = 800;
     String css = getClass().getResource("/style.css").toExternalForm();
@@ -29,9 +32,37 @@ public class MainApp extends Application {
     Scene scene = new Scene(new Pane(), width, height);
     scene.getStylesheets().add(css);
 
+    CsvStartupFileHandler csv = new CsvStartupFileHandler();
     List<Stock> stocks = new ArrayList<>();
+
+    Path file = Path.of("src/main/resources/dummy.csv");
+    try {
+       stocks = csv.readStocks(file);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+
+
+    GameModel gameModel = new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks));
+    gameModel.setSelectedStock(gameModel.getExchange().getStock("AAPL"));
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
+    gameModel.getExchange().advance();
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new MarketView(new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks))));
+    sceneManager.changeScene(new GameView(gameModel));
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");
