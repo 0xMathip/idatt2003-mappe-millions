@@ -16,6 +16,7 @@ import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
+import no.ntnu.group51.view.GameView;
 import no.ntnu.group51.view.MainMenuView;
 import no.ntnu.group51.view.components.TradePanel;
 import no.ntnu.group51.view.pages.MarketView;
@@ -61,7 +62,7 @@ public class MainApp extends Application {
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new MarketView(gameModel));
+    sceneManager.changeScene(new GameView(gameModel));
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");
