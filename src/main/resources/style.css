@@ -1,38 +1,3 @@
-@font-face {
-    -fx-font-family: "Almarai Bold";
-    src: url("/fonts/Almarai-Bold.ttf");
-}
-
-@font-face {
-    -fx-font-family: "Almarai ExtraBold";
-    src: url("/fonts/Almarai-ExtraBold.ttf");
-}
-
-@font-face {
-    -fx-font-family: "Almarai Regular";
-    src: url("/fonts/Almarai-Regular.ttf");
-}
-
-/* ===================
-    GLOBAL
- ===================*/
-.page-title {
-    -fx-text-fill: #F6DA36;
-    -fx-font-family: "Almarai Regular";
-    -fx-font-size: 64px;
-    -fx-font-weight: 700;
-
-    -fx-padding: 0 0 0 50px;
-}
-
-.negative-price-change {
-    -fx-text-fill: #E34233;
-}
-
-.positive-price-change {
-    -fx-text-fill: #2FBE51;
-}
-
 /* ===================
     MAIN MENU
  ===================*/
@@ -178,25 +143,6 @@
 .current-week-icon {
     -fx-fill: #F6DA36;
     -fx-stroke: #F6DA36;
-}
-
-/* ===================
-    MarketView styling
- ===================*/
-.market-view {
-    -fx-background-color: black;
-}
-
-.market-body {
-    -fx-padding: 0 50 0 50;
-}
-
-.market-left-column {
-
-}
-
-.market-chart {
-    -fx-alignment: center;
 }
 
 /*

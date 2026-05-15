@@ -27,10 +27,18 @@ public class MainApp extends Application {
   public void start(Stage stage) {
     int width = 1400;
     int height = 800;
-    String css = getClass().getResource("/style.css").toExternalForm();
 
     Scene scene = new Scene(new Pane(), width, height);
-    scene.getStylesheets().add(css);
+    scene.getStylesheets().addAll(
+        getClass().getResource("/styles/theme.css").toExternalForm(),
+        getClass().getResource("/styles/layout.css").toExternalForm(),
+        getClass().getResource("/styles/navigation.css").toExternalForm(),
+        getClass().getResource("/styles/components.css").toExternalForm(),
+        getClass().getResource("/styles/market.css").toExternalForm(),
+        getClass().getResource("/styles/dashboard.css").toExternalForm(),
+        getClass().getResource("/styles/portfolio.css").toExternalForm(),
+        getClass().getResource("/styles/transactions.css").toExternalForm(),
+        getClass().getResource("/styles/overlays.css").toExternalForm());
 
     CsvStartupFileHandler csv = new CsvStartupFileHandler();
     List<Stock> stocks = new ArrayList<>();

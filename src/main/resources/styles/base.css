@@ -1,0 +1,43 @@
+/* ===================
+    GLOBAL
+ ===================*/
+.page-title {
+    -fx-text-fill: -color-yellow;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 64px;
+    -fx-font-weight: 700;
+    -fx-padding: 0 0 0 50px;
+}
+
+.section-title {
+    -fx-text-fill: white;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 32px;
+}
+
+.body-text {
+    -fx-text-fill: white;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+}
+
+.negative-price-change {
+    -fx-text-fill: -color-red;
+}
+
+.positive-price-change {
+    -fx-text-fill: -color-green;
+}
+
+.card {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: -radius-card;
+    -fx-border-color: -color-border;
+    -fx-border-radius: -radius-card;
+    -fx-border-width: 2px;
+}
+
+.surface {
+    -fx-background-color: -color-surface-light;
+    -fx-background-radius: -radius-card;
+}

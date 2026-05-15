@@ -1,0 +1,44 @@
+@font-face {
+    -fx-font-family: "Almarai Bold";
+    src: url("/fonts/Almarai-Bold.ttf");
+}
+
+@font-face {
+    -fx-font-family: "Almarai ExtraBold";
+    src: url("/fonts/Almarai-ExtraBold.ttf");
+}
+
+@font-face {
+    -fx-font-family: "Almarai Regular";
+    src: url("/fonts/Almarai-Regular.ttf");
+}
+
+.root {
+    -color-bg: #000000;
+    -color-surface: #0E0E0E;
+    -color-surface-light: #202020;
+    -color-border: #202020;
+    -color-border-light: #616161;
+
+    -color-text: #FFFFFF;
+    -color-text-dark: #000000;
+
+    -color-yellow: #F6DA36;
+    -color-yellow-hover: #a1a100;
+
+    -color-green: #2FBE51;
+    -color-green-hover: #22913b;
+    -color-green-pressed: #1b7a31;
+
+    -color-red: #E34233;
+    -color-red-hover: #c43a2c;
+    -color-red-pressed: #ad3326;
+
+    -radius-card: 30px;
+    -radius-small: 15px;
+    -radius-button: 70px;
+
+    -font-regular: "Almarai Regular";
+    -font-bold: "Almarai Bold";
+    -font-extra-bold: "Almarai ExtraBold";
+}
