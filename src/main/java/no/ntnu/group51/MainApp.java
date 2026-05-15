@@ -11,6 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import no.ntnu.group51.controller.SceneManager;
+import no.ntnu.group51.view.Dashboard.DashboardPortfolioView;
+import no.ntnu.group51.view.Dashboard.DashboardView;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;

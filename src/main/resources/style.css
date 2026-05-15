@@ -54,6 +54,12 @@
     -fx-background-color: #a1a100;
 }
 
+
+
+/*
+    Sidebar
+ */
+
 .sidebar-button {
     -fx-background-color: transparent;
     -fx-text-fill: white;
@@ -65,6 +71,15 @@
     -fx-font-size: 26px;
     -fx-font-smoothing-type: gray;
     -fx-text-alignment: left;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.sidebar-button:hover {
+    -fx-border-color: #F6DA36;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
 }
 
 .sidebar-button:selected {
@@ -80,9 +95,10 @@
     -fx-text-alignment: left;
 }
 
+/*
 .sidebar-button:selected:hover {
     -fx-background-color: #a1a100;
-}
+}*/
 
 
 .sidebar-button .ikonli-font-icon {
@@ -95,14 +111,17 @@
     -fx-stroke: black
 }
 
-.sidebar-button:hover {
-    -fx-background-color: #505050;
-}
 
 .ikonli-font-icon {
     -fx-fill: black;
     -fx-stroke: black;
 }
+
+
+
+/*
+    Box that shows level on the sidebar
+ */
 
 .level-box {
     -fx-pref-width: 245;
@@ -165,6 +184,12 @@
     -fx-background-color: #F6DA36;
 }
 
+
+
+/*
+    Current week showing top of the sidebar
+ */
+
 .current-week-label {
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 32px;
@@ -180,6 +205,89 @@
     -fx-stroke: #F6DA36;
 }
 
+/*
+    Dashboard portfolio panel
+ */
+
+.dashboard-portfolio {
+    -fx-background-radius: 30px;
+    -fx-background-color: #F6DA36;
+    -fx-pref-width: 476;
+    -fx-max-width: 476;
+    -fx-pref-height: 563;
+    -fx-max-height: 563;
+}
+
+.dashboard-portfolio-title {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-text-fill: black;
+    -fx-padding: 0 0 0 28;
+}
+
+.dashboard-portfolio-symbol {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 32px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-subtext {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-amount-shares {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-amount-cash {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-diff{
+    -fx-pref-width: 61;
+    -fx-max-width: 61;
+    -fx-pref-height: 20;
+    -fx-max-height: 20;
+    -fx-background-radius: 13px;
+    -fx-background-color: #0B0B0B;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 16px;
+}
+
+.dashboard-portfolio-bottom-text {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+    -fx-text-fill: black;
+}
+
+.dashboard-portfolio-return-gain {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #2FBE51;
+}
+
+.dashboard-portfolio-return-loss {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #2FBE51;
+}
+
+.separator {
+    -fx-background-color: transparent;
+    -fx-pref-width: 415;
+    -fx-max-width: 415;
+}
+
+.separator .line {
+    -fx-background-color: black;
+    -fx-border-color: black;
 /* ===================
     MarketView styling
  ===================*/

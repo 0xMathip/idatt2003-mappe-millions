@@ -17,6 +17,11 @@ public class SidebarView implements View {
   public SidebarView() {
 
     ToggleGroup sidebar = new ToggleGroup();
+    sidebar.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+      if (newToggle == null) {
+        oldToggle.setSelected(true);
+      }
+    });
 
     // Dashboard button
     ToggleButton dashboardButton = new ToggleButton("Dashboard");
@@ -127,7 +132,6 @@ public class SidebarView implements View {
         spacer2,
         levelBox
     );
-
     root.setSpacing(15);
     root.setAlignment(Pos.CENTER);
     root.setPrefWidth(362);

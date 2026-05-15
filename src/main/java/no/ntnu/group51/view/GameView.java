@@ -2,6 +2,7 @@ package no.ntnu.group51.view;
 
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import no.ntnu.group51.view.Dashboard.DashboardView;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.MarketView;
 

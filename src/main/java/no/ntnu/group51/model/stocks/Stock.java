@@ -121,12 +121,11 @@ public class Stock {
   }
 
   /**
-   * Returns the percentage change between the most recent price
-   * and the previous price
+   Returns the percentage change between the most recent price.
+   and the previous price
    *
-   * @return the latest price change in percent, or {@code BigDecimal.ZERO}
-   *         if fewer than two prices have been recorded
-   */
+   @return the latest price change in percent, or {@code BigDecimal.ZERO}
+   if fewer than two prices have been recorded*/
   public BigDecimal getLatestPriceChangePercent() {
     if (prices.size() < 2) {
       return BigDecimal.ZERO;
