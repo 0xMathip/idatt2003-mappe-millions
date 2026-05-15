@@ -1,3 +1,199 @@
 /* ===================
      App Components
  ===================*/
+
+/* Trade-panel */
+.trade-panel {
+    -fx-pref-height: 558px;
+    -fx-max-height: 558px;
+    -fx-min-height: 558px;
+
+    -fx-pref-width: 368px;
+    -fx-min-width: 368px;
+    -fx-max-width: 368px;
+
+    -fx-spacing: 17px;
+}
+
+.trade-panel-label {
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+}
+
+.trade-panel-cash {
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 36px;
+}
+
+.trade-panel-cashbox {
+    -fx-pref-height: 91px;
+    -fx-pref-width: 322px;
+
+    -fx-max-width: 322px;
+    -fx-max-height: 91px;
+
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-mode-button {
+    -fx-background-color: -color-surface-light;
+    -fx-background-radius: -radius-card;
+
+    -fx-pref-height: 38px;
+    -fx-max-height: 38px;
+    -fx-min-height: 38px;
+
+    -fx-pref-width: 153px;
+    -fx-min-width: 153px;
+    -fx-max-width: 153px;
+
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 20px;
+    -fx-padding: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+}
+
+.trade-panel-mode-button:hover {
+    -fx-border-color: -color-yellow;
+}
+
+.trade-panel-input{
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-estimate {
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-row {
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+}
+
+.trade-panel-row-value {
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+    -fx-padding: 0 20 0 0;
+}
+
+.trading-panel-lev-label {
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+}
+
+.trade-panel-leverage-button {
+    -fx-background-color: -color-surface-light;
+    -fx-background-radius: -radius-small;
+
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+
+    -fx-pref-width: 50px;
+    -fx-min-width: 50px;
+    -fx-max-width: 50px;
+
+    -fx-font-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 15px;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: -radius-small;
+}
+
+.trade-panel-leverage-button:hover {
+    -fx-border-color: -color-yellow;
+}
+
+.trade-panel-buy-button {
+    -fx-background-color: -color-green;
+    -fx-background-radius: -radius-button;
+
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-min-height: 70px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+
+    -fx-text-fill: -color-text-dark;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 32px;
+    -fx-font-weight: 500;
+    -fx-padding: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.trade-panel-buy-button:hover {
+    -fx-background-color: -color-green-hover;
+}
+
+.trade-panel-buy-button:armed {
+    -fx-background-color: -color-green-pressed;
+}
+
+.trade-panel-sell-button {
+    -fx-background-color: -color-red;
+    -fx-background-radius: -radius-button;
+
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-min-height: 70px;
+
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+
+    -fx-text-fill: -color-text-dark;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 32px;
+    -fx-font-weight: 500;
+    -fx-padding: 0;
+
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+}
+
+.trade-panel-sell-button:hover{
+    -fx-background-color: -color-red-hover;
+}
+
+.trade-panel-sell-button:armed{
+    -fx-background-color: -color-red-pressed;
+}
+
+.trade-panel-selected {
+    -fx-background-color: -color-yellow;
+    -fx-text-fill: -color-text-dark;
+}

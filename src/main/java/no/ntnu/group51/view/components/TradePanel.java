@@ -42,7 +42,7 @@ public class TradePanel implements View, Observer {
   public TradePanel(GameModel gameModel) {
     this.gameModel = gameModel;
 
-    root.getStyleClass().add("trade-panel");
+    root.getStyleClass().addAll("card","trade-panel");
     root.setAlignment(Pos.CENTER);
     root.setSpacing(17);
 
