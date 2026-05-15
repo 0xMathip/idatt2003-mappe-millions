@@ -329,8 +329,6 @@
     -fx-pref-width: 648px;
     -fx-min-width: 648px;
     -fx-max-width: 648px;
-
-    -fx-spacing: 20;
 }
 
 .factory-stock-row-ticker {
@@ -369,6 +367,8 @@
     -fx-pref-height: 70px;
     -fx-min-height: 70px;
     -fx-max-height: 70px;
+
+    -fx-padding: 0 20 0 0px;
 }
 
 .factory-stock-row:hover {
