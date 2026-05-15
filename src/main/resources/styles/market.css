@@ -13,6 +13,10 @@
     -fx-alignment: top-left;
 }
 
+.market-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.45);
+}
+
 .market-chart {
     -fx-alignment: center;
 }
