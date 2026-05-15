@@ -21,7 +21,8 @@ public class StockChartCard implements View, Observer {
   public StockChartCard(GameModel gameModel) {
     this.gameModel = gameModel;
 
-    root.getStyleClass().add("stock-chart-card");
+    root.getStyleClass().addAll("card","stock-chart-card");
+    root.setAlignment(Pos.CENTER_LEFT);
 
     createLayout();
     gameModel.addObserver(this);

@@ -61,7 +61,7 @@ public class TradePanel implements View, Observer {
     cashLabel.getStyleClass().add("trade-panel-cash");
 
     VBox cashBox = new VBox(-6, cashTitle, cashLabel);
-    cashBox.getStyleClass().add("trade-panel-cashbox");
+    cashBox.getStyleClass().addAll("surface","trade-panel-cashbox");
     cashBox.setAlignment(Pos.CENTER_LEFT);
 
     shareButton = createButton("Shares", "trade-panel-mode-button");
@@ -71,7 +71,7 @@ public class TradePanel implements View, Observer {
 
 
     inputField = new TextField();
-    inputField.getStyleClass().add("trade-panel-input");
+    inputField.getStyleClass().addAll("surface","trade-panel-input");
 
     estimateTitleLabel = new Label();
     estimateTitleLabel.getStyleClass().add("trade-panel-estimate");
@@ -88,7 +88,7 @@ public class TradePanel implements View, Observer {
         estimateValueLabel
     );
 
-    estimateRow.getStyleClass().add("trade-panel-row");
+    estimateRow.getStyleClass().addAll("surface","trade-panel-row");
     estimateRow.setAlignment(Pos.CENTER_LEFT);
 
     Label leverageLabel = new Label("Leverage");

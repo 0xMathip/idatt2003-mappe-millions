@@ -31,6 +31,7 @@ public class MainApp extends Application {
     Scene scene = new Scene(new Pane(), width, height);
     scene.getStylesheets().addAll(
         getClass().getResource("/styles/theme.css").toExternalForm(),
+        getClass().getResource("/styles/base.css").toExternalForm(),
         getClass().getResource("/styles/layout.css").toExternalForm(),
         getClass().getResource("/styles/navigation.css").toExternalForm(),
         getClass().getResource("/styles/components.css").toExternalForm(),

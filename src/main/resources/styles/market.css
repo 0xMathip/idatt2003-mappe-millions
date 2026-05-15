@@ -1,3 +1,7 @@
+.market-view {
+    -fx-background-color: -color-bg;
+}
+
 .market-body {
     -fx-padding: 0 50px 0 50px;
     -fx-spacing: 60px;
