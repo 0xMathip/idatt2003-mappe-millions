@@ -1,14 +1,15 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.view.View;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class PortfolioListing implements View {
 
@@ -16,40 +17,53 @@ public class PortfolioListing implements View {
 
   public static Parent portfolioListing(Share share) {
 
-    HBox stock1 = new HBox();
 
-    VBox symbol1 = new VBox();
-    Label symbol1Label = new Label(share.getStock().getSymbol());
-    symbol1Label.getStyleClass().add("dashboard-portfolio-symbol");
-    Label company1Label = new Label(share.getStock().getCompany());
-    company1Label.getStyleClass().add("dashboard-portfolio-subtext");
-    symbol1.getChildren().addAll(symbol1Label, company1Label);
-    symbol1.setAlignment(Pos.CENTER_LEFT);
+    GridPane stock = new GridPane();
 
-    VBox shares1 = new VBox();
-    Label amount1Label = new Label(share.getQuantity().toString());
-    amount1Label.getStyleClass().add("dashboard-portfolio-amount-shares");
-    Label shares1Label = new Label("shares");
-    shares1Label.getStyleClass().add("dashboard-portfolio-subtext");
-    shares1.getChildren().addAll(amount1Label, shares1Label);
-    shares1.setAlignment(Pos.CENTER);
+    VBox symbol = new VBox();
+    Label symbolLabel = new Label(share.getStock().getSymbol());
+    symbolLabel.getStyleClass().add("dashboard-portfolio-symbol");
+    Label companyLabel = new Label(share.getStock().getCompany());
+    companyLabel.getStyleClass().add("dashboard-portfolio-subtext");
+    symbol.getChildren().addAll(symbolLabel, companyLabel);
+    symbol.setAlignment(Pos.CENTER_LEFT);
 
-    VBox money1 = new VBox();
-    Label cash1Label = new Label(share.getStock().getSalesPrice().toString());
-    cash1Label.getStyleClass().add("dashboard-portfolio-amount-cash");
-    Label diff1Label = new Label(share.getStock().getLatestPriceChangePercent().toString());
-    diff1Label.getStyleClass().add("dashboard-portfolio-diff");
-    applyStyleChange(diff1Label, share.getStock().getLatestPriceChange());
-    diff1Label.setAlignment(Pos.CENTER);
-    money1.getChildren().addAll(cash1Label, diff1Label);
-    money1.setAlignment(Pos.CENTER_RIGHT);
-    money1.setSpacing(7);
-    stock1.getChildren().addAll(symbol1, shares1, money1);
-    stock1.setSpacing(70);
-    stock1.setAlignment(Pos.CENTER);
+    VBox shares = new VBox();
+    Label amountLabel = new Label(share.getQuantity().toString());
+    amountLabel.getStyleClass().add("dashboard-portfolio-amount-shares");
+    Label sharesLabel = new Label("shares");
+    sharesLabel.getStyleClass().add("dashboard-portfolio-subtext");
+    shares.getChildren().addAll(amountLabel, sharesLabel);
+    shares.setAlignment(Pos.CENTER);
 
-    // portView.getChildren().add(stock1);
-    return stock1;
+    VBox money = new VBox();
+    Label cashLabel = new Label("$" + share.getStock().getSalesPrice().toString());
+    cashLabel.getStyleClass().add("dashboard-portfolio-amount-cash");
+    Label diffLabel = new Label(share.getStock().getLatestPriceChangePercent().toString());
+    diffLabel.getStyleClass().add("dashboard-portfolio-diff");
+    applyStyleChange(diffLabel, share.getStock().getLatestPriceChange());
+    diffLabel.setAlignment(Pos.CENTER);
+    money.getChildren().addAll(cashLabel, diffLabel);
+    money.setAlignment(Pos.CENTER_RIGHT);
+    money.setSpacing(7);
+
+    ColumnConstraints left = new ColumnConstraints();
+    left.setPercentWidth(33.333);
+
+    ColumnConstraints mid = new ColumnConstraints();
+    mid.setPercentWidth(33.333);
+
+    ColumnConstraints right = new ColumnConstraints();
+    right.setPercentWidth(33.333);
+
+    stock.getColumnConstraints().addAll(left, mid, right);
+    stock.add(symbol, 0, 0);
+    stock.add(shares, 1, 0);
+    stock.add(money, 2, 0);
+
+    stock.setPadding(new Insets(0, 33, 0, 33));
+
+    return stock;
   }
 
   private static void applyStyleChange(Label label, BigDecimal latestChange) {

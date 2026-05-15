@@ -14,10 +14,11 @@ public class GameView implements View {
   public GameView(GameModel gameModel) {
     this.gameModel = gameModel;
     SidebarView sidebar = new SidebarView();
+    DashboardView dashboard = new DashboardView();
     MarketView market = new MarketView(gameModel);
 
     root.setLeft(sidebar.getRoot());
-    root.setCenter(market.getRoot());
+    root.setCenter(dashboard.getRoot());
   }
 
   @Override

@@ -13,5 +13,6 @@ public class TransactionRowFactory {
   public static Parent createTransactionRow(Transaction transaction) {
     HBox row = new HBox();
     row.getStyleClass().add("factory-transaction-row");
+    return null;
   }
 }

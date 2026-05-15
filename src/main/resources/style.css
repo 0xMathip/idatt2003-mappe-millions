@@ -288,6 +288,9 @@
 .separator .line {
     -fx-background-color: black;
     -fx-border-color: black;
+}
+
+
 /* ===================
     MarketView styling
  ===================*/
@@ -946,3 +949,4 @@ Tradepanel styling
 
     -fx-alignment: center;
 }
+
