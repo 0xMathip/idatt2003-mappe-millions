@@ -11,7 +11,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TopMovers {
 
-  public TopMovers() {}
+  private TopMovers() {}
 
   public static Parent createGainer() {
 
@@ -20,7 +20,7 @@ public class TopMovers {
     gainer.getStyleClass().add("dashboard-movers-gainer");
 
     Label company = new Label("TSLA");
-    company.getStyleClass().add("dashboard-transaction-subtext");
+    company.getStyleClass().add("dashboard-subtext");
 
     text.getChildren().addAll(gainer, company);
     text.setAlignment(Pos.CENTER_LEFT);
@@ -30,7 +30,7 @@ public class TopMovers {
     gain.getStyleClass().add("dashboard-movers-gainer");
 
     Label amount = new Label("$" + "152.3");
-    amount.getStyleClass().add("dashboard-transaction-subtext");
+    amount.getStyleClass().add("dashboard-subtext");
 
     gainAmount.getChildren().addAll(gain, amount);
     gainAmount.setAlignment(Pos.CENTER_RIGHT);
@@ -65,7 +65,7 @@ public class TopMovers {
     gainer.getStyleClass().add("dashboard-movers-loser");
 
     Label company = new Label("META");
-    company.getStyleClass().add("dashboard-transaction-subtext");
+    company.getStyleClass().add("dashboard-subtext");
 
     text.getChildren().addAll(gainer, company);
     text.setAlignment(Pos.CENTER_LEFT);
@@ -75,7 +75,7 @@ public class TopMovers {
     gain.getStyleClass().add("dashboard-movers-loser");
 
     Label amount = new Label("$" + "152.3");
-    amount.getStyleClass().add("dashboard-transaction-subtext");
+    amount.getStyleClass().add("dashboard-subtext");
 
     gainAmount.getChildren().addAll(gain, amount);
     gainAmount.setAlignment(Pos.CENTER_RIGHT);

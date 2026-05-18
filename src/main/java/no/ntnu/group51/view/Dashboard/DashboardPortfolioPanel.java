@@ -12,13 +12,12 @@ import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.View;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
-public class DashboardPortfolioView implements View {
+public class DashboardPortfolioPanel implements View {
 
   private final VBox root =  new VBox();
 
-  public DashboardPortfolioView() {
+  public DashboardPortfolioPanel() {
 
     VBox portView = new VBox();
 

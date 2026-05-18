@@ -2,6 +2,7 @@ package no.ntnu.group51.view.Dashboard;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -37,6 +38,7 @@ public class DashboardTopMoversPanel implements View {
     HBox lower =  new HBox();
     Button viewMarket = new Button("View market");
     viewMarket.getStyleClass().add("dashboard-view-button");
+    viewMarket.setCursor(Cursor.HAND);
     lower.getChildren().addAll(viewMarket);
     lower.setPadding(new Insets(0, 0, 10, 15));
 

@@ -33,10 +33,17 @@ public class DashboardTransactionPanel implements View {
     viewAll.setAlignment(Pos.CENTER_LEFT);
     viewAll.setGraphicTextGap(12);
 
+    VBox upper = new VBox();
+    upper.getChildren().addAll(
+        TransactionListing.createTransactionListing(),
+        TransactionListing.createTransactionListing(),
+        TransactionListing.createTransactionListing()
+    );
+
+    upper.setSpacing(15);
+
     root.getChildren().addAll(
-        TransactionListing.createTransactionListing(),
-        TransactionListing.createTransactionListing(),
-        TransactionListing.createTransactionListing(),
+        upper,
         separator,
         lower
     );

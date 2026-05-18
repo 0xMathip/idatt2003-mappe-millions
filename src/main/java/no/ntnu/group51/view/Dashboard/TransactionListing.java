@@ -16,19 +16,23 @@ public class TransactionListing {
 
   public static Parent createTransactionListing() {
 
+    int spacing = -10;
+
     VBox leftSide =  new VBox();
+    leftSide.setSpacing(spacing);
     Label statusLabel = new Label("Bought AAPL");
     statusLabel.getStyleClass().add("dashboard-transaction-text");
     Label sharesAmountLabel = new Label("10 shares");
-    sharesAmountLabel.getStyleClass().add("dashboard-transaction-subtext");
+    sharesAmountLabel.getStyleClass().add("dashboard-subtext");
     leftSide.getChildren().addAll(statusLabel, sharesAmountLabel);
     leftSide.setAlignment(Pos.CENTER_LEFT);
 
     VBox rightSide =  new VBox();
+    rightSide.setSpacing(spacing);
     Label cashAmountLabel = new Label("$9,032.0");
     cashAmountLabel.getStyleClass().add("dashboard-transaction-amount");
     Label weekLabel = new Label("Week 13");
-    weekLabel.getStyleClass().add("dashboard-transaction-subtext");
+    weekLabel.getStyleClass().add("dashboard-subtext");
     rightSide.getChildren().addAll(cashAmountLabel, weekLabel);
     rightSide.setAlignment(Pos.CENTER);
 

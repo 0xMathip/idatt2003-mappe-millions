@@ -41,3 +41,11 @@
     -fx-background-color: -color-surface-light;
     -fx-background-radius: 30px;
 }
+
+.button {
+    -fx-cursor: hand;
+}
+
+.toggle-button  {
+    -fx-cursor: hand;
+}

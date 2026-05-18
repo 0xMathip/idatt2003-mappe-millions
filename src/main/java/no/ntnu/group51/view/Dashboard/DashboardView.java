@@ -15,9 +15,8 @@ public class DashboardView implements View {
   private final GridPane root =  new GridPane();
 
   public DashboardView() {
-    DashboardPortfolioView dashboardPortfolioView = new DashboardPortfolioView();
+    DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
     DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
-    DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
 
     Label dashboardTitle = new Label("Dashboard");
     dashboardTitle.getStyleClass().add("dashboard-title");
@@ -26,20 +25,30 @@ public class DashboardView implements View {
     VBox leftSide = new VBox();
     leftSide.getChildren().addAll(
         dashboardTitle,
-        dashboardPortfolioView.getRoot(),
+        dashboardPortfolioPanel.getRoot(),
         dashboardTransactionPanel.getRoot()
     );
 
     leftSide.setSpacing(20);
+
+    DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
+    DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
 
     HBox rightBottom = new HBox();
     rightBottom.getChildren().addAll(
         dashboardTopMoversPanel.getRoot()
     );
 
+    HBox rightTop = new HBox();
+    rightTop.getChildren().addAll(
+        dashboardCashStatsSection.getRoot()
+    );
+
+
     VBox rightSide = new VBox();
     rightSide.setAlignment(Pos.CENTER);
     rightSide.getChildren().addAll(
+        rightTop,
         rightBottom
     );
 

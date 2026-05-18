@@ -98,7 +98,7 @@
     -fx-font-size: 24px;
 }
 
-.dashboard-transaction-subtext {
+.dashboard-subtext {
     -fx-font-family: -font-regular;
     -fx-text-fill: -color-text;
     -fx-font-size: 20px;
@@ -201,4 +201,22 @@
     -fx-max-width: 476px;
     -fx-pref-height: 365px;
     -fx-max-height: 365px;
+}
+
+
+
+
+
+
+.dashboard-cash-stat-amount {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+    -fx-text-fill: white;
+}
+
+.dashboard-cash-stat-window {
+    -fx-pref-width: 253px;
+    -fx-max-width: 253px;
+    -fx-pref-height: 113px;
+    -fx-max-height: 113px;
 }
