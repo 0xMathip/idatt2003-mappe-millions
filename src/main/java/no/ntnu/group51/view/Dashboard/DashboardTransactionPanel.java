@@ -1,10 +1,12 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -17,9 +19,13 @@ public class DashboardTransactionPanel implements View {
 
     Separator separator = new Separator();
     separator.getStyleClass().add("separator-grey");
+    separator.setPadding(new Insets(15, 0, 0, 0));
 
+    HBox lower = new HBox();
     Button viewAll = new Button("View all transactions");
-    viewAll.getStyleClass().add("dashboard-transaction-view-all");
+    viewAll.getStyleClass().add("dashboard-view-button");
+    lower.getChildren().add(viewAll);
+    lower.setPadding(new Insets(0, 0, 0, 15));
 
     FontIcon arrow = new FontIcon("cil-arrow-right");
     viewAll.setGraphic(arrow);
@@ -32,10 +38,11 @@ public class DashboardTransactionPanel implements View {
         TransactionListing.createTransactionListing(),
         TransactionListing.createTransactionListing(),
         separator,
-        viewAll
+        lower
     );
 
     root.getStyleClass().addAll("card", "dashboard-transaction-window");
+    root.setAlignment(Pos.CENTER);
   }
 
 

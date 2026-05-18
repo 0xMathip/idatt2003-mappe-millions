@@ -60,13 +60,13 @@
 .dashboard-portfolio-return-gain {
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 24px;
-    -fx-text-fill: color-green;
+    -fx-text-fill: -color-green;
 }
 
 .dashboard-portfolio-return-loss {
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 24px;
-    -fx-text-fill: color-red;
+    -fx-text-fill: -color-red;
 }
 
 .separator {
@@ -84,6 +84,7 @@
     -fx-background-color: transparent;
     -fx-pref-width: 415;
     -fx-max-width: 415;
+
 }
 
 .separator-grey .line {
@@ -112,9 +113,20 @@
 .filled-circle-green {
     -fx-fill: -color-green;
     -fx-stroke: -color-green;
-    -fx-stroke-width: 1px;
+    -fx-stroke-width: 14px;
 
-    -fx-icon-size: 22px;
+    -fx-icon-size: 15px;
+
+    -fx-pref-width: 22px;
+    -fx-pref-height: 22px;
+}
+
+.filled-circle-red {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+    -fx-stroke-width: 14px;
+
+    -fx-icon-size: 15px;
 
     -fx-pref-width: 22px;
     -fx-pref-height: 22px;
@@ -133,7 +145,7 @@
     -fx-text-fill: -color-yellow;
 }
 
-.dashboard-transaction-view-all {
+.dashboard-view-button {
     -fx-font-family: "Almarai Bold";
     -fx-text-fill: -color-yellow;
     -fx-font-size: 24px;
@@ -141,11 +153,52 @@
     -fx-background-color: transparent;
 }
 
-.dashboard-transaction-view-all .ikonli-font-icon {
+.dashboard-view-button:hover {
+    -fx-text-fill: -color-yellow-hover;
+}
+
+.dashboard-view-button .ikonli-font-icon {
     -fx-fill: -color-yellow;
     -fx-stroke: -color-yellow;
 }
 
-.dashboard-transaction-view-all:hover {
-    -fx-text-fill: -color-yellow-hover;
+.dashboard-view-button:hover .ikonli-font-icon{
+    -fx-fill: -color-yellow-hover;
+    -fx-stroke: -color-yellow-hover;
+}
+
+
+
+
+
+
+.dashboard-movers-gainer {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24;
+    -fx-text-fill: -color-green;
+}
+
+.dashboard-movers-loser {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24;
+    -fx-text-fill: -color-red;
+}
+
+.dashboard-movers-title {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24;
+    -fx-text-fill: white;
+}
+
+.dashboard-movers-this-week {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24;
+    -fx-text-fill: white;
+}
+
+.dashboard-movers-window {
+    -fx-pref-width: 476px;
+    -fx-max-width: 476px;
+    -fx-pref-height: 365px;
+    -fx-max-height: 365px;
 }

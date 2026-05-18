@@ -34,21 +34,21 @@ public class TransactionListing {
 
     FontIcon filledCircle = new FontIcon("cil-circle");
     filledCircle.getStyleClass().add("filled-circle-green");
-    statusLabel.setGraphic(filledCircle);
-    statusLabel.setContentDisplay(ContentDisplay.LEFT);
-    statusLabel.setAlignment(Pos.CENTER_LEFT);
-    statusLabel.setGraphicTextGap(12);
+
+    ColumnConstraints icon = new ColumnConstraints();
+    icon.setPercentWidth(10);
 
     ColumnConstraints left  = new ColumnConstraints();
-    left.setPercentWidth(65);
+    left.setPercentWidth(10);
 
     ColumnConstraints right  = new ColumnConstraints();
-    right.setPercentWidth(35);
+    right.setPercentWidth(60);
 
     GridPane listing = new GridPane();
     listing.getColumnConstraints().addAll(left, right);
-    listing.add(leftSide, 0, 0);
-    listing.add(rightSide, 1, 0);
+    listing.add(filledCircle, 0, 0);
+    listing.add(leftSide, 1, 0);
+    listing.add(rightSide, 2, 0);
 
     listing.setPadding(new Insets(0, 28, 0, 28));
 
