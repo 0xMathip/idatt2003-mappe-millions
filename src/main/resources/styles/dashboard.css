@@ -98,6 +98,23 @@
     -fx-font-size: 24px;
 }
 
+.separator-white {
+    -fx-background-color: transparent;
+    -fx-pref-width: 2px;
+    -fx-max-width: 2px;
+
+    -fx-pref-height: 35px;
+    -fx-max-height: 35px;
+}
+
+.separator-white .line {
+    -fx-background-color: white;
+    -fx-border-color: white;
+
+    -fx-pref-width: 1px;
+    -fx-max-width: 1px;
+}
+
 .dashboard-subtext {
     -fx-font-family: -font-regular;
     -fx-text-fill: -color-text;
@@ -220,3 +237,16 @@
     -fx-pref-height: 113px;
     -fx-max-height: 113px;
 }
+
+.dashboard-percent-green {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-text-fill: -color-green;
+}
+
+.dashboard-percent-red {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-text-fill: -color-red;
+}
+

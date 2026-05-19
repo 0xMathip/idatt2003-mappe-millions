@@ -10,10 +10,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
 
+/**
+ * Class for the dashboard itself. Does not include the sidebar.
+ */
 public class DashboardView implements View {
 
   private final GridPane root =  new GridPane();
 
+  /**
+   * Creates the dashboard view by creating all the panels from the other classes,
+   * then putting it into 2 VBoxes. The right side has 2 HBoxes stacked on top of
+   * each other in the VBox. GridPane is used to get the percent width easily so it fits nice.
+   */
   public DashboardView() {
     DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
     DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
@@ -33,6 +41,7 @@ public class DashboardView implements View {
 
     DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
     DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
+    DiffOverWeeks diffOverWeeks = new DiffOverWeeks();
 
     HBox rightBottom = new HBox();
     rightBottom.getChildren().addAll(
@@ -41,8 +50,11 @@ public class DashboardView implements View {
 
     HBox rightTop = new HBox();
     rightTop.getChildren().addAll(
-        dashboardCashStatsSection.getRoot()
+        dashboardCashStatsSection.getRoot(),
+        diffOverWeeks.getRoot()
     );
+
+    rightTop.setSpacing(30);
 
 
     VBox rightSide = new VBox();
@@ -51,6 +63,8 @@ public class DashboardView implements View {
         rightTop,
         rightBottom
     );
+
+    rightSide.setSpacing(40);
 
     root.setStyle("-fx-background-color: black;");
     root.setPadding(new Insets(0, 0, 0, 46));

@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.Dashboard;
 
+import java.math.BigDecimal;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -8,17 +9,21 @@ import javafx.scene.layout.*;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.view.View;
 
-import java.math.BigDecimal;
-import java.util.Objects;
-
+/**
+ * Class for a portfolio listing on the portfolio panel.
+ */
 public class PortfolioListing implements View {
 
   private PortfolioListing() {}
 
+  /**
+   * Creates a listing for the portfolio panel. Contains each part in a VBox, which is
+   * all contained in a GridPane.
+   *
+   * @param share The share from the portfolio you want to create a listing for.
+   * @return The GridPane
+   */
   public static Parent portfolioListing(Share share) {
-
-
-    GridPane stock = new GridPane();
 
     VBox symbol = new VBox();
     Label symbolLabel = new Label(share.getStock().getSymbol());
@@ -36,13 +41,13 @@ public class PortfolioListing implements View {
     shares.getChildren().addAll(amountLabel, sharesLabel);
     shares.setAlignment(Pos.CENTER);
 
-    VBox money = new VBox();
     Label cashLabel = new Label("$" + share.getStock().getSalesPrice().toString());
     cashLabel.getStyleClass().add("dashboard-portfolio-amount-cash");
     Label diffLabel = new Label(share.getStock().getLatestPriceChangePercent().toString());
     diffLabel.getStyleClass().add("dashboard-portfolio-diff");
     applyStyleChange(diffLabel, share.getStock().getLatestPriceChange());
     diffLabel.setAlignment(Pos.CENTER);
+    VBox money = new VBox();
     money.getChildren().addAll(cashLabel, diffLabel);
     money.setAlignment(Pos.CENTER_RIGHT);
     money.setSpacing(7);
@@ -56,6 +61,7 @@ public class PortfolioListing implements View {
     ColumnConstraints right = new ColumnConstraints();
     right.setPercentWidth(33.333);
 
+    GridPane stock = new GridPane();
     stock.getColumnConstraints().addAll(left, mid, right);
     stock.add(symbol, 0, 0);
     stock.add(shares, 1, 0);

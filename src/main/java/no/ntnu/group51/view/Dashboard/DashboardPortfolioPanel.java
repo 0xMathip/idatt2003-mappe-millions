@@ -1,5 +1,7 @@
 package no.ntnu.group51.view.Dashboard;
 
+import java.math.BigDecimal;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -11,12 +13,17 @@ import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.View;
 
-import java.math.BigDecimal;
-
+/**
+ * Class for the big yellow panel on the dashboard showing the portfolio.
+ */
 public class DashboardPortfolioPanel implements View {
 
   private final VBox root =  new VBox();
 
+  /**
+   * Creates the big yellow portfolio panel by putting portfolio listing
+   * within a VBox. Then a separator before an HBox with 2 VBoxes in it.
+   */
   public DashboardPortfolioPanel() {
 
     VBox portView = new VBox();
@@ -56,6 +63,7 @@ public class DashboardPortfolioPanel implements View {
     bottom.getChildren().addAll(invested, portfolioReturn);
     bottom.setAlignment(Pos.CENTER);
     bottom.setSpacing(60);
+    bottom.setPadding(new Insets(0, 0, 0, 0));
 
     Separator separator = new Separator(Orientation.HORIZONTAL);
     separator.getStyleClass().add("separator");
@@ -63,12 +71,9 @@ public class DashboardPortfolioPanel implements View {
     root.getChildren().addAll(portView, separator, bottom);
     root.setAlignment(Pos.CENTER);
     portView.setSpacing(30);
-    root.setSpacing(30);
+    root.setSpacing(20);
     root.getStyleClass().add("dashboard-portfolio");
-
   }
-
-
 
   @Override
   public Parent getRoot() {

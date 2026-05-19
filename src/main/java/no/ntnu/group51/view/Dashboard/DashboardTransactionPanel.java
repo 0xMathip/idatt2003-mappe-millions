@@ -11,10 +11,18 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Class for the transaction panel on the dashboard.
+ */
 public class DashboardTransactionPanel implements View {
 
   VBox root  = new VBox();
 
+  /**
+   * Creates a transaction panel. HBox for the text on the lower part.
+   * Transaction listings created using the TransactionListing class.
+   * Everything contained in a VBox.
+   */
   public DashboardTransactionPanel() {
 
     Separator separator = new Separator();

@@ -9,10 +9,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Class for creating the top movers on the dashboard.
+ * Has 2 methods for creating a gainer and a loser. They are slightly
+ * different
+ */
 public class TopMovers {
 
   private TopMovers() {}
 
+  /**
+   * Creates a top gainer.
+   *
+   * @return
+   */
   public static Parent createGainer() {
 
     VBox text = new VBox();

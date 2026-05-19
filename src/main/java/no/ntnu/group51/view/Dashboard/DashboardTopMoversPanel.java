@@ -13,10 +13,17 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Class for the top movers panel on the dashboard.
+ */
 public class DashboardTopMoversPanel implements View {
 
   VBox root  = new VBox();
 
+  /**
+   * Creates the top movers panel. Top and bottom part contained in HBoxes.
+   * Top gainer and loser created using the TopMovers class. Everything contained in a VBox.
+   */
   public DashboardTopMoversPanel() {
 
     Label topMovers = new Label("Top Movers");

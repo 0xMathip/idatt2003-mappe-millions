@@ -66,6 +66,7 @@ public class MainApp extends Application {
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
+
     SceneManager sceneManager = new SceneManager(scene);
     sceneManager.changeScene(new GameView(gameModel));
 
