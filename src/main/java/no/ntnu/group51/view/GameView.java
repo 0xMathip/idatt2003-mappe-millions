@@ -18,7 +18,7 @@ public class GameView implements View {
     MarketView market = new MarketView(gameModel);
 
     root.setLeft(sidebar.getRoot());
-    root.setCenter(dashboard.getRoot());
+    root.setCenter(market.getRoot());
   }
 
   @Override

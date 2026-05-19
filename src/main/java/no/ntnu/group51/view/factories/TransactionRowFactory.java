@@ -1,8 +1,18 @@
 package no.ntnu.group51.view.factories;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.transaction.Purchase;
+import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.view.components.SearchRow;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TransactionRowFactory {
 
@@ -10,9 +20,75 @@ public class TransactionRowFactory {
 
   }
 
-  public static Parent createTransactionRow(Transaction transaction) {
-    HBox row = new HBox();
-    row.getStyleClass().add("factory-transaction-row");
-    return null;
+  public static SearchRow createTransactionRow(Transaction transaction) {
+    SearchRow row = new SearchRow(22, 22, 22, 22, 10);
+
+    HBox transactionStatus = createTransactionStatus(transaction);
+
+    Label ticker = new Label(transaction.getShare().getStock().getSymbol());
+    ticker.getStyleClass().add("factory-search-row-ticker");
+
+    Label company = new Label(transaction.getShare().getStock().getCompany());
+    company.getStyleClass().add("factory-search-row-company");
+    company.setAlignment(Pos.CENTER_LEFT);
+
+    VBox stockBox = new VBox(2, ticker, company);
+
+    Label week = new Label("Week");
+    week.getStyleClass().add("factory-transaction-week");
+
+    Label weekCount = new Label(String.valueOf(transaction.getWeek()));
+    weekCount.getStyleClass().add("factory-transaction-week-count");
+
+    VBox weekBox = new VBox(2, week, weekCount);
+    weekBox.setAlignment(Pos.CENTER);
+
+    Label shareCount = new Label(transaction.getShare().getQuantity().toString() + " shares");
+    shareCount.getStyleClass().add("factory-transaction-share-count");
+
+    Label total = new Label("$" + transaction.getTotal());
+    total.getStyleClass().add("factory-search-row-price");
+
+    VBox tradeBox = new VBox(2, shareCount, total);
+    tradeBox.setAlignment(Pos.CENTER_RIGHT);
+
+    FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
+    arrowIcon.getStyleClass().add("factory-search-row-arrow");
+
+    row.addToCell(transactionStatus, 0, 0, 1, 2);
+    row.addToCell(stockBox, 1, 0, 1, 2);
+    row.addToCell(weekBox, 2, 0, 1, 2);
+    row.addToCell(tradeBox, 3, 0, 1, 2);
+    row.addToCell(arrowIcon, 4, 0, 1, 2);
+
+    GridPane.setHalignment(arrowIcon, HPos.CENTER);
+    GridPane.setValignment(arrowIcon, VPos.CENTER);
+    return row;
+  }
+
+  private static HBox createTransactionStatus(Transaction transaction) {
+    HBox transactionStatus = new HBox();
+    transactionStatus.setAlignment(Pos.CENTER);
+    FontIcon transactionIcon = new FontIcon();
+    Label transactionLabel = new Label();
+
+    transactionStatus.getStyleClass().add("factory-transaction-status");
+    transactionIcon.getStyleClass().add("factory-transaction-status-icon");
+    transactionLabel.getStyleClass().add("factory-transaction-status-label");
+    transactionStatus.getChildren().addAll(transactionIcon, transactionLabel);
+
+    if (transaction instanceof Sale) {
+      transactionLabel.setText("SELL");
+      transactionIcon.setIconLiteral("cil-arrow-circle-bottom");
+      transactionStatus.getStyleClass().add("factory-transaction-status-sell");
+    } else if (transaction instanceof Purchase) {
+      transactionLabel.setText("BUY");
+      transactionIcon.setIconLiteral("cil-arrow-circle-top");
+      transactionStatus.getStyleClass().add("factory-transaction-status-buy");
+    } else {
+      throw new IllegalArgumentException("Unknown transaction type.");
+    }
+
+    return transactionStatus;
   }
 }
