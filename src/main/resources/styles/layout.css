@@ -1,0 +1,16 @@
+/* ===================
+        App Layout
+ ===================*/
+.app-root {
+    -fx-background-color: -color-bg;
+}
+
+.page-wrapper {
+    -fx-background-color: -color-bg;
+    -fx-padding: 32px 40px 32px 40px;
+}
+
+.page-content {
+    -fx-max-width: 1500px;
+    -fx-pref-width: 1500px;
+}

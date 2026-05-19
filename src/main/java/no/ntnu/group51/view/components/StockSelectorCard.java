@@ -27,7 +27,7 @@ public class StockSelectorCard implements View, Observer {
   public StockSelectorCard(GameModel gameModel) {
     this.gameModel = gameModel;
 
-    root.getStyleClass().add("stock-selector-card");
+    root.getStyleClass().addAll("card","stock-selector-card");
     root.setAlignment(Pos.CENTER_LEFT);
 
     createLayout();
@@ -71,8 +71,12 @@ public class StockSelectorCard implements View, Observer {
     topRow.getStyleClass().add("stock-selector-card-row");
     botRow.getStyleClass().add("stock-selector-card-row");
 
+    topRow.setAlignment(Pos.CENTER_LEFT);
+    botRow.setAlignment(Pos.CENTER_LEFT);
+
     VBox content = new VBox(topRow, botRow);
     content.getStyleClass().add("stock-selector-card-content");
+    content.setAlignment(Pos.CENTER_LEFT);
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-down-alt");
     arrowIcon.getStyleClass().add("stock-selector-card-arrow");

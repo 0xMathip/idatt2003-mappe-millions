@@ -8,20 +8,14 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import no.ntnu.group51.controller.SceneManager;
-import no.ntnu.group51.view.Dashboard.DashboardPortfolioView;
-import no.ntnu.group51.view.Dashboard.DashboardView;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 import no.ntnu.group51.view.GameView;
-import no.ntnu.group51.view.MainMenuView;
-import no.ntnu.group51.view.components.TradePanel;
-import no.ntnu.group51.view.pages.MarketView;
 
 public class MainApp extends Application {
 
@@ -29,10 +23,19 @@ public class MainApp extends Application {
   public void start(Stage stage) {
     int width = 1400;
     int height = 800;
-    String css = getClass().getResource("/style.css").toExternalForm();
 
     Scene scene = new Scene(new Pane(), width, height);
-    scene.getStylesheets().add(css);
+    scene.getStylesheets().addAll(
+        getClass().getResource("/styles/theme.css").toExternalForm(),
+        getClass().getResource("/styles/base.css").toExternalForm(),
+        getClass().getResource("/styles/layout.css").toExternalForm(),
+        getClass().getResource("/styles/navigation.css").toExternalForm(),
+        getClass().getResource("/styles/components.css").toExternalForm(),
+        getClass().getResource("/styles/market.css").toExternalForm(),
+        getClass().getResource("/styles/dashboard.css").toExternalForm(),
+        getClass().getResource("/styles/portfolio.css").toExternalForm(),
+        getClass().getResource("/styles/transactions.css").toExternalForm(),
+        getClass().getResource("/styles/overlays.css").toExternalForm());
 
     CsvStartupFileHandler csv = new CsvStartupFileHandler();
     List<Stock> stocks = new ArrayList<>();
@@ -63,6 +66,7 @@ public class MainApp extends Application {
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
+
     SceneManager sceneManager = new SceneManager(scene);
     sceneManager.changeScene(new GameView(gameModel));
 
