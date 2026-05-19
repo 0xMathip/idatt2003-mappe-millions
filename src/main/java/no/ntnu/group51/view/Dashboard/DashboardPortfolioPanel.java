@@ -35,10 +35,10 @@ public class DashboardPortfolioPanel implements View {
 
 
     portView.getChildren().addAll(
-        PortfolioListing.portfolioListing(new Share(new Stock("AAPL", "Apple Inc.", new BigDecimal("29312")), new BigDecimal("14.4"), new BigDecimal("25000"))),
-        PortfolioListing.portfolioListing(new Share(new Stock("AAPL", "Apple Inc.", new BigDecimal("29312")), new BigDecimal("14.4"), new BigDecimal("25000"))),
-        PortfolioListing.portfolioListing(new Share(new Stock("BONG", "Bong Makers", new BigDecimal("3452")), new BigDecimal("123"), new BigDecimal("7843"))),
-        PortfolioListing.portfolioListing(new Share(new Stock("BING", "Bing", new BigDecimal("293")), new BigDecimal("53"), new BigDecimal("20")))
+        PortfolioListing.portfolioListing(new Share(new Stock("AAPL", "Apple Inc.", new BigDecimal("29312"), "cib-apple"), new BigDecimal("14.4"), new BigDecimal("25000"))),
+        PortfolioListing.portfolioListing(new Share(new Stock("NVDA", "Nvidia", new BigDecimal("29312"), "cib-nvidia"), new BigDecimal("14.4"), new BigDecimal("25000"))),
+        PortfolioListing.portfolioListing(new Share(new Stock("ORCL", "Oracle Corporation", new BigDecimal("3452"), "cib-oracle"), new BigDecimal("123"), new BigDecimal("7843"))),
+        PortfolioListing.portfolioListing(new Share(new Stock("V", "Visa", new BigDecimal("293"), "cib-visa"), new BigDecimal("53"), new BigDecimal("20")))
     );
 
 
@@ -73,6 +73,12 @@ public class DashboardPortfolioPanel implements View {
     portView.setSpacing(30);
     root.setSpacing(20);
     root.getStyleClass().add("dashboard-portfolio");
+
+    /*
+    invested.setStyle("-fx-border-color: green");
+    portfolioReturn.setStyle("-fx-border-color: green");
+    separator.setStyle("-fx-border-color: green");
+    */
   }
 
   @Override

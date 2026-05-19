@@ -13,6 +13,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class SidebarView implements View {
 
   private final VBox root = new VBox();
+  private final ToggleButton dashboardButton = new ToggleButton("Dashboard");
+  private final ToggleButton marketButton = new ToggleButton("Market");
+  private final ToggleButton portfolioButton = new ToggleButton("Portfolio");
+  private final ToggleButton transactionsButton = new ToggleButton("Transactions");
 
   public SidebarView() {
 
@@ -24,7 +28,6 @@ public class SidebarView implements View {
     });
 
     // Dashboard button
-    ToggleButton dashboardButton = new ToggleButton("Dashboard");
     dashboardButton.getStyleClass().add("sidebar-button");
     dashboardButton.setToggleGroup(sidebar);
 
@@ -36,7 +39,6 @@ public class SidebarView implements View {
     dashboardButton.setGraphicTextGap(12);
 
     // Market button
-    ToggleButton marketButton = new ToggleButton("Market");
     marketButton.setToggleGroup(sidebar);
     marketButton.getStyleClass().add("sidebar-button");
 
@@ -47,7 +49,6 @@ public class SidebarView implements View {
     marketButton.setGraphicTextGap(12);
 
     // Portfolio button
-    ToggleButton portfolioButton = new ToggleButton("Portfolio");
     portfolioButton.setToggleGroup(sidebar);
     portfolioButton.getStyleClass().add("sidebar-button");
 
@@ -58,7 +59,6 @@ public class SidebarView implements View {
     portfolioButton.setGraphicTextGap(12);
 
     // Transaction button
-    ToggleButton transactionsButton = new ToggleButton("Transactions");
     transactionsButton.setToggleGroup(sidebar);
     transactionsButton.getStyleClass().add("sidebar-button");
 
@@ -139,6 +139,21 @@ public class SidebarView implements View {
 
   }
 
+  public ToggleButton getDashboardButton() {
+    return dashboardButton;
+  }
+
+  public ToggleButton getMarketButton() {
+    return marketButton;
+  }
+
+  public ToggleButton getPortfolioButton() {
+    return portfolioButton;
+  }
+
+  public ToggleButton getTransactionsButton() {
+    return transactionsButton;
+  }
 
 
   @Override

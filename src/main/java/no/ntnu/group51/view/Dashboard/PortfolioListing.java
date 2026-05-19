@@ -1,13 +1,20 @@
 package no.ntnu.group51.view.Dashboard;
 
 import java.math.BigDecimal;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.view.View;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * Class for a portfolio listing on the portfolio panel.
@@ -52,22 +59,42 @@ public class PortfolioListing implements View {
     money.setAlignment(Pos.CENTER_RIGHT);
     money.setSpacing(7);
 
+    FontIcon icon = new FontIcon(share.getStock().getIcon());
+    icon.getStyleClass().add("dashboard-portfolio-icon");
+    icon.setIconSize(40);
+
+    StackPane iconBox = new StackPane(icon);
+    iconBox.setPadding(new Insets(0, 20, 20, 0));
+
+    ColumnConstraints iconColumn = new ColumnConstraints();
+    iconColumn.setPercentWidth(10);
+
     ColumnConstraints left = new ColumnConstraints();
-    left.setPercentWidth(33.333);
+    left.setPercentWidth(35);
 
     ColumnConstraints mid = new ColumnConstraints();
-    mid.setPercentWidth(33.333);
+    mid.setPercentWidth(20);
 
     ColumnConstraints right = new ColumnConstraints();
-    right.setPercentWidth(33.333);
+    right.setPercentWidth(30);
 
     GridPane stock = new GridPane();
-    stock.getColumnConstraints().addAll(left, mid, right);
-    stock.add(symbol, 0, 0);
-    stock.add(shares, 1, 0);
-    stock.add(money, 2, 0);
+    stock.getColumnConstraints().addAll(iconColumn, left, mid, right);
+    stock.add(icon, 0, 0);
+    stock.add(symbol, 1, 0);
+    stock.add(shares, 2, 0);
+    stock.add(money, 3, 0);
 
-    stock.setPadding(new Insets(0, 33, 0, 33));
+
+    stock.setPadding(new Insets(0, 0, 0, 20));
+
+    /*
+    stock.setStyle("-fx-border-color: red");
+    symbol.setStyle("-fx-border-color: green");
+    shares.setStyle("-fx-border-color: green");
+    money.setStyle("-fx-border-color: green");
+    iconBox.setStyle("-fx-border-color: red");
+     */
 
     return stock;
   }

@@ -40,9 +40,9 @@ public class MainApp extends Application {
     CsvStartupFileHandler csv = new CsvStartupFileHandler();
     List<Stock> stocks = new ArrayList<>();
 
-    Path file = Path.of("src/main/resources/dummy.csv");
+    Path file = Path.of("src/main/resources/sp500.csv");
     try {
-       stocks = csv.readStocks(file);
+      stocks = csv.readStocks(file);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

@@ -19,6 +19,14 @@ public class GameView implements View {
 
     root.setLeft(sidebar.getRoot());
     root.setCenter(dashboard.getRoot());
+
+    sidebar.getDashboardButton().setOnAction(e ->
+        root.setCenter(dashboard.getRoot())
+    );
+
+    sidebar.getMarketButton().setOnAction(e ->
+        root.setCenter(market.getRoot())
+    );
   }
 
   @Override

@@ -12,6 +12,7 @@ public class Stock {
   private final String symbol;
   private final String company;
   private final List<BigDecimal> prices;
+  private final String icon;
 
   /**
    * Creates a new stock.
@@ -21,7 +22,7 @@ public class Stock {
    * @param salesPrice The sales price of the stock
    * @throws IllegalArgumentException if symbol, company or salesPrice is null
    */
-  public Stock(String symbol, String company, BigDecimal salesPrice) {
+  public Stock(String symbol, String company, BigDecimal salesPrice, String icon) {
     if (symbol == null) {
       throw new IllegalArgumentException("symbol cannot be null");
     }
@@ -33,8 +34,14 @@ public class Stock {
     if (salesPrice == null) {
       throw new IllegalArgumentException("salesPrice cannot be null");
     }
+
+    if (icon == null) {
+      throw new IllegalArgumentException("icon cannot be null");
+    }
+
     this.symbol = symbol;
     this.company = company;
+    this.icon = icon;
 
     prices = new ArrayList<>();
     prices.add(salesPrice);
@@ -156,6 +163,10 @@ public class Stock {
    */
   public BigDecimal getSalesPrice() {
     return prices.getLast();
+  }
+
+  public String getIcon() {
+    return icon;
   }
 
 }
