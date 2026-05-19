@@ -13,7 +13,10 @@ import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
+import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.transaction.Purchase;
+import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 import no.ntnu.group51.view.GameView;
 
@@ -66,6 +69,84 @@ public class MainApp extends Application {
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
+
+    Stock apple = gameModel.getExchange().findStocks("AAPL").getFirst();
+    Stock tesla = gameModel.getExchange().findStocks("TSLA").getFirst();
+    Stock nvidia = gameModel.getExchange().findStocks("NVDA").getFirst();
+    Stock microsoft = gameModel.getExchange().findStocks("MSFT").getFirst();
+    Stock amazon = gameModel.getExchange().findStocks("AMZN").getFirst();
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(apple,
+            new BigDecimal("10"),
+            new BigDecimal("198.50")), 10)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Sale(new Share(apple,
+            new BigDecimal("4"),
+            new BigDecimal("205.00")), 11)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(tesla,
+            new BigDecimal("7"),
+            new BigDecimal("310.75")), 12)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(nvidia,
+            new BigDecimal("15"),
+            new BigDecimal("790.20")), 12)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Sale(new Share(tesla,
+            new BigDecimal("2"),
+            new BigDecimal("344.10")), 13)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(microsoft,
+            new BigDecimal("20"),
+            new BigDecimal("412.30")), 13)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Sale(new Share(nvidia,
+            new BigDecimal("5"),
+            new BigDecimal("845.20")), 14)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(amazon,
+            new BigDecimal("12"),
+            new BigDecimal("182.40")), 14)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Sale(new Share(apple,
+            new BigDecimal("3"),
+            new BigDecimal("220.15")), 15)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(tesla,
+            new BigDecimal("6"),
+            new BigDecimal("329.90")), 15)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Sale(new Share(microsoft,
+            new BigDecimal("8"),
+            new BigDecimal("430.00")), 16)
+    );
+
+    gameModel.getPlayer().getTransactionArchive().add(
+        new Purchase(new Share(nvidia,
+            new BigDecimal("9"),
+            new BigDecimal("860.45")), 16)
+    );
 
     SceneManager sceneManager = new SceneManager(scene);
     sceneManager.changeScene(new GameView(gameModel));

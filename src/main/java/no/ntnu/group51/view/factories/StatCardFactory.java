@@ -16,7 +16,6 @@ public final class StatCardFactory {
       String value,
       String subtitle,
       String iconStyle,
-      String titleStyle,
       String valueStyle,
       String subtitleStyle
   ) {
@@ -27,16 +26,16 @@ public final class StatCardFactory {
     Label bottom = new Label(subtitle);
 
     fontIcon.getStyleClass().add(iconStyle);
-    top.getStyleClass().add(titleStyle);
+    top.getStyleClass().add("factory-stat-card-top-text");
     middle.getStyleClass().add(valueStyle);
     bottom.getStyleClass().add(subtitleStyle);
 
-    VBox textBox = new VBox(2, top, middle, bottom);
+    VBox textBox = new VBox(16, top, middle, bottom);
     textBox.setAlignment(Pos.CENTER_LEFT);
 
-    HBox iconCard = new HBox(8, fontIcon, textBox);
+    HBox iconCard = new HBox(16, fontIcon, textBox);
     iconCard.setAlignment(Pos.CENTER_LEFT);
-    iconCard.getStyleClass().addAll("factory-stat-card", "factory-stat-card-icon-card");
+    iconCard.getStyleClass().addAll("card", "factory-stat-card");
 
     return iconCard;
   }
@@ -45,7 +44,6 @@ public final class StatCardFactory {
       String title,
       String value,
       String subtitle,
-      String titleStyle,
       String valueStyle,
       String subtitleStyle
   ) {
@@ -53,14 +51,14 @@ public final class StatCardFactory {
     Label middle = new Label(value);
     Label bottom = new Label(subtitle);
 
-    top.getStyleClass().add(titleStyle);
+    top.getStyleClass().add("factory-stat-card-top-text");
     middle.getStyleClass().add(valueStyle);
     bottom.getStyleClass().add(subtitleStyle);
 
-    VBox textCard = new VBox(2, top, middle, bottom);
+    VBox textCard = new VBox(8, top, middle, bottom);
     textCard.setAlignment(Pos.CENTER_LEFT);
 
-    textCard.getStyleClass().addAll("factory-stat-card", "factory-stat-card-text-card");
+    textCard.getStyleClass().addAll("card", "factory-stat-card");
 
     return textCard;
   }
@@ -71,6 +69,6 @@ public final class StatCardFactory {
       String titleStyle,
       String valueStyle
   ) {
-    return createTextCard(title, value, "", titleStyle, valueStyle, "factory-stat-card-bot-text");
+    return createTextCard(title, value, "", valueStyle, "factory-stat-card-bot-text");
   }
 }

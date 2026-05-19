@@ -5,6 +5,7 @@ import javafx.scene.layout.BorderPane;
 import no.ntnu.group51.view.Dashboard.DashboardView;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.MarketView;
+import no.ntnu.group51.view.pages.TransactionView;
 
 public class GameView implements View {
 
@@ -16,9 +17,10 @@ public class GameView implements View {
     SidebarView sidebar = new SidebarView();
     DashboardView dashboard = new DashboardView();
     MarketView market = new MarketView(gameModel);
+    TransactionView transaction = new TransactionView(gameModel);
 
     root.setLeft(sidebar.getRoot());
-    root.setCenter(market.getRoot());
+    root.setCenter(transaction.getRoot());
   }
 
   @Override

@@ -1,9 +1,5 @@
-.summary-grid {
-    -fx-hgap: 24px;
-    -fx-vgap: 24px;
-}
-
-.content-grid {
-    -fx-hgap: 24px;
+.transaction-view {
+    -fx-background-color: -color-bg;
+    -fx-padding: 32px;
     -fx-vgap: 24px;
 }

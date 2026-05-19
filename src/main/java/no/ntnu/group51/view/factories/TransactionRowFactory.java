@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.factories;
 
+import java.math.RoundingMode;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -21,7 +22,8 @@ public class TransactionRowFactory {
   }
 
   public static SearchRow createTransactionRow(Transaction transaction) {
-    SearchRow row = new SearchRow(22, 22, 22, 22, 10);
+    SearchRow row = new SearchRow(25, 24, 14, 27, 10);
+    row.getStyleClass().addAll("card", "factory-search-row");
 
     HBox transactionStatus = createTransactionStatus(transaction);
 
@@ -32,7 +34,9 @@ public class TransactionRowFactory {
     company.getStyleClass().add("factory-search-row-company");
     company.setAlignment(Pos.CENTER_LEFT);
 
+
     VBox stockBox = new VBox(2, ticker, company);
+    stockBox.setAlignment(Pos.CENTER_LEFT);
 
     Label week = new Label("Week");
     week.getStyleClass().add("factory-transaction-week");
@@ -46,7 +50,7 @@ public class TransactionRowFactory {
     Label shareCount = new Label(transaction.getShare().getQuantity().toString() + " shares");
     shareCount.getStyleClass().add("factory-transaction-share-count");
 
-    Label total = new Label("$" + transaction.getTotal());
+    Label total = new Label("$" + transaction.getTotal().setScale(2, RoundingMode.HALF_UP));
     total.getStyleClass().add("factory-search-row-price");
 
     VBox tradeBox = new VBox(2, shareCount, total);
@@ -61,13 +65,15 @@ public class TransactionRowFactory {
     row.addToCell(tradeBox, 3, 0, 1, 2);
     row.addToCell(arrowIcon, 4, 0, 1, 2);
 
+    GridPane.setHalignment(transactionStatus, HPos.LEFT);
+    GridPane.setValignment(transactionStatus, VPos.CENTER);
     GridPane.setHalignment(arrowIcon, HPos.CENTER);
     GridPane.setValignment(arrowIcon, VPos.CENTER);
     return row;
   }
 
   private static HBox createTransactionStatus(Transaction transaction) {
-    HBox transactionStatus = new HBox();
+    HBox transactionStatus = new HBox(8);
     transactionStatus.setAlignment(Pos.CENTER);
     FontIcon transactionIcon = new FontIcon();
     Label transactionLabel = new Label();

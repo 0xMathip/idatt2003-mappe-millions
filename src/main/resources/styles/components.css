@@ -329,9 +329,6 @@
     -fx-pref-width: 648px;
     -fx-min-width: 648px;
     -fx-max-width: 648px;
-
-    -fx-border-color: transparent;
-    -fx-border-width: 2px;
 }
 
 .search-row:hover {
@@ -389,32 +386,105 @@
     -fx-max-height: 22px;
 }
 
-.factory-transaction-week {
+/* Transaction */
+.factory-search-row {
 
+}
+
+.factory-transaction-week {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-transaction-week-count {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
 }
 
 .factory-transaction-share-count {
-
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
 }
 
 .factory-transaction-status {
+    -fx-pref-height: 43px;
+    -fx-max-height: 43px;
+    -fx-min-height: 43px;
 
+    -fx-pref-width: 123px;
+    -fx-min-width: 123px;
+    -fx-max-width: 123px;
+
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
 }
 
 .factory-transaction-status-icon {
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 20px;
 
+    -fx-pref-width: 20px;
+    -fx-min-width: 20px;
+    -fx-max-width: 20px;
+
+    -fx-pref-height: 20px;
+    -fx-min-height: 20px;
+    -fx-max-height: 20px;
 }
 
 .factory-transaction-status-label {
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
 
+    -fx-pref-width: 63px;
+    -fx-min-width: 63px;
+    -fx-max-width: 63px;
 }
 
-factory-transaction-status-sell {
+.factory-transaction-status-sell {
+    -fx-border-color: -color-red;
+}
 
+.factory-transaction-status-sell .factory-transaction-status-label {
+    -fx-text-fill: -color-red;
+}
+
+.factory-transaction-status-sell .factory-transaction-status-icon {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
 }
 
 .factory-transaction-status-buy {
+    -fx-border-color: -color-green;
+}
 
+.factory-transaction-status-buy .factory-transaction-status-label {
+    -fx-text-fill: -color-green;
+}
+
+.factory-transaction-status-buy .factory-transaction-status-icon {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+}
+
+.factory-stat-card {
+
+    -fx-pref-width: 290px;
+    -fx-min-width: 290px;
+    -fx-max-width: 290px;
+
+    -fx-pref-height: 148px;
+    -fx-min-height: 148px;
+    -fx-max-height: 148px;
+
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: -color-border;
+
+    -fx-padding: 0 0 0 30px;
 }
 
 .factory-stat-card-icon {
@@ -422,17 +492,70 @@ factory-transaction-status-sell {
 }
 
 .factory-stat-card-top-text {
-
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
 }
 
-.factory-stat-card-value {
 
+/* ===================
+    Transaction styling
+ ===================*/
+.transaction-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 36px;
 }
 
-.factory-stat-card-bot-text {
-
+.transaction-stat-card-bottom-text {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
 }
 
+.transaction-stat-trades-icon {
+    -fx-fill: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-bought-icon {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-sold-icon {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-fees-icon {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
 
 /* ===================
     SearchMenu styling
