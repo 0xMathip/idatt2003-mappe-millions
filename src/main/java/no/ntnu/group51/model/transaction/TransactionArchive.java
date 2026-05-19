@@ -144,11 +144,11 @@ public class TransactionArchive {
    */
   private boolean transactionTypeMatches(Transaction transaction, String search) {
     if (transaction instanceof Purchase) {
-      return "buy".contains(search);
+      return "buy".startsWith(search);
     }
 
     if (transaction instanceof Sale) {
-      return "sell".contains(search);
+      return "sell".startsWith(search);
     }
 
     return false;
