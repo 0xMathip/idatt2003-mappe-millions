@@ -58,8 +58,8 @@ public class DashboardTopMoversPanel implements View {
 
     root.getChildren().addAll(
         title,
-        TopMovers.createGainer(),
-        TopMovers.createLoser(),
+        TopMovers.createMover("Gainer"),
+        TopMovers.createMover("Loser"),
         separator,
         lower
     );

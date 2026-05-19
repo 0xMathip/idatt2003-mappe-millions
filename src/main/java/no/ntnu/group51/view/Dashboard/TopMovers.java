@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.math.BigDecimal;
+
 /**
  * Class for creating the top movers on the dashboard.
  * Has 2 methods for creating a gainer and a loser. They are slightly
@@ -19,25 +21,28 @@ public class TopMovers {
   private TopMovers() {}
 
   /**
-   * Creates a top gainer.
+   * Creates a mover.
    *
-   * @return
+   * @param type Type "gainer" if gainer, and "loser" if loser
+   * @return The GridPane
    */
-  public static Parent createGainer() {
+  public static Parent createMover(String type) {
+
+    if (type == null || !type.equalsIgnoreCase("Gainer") && !type.equalsIgnoreCase("Loser")) {
+      throw new IllegalArgumentException("Type is null or invalid type");
+    }
 
     VBox text = new VBox();
-    Label gainer = new Label("Top Gainer");
-    gainer.getStyleClass().add("dashboard-movers-gainer");
+    Label topMover = new Label();
 
     Label company = new Label("TSLA");
     company.getStyleClass().add("dashboard-subtext");
 
-    text.getChildren().addAll(gainer, company);
+    text.getChildren().addAll(topMover, company);
     text.setAlignment(Pos.CENTER_LEFT);
 
     VBox gainAmount = new VBox();
-    Label gain = new Label("+" + "7.3" + "%");
-    gain.getStyleClass().add("dashboard-movers-gainer");
+    Label gain = new Label();
 
     Label amount = new Label("$" + "152.3");
     amount.getStyleClass().add("dashboard-subtext");
@@ -45,9 +50,27 @@ public class TopMovers {
     gainAmount.getChildren().addAll(gain, amount);
     gainAmount.setAlignment(Pos.CENTER_RIGHT);
 
-    GridPane mover = new GridPane();
     FontIcon circle = new FontIcon("cil-circle");
-    circle.getStyleClass().add("filled-circle-green");
+
+    if (type.equalsIgnoreCase("Gainer")) {
+      topMover.setText("Top Gainer");
+      topMover.getStyleClass().add("dashboard-movers-gainer");
+
+      gain.setText("+" + "3.2" + "%");
+      gain.getStyleClass().add("dashboard-movers-gainer");
+
+      circle.getStyleClass().add("filled-circle-green");
+    }
+
+    if (type.equalsIgnoreCase("Loser")) {
+      topMover.setText("Top Loser");
+      topMover.getStyleClass().add("dashboard-movers-loser");
+
+      gain.setText("-" + "7.2" + "%");
+      gain.getStyleClass().add("dashboard-movers-loser");
+
+      circle.getStyleClass().add("filled-circle-red");
+    }
 
     ColumnConstraints icon = new ColumnConstraints();
     icon.setPercentWidth(10);
@@ -58,51 +81,7 @@ public class TopMovers {
     ColumnConstraints right  = new ColumnConstraints();
     right.setPercentWidth(40);
 
-    mover.getColumnConstraints().addAll(icon, left, right);
-    mover.add(circle, 0, 0);
-    mover.add(text, 1, 0);
-    mover.add(gainAmount, 2, 0);
-
-    mover.setPadding(new Insets(0, 28, 0, 28));
-
-    return mover;
-  }
-
-  public static Parent createLoser() {
-
-    VBox text = new VBox();
-    Label gainer = new Label("Top Loser");
-    gainer.getStyleClass().add("dashboard-movers-loser");
-
-    Label company = new Label("META");
-    company.getStyleClass().add("dashboard-subtext");
-
-    text.getChildren().addAll(gainer, company);
-    text.setAlignment(Pos.CENTER_LEFT);
-
-    VBox gainAmount = new VBox();
-    Label gain = new Label("-" + "2.3" + "%");
-    gain.getStyleClass().add("dashboard-movers-loser");
-
-    Label amount = new Label("$" + "152.3");
-    amount.getStyleClass().add("dashboard-subtext");
-
-    gainAmount.getChildren().addAll(gain, amount);
-    gainAmount.setAlignment(Pos.CENTER_RIGHT);
-
     GridPane mover = new GridPane();
-    FontIcon circle = new FontIcon("cil-circle");
-    circle.getStyleClass().add("filled-circle-red");
-
-    ColumnConstraints icon = new ColumnConstraints();
-    icon.setPercentWidth(10);
-
-    ColumnConstraints left  = new ColumnConstraints();
-    left.setPercentWidth(50);
-
-    ColumnConstraints right  = new ColumnConstraints();
-    right.setPercentWidth(40);
-
     mover.getColumnConstraints().addAll(icon, left, right);
     mover.add(circle, 0, 0);
     mover.add(text, 1, 0);
