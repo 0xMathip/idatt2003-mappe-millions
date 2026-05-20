@@ -13,7 +13,7 @@ public class TransactionSearchMenu implements View, Observer {
 
   public TransactionSearchMenu(GameModel gameModel) {
     this.gameModel = gameModel;
-    this.root = new SearchMenu("Search transactions");
+    this.root = new SearchMenu("⌕ Search transactions");
 
     root.getSearchField().textProperty()
         .addListener((obs, oldValue, newValue) -> updateDisplay());

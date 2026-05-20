@@ -204,9 +204,6 @@
 /* ===================
     StockSelectorCard styling
  ===================*/
-/* ===================
-    Stock Selector Card
- ===================*/
 
 .stock-selector-card {
     -fx-pref-height: 107px;
@@ -227,7 +224,7 @@
 
 .stock-selector-card-ticker-label {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Almarai Regular";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 36px;
 
     -fx-padding: 0 0 2px 0;
@@ -326,9 +323,9 @@
     -fx-max-height: 115px;
     -fx-min-height: 115px;
 
-    -fx-pref-width: 648px;
-    -fx-min-width: 648px;
-    -fx-max-width: 648px;
+    -fx-pref-width: 610px;
+    -fx-min-width: 610px;
+    -fx-max-width: 610px;
 }
 
 .search-row:hover {
@@ -344,7 +341,7 @@
  ===================*/
 .factory-search-row-ticker {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 36px;
 }
 
@@ -386,7 +383,7 @@
     -fx-max-height: 22px;
 }
 
-/* Transaction */
+/* Transaction Factory*/
 .factory-search-row {
 
 }
@@ -436,7 +433,7 @@
 }
 
 .factory-transaction-status-label {
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 24px;
 
     -fx-pref-width: 63px;
@@ -493,7 +490,7 @@
 
 .factory-stat-card-top-text {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
 }
 
@@ -501,15 +498,19 @@
 /* ===================
     Transaction styling
  ===================*/
+.transaction-view {
+    -fx-padding: 10 0 10 0;
+}
+
 .transaction-stat-value {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 36px;
 }
 
 .transaction-stat-card-bottom-text {
     -fx-text-fill: -color-border-light;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
 }
 
@@ -557,38 +558,143 @@
     -fx-pref-height: 40px;
 }
 
+
+.transaction-details {
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
+
+    -fx-pref-width: 683px;
+    -fx-min-width: 683px;
+    -fx-max-width: 683px;
+
+    -fx-padding: 20;
+}
+
+.transaction-details-title {
+
+}
+
+.transaction-details-ticker {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 40px;
+}
+
+.transaction-details-company {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-total {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-padding: 5px;
+}
+
+.transaction-details-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-separator {
+    -fx-background-color: -color-text;
+
+    -fx-pref-width: 640px;
+    -fx-min-width: 640px;
+    -fx-max-width: 640px;
+
+    -fx-pref-height: 1px;
+    -fx-min-height: 1px;
+    -fx-max-height: 1px;
+}
+
+.transaction-details-note-icon {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+
+    -fx-icon-size: 25px;
+    -fx-stroke-width: 1px;
+
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+}
+
+.transaction-details-note-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+}
+
+.transaction-details-note-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-notebox {
+    -fx-padding: 10, 10, 20, 0
+}
+
+
+
+
 /* ===================
     SearchMenu styling
  ===================*/
 
 .search-menu {
-    -fx-pref-height: 716px;
-    -fx-max-height: 716px;
-    -fx-min-height: 716px;
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
 
-    -fx-pref-width: 740px;
-    -fx-min-width: 740px;
-    -fx-max-width: 740px;
+    -fx-pref-width: 683px;
+    -fx-min-width: 683px;
+    -fx-max-width: 683px;
 }
 
 .search-menu-text-field {
-    -fx-pref-height: 60px;
-    -fx-max-height: 60px;
-    -fx-min-height: 60px;
+    -fx-pref-height: 50px;
+    -fx-max-height: 50px;
+    -fx-min-height: 50px;
 
-    -fx-pref-width: 648px;
-    -fx-min-width: 648px;
-    -fx-max-width: 648px;
+    -fx-pref-width: 610px;
+    -fx-min-width: 610px;
+    -fx-max-width: 610px;
 
     -fx-text-fill: -color-text;
     -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
-    -fx-padding: 0 0 0 20;
+    -fx-padding: 0 20 0 20;
 }
 
 .search-menu-top-bar {
-    -fx-alignment: center;
-    -fx-spacing: 20px;
+    -fx-spacing: 16px;
+}
+
+.search-menu-separator {
+    -fx-background-color: -color-border;
+    -fx-border-color: transparent;
+
+    -fx-pref-width: 679px;
+    -fx-min-width: 679px;
+    -fx-max-width: 679px;
+
+    -fx-pref-height: 2px;
+    -fx-max-height: 2px;
+    -fx-min-height: 2px;
+
+    -fx-padding: 0 10px 0 0;
+
 }
 
 .search-menu-close {
@@ -608,25 +714,16 @@
 }
 
 .search-menu-scroll {
-    -fx-pref-height: 590px;
-    -fx-min-height: 590px;
+    -fx-pref-height: 580px;
+    -fx-min-height: 580px;
     -fx-max-height: infinity;
 
-    -fx-pref-width: 690px;
-    -fx-min-width: 690px;
-    -fx-max-width: 690px;
-}
-
-.search-menu-scroll {
-    -fx-pref-height: 590px;
-    -fx-min-height: 590px;
-    -fx-max-height: infinity;
-
-    -fx-pref-width: 690px;
-    -fx-min-width: 690px;
-    -fx-max-width: 690px;
+    -fx-pref-width: 650px;
+    -fx-min-width: 650px;
+    -fx-max-width: 650px;
 
     -fx-background-color: transparent;
+    -fx-border-radius: 30px;
 }
 
 .search-menu-scroll .viewport {
@@ -643,13 +740,13 @@
 .search-menu-scroll .scroll-bar:vertical .track {
     -fx-background-color: -color-border;
     -fx-background-radius: 20px;
-    -fx-background-insets: 0;
+    -fx-background-insets: 0 0 20 0;
 }
 
 .search-menu-scroll .scroll-bar:vertical .thumb {
     -fx-background-color: -color-yellow;
     -fx-background-radius: 20px;
-    -fx-background-insets: 5;
+    -fx-background-insets: 5 5 25 5;
 }
 
 .search-menu-scroll .scroll-bar:vertical .thumb:hover {
@@ -679,11 +776,13 @@
 
     -fx-icon-size: 22px;
 
-    -fx-pref-height: 740px;
-    -fx-max-height: 740px;
-    -fx-min-height: 740px;
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
 
-    -fx-pref-width: 690px;
-    -fx-min-width: 690px;
-    -fx-max-width: 690px;
+    -fx-pref-width: 648px;
+    -fx-min-width: 648px;
+    -fx-max-width: 648px;
+
+    -fx-padding: 12px 0 0 0;
 }

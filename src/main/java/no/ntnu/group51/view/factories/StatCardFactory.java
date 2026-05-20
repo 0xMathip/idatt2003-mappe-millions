@@ -30,7 +30,7 @@ public final class StatCardFactory {
     middle.getStyleClass().add(valueStyle);
     bottom.getStyleClass().add(subtitleStyle);
 
-    VBox textBox = new VBox(16, top, middle, bottom);
+    VBox textBox = new VBox(4, top, middle, bottom);
     textBox.setAlignment(Pos.CENTER_LEFT);
 
     HBox iconCard = new HBox(16, fontIcon, textBox);

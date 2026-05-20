@@ -13,7 +13,7 @@ public class StockSearchMenu implements View, Observer {
 
   public StockSearchMenu(GameModel gameModel) {
     this.gameModel = gameModel;
-    this.root = new SearchMenu("Search stocks");
+    this.root = new SearchMenu("⌕ Search stocks");
 
     root.getSearchField().textProperty()
         .addListener((obs, oldValue, newValue) -> updateDisplay());

@@ -17,6 +17,7 @@ import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
+import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 import no.ntnu.group51.view.GameView;
 
@@ -147,6 +148,13 @@ public class MainApp extends Application {
             new BigDecimal("9"),
             new BigDecimal("860.45")), 16)
     );
+
+    List<Transaction> transactionList = gameModel.getPlayer().getTransactionArchive().findTransactions("APPLE");
+    Transaction aapl = transactionList.stream().findFirst().orElse(null);
+    gameModel.setSelectedTransaction(aapl);
+
+    System.out.println(gameModel.getSelectedStock().toString());
+    System.out.println(String.valueOf(gameModel.getSelectedTransaction().getShare().getQuantity()));
 
     SceneManager sceneManager = new SceneManager(scene);
     sceneManager.changeScene(new GameView(gameModel));

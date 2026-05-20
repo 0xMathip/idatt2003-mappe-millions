@@ -44,7 +44,7 @@ public class TransactionView implements View {
   }
 
   private HBox createStatsRow() {
-    HBox statsRow = new HBox(82,
+    HBox statsRow = new HBox(100,
         createTotalTradesCard(),
         createTotalBoughtCard(),
         createTotalSoldCard(),
@@ -56,7 +56,7 @@ public class TransactionView implements View {
   }
 
   private HBox createBody() {
-    HBox body = new HBox(82,
+    HBox body = new HBox(95,
         transactionSearchMenu.getRoot(),
         transactionDetailsCard.getRoot()
     );

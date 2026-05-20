@@ -4,8 +4,10 @@ import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -26,13 +28,17 @@ public class SearchMenu extends StackPane {
 
     HBox topBar = new HBox(searchField, closeIcon);
     topBar.getStyleClass().add("search-menu-top-bar");
+    topBar.setAlignment(Pos.CENTER_LEFT);
 
     ScrollPane scrollPane = new ScrollPane(list);
     scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     scrollPane.setFitToWidth(true);
     scrollPane.getStyleClass().add("search-menu-scroll");
 
-    VBox content = new VBox(8, topBar, scrollPane);
+    Region separator = new Region();
+    separator.getStyleClass().add("search-menu-separator");
+
+    VBox content = new VBox(8, topBar, separator, scrollPane);
     content.getStyleClass().add("search-menu-content");
     content.setAlignment(Pos.CENTER);
 
