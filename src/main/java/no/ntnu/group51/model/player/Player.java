@@ -111,8 +111,4 @@ public class Player {
     return transactionArchive;
   }
 
-  public BigDecimal getNetWorth() {
-    return money.add(portfolio.getNetWorth());
-  }
-
 }

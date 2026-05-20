@@ -77,7 +77,7 @@ public class StockSearchMenu implements View, Observer {
     });
   }
 
-  private void updateDisplay(){
+  private void updateDisplay() {
     List<Parent> newRows = gameModel
         .getExchange()
         .findStocks(searchField.getText())
@@ -85,7 +85,7 @@ public class StockSearchMenu implements View, Observer {
         .map(StockRowFactory::createStockRow)
         .toList();
 
-      stockList.getChildren().setAll(newRows);
+    stockList.getChildren().setAll(newRows);
   }
 
   public void setOnClose(Runnable onClose) {
