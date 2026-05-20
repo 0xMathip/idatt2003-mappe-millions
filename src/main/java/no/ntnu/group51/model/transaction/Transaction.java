@@ -1,6 +1,5 @@
 package no.ntnu.group51.model.transaction;
 
-import java.math.BigDecimal;
 import no.ntnu.group51.model.calculator.TransactionCalculator;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Share;
@@ -46,18 +45,6 @@ public abstract class Transaction {
     return week;
   }
 
-  /**
-   * Returns the total calculated value of this transaction.
-   *
-   * <p>This method encapsulates the calculator so other classes do not need
-   * to know how transaction values are calculated internally.
-   *
-   * @return the total calculated value of this transaction
-   */
-  public BigDecimal getTotal() {
-    return calculator.calculateTotal();
-  }
-
   public TransactionCalculator getCalculator() {
     return calculator;
   }
@@ -65,7 +52,6 @@ public abstract class Transaction {
   public boolean isCommitted() {
     return committed;
   }
-
 
   /**
    * The purpose is to convert the money of the player from their capital
