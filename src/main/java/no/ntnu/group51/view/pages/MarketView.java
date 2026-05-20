@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.pages;
 
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
@@ -45,11 +46,13 @@ public class MarketView implements View {
     StockSelectorCard stockSelectorCard = new StockSelectorCard(gameModel);
     TradePanel tradePanel = new TradePanel(gameModel);
     StockChartCard stockChartCard = new StockChartCard(gameModel);
+    stockChartCard.addRootStyleClass("card");
+    stockChartCard.addRootStyleClass("stock-chart-card");
 
     HBox stockChart = new HBox();
     HBox.setHgrow(stockChart, Priority.ALWAYS);
+    stockChart.setAlignment(Pos.CENTER);
     stockChart.getChildren().addAll(stockChartCard.getRoot());
-    stockChart.getStyleClass().add("market-chart");
 
     leftColumn.getChildren().addAll(
        stockSelectorCard.getRoot(),

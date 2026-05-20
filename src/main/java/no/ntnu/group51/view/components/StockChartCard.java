@@ -15,18 +15,18 @@ import no.ntnu.group51.view.View;
 
 public class StockChartCard implements View, Observer {
   private final StackPane root = new StackPane();
-  private GameModel gameModel;
+  private final GameModel gameModel;
   private LineChart<Number, Number> stockChart;
 
   public StockChartCard(GameModel gameModel) {
-    this.gameModel = gameModel;
+    if (gameModel == null) {
+      throw new IllegalArgumentException("Game model cannot be null.");
+    }
 
-    root.getStyleClass().addAll("card","stock-chart-card");
+    this.gameModel = gameModel;
     root.setAlignment(Pos.CENTER_LEFT);
 
-    createLayout();
     gameModel.addObserver(this);
-
     updateDisplay();
   }
 
@@ -48,11 +48,6 @@ public class StockChartCard implements View, Observer {
     stockChart.getData().add(series);
 
     return stockChart;
-  }
-
-  private void createLayout() {
-    stockChart = createChart(gameModel.getSelectedStock());
-    root.getChildren().add(stockChart);
   }
 
   private void updateDisplay() {
@@ -108,6 +103,14 @@ public class StockChartCard implements View, Observer {
       );
     }
     return series;
+
+  }
+
+  public void addRootStyleClass(String style) {
+    if (style == null){
+      throw new IllegalArgumentException("Enter a valid style.");
+    }
+    root.getStyleClass().add(style);
   }
 
   @Override

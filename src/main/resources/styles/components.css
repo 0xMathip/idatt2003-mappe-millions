@@ -281,8 +281,7 @@
     StockChartCard styling
  ===================*/
 
-.stock-chart-card {
-    -fx-background-radius: 30px;
+.stock-chart-card-large {
     -fx-pref-height: 830px;
     -fx-max-height: 830px;
     -fx-min-height: 830px;
@@ -290,11 +289,18 @@
     -fx-pref-width: 1500px;
     -fx-min-width: 1100px;
     -fx-max-width: 1100px;
-
-    -fx-border-radius: 30px;
-    -fx-border-width: 2px;
-    -fx-border-color: -color-border;
 }
+
+.stock-chart-card-small {
+    -fx-pref-height: 260px;
+    -fx-max-height: 260px;
+    -fx-min-height: 260px;
+
+    -fx-pref-width: 640px;
+    -fx-min-width: 640px;
+    -fx-max-width: 640px;
+}
+
 
 .chart-plot-background{
     -fx-background-color: -color-dark;
@@ -662,9 +668,38 @@
     -fx-font-size: 20px;
 }
 
+.portfolio-details-stats-grid {
+    -fx-hgap: 40px;
+    -fx-vgap: 18px;
+    -fx-alignment: center;
 
+    -fx-pref-width: 635px;
+    -fx-max-width: 635px;
 
+    -fx-pref-height: 300px;
+    -fx-max-height: 300px;
 
+}
+
+.portfolio-details-pnl {
+
+}
+
+.portfolio-details-stat-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 14px;
+}
+
+.portfolio-details-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.portfolio-details-stock-chart {
+    -fx-padding: 0 0 10 0;
+}
 
 /* ===================
     SearchMenu styling
