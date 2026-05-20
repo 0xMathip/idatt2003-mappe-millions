@@ -55,7 +55,7 @@ public final class StatCardFactory {
     middle.getStyleClass().add(valueStyle);
     bottom.getStyleClass().add(subtitleStyle);
 
-    VBox textCard = new VBox(8, top, middle, bottom);
+    VBox textCard = new VBox(4, top, middle, bottom);
     textCard.setAlignment(Pos.CENTER_LEFT);
 
     textCard.getStyleClass().addAll("card", "factory-stat-card");

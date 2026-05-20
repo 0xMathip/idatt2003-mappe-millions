@@ -645,6 +645,24 @@
     -fx-padding: 10, 10, 20, 0
 }
 
+/* ===================
+    PortfolioView styling
+ ===================*/
+
+
+.portfolio-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.portfolio-stat-card-bottom-text {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+
 
 
 

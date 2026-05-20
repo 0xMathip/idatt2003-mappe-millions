@@ -5,16 +5,16 @@ import javafx.scene.Parent;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.factories.PortfolioRowFactory;
 import no.ntnu.group51.view.factories.TransactionRowFactory;
 
-public class TransactionSearchMenu implements View, Observer {
+public class PortfolioSearchMenu implements View, Observer {
   private final SearchMenu root;
   private final GameModel gameModel;
 
-  public TransactionSearchMenu(GameModel gameModel) {
+  public PortfolioSearchMenu(GameModel gameModel) {
     this.gameModel = gameModel;
-    this.root = new SearchMenu("⌕ Search transactions");
-
+    this.root = new SearchMenu("⌕ Search portfolio");
     root.getSearchField().textProperty()
         .addListener((obs, oldValue, newValue) -> updateDisplay());
 
@@ -24,10 +24,9 @@ public class TransactionSearchMenu implements View, Observer {
 
   private void updateDisplay() {
     List<SearchRow> rows = gameModel.getPlayer()
-        .getTransactionArchive()
-        .findTransactions(root.getSearchField().getText())
+        .getPortfolio().getShares(root.getSearchField().getText())
         .stream()
-        .map(TransactionRowFactory::createTransactionRow)
+        .map(PortfolioRowFactory::createPortfolioRow)
         .toList();
 
     root.setRows(rows);
