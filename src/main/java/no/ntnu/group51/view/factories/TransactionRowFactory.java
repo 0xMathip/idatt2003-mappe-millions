@@ -25,7 +25,7 @@ public class TransactionRowFactory {
     SearchRow row = new SearchRow(25, 24, 14, 27, 10);
     row.getStyleClass().addAll("card", "factory-search-row");
 
-    HBox transactionStatus = createTransactionStatus(transaction);
+    HBox transactionBadge = new TransactionBadgeFactory(transaction);
 
     Label ticker = new Label(transaction.getShare().getStock().getSymbol());
     ticker.getStyleClass().add("factory-search-row-ticker");
@@ -59,42 +59,16 @@ public class TransactionRowFactory {
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
     arrowIcon.getStyleClass().add("factory-search-row-arrow");
 
-    row.addToCell(transactionStatus, 0, 0, 1, 2);
+    row.addToCell(transactionBadge, 0, 0, 1, 2);
     row.addToCell(stockBox, 1, 0, 1, 2);
     row.addToCell(weekBox, 2, 0, 1, 2);
     row.addToCell(tradeBox, 3, 0, 1, 2);
     row.addToCell(arrowIcon, 4, 0, 1, 2);
 
-    GridPane.setHalignment(transactionStatus, HPos.LEFT);
-    GridPane.setValignment(transactionStatus, VPos.CENTER);
+    GridPane.setHalignment(transactionBadge, HPos.LEFT);
+    GridPane.setValignment(transactionBadge, VPos.CENTER);
     GridPane.setHalignment(arrowIcon, HPos.CENTER);
     GridPane.setValignment(arrowIcon, VPos.CENTER);
     return row;
-  }
-
-  private static HBox createTransactionStatus(Transaction transaction) {
-    HBox transactionStatus = new HBox(8);
-    transactionStatus.setAlignment(Pos.CENTER);
-    FontIcon transactionIcon = new FontIcon();
-    Label transactionLabel = new Label();
-
-    transactionStatus.getStyleClass().add("factory-transaction-status");
-    transactionIcon.getStyleClass().add("factory-transaction-status-icon");
-    transactionLabel.getStyleClass().add("factory-transaction-status-label");
-    transactionStatus.getChildren().addAll(transactionIcon, transactionLabel);
-
-    if (transaction instanceof Sale) {
-      transactionLabel.setText("SELL");
-      transactionIcon.setIconLiteral("cil-arrow-circle-bottom");
-      transactionStatus.getStyleClass().add("factory-transaction-status-sell");
-    } else if (transaction instanceof Purchase) {
-      transactionLabel.setText("BUY");
-      transactionIcon.setIconLiteral("cil-arrow-circle-top");
-      transactionStatus.getStyleClass().add("factory-transaction-status-buy");
-    } else {
-      throw new IllegalArgumentException("Unknown transaction type.");
-    }
-
-    return transactionStatus;
   }
 }
