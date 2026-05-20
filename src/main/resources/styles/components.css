@@ -204,9 +204,6 @@
 /* ===================
     StockSelectorCard styling
  ===================*/
-/* ===================
-    Stock Selector Card
- ===================*/
 
 .stock-selector-card {
     -fx-pref-height: 107px;
@@ -227,7 +224,7 @@
 
 .stock-selector-card-ticker-label {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Almarai Regular";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 36px;
 
     -fx-padding: 0 0 2px 0;
@@ -319,63 +316,58 @@
 }
 
 /* ===================
-    StockRowFactory styling
+    SearchRow styling
  ===================*/
-.factory-stock-row {
+.search-row {
     -fx-pref-height: 115px;
     -fx-max-height: 115px;
     -fx-min-height: 115px;
 
-    -fx-pref-width: 648px;
-    -fx-min-width: 648px;
-    -fx-max-width: 648px;
+    -fx-pref-width: 610px;
+    -fx-min-width: 610px;
+    -fx-max-width: 610px;
 }
 
-.factory-stock-row-ticker {
+.search-row:hover {
+    -fx-border-color: -color-yellow;
+}
+
+.search-row:selected {
+    -fx-border-color: -color-yellow;
+}
+
+/* ===================
+    Factory styling
+ ===================*/
+.factory-search-row-ticker {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Almarai";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 36px;
 }
 
-.factory-stock-row-company {
+.factory-search-row-company {
     -fx-text-fill: -color-text;
     -fx-font-family: "Almarai";
     -fx-font-size: 20px;
 }
 
-.factory-stock-row-price {
+.factory-search-row-price {
     -fx-text-fill: -color-text;
     -fx-font-family: "Almarai";
     -fx-font-size: 24px;
 }
 
-.factory-stock-row-change {
+.factory-search-row-change {
     -fx-font-family: "Almarai";
     -fx-font-size: 20px;
 }
 
-.factory-stock-row-change-percent {
+.factory-search-row-change-percent {
     -fx-font-family: "Almarai";
     -fx-font-size: 20px;
 }
 
-.factory-stock-row-content {
-    -fx-pref-width: 580px;
-    -fx-min-width: 580px;
-    -fx-max-width: 580px;
-
-    -fx-pref-height: 70px;
-    -fx-min-height: 70px;
-    -fx-max-height: 70px;
-
-    -fx-padding: 0 20 0 0px;
-}
-
-.factory-stock-row:hover {
-    -fx-border-color: -color-yellow;
-}
-
-.factory-stock-row-arrow {
+.factory-search-row-arrow {
     -fx-fill: -color-text;
     -fx-stroke: -color-text;
     -fx-stroke-width: 1px;
@@ -391,41 +383,321 @@
     -fx-max-height: 22px;
 }
 
-/* ===================
-    StockSearchMenu styling
- ===================*/
+/* Transaction Factory*/
+.factory-search-row {
 
-.stock-search-menu {
-    -fx-pref-height: 716px;
-    -fx-max-height: 716px;
-    -fx-min-height: 716px;
-
-    -fx-pref-width: 740px;
-    -fx-min-width: 740px;
-    -fx-max-width: 740px;
 }
 
-.stock-search-menu-text-field {
-    -fx-pref-height: 60px;
-    -fx-max-height: 60px;
-    -fx-min-height: 60px;
+.factory-transaction-week {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
 
-    -fx-pref-width: 648px;
-    -fx-min-width: 648px;
-    -fx-max-width: 648px;
+.factory-transaction-week-count {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-transaction-share-count {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-transaction-status {
+    -fx-pref-height: 43px;
+    -fx-max-height: 43px;
+    -fx-min-height: 43px;
+
+    -fx-pref-width: 123px;
+    -fx-min-width: 123px;
+    -fx-max-width: 123px;
+
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+}
+
+.factory-transaction-status-icon {
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 20px;
+
+    -fx-pref-width: 20px;
+    -fx-min-width: 20px;
+    -fx-max-width: 20px;
+
+    -fx-pref-height: 20px;
+    -fx-min-height: 20px;
+    -fx-max-height: 20px;
+}
+
+.factory-transaction-status-label {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+
+    -fx-pref-width: 63px;
+    -fx-min-width: 63px;
+    -fx-max-width: 63px;
+}
+
+.factory-transaction-status-sell {
+    -fx-border-color: -color-red;
+}
+
+.factory-transaction-status-sell .factory-transaction-status-label {
+    -fx-text-fill: -color-red;
+}
+
+.factory-transaction-status-sell .factory-transaction-status-icon {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+}
+
+.factory-transaction-status-buy {
+    -fx-border-color: -color-green;
+}
+
+.factory-transaction-status-buy .factory-transaction-status-label {
+    -fx-text-fill: -color-green;
+}
+
+.factory-transaction-status-buy .factory-transaction-status-icon {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+}
+
+.factory-stat-card {
+
+    -fx-pref-width: 290px;
+    -fx-min-width: 290px;
+    -fx-max-width: 290px;
+
+    -fx-pref-height: 148px;
+    -fx-min-height: 148px;
+    -fx-max-height: 148px;
+
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: -color-border;
+
+    -fx-padding: 0 0 0 30px;
+}
+
+.factory-stat-card-icon {
+
+}
+
+.factory-stat-card-top-text {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+
+/* ===================
+    Transaction styling
+ ===================*/
+.transaction-view {
+    -fx-padding: 10 0 10 0;
+}
+
+.transaction-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.transaction-stat-card-bottom-text {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-stat-trades-icon {
+    -fx-fill: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-bought-icon {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-sold-icon {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-fees-icon {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+    -fx-stroke-width: 1px;
+
+    -fx-icon-size: 40px;
+
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+
+.transaction-details {
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
+
+    -fx-pref-width: 683px;
+    -fx-min-width: 683px;
+    -fx-max-width: 683px;
+
+    -fx-padding: 20;
+}
+
+.transaction-details-title {
+
+}
+
+.transaction-details-ticker {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 40px;
+}
+
+.transaction-details-company {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-total {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-padding: 5px;
+}
+
+.transaction-details-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-separator {
+    -fx-background-color: -color-text;
+
+    -fx-pref-width: 640px;
+    -fx-min-width: 640px;
+    -fx-max-width: 640px;
+
+    -fx-pref-height: 1px;
+    -fx-min-height: 1px;
+    -fx-max-height: 1px;
+}
+
+.transaction-details-note-icon {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+
+    -fx-icon-size: 25px;
+    -fx-stroke-width: 1px;
+
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+}
+
+.transaction-details-note-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+}
+
+.transaction-details-note-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-notebox {
+    -fx-padding: 10, 10, 20, 0
+}
+
+
+
+
+/* ===================
+    SearchMenu styling
+ ===================*/
+
+.search-menu {
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
+
+    -fx-pref-width: 683px;
+    -fx-min-width: 683px;
+    -fx-max-width: 683px;
+}
+
+.search-menu-text-field {
+    -fx-pref-height: 50px;
+    -fx-max-height: 50px;
+    -fx-min-height: 50px;
+
+    -fx-pref-width: 610px;
+    -fx-min-width: 610px;
+    -fx-max-width: 610px;
 
     -fx-text-fill: -color-text;
     -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
-    -fx-padding: 0 0 0 20;
+    -fx-padding: 0 20 0 20;
 }
 
-.stock-search-menu-top-bar {
-    -fx-alignment: center;
-    -fx-spacing: 20px;
+.search-menu-top-bar {
+    -fx-spacing: 16px;
 }
 
-.stock-search-menu-close {
+.search-menu-separator {
+    -fx-background-color: -color-border;
+    -fx-border-color: transparent;
+
+    -fx-pref-width: 679px;
+    -fx-min-width: 679px;
+    -fx-max-width: 679px;
+
+    -fx-pref-height: 2px;
+    -fx-max-height: 2px;
+    -fx-min-height: 2px;
+
+    -fx-padding: 0 10px 0 0;
+
+}
+
+.search-menu-close {
     -fx-fill: -color-text;
     -fx-stroke: -color-text;
     -fx-stroke-width: 1px;
@@ -441,83 +713,76 @@
     -fx-max-height: 22px;
 }
 
-.stock-search-menu-scroll {
-    -fx-pref-height: 590px;
-    -fx-min-height: 590px;
+.search-menu-scroll {
+    -fx-pref-height: 580px;
+    -fx-min-height: 580px;
     -fx-max-height: infinity;
 
-    -fx-pref-width: 690px;
-    -fx-min-width: 690px;
-    -fx-max-width: 690px;
-}
-
-.stock-search-menu-scroll {
-    -fx-pref-height: 590px;
-    -fx-min-height: 590px;
-    -fx-max-height: infinity;
-
-    -fx-pref-width: 690px;
-    -fx-min-width: 690px;
-    -fx-max-width: 690px;
+    -fx-pref-width: 650px;
+    -fx-min-width: 650px;
+    -fx-max-width: 650px;
 
     -fx-background-color: transparent;
+    -fx-border-radius: 30px;
 }
 
-.stock-search-menu-scroll .viewport {
+.search-menu-scroll .viewport {
     -fx-background-color: transparent;
     -fx-background-radius: 30px;
 }
 
-.stock-search-menu-scroll .scroll-bar:vertical {
+.search-menu-scroll .scroll-bar:vertical {
     -fx-pref-width: 20px;
     -fx-background-color: transparent;
     -fx-padding: 0 2px 0 0;
 }
 
-.stock-search-menu-scroll .scroll-bar:vertical .track {
+.search-menu-scroll .scroll-bar:vertical .track {
     -fx-background-color: -color-border;
     -fx-background-radius: 20px;
-    -fx-background-insets: 0;
+    -fx-background-insets: 0 0 20 0;
 }
 
-.stock-search-menu-scroll .scroll-bar:vertical .thumb {
+.search-menu-scroll .scroll-bar:vertical .thumb {
     -fx-background-color: -color-yellow;
     -fx-background-radius: 20px;
-    -fx-background-insets: 5;
+    -fx-background-insets: 5 5 25 5;
 }
 
-.stock-search-menu-scroll .scroll-bar:vertical .thumb:hover {
+.search-menu-scroll .scroll-bar:vertical .thumb:hover {
     -fx-background-color: -color-yellow;
 }
 
-.stock-search-menu-scroll .scroll-bar:vertical .thumb:pressed {
+.search-menu-scroll .scroll-bar:vertical .thumb:pressed {
     -fx-background-color: #a1a100;
 }
 
-.stock-search-menu-scroll .increment-button,
-.stock-search-menu-scroll .decrement-button {
+.search-menu-scroll .increment-button,
+.search-menu-scroll .decrement-button {
     -fx-padding: 0;
     -fx-background-color: transparent;
 }
 
-.stock-search-menu-scroll .increment-arrow,
-.stock-search-menu-scroll .decrement-arrow {
+.search-menu-scroll .increment-arrow,
+.search-menu-scroll .decrement-arrow {
     -fx-shape: " ";
     -fx-padding: 0;
 }
 
-.stock-search-menu-content {
+.search-menu-content {
     -fx-fill: -color-text;
     -fx-stroke: -color-text;
     -fx-stroke-width: 1px;
 
     -fx-icon-size: 22px;
 
-    -fx-pref-height: 740px;
-    -fx-max-height: 740px;
-    -fx-min-height: 740px;
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
 
-    -fx-pref-width: 690px;
-    -fx-min-width: 690px;
-    -fx-max-width: 690px;
+    -fx-pref-width: 648px;
+    -fx-min-width: 648px;
+    -fx-max-width: 648px;
+
+    -fx-padding: 12px 0 0 0;
 }

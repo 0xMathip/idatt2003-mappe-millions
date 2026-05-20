@@ -5,6 +5,7 @@ import java.util.List;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.transaction.Transaction;
 
 
 public class GameModel {
@@ -12,11 +13,13 @@ public class GameModel {
   private final Player player;
   private final Exchange exchange;
   private Stock selectedStock;
+  private Transaction selectedTransaction;
 
   public GameModel(Player player, Exchange exchange) {
     this.player = player;
     this.exchange = exchange;
     this.selectedStock = null;
+    this.selectedTransaction = null;
   }
 
   public Player getPlayer(){
@@ -31,8 +34,17 @@ public class GameModel {
     return selectedStock;
   }
 
+  public Transaction getSelectedTransaction() {
+    return selectedTransaction;
+  }
+
   public void setSelectedStock(Stock selectedStock) {
     this.selectedStock = selectedStock;
+    notifyObservers();
+  }
+
+  public void setSelectedTransaction(Transaction selectedTransaction) {
+    this.selectedTransaction = selectedTransaction;
     notifyObservers();
   }
 

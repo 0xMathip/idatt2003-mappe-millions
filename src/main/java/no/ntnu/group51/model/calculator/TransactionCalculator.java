@@ -31,4 +31,5 @@ public interface TransactionCalculator {
    * @return The total cost of the purchase or the total value of the sale
    */
   BigDecimal calculateTotal();
+
 }
