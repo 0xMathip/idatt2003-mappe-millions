@@ -1,5 +1,6 @@
 package no.ntnu.group51.controller.Dashboard;
 
+import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.Dashboard.DashboardView;
 
@@ -13,4 +14,7 @@ public class DashboardController {
     this.view = view;
   }
 
+  public void update() {
+
+  }
 }

@@ -2,16 +2,11 @@ package no.ntnu.group51.view.Dashboard;
 
 import java.math.BigDecimal;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.util.Duration;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;

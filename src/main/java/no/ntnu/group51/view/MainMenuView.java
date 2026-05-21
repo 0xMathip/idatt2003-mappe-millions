@@ -1,6 +1,8 @@
 package no.ntnu.group51.view;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -9,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import no.ntnu.group51.controller.MainMenuController;
 import no.ntnu.group51.controller.SceneManager;
+import no.ntnu.group51.model.GameModel;
 
 /**
  * The view for the main menu.
@@ -16,17 +19,17 @@ import no.ntnu.group51.controller.SceneManager;
 public class MainMenuView implements View {
 
   private final BorderPane root = new BorderPane();
+  private Button cont = new Button("CONTINUE");
+  private Button newG = new Button("NEW GAME");
+  private Button exit = new Button("EXIT");
 
   /**
    * Creates the main menu view.
    *
    * @param sceneManager The scene manager for the stage.
    */
-  public MainMenuView(SceneManager sceneManager) {
+  public MainMenuView(SceneManager sceneManager, GameModel model) {
 
-    Button cont = new Button("CONTINUE");
-    Button newG = new Button("NEW GAME");
-    Button exit = new Button("EXIT");
     cont.getStyleClass().add("main-menu-button");
     newG.getStyleClass().add("main-menu-button");
     exit.getStyleClass().add("main-menu-button");
@@ -61,10 +64,14 @@ public class MainMenuView implements View {
     menuButtons.setAlignment(Pos.CENTER);
     menuButtons.setSpacing(30);
     menuButtons.setTranslateY(100);
+  }
 
-    newG.setOnAction(e -> sceneManager.changeScene(new SidebarView()));
+  public void setOnNewGame(EventHandler<ActionEvent> action) {
+    newG.setOnAction(action);
+  }
 
-    exit.setOnAction(e -> Platform.exit());
+  public void setOnExit(EventHandler<ActionEvent> action) {
+    exit.setOnAction(action);
   }
 
   public Parent getRoot() {

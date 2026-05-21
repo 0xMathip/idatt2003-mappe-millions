@@ -81,8 +81,6 @@ public class DashboardView implements View {
 
   }
 
-
-
   @Override
   public Parent getRoot() {
     return root;

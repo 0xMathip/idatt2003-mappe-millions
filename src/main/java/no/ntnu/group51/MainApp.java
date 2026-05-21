@@ -35,7 +35,9 @@ public class MainApp extends Application {
         getClass().getResource("/styles/dashboard.css").toExternalForm(),
         getClass().getResource("/styles/portfolio.css").toExternalForm(),
         getClass().getResource("/styles/transactions.css").toExternalForm(),
-        getClass().getResource("/styles/overlays.css").toExternalForm());
+        getClass().getResource("/styles/overlays.css").toExternalForm(),
+        getClass().getResource("/styles/mainmenu.css").toExternalForm()
+    );
 
     CsvStartupFileHandler csv = new CsvStartupFileHandler();
     List<Stock> stocks = new ArrayList<>();
@@ -68,7 +70,7 @@ public class MainApp extends Application {
     gameModel.getExchange().advance();
 
     SceneManager sceneManager = new SceneManager(scene);
-    sceneManager.changeScene(new GameView(gameModel));
+    Start.initialize(gameModel, sceneManager);
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");

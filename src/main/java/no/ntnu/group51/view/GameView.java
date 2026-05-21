@@ -1,5 +1,7 @@
 package no.ntnu.group51.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import no.ntnu.group51.view.Dashboard.DashboardView;
@@ -8,25 +10,25 @@ import no.ntnu.group51.view.pages.MarketView;
 
 public class GameView implements View {
 
-  BorderPane root = new BorderPane();
+  private final BorderPane root = new BorderPane();
   private GameModel gameModel;
+  private final SidebarView sidebar;
+  private final DashboardView dashboard;
+  private final MarketView market;
 
   public GameView(GameModel gameModel) {
     this.gameModel = gameModel;
-    SidebarView sidebar = new SidebarView();
-    DashboardView dashboard = new DashboardView();
-    MarketView market = new MarketView(gameModel);
+    this.sidebar = new SidebarView();
+    this.dashboard = new DashboardView();
+    this.market = new MarketView(gameModel);
+  }
 
-    root.setLeft(sidebar.getRoot());
-    root.setCenter(dashboard.getRoot());
+  public void setCenterView(View view) {
+    root.setCenter(view.getRoot());
+  }
 
-    sidebar.getDashboardButton().setOnAction(e ->
-        root.setCenter(dashboard.getRoot())
-    );
-
-    sidebar.getMarketButton().setOnAction(e ->
-        root.setCenter(market.getRoot())
-    );
+  public void setLeftView(View view) {
+    root.setLeft(view.getRoot());
   }
 
   @Override
