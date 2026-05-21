@@ -34,27 +34,32 @@ public class PlayerService {
    * Used to do checks for the player level after events such as
    * a transaction or going to the stats page. Think of it as something
    * that updates the player level when conditions are met.
-   *
-   * @param totalWeeks The total weeks the player has been trading
    */
-  public void updatePlayerLevel(int totalWeeks) {
-    if (this.playerLevel == PlayerLevel.INVESTOR
-        && totalWeeks >= 20
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) >= 0) {
-      this.playerLevel = PlayerLevel.SPECULATOR;
+  public void updatePlayerLevel() {
+    int week = model.getExchange().getWeek();
+    Player player = model.getPlayer();
 
-    } else if (this.playerLevel == PlayerLevel.NOVICE
-        && totalWeeks >= 10
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(1.2))) >= 0) {
-      this.playerLevel = PlayerLevel.INVESTOR;
+    if (player.getPlayerLevel() == PlayerLevel.INVESTOR
+        && week >= 20
+        && getNetWorth().compareTo(
+            player.getStartingMoney().multiply(BigDecimal.valueOf(2))) >= 0) {
+      player.setPlayerLevel(PlayerLevel.SPECULATOR);
 
-    } else if (this.playerLevel == PlayerLevel.SPECULATOR
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) <= 0) {
-      this.playerLevel = PlayerLevel.INVESTOR;
+    } else if (player.getPlayerLevel() == PlayerLevel.NOVICE
+        && week >= 10
+        && getNetWorth().compareTo(
+            player.getStartingMoney().multiply(BigDecimal.valueOf(1.2))) >= 0) {
+      player.setPlayerLevel(PlayerLevel.INVESTOR);
 
-    } else if (this.playerLevel == PlayerLevel.INVESTOR
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(1.2))) <= 0) {
-      this.playerLevel = PlayerLevel.NOVICE;
+    } else if (player.getPlayerLevel() == PlayerLevel.SPECULATOR
+        && getNetWorth().compareTo(
+            player.getStartingMoney().multiply(BigDecimal.valueOf(2))) <= 0) {
+      player.setPlayerLevel(PlayerLevel.INVESTOR);
+
+    } else if (player.getPlayerLevel() == PlayerLevel.INVESTOR
+        && getNetWorth().compareTo(
+            player.getStartingMoney().multiply(BigDecimal.valueOf(1.2))) <= 0) {
+      player.setPlayerLevel(PlayerLevel.NOVICE);
     }
   }
 }

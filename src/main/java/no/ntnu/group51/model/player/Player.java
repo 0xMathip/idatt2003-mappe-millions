@@ -65,12 +65,12 @@ public class Player {
    * that updates the player level when conditions are met.
    *
    * @param totalWeeks The total weeks the player has been trading
-   */
+
   public void updatePlayerLevel(int totalWeeks) {
     if (this.playerLevel == PlayerLevel.INVESTOR
         && totalWeeks >= 20
         && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) >= 0) {
-      this.playerLevel = PlayerLevel.SPECULATOR;
+      setPlayerLevel(PlayerLevel.SPECULATOR);
 
     } else if (this.playerLevel == PlayerLevel.NOVICE
         && totalWeeks >= 10
@@ -86,6 +86,7 @@ public class Player {
       this.playerLevel = PlayerLevel.NOVICE;
     }
   }
+  */
 
   public PlayerLevel getPlayerLevel() {
     return this.playerLevel;
@@ -109,6 +110,10 @@ public class Player {
 
   public TransactionArchive getTransactionArchive() {
     return transactionArchive;
+  }
+
+  public void setPlayerLevel(PlayerLevel playerLevel) {
+    this.playerLevel = playerLevel;
   }
 
 }
