@@ -1,20 +1,25 @@
 package no.ntnu.group51.view.components;
 
+import java.math.BigDecimal;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.PriceStyleHelper;
 
 
 public class PortfolioStockDetails implements View, Observer {
-  private final VBox root = new VBox(10);
+  private final VBox root = new VBox(60);
   private final GameModel gameModel;
   private StockChartCard stockChartCard;
 
@@ -35,10 +40,10 @@ public class PortfolioStockDetails implements View, Observer {
   public PortfolioStockDetails(GameModel gameModel) {
     this.gameModel = gameModel;
 
-    root.getStyleClass().addAll("card","transaction-details");
+    root.getStyleClass().addAll("card", "transaction-details");
     root.setAlignment(Pos.CENTER_LEFT);
 
-    stockChartCard = new StockChartCard(gameModel);
+    stockChartCard = new StockChartCard(gameModel, false);
     ticker.setText(gameModel.getSelectedStock().getSymbol());
     company.setText(gameModel.getSelectedStock().getCompany());
 
@@ -48,11 +53,28 @@ public class PortfolioStockDetails implements View, Observer {
     VBox companyBox = new VBox(ticker, company);
     companyBox.setAlignment(Pos.CENTER_LEFT);
 
-
     VBox priceBox = new VBox(priceValue, changeValue);
+    priceBox.setAlignment(Pos.CENTER_RIGHT);
+
+    priceValue.getStyleClass().add("portfolio-details-price");
+    changeValue.getStyleClass().add("portfolio-details-change");
+
+    priceValue.setText("<$3.2322>");
+    changeValue.setText("<(3.265%)>");
+
+    PriceStyleHelper.applyPriceChangeStyle(changeValue, new BigDecimal("3.2"));
+
+
+    Region spacer = new Region();
+    HBox.setHgrow(spacer, Priority.ALWAYS);
+
+    HBox headerBox = new HBox(companyBox, spacer, priceBox);
 
     HBox stockChart = createStockChart();
     stockChart.getStyleClass().add("portfolio-details-stock-chart");
+
+    Separator separator = new Separator();
+    separator.getStyleClass().add("separator-details-grey");
 
     GridPane statsGrid = new GridPane();
     statsGrid.getStyleClass().addAll("card", "portfolio-details-stats-grid");
@@ -69,19 +91,19 @@ public class PortfolioStockDetails implements View, Observer {
     VBox pnlBox = createStatBox("Profit/Loss", "+$3,057.4");
     pnlBox.getStyleClass().add("portfolio-details-pnl");
 
+
     statsGrid.add(pnlBox, 3, 0, 1, 2);
 
-    VBox headerBox = new VBox(companyBox, priceBox);
-
     Label marketButton = new Label("Open in Market ➜ ");
-    marketButton.getStyleClass().add("dashboard-view-button");
-    marketButton.setPadding();
+    marketButton.getStyleClass().addAll("dashboard-view-button", "portfolio-market-button");
+
+    VBox topRow = new VBox(10, headerBox, stockChart);
+    VBox botRow = new VBox(20, statsGrid, separator, marketButton);
+
 
     root.getChildren().addAll(
-        headerBox,
-        stockChart,
-        statsGrid,
-        marketButton
+        topRow,
+        botRow
     );
 
   }

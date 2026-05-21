@@ -3,6 +3,7 @@ package no.ntnu.group51.view.components;
 import java.math.BigDecimal;
 import java.util.List;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -16,18 +17,25 @@ import no.ntnu.group51.view.View;
 public class StockChartCard implements View, Observer {
   private final StackPane root = new StackPane();
   private final GameModel gameModel;
+  private final boolean showLabels;
   private LineChart<Number, Number> stockChart;
 
-  public StockChartCard(GameModel gameModel) {
+  public StockChartCard(GameModel gameModel, boolean showLabels) {
     if (gameModel == null) {
       throw new IllegalArgumentException("Game model cannot be null.");
     }
 
     this.gameModel = gameModel;
+    this.showLabels = showLabels;
+
     root.setAlignment(Pos.CENTER_LEFT);
 
     gameModel.addObserver(this);
     updateDisplay();
+  }
+
+  public StockChartCard(GameModel gameModel) {
+    this(gameModel, true);
   }
 
   private LineChart<Number, Number> createChart(Stock stock) {
@@ -62,6 +70,8 @@ public class StockChartCard implements View, Observer {
     xAxis.setLowerBound(1);
     xAxis.setUpperBound(prices.size());
     xAxis.setTickUnit(1);
+    xAxis.setTickLabelsVisible(showLabels);
+    xAxis.setTickMarkVisible(false);
     xAxis.setMinorTickVisible(false);
 
     return xAxis;
@@ -87,9 +97,13 @@ public class StockChartCard implements View, Observer {
     double range = upperBound - lowerBound;
     NumberAxis yAxis = new NumberAxis();
     yAxis.setAutoRanging(false);
+    yAxis.setSide(Side.RIGHT);
+    yAxis.setTickMarkVisible(false);
+    yAxis.setMinorTickVisible(false);
+    yAxis.setTickLabelsVisible(showLabels);
     yAxis.setLowerBound(lowerBound);
     yAxis.setUpperBound(upperBound);
-    yAxis.setTickUnit(range / 10);
+    yAxis.setTickUnit(range / 5);
 
     return yAxis;
   }

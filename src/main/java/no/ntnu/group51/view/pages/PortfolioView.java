@@ -38,7 +38,7 @@ public class PortfolioView implements View {
   }
 
   private Label createTitle() {
-    Label title = new Label("Transactions");
+    Label title = new Label("Portfolio");
     title.getStyleClass().add("page-title");
     return title;
   }

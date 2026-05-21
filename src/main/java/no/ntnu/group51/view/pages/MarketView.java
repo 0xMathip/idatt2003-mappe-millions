@@ -13,14 +13,14 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.StockChartCard;
-import no.ntnu.group51.view.components.StockSearchMenu;
+import no.ntnu.group51.view.components.MarketSearchMenu;
 import no.ntnu.group51.view.components.StockSelectorCard;
 import no.ntnu.group51.view.components.TradePanel;
 
 public class MarketView implements View {
   private final StackPane root = new StackPane();
   private VBox marketContent;
-  private StockSearchMenu stockSearchMenu;
+  private MarketSearchMenu stockSearchMenu;
   private Pane overlay;
   private final GameModel gameModel;
 
@@ -47,7 +47,7 @@ public class MarketView implements View {
     TradePanel tradePanel = new TradePanel(gameModel);
     StockChartCard stockChartCard = new StockChartCard(gameModel);
     stockChartCard.addRootStyleClass("card");
-    stockChartCard.addRootStyleClass("stock-chart-card");
+    stockChartCard.addRootStyleClass("stock-chart-card-large");
 
     HBox stockChart = new HBox();
     HBox.setHgrow(stockChart, Priority.ALWAYS);
@@ -86,7 +86,7 @@ public class MarketView implements View {
     overlay = new Pane();
     overlay.getStyleClass().add("market-overlay");
 
-    stockSearchMenu = new StockSearchMenu(gameModel);
+    stockSearchMenu = new MarketSearchMenu(gameModel);
 
     GaussianBlur blur = new GaussianBlur(15);
     marketContent.getChildren()
