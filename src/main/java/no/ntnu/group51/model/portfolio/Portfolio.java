@@ -1,84 +1,79 @@
 package no.ntnu.group51.model.portfolio;
 
 import java.math.BigDecimal;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import no.ntnu.group51.model.calculator.SaleCalculator;
 import no.ntnu.group51.model.stocks.Share;
-import no.ntnu.group51.model.stocks.Stock;
 
 /**
  * Portfolio class.
  */
 public class Portfolio {
-  private final Map<String, BigDecimal> shares;
+  private List<Share> shares;
 
   /**
    * Constructor for the Portfolio class.
-   * Creates a map with intention to keep track of how many shares the player own.
+   * Creates a list with intention to add shares.
    */
   public Portfolio() {
-    this.shares = new HashMap<>();
+    this.shares = new ArrayList<>();
   }
 
   /**
-   * Either adds an entry into the map using the share -> stock -> symbol
-   * and the quantity of shares, or add a value to the corresponding symbol
-   * if the symbol exists.
+   * Adds a share in the Portfolio-list.
    *
    * @param share the share you want to add.
+   * @return true if the share was added, false if it was not.
    * @throws IllegalArgumentException if share is null.
    */
-  public void addShare(Share share) {
+  public boolean addShare(Share share) {
     if (share == null) {
       throw new IllegalArgumentException("Share cannot be null.");
     }
-
-    String symbol = share.getStock().getSymbol().toUpperCase();
-    BigDecimal quantity = share.getQuantity();
-
-    shares.merge(
-        symbol,
-        quantity,
-        BigDecimal::add
-    );
+    return shares.add(share);
   }
 
   /**
-   * Removes shares from the map. If the new quantity of shares after removing
-   * is less than or equal to 0, it will also remove the entire entry from the map.
+   * Removes a share in the Portfolio-list.
    *
    * @param share the share you want to remove.
+   * @return true if the share was removed, false if it was not.
    * @throws IllegalArgumentException if share is null.
    */
-  public void removeShare(Share share) {
+  public boolean removeShare(Share share) {
     if (share == null) {
       throw new IllegalArgumentException("Share cannot be null.");
     }
-
-    String symbol = share.getStock().getSymbol().toUpperCase();
-    BigDecimal quantity = share.getQuantity();
-
-    shares.merge(
-        symbol,
-        quantity,
-        BigDecimal::subtract
-    );
-
-    BigDecimal newQuantity = shares.get(symbol);
-
-    if (newQuantity == null || shares.get(symbol).compareTo(BigDecimal.ZERO) <= 0) {
-      shares.remove(symbol);
-    }
+    return shares.remove(share);
   }
 
   /**
-   * Creates an unmodifiable map of the shares in the portfolio.
+   * Creates an unmodifiable list of the shares in the portfolio.
    *
-   * @return the unmodifiable map of the portfolio's shares.
+   * @return the unmodifiable list of the portfolio's shares.
    */
-  public Map<String, BigDecimal> getShares() {
-    return Collections.unmodifiableMap(shares);
+  public List<Share> getShares() {
+    return Collections.unmodifiableList(shares);
+  }
+
+  /**
+   * Returns the shares associated with a specific symbol.
+   * Searches through the portfolio list with the entered symbol,
+   * and adds it to a list.
+   *
+   * @param symbol the symbol for a stock, i.e "AAPL".
+   * @return a list of shares with the entered symbol.
+   * @throws IllegalArgumentException if symbol is null.
+   */
+  public List<Share> getShares(String symbol) {
+    if (symbol == null) {
+      throw new IllegalArgumentException("Symbol cannot be null.");
+    }
+    return shares.stream()
+        .filter(s -> s.getStock().getSymbol().equalsIgnoreCase(symbol))
+        .toList();
   }
 
   /**
@@ -92,26 +87,16 @@ public class Portfolio {
     if (share == null) {
       throw new IllegalArgumentException("Share cannot be null.");
     }
-    String symbol = share.getStock().getSymbol().toUpperCase();
-
-    return shares.containsKey(symbol);
+    return shares.contains(share);
   }
-  /*
-  public List<Share> portfolioSorted() {
-    List<Share> shareList = shares.entrySet().stream()
-        .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
-        .forEach(entry ->
 
-            );
-  }
-  */
+  public BigDecimal getNetWorth() {
+    BigDecimal netWorth = BigDecimal.ZERO;
 
-  /**
-   * Finds the size of the map.
-   *
-   * @return the number of key-value pairs.
-   */
-  public int size() {
-    return shares.size();
+    for (Share share : getShares()) {
+      SaleCalculator saleCalc = new SaleCalculator(share);
+         netWorth = netWorth.add(saleCalc.calculateTotal());
+    }
+    return netWorth;
   }
 }
