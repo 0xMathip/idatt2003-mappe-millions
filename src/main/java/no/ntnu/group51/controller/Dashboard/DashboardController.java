@@ -16,6 +16,9 @@ public class DashboardController {
 
     DashboardTransactionController dashboardTransactionController =
         new DashboardTransactionController(model, view);
+
+    DashboardMoversController dashboardMoversController =
+        new DashboardMoversController(model, view);
   }
 
   public void update() {

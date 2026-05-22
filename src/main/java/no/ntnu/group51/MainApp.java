@@ -56,6 +56,7 @@ public class MainApp extends Application {
 
 
     // testing
+
     Player player = new Player("Mathias",new BigDecimal("2000"));
     Exchange ex = new Exchange("NASDAQ", stocks);
     GameModel gameModel = new GameModel(player, ex);
@@ -69,6 +70,7 @@ public class MainApp extends Application {
     player.getTransactionArchive().add(p1);
     player.getTransactionArchive().add(s);
     player.getTransactionArchive().add(p2);
+
 
     gameModel.setSelectedStock(gameModel.getExchange().getStock("AAPL"));
     gameModel.getExchange().advance();

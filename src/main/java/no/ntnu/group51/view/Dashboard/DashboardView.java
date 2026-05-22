@@ -1,5 +1,7 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -8,6 +10,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.view.View;
 
@@ -21,6 +24,7 @@ public class DashboardView implements View {
   private final GridPane root =  new GridPane();
   private final DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
   private final DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
+  private final DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
 
   /**
    * Creates the dashboard view by creating all the panels from the other classes,
@@ -42,7 +46,6 @@ public class DashboardView implements View {
 
     leftSide.setSpacing(20);
 
-    DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
     DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
     DiffOverWeeks diffOverWeeks = new DiffOverWeeks();
 
@@ -102,6 +105,16 @@ public class DashboardView implements View {
         dashboardTransactionPanel.addToPanel(TransactionListing.createTransactionListing(t));
       }
     }
+  }
+
+  public void addMovers(Exchange exchange) {
+    dashboardTopMoversPanel.clearMovers();
+    dashboardTopMoversPanel.addToPanel(TopMovers.createMover("gainer", exchange.getGainers(1)));
+    dashboardTopMoversPanel.addToPanel(TopMovers.createMover("loser", exchange.getLosers(1)));
+  }
+
+  public void setOnMarketPress(EventHandler<ActionEvent> action) {
+    dashboardTopMoversPanel.setOnViewMarket(action);
   }
 
   @Override

@@ -20,7 +20,7 @@ public class Player {
   /**
    * Creates a new player.
    *
-   * @param name Name of the player
+   * @param name          Name of the player
    * @param startingMoney Starting capital for the player
    */
   public Player(String name, BigDecimal startingMoney) {

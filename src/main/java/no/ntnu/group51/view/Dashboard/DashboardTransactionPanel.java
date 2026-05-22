@@ -25,6 +25,7 @@ public class DashboardTransactionPanel implements View {
   private final BorderPane root  = new BorderPane();
   private final VBox upper = new VBox();
   private final Button viewAll = new Button("View all transactions");
+  private final Label emptyLabel = new Label("No transactions yet");
 
   /**
    * Creates a transaction panel. HBox for the text on the lower part.
@@ -54,31 +55,13 @@ public class DashboardTransactionPanel implements View {
     lower.setSpacing(0);
 
     upper.setSpacing(15);
+    upper.setAlignment(Pos.CENTER);
 
     root.setCenter(upper);
     root.setBottom(lower);
 
 
     root.getStyleClass().addAll("card", "dashboard-transaction-window");
-  }
-
-  public void createTransactionListings(List<Transaction> transactions) {
-    if (transactions == null) {
-      throw new IllegalArgumentException("transactions cannot be null");
-    }
-
-    upper.getChildren().clear();
-
-    if (transactions.isEmpty()) {
-      Label label = new Label("No transactions yet");
-      label.getStyleClass().add("dashboard-empty-portfolio");
-      upper.getChildren().add(label);
-
-    } else {
-      for (Transaction t : transactions) {
-        upper.getChildren().add(TransactionListing.createTransactionListing(t));
-      }
-    }
   }
 
   public void clearListings() {

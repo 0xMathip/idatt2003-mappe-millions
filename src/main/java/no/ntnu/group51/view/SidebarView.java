@@ -167,6 +167,14 @@ public class SidebarView implements View {
     }
   }
 
+  public void toggleDashboard() {
+    dashboardButton.setSelected(true);
+  }
+
+  public void toggleMarket() {
+    marketButton.setSelected(true);
+  }
+
 
   @Override
   public Parent getRoot() {

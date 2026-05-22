@@ -1,6 +1,7 @@
 package no.ntnu.group51;
 
 import no.ntnu.group51.controller.Dashboard.DashboardController;
+import no.ntnu.group51.controller.Dashboard.DashboardMoversController;
 import no.ntnu.group51.controller.MarketController;
 import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.controller.SidebarController;
@@ -27,22 +28,26 @@ public class GameViewController {
 
     SidebarController sidebarController = new SidebarController(model, sidebarView);
     DashboardController dashboardController = new DashboardController(model, dashboardView);
+    DashboardMoversController dashboardMoversController = new DashboardMoversController(model, dashboardView);
 
     view.setLeftView(sidebarView);
     view.setCenterView(dashboardView);
 
     Runnable setDashboardCenter = () -> {
+      sidebarView.toggleDashboard();
       view.setCenterView(dashboardView);
       new DashboardController(model, dashboardView);;
     };
 
     Runnable setMarketCenter = () -> {
+      sidebarView.toggleMarket();
       view.setCenterView(marketView);
       new MarketController();
     };
 
     sidebarController.setOnDashboard(setDashboardCenter);
     sidebarController.setOnMarket(setMarketCenter);
+    dashboardMoversController.setOnMarketPress(setMarketCenter);
   }
 
 

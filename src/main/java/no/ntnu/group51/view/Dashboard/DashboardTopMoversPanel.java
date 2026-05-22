@@ -1,8 +1,11 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -10,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -19,6 +23,8 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class DashboardTopMoversPanel implements View {
 
   VBox root  = new VBox();
+  VBox movers = new VBox();
+  Button viewMarket = new Button("View market");
 
   /**
    * Creates the top movers panel. Top and bottom part contained in HBoxes.
@@ -42,12 +48,16 @@ public class DashboardTopMoversPanel implements View {
     separator.getStyleClass().add("separator-grey");
     separator.setPadding(new Insets(15, 0, 0, 0));
 
-    HBox lower =  new HBox();
-    Button viewMarket = new Button("View market");
+
+    HBox text = new HBox();
     viewMarket.getStyleClass().add("dashboard-view-button");
-    viewMarket.setCursor(Cursor.HAND);
-    lower.getChildren().addAll(viewMarket);
-    lower.setPadding(new Insets(0, 0, 10, 15));
+    text.getChildren().add(viewMarket);
+    text.setPadding(new Insets(10, 0, 15, 15));
+
+    VBox lower =  new VBox();
+    lower.getChildren().addAll(separator, text);
+    lower.setAlignment(Pos.CENTER);
+
 
     FontIcon arrow = new FontIcon("cil-arrow-right");
     viewMarket.setGraphic(arrow);
@@ -56,17 +66,30 @@ public class DashboardTopMoversPanel implements View {
     viewMarket.setGraphicTextGap(12);
     viewMarket.setPadding(new Insets(0, 0, 15, 15));
 
+    movers.setSpacing(30);
+
     root.getChildren().addAll(
         title,
-        TopMovers.createMover("Gainer"),
-        TopMovers.createMover("Loser"),
+        movers,
         separator,
         lower
     );
 
     root.getStyleClass().addAll("card", "dashboard-movers-window");
     root.setAlignment(Pos.CENTER);
-    root.setSpacing(25);
+    root.setSpacing(10);
+  }
+
+  public void addToPanel(Node node) {
+    movers.getChildren().add(node);
+  }
+
+  public void clearMovers() {
+    movers.getChildren().clear();
+  }
+
+  public void setOnViewMarket(EventHandler<ActionEvent> action) {
+    viewMarket.setOnAction(action);
   }
 
   @Override
