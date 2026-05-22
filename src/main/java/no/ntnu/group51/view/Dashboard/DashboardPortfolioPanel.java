@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.View;
@@ -19,14 +20,13 @@ import no.ntnu.group51.view.View;
 public class DashboardPortfolioPanel implements View {
 
   private final VBox root =  new VBox();
+  private final VBox portView = new VBox();
 
   /**
    * Creates the big yellow portfolio panel by putting portfolio listing
    * within a VBox. Then a separator before an HBox with 2 VBoxes in it.
    */
   public DashboardPortfolioPanel() {
-
-    VBox portView = new VBox();
 
     Label portfolioTitle = new Label("Portfolio");
     portfolioTitle.setAlignment(Pos.CENTER_LEFT);
@@ -35,10 +35,10 @@ public class DashboardPortfolioPanel implements View {
 
 
     portView.getChildren().addAll(
-        PortfolioListing.portfolioListing(new Share(new Stock("AAPL", "Apple Inc.", new BigDecimal("29312")), new BigDecimal("14.4"), new BigDecimal("25000"))),
-        PortfolioListing.portfolioListing(new Share(new Stock("AAPL", "Apple Inc.", new BigDecimal("29312")), new BigDecimal("14.4"), new BigDecimal("25000"))),
-        PortfolioListing.portfolioListing(new Share(new Stock("BONG", "Bong Makers", new BigDecimal("3452")), new BigDecimal("123"), new BigDecimal("7843"))),
-        PortfolioListing.portfolioListing(new Share(new Stock("BING", "Bing", new BigDecimal("293")), new BigDecimal("53"), new BigDecimal("20")))
+        PortfolioListing.portfolioListing(new Share(new Stock("AAPL", "Apple Inc.", new BigDecimal("29312"), "cib-apple"), new BigDecimal("14.4"), new BigDecimal("25000"))),
+        PortfolioListing.portfolioListing(new Share(new Stock("NVDA", "Nvidia", new BigDecimal("29312"), "cib-nvidia"), new BigDecimal("14.4"), new BigDecimal("25000"))),
+        PortfolioListing.portfolioListing(new Share(new Stock("ORCL", "Oracle Corporation", new BigDecimal("3452"), "cib-oracle"), new BigDecimal("123"), new BigDecimal("7843"))),
+        PortfolioListing.portfolioListing(new Share(new Stock("V", "Visa", new BigDecimal("293"), "cib-visa"), new BigDecimal("53"), new BigDecimal("20")))
     );
 
 
@@ -73,6 +73,28 @@ public class DashboardPortfolioPanel implements View {
     portView.setSpacing(30);
     root.setSpacing(20);
     root.getStyleClass().add("dashboard-portfolio");
+
+    /*
+    invested.setStyle("-fx-border-color: green");
+    portfolioReturn.setStyle("-fx-border-color: green");
+    separator.setStyle("-fx-border-color: green");
+    */
+  }
+
+  public void createListings(Portfolio portfolio) {
+    if (portfolio ==  null) {
+      throw new IllegalArgumentException("Portfolio is null");
+    }
+
+    if (portfolio.size() == 0) {
+      Label emptyPortfolio = new Label("No shares in your portfolio");
+      emptyPortfolio.getStyleClass().add("dashboard-empty-portfolio");
+      portView.getChildren().add(emptyPortfolio);
+      portView.setAlignment(Pos.CENTER);
+
+    } else {
+
+    }
   }
 
   @Override

@@ -62,12 +62,13 @@ public class CsvStartupFileHandler implements StartupFileHandler {
 
     String[] components = line.split(",");
 
-    if (components.length != 3) {
+    if (components.length != 4) {
       throw new IllegalArgumentException("Invalid line: " + line);
     }
 
     String symbol = components[0].trim();
     String company = components[1].trim();
+    String icon = components[3].trim();
 
     if (symbol.isEmpty() || company.isEmpty()) {
       throw new IllegalArgumentException("Invalid line: " + line);
@@ -75,7 +76,7 @@ public class CsvStartupFileHandler implements StartupFileHandler {
 
     try {
       BigDecimal price = new BigDecimal(components[2].trim());
-      return new Stock(symbol, company, price);
+      return new Stock(symbol, company, price, icon);
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("Invalid price in line: " + line, e);
     }
@@ -101,7 +102,9 @@ public class CsvStartupFileHandler implements StartupFileHandler {
 
         writer.write(stock.getSymbol()
             + "," + stock.getCompany()
-            + "," + stock.getHistoricalPrices().get(0));
+            + "," + stock.getHistoricalPrices().getFirst()
+            + "," + stock.getIcon()
+        );
         writer.newLine();
       }
     }

@@ -69,6 +69,26 @@
     -fx-text-fill: -color-red;
 }
 
+.dashboard-portfolio-icon {
+}
+
+.dashboard-empty-portfolio {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+.dashboard-empty-transaction {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+
+
+
+
+
 .separator {
     -fx-background-color: transparent;
     -fx-pref-width: 415;
@@ -216,8 +236,8 @@
 .dashboard-movers-window {
     -fx-pref-width: 476px;
     -fx-max-width: 476px;
-    -fx-pref-height: 365px;
-    -fx-max-height: 365px;
+    -fx-pref-height: 340px;
+    -fx-max-height: 340px;
 }
 
 

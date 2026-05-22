@@ -144,7 +144,7 @@ public class Exchange {
    * @return a list of top gaining stocks
    */
   public List<Stock> getGainers(int limit) {
-    if(limit < 0) {
+    if (limit < 0) {
       throw new IllegalArgumentException("Limit cannot be negative.");
     }
     return stockMap.values().stream()
