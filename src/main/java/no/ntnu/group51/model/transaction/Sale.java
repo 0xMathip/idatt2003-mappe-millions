@@ -32,7 +32,10 @@ public class Sale extends Transaction {
     if (committed) {
       System.out.println("Purchase is already committed");
 
-    } else if (player.getPortfolio().getShares().stream().anyMatch(x -> x.equals(share))) {
+    } else if (player.getPortfolio()
+        .getShares()
+        .stream()
+        .anyMatch(x -> x.equals(share))) {
       player.getPortfolio().removeShare(share);
       player.addMoney(share.getStock().getSalesPrice());
       committed = true;

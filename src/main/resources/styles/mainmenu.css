@@ -1,0 +1,18 @@
+
+.main-menu-button {
+    -fx-background-color: #F6DA36;
+    -fx-text-fill: black;
+    -fx-pref-height: 106;
+    -fx-pref-width: 340;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 48px;
+    -fx-text-alignment: center;
+    -fx-text-overrun: CLIP;
+}
+
+.main-menu-button:hover {
+    -fx-background-color: #a1a100;
+}

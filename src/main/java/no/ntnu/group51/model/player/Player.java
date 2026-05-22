@@ -112,8 +112,8 @@ public class Player {
     return transactionArchive;
   }
 
-  public BigDecimal getNetWorth() {
-    return money.add(portfolio.getNetWorth());
+  public void setPlayerLevel(PlayerLevel playerLevel) {
+    this.playerLevel = playerLevel;
   }
 
   public void setPlayerLevel(PlayerLevel playerLevel) {

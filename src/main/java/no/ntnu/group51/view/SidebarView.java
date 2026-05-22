@@ -1,5 +1,7 @@
 package no.ntnu.group51.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -8,11 +10,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.player.PlayerLevel;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class SidebarView implements View {
 
   private final VBox root = new VBox();
+  private final ToggleButton dashboardButton = new ToggleButton("Dashboard");
+  private final ToggleButton marketButton = new ToggleButton("Market");
+  private final ToggleButton portfolioButton = new ToggleButton("Portfolio");
+  private final ToggleButton transactionsButton = new ToggleButton("Transactions");
+  private final Label currentWeek = new Label("Week <N>");
+  private final Label currentLevelLabel = new Label("<CURRENT_LEVEL>");
+  private final Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
 
   public SidebarView() {
 
@@ -24,7 +34,6 @@ public class SidebarView implements View {
     });
 
     // Dashboard button
-    ToggleButton dashboardButton = new ToggleButton("Dashboard");
     dashboardButton.getStyleClass().add("sidebar-button");
     dashboardButton.setToggleGroup(sidebar);
 
@@ -36,7 +45,6 @@ public class SidebarView implements View {
     dashboardButton.setGraphicTextGap(12);
 
     // Market button
-    ToggleButton marketButton = new ToggleButton("Market");
     marketButton.setToggleGroup(sidebar);
     marketButton.getStyleClass().add("sidebar-button");
 
@@ -47,7 +55,6 @@ public class SidebarView implements View {
     marketButton.setGraphicTextGap(12);
 
     // Portfolio button
-    ToggleButton portfolioButton = new ToggleButton("Portfolio");
     portfolioButton.setToggleGroup(sidebar);
     portfolioButton.getStyleClass().add("sidebar-button");
 
@@ -58,7 +65,6 @@ public class SidebarView implements View {
     portfolioButton.setGraphicTextGap(12);
 
     // Transaction button
-    ToggleButton transactionsButton = new ToggleButton("Transactions");
     transactionsButton.setToggleGroup(sidebar);
     transactionsButton.getStyleClass().add("sidebar-button");
 
@@ -86,10 +92,8 @@ public class SidebarView implements View {
     Label playerLevelLabel = new Label("Player level");
     playerLevelLabel.getStyleClass().add("player-level-label");
 
-    Label currentLevelLabel = new Label("<CURRENT_LEVEL>");
     currentLevelLabel.getStyleClass().add("current-level-label");
 
-    Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
     nextLevelLabel.getStyleClass().add("next-level-label");
 
     VBox levelBox = new VBox();
@@ -105,7 +109,6 @@ public class SidebarView implements View {
     levelBox.setAlignment(Pos.CENTER);
     levelBox.setSpacing(12);
 
-    Label currentWeek = new Label("<Week 11>");
     FontIcon currentWeekIcon = new FontIcon("cil-calendar");
     currentWeekIcon.getStyleClass().add("current-week-icon");
     currentWeek.setGraphic(currentWeekIcon);
@@ -139,6 +142,38 @@ public class SidebarView implements View {
 
   }
 
+  public void setOnDashboardButton(EventHandler<ActionEvent> action) {
+    dashboardButton.setOnAction(action);
+  }
+
+  public void setOnMarketButton(EventHandler<ActionEvent> action) {
+    marketButton.setOnAction(action);
+  }
+
+  public void setCurrentWeek(int week) {
+    currentWeek.setText("Week " + week);
+  }
+
+  public void setCurrentLevelLabel(PlayerLevel level) {
+    currentLevelLabel.setText(level.toString());
+  }
+
+  public void setNextLevelLabel(PlayerLevel level) {
+    if (level != PlayerLevel.SPECULATOR) {
+      nextLevelLabel.setText("Next level: " + level.toString());
+
+    } else {
+      nextLevelLabel.setText("Max level");
+    }
+  }
+
+  public void toggleDashboard() {
+    dashboardButton.setSelected(true);
+  }
+
+  public void toggleMarket() {
+    marketButton.setSelected(true);
+  }
 
 
   @Override

@@ -1,5 +1,7 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -8,7 +10,11 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.exchange.Exchange;
+import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.view.View;
+
+import java.util.List;
 
 /**
  * Class for the dashboard itself. Does not include the sidebar.
@@ -16,6 +22,9 @@ import no.ntnu.group51.view.View;
 public class DashboardView implements View {
 
   private final GridPane root =  new GridPane();
+  private final DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
+  private final DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
+  private final DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
 
   /**
    * Creates the dashboard view by creating all the panels from the other classes,
@@ -23,8 +32,6 @@ public class DashboardView implements View {
    * each other in the VBox. GridPane is used to get the percent width easily so it fits nice.
    */
   public DashboardView() {
-    DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
-    DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
 
     Label dashboardTitle = new Label("Dashboard");
     dashboardTitle.getStyleClass().add("dashboard-title");
@@ -39,7 +46,6 @@ public class DashboardView implements View {
 
     leftSide.setSpacing(20);
 
-    DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
     DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
     DiffOverWeeks diffOverWeeks = new DiffOverWeeks();
 
@@ -81,7 +87,39 @@ public class DashboardView implements View {
 
   }
 
+  public void createTransactionListings(List<Transaction> transactions) {
+    if (transactions == null) {
+      throw new IllegalArgumentException("transactions cannot be null");
+    }
 
+    dashboardTransactionPanel.clearListings();
+
+    if (transactions.isEmpty()) {
+      Label label = new Label("No transactions yet");
+      label.getStyleClass().add("dashboard-empty-transaction");
+      label.setAlignment(Pos.CENTER);
+      dashboardTransactionPanel.addToPanel(label);
+
+    } else {
+      for (Transaction t : transactions) {
+        dashboardTransactionPanel.addToPanel(TransactionListing.createTransactionListing(t));
+      }
+    }
+  }
+
+  public void addMovers(Exchange exchange) {
+    dashboardTopMoversPanel.clearMovers();
+    dashboardTopMoversPanel.addToPanel(TopMovers.createMover("gainer", exchange.getGainers(1)));
+    dashboardTopMoversPanel.addToPanel(TopMovers.createMover("loser", exchange.getLosers(1)));
+  }
+
+  public void setOnMarketPress(EventHandler<ActionEvent> action) {
+    dashboardTopMoversPanel.setOnViewMarket(action);
+  }
+
+  public void setOnTransactionPress(EventHandler<ActionEvent> action) {
+    dashboardTransactionPanel.setOnViewAll(action);
+  }
 
   @Override
   public Parent getRoot() {

@@ -7,9 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.stocks.Stock;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Class for creating the top movers on the dashboard.
@@ -26,7 +28,7 @@ public class TopMovers {
    * @param type Type "gainer" if gainer, and "loser" if loser
    * @return The GridPane
    */
-  public static Parent createMover(String type) {
+  public static Parent createMover(String type, List<Stock> movers) {
 
     if (type == null || !type.equalsIgnoreCase("Gainer") && !type.equalsIgnoreCase("Loser")) {
       throw new IllegalArgumentException("Type is null or invalid type");
@@ -35,7 +37,7 @@ public class TopMovers {
     VBox text = new VBox();
     Label topMover = new Label();
 
-    Label company = new Label("TSLA");
+    Label company = new Label(movers.getFirst().getSymbol());
     company.getStyleClass().add("dashboard-subtext");
 
     text.getChildren().addAll(topMover, company);
@@ -44,7 +46,7 @@ public class TopMovers {
     VBox gainAmount = new VBox();
     Label gain = new Label();
 
-    Label amount = new Label("$" + "152.3");
+    Label amount = new Label("$" + movers.getFirst().getLatestPriceChange());
     amount.getStyleClass().add("dashboard-subtext");
 
     gainAmount.getChildren().addAll(gain, amount);
@@ -56,7 +58,7 @@ public class TopMovers {
       topMover.setText("Top Gainer");
       topMover.getStyleClass().add("dashboard-movers-gainer");
 
-      gain.setText("+" + "3.2" + "%");
+      gain.setText("+" + movers.getFirst().getLatestPriceChangePercent() + "%");
       gain.getStyleClass().add("dashboard-movers-gainer");
 
       circle.getStyleClass().add("filled-circle-green");
@@ -66,7 +68,7 @@ public class TopMovers {
       topMover.setText("Top Loser");
       topMover.getStyleClass().add("dashboard-movers-loser");
 
-      gain.setText("-" + "7.2" + "%");
+      gain.setText(movers.getFirst().getLatestPriceChangePercent() + "%");
       gain.getStyleClass().add("dashboard-movers-loser");
 
       circle.getStyleClass().add("filled-circle-red");
