@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.components.SearchRow;
+import no.ntnu.group51.view.util.PriceStyleHelper;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public final class StockRowFactory {
@@ -40,8 +41,8 @@ public final class StockRowFactory {
     HBox changeBox = new HBox(6, priceChange, priceChangePercentage);
     changeBox.setAlignment(Pos.CENTER_RIGHT);
 
-    applyStyleChange(priceChange, latestChange);
-    applyStyleChange(priceChangePercentage, latestChange);
+    PriceStyleHelper.applyPriceChangeStyle(priceChange, latestChange);
+    PriceStyleHelper.applyPriceChangeStyle(priceChangePercentage, latestChange);
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
     arrowIcon.getStyleClass().add("factory-search-row-arrow");
@@ -59,24 +60,6 @@ public final class StockRowFactory {
     GridPane.setHalignment(arrowIcon, HPos.CENTER);
 
     return row;
-  }
-
-  private static void applyStyleChange(Label label, BigDecimal latestChange) {
-    label.getStyleClass().removeAll(
-        "positive-price-change",
-        "negative-price-change",
-        "neutral-price-change"
-    );
-
-    int sign = latestChange.signum();
-
-    if (sign < 0) {
-      label.getStyleClass().add("negative-price-change");
-    } else if (sign > 0) {
-      label.getStyleClass().add("positive-price-change");
-    } else {
-      label.getStyleClass().add("neutral-price-change");
-    }
   }
 
   private static String valueExpression(BigDecimal value, String symbol) {

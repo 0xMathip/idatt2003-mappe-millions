@@ -3,9 +3,14 @@
  ===================*/
 .page-title {
     -fx-text-fill: -color-yellow;
-    -fx-font-family: "Almarai Regular";
+    -fx-font-family: "Almarai Bold";
     -fx-font-size: 64px;
-    -fx-font-weight: 700;
+}
+
+.page-layout {
+    -fx-background-color: -color-bg;
+    -fx-padding: 50px;
+    -fx-vgap: 24px;
 }
 
 .section-title {

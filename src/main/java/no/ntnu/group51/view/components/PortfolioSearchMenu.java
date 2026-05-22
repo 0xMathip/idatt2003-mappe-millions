@@ -5,16 +5,15 @@ import javafx.scene.Parent;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.view.View;
-import no.ntnu.group51.view.factories.StockRowFactory;
+import no.ntnu.group51.view.factories.PortfolioRowFactory;
 
-public class StockSearchMenu implements View, Observer {
+public class PortfolioSearchMenu implements View, Observer {
   private final SearchMenu root;
   private final GameModel gameModel;
 
-  public StockSearchMenu(GameModel gameModel) {
+  public PortfolioSearchMenu(GameModel gameModel) {
     this.gameModel = gameModel;
-    this.root = new SearchMenu("⌕ Search stocks");
-
+    this.root = new SearchMenu("⌕ Search portfolio", false);
     root.getSearchField().textProperty()
         .addListener((obs, oldValue, newValue) -> updateDisplay());
 
@@ -23,17 +22,13 @@ public class StockSearchMenu implements View, Observer {
   }
 
   private void updateDisplay() {
-    List<SearchRow> rows = gameModel.getExchange()
-        .findStocks(root.getSearchField().getText())
+    List<SearchRow> rows = gameModel.getPlayer()
+        .getPortfolio().getShares(root.getSearchField().getText())
         .stream()
-        .map(StockRowFactory::createStockRow)
+        .map(PortfolioRowFactory::createPortfolioRow)
         .toList();
 
     root.setRows(rows);
-  }
-
-  public void setOnClose(Runnable onClose) {
-    root.setOnClose(onClose);
   }
 
   @Override

@@ -26,7 +26,7 @@ public class TransactionView implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().add("transaction-view");
+    root.getStyleClass().addAll("page-layout", "transaction-view");
 
     Label title = createTitle();
     HBox statsRow = createStatsRow();
