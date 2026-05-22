@@ -1,14 +1,14 @@
 package no.ntnu.group51.view.factories;
 
 import java.math.BigDecimal;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
+import javafx.geometry.VPos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.view.components.SearchRow;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public final class StockRowFactory {
@@ -16,68 +16,47 @@ public final class StockRowFactory {
   private StockRowFactory() {
   }
 
-  public static Parent createStockRow(Stock stock) {
-    HBox row = new HBox();
-    row.getStyleClass().addAll("card","factory-stock-row");
-    row.setAlignment(Pos.CENTER);
+  public static SearchRow createStockRow(Stock stock) {
+    SearchRow row = new SearchRow(55, 30, 15, 10);
 
     Label ticker = new Label(stock.getSymbol());
-    ticker.getStyleClass().add("factory-stock-row-ticker");
+    ticker.getStyleClass().add("factory-search-row-ticker");
 
     Label company = new Label(stock.getCompany());
-    company.getStyleClass().add("factory-stock-row-company");
+    company.getStyleClass().add("factory-search-row-company");
 
-    Label price = new Label(stock.getSalesPrice().toString());
-    price.getStyleClass().add("factory-stock-row-price");
+    Label price = new Label("$" + stock.getSalesPrice().toString());
+    price.getStyleClass().add("factory-search-row-price");
 
     BigDecimal latestChange = stock.getLatestPriceChange();
 
     Label priceChange = new Label(valueExpression(latestChange, "$"));
-    priceChange.getStyleClass().add("factory-stock-row-change");
+    priceChange.getStyleClass().add("factory-search-row-change");
 
     Label priceChangePercentage = new Label("(" +
         valueExpression(stock.getLatestPriceChangePercent(),"%") + ")");
-    priceChangePercentage.getStyleClass().add("factory-stock-row-change-percent");
+    priceChangePercentage.getStyleClass().add("factory-search-row-change-percent");
+
+    HBox changeBox = new HBox(6, priceChange, priceChangePercentage);
+    changeBox.setAlignment(Pos.CENTER_RIGHT);
 
     applyStyleChange(priceChange, latestChange);
     applyStyleChange(priceChangePercentage, latestChange);
 
-    Region topSpacer = new Region();
-    HBox.setHgrow(topSpacer, Priority.ALWAYS);
-
-    Region botSpacer = new Region();
-    HBox.setHgrow(botSpacer, Priority.ALWAYS);
-
-    HBox topRow = new HBox(
-        8,
-        ticker,
-        topSpacer,
-        price
-    );
-    topRow.setAlignment(Pos.CENTER_LEFT);
-
-    HBox botRow = new HBox(
-        8,
-        company,
-        botSpacer,
-        priceChange,
-        priceChangePercentage
-    );
-    botRow.setAlignment(Pos.CENTER_LEFT);
-
-    VBox content = new VBox(topRow, botRow);
-    content.getStyleClass().add("factory-stock-row-content");
-    content.setAlignment(Pos.CENTER_LEFT);
-
-    HBox.setHgrow(content, Priority.ALWAYS);
-
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
-    arrowIcon.getStyleClass().add("factory-stock-row-arrow");
+    arrowIcon.getStyleClass().add("factory-search-row-arrow");
 
+    row.addToCell(ticker, 0, 0);
+    row.addToCell(company, 0, 1);
 
-    row.getChildren().addAll(
-        content,
-        arrowIcon);
+    row.addToCell(price, 1, 0, 2, 1);
+    row.addToCell(changeBox, 1, 1, 2, 1);
+
+    row.addToCell(arrowIcon, 3, 0, 1, 2);
+
+    GridPane.setHalignment(price, HPos.RIGHT);
+    GridPane.setHalignment(changeBox, HPos.RIGHT);
+    GridPane.setHalignment(arrowIcon, HPos.CENTER);
 
     return row;
   }
