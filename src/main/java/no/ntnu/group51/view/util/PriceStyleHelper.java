@@ -6,7 +6,18 @@ import javafx.scene.Node;
 public final class PriceStyleHelper {
 
   private PriceStyleHelper() {
+  }
 
+  public static String getPriceChangeStyle(BigDecimal latestChange) {
+    int sign = latestChange.signum();
+
+    if (sign < 0) {
+      return "negative-price-change";
+    } else if (sign > 0) {
+      return "positive-price-change";
+    }
+
+    return "neutral-price-change";
   }
 
   public static void applyPriceChangeStyle(Node node, BigDecimal latestChange) {
@@ -16,14 +27,7 @@ public final class PriceStyleHelper {
         "neutral-price-change"
     );
 
-    int sign = latestChange.signum();
-
-    if (sign < 0) {
-      node.getStyleClass().add("negative-price-change");
-    } else if (sign > 0) {
-      node.getStyleClass().add("positive-price-change");
-    } else {
-      node.getStyleClass().add("neutral-price-change");
-    }
+    node.getStyleClass().add(getPriceChangeStyle(latestChange));
   }
+
 }

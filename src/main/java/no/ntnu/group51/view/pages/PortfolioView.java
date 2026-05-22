@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.pages;
 
+import java.math.BigDecimal;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -10,6 +11,7 @@ import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.PortfolioSearchMenu;
 import no.ntnu.group51.view.components.PortfolioStockDetails;
 import no.ntnu.group51.view.factories.StatCardFactory;
+import no.ntnu.group51.view.util.PriceStyleHelper;
 
 public class PortfolioView implements View {
   private final GridPane root = new GridPane();
@@ -83,7 +85,6 @@ public class PortfolioView implements View {
     return StatCardFactory.createTextCard(
         "Net Worth",
         String.valueOf(gameModel.getPlayer().getNetWorth().toString()),
-        "portfolio-stat-value",
         "portfolio-stat-value"
     );
   }
@@ -92,19 +93,22 @@ public class PortfolioView implements View {
     return StatCardFactory.createTextCard(
         "Available Cash",
         String.valueOf(gameModel.getPlayer().getMoney().toString()),
-        "portfolio-stat-value",
         "portfolio-stat-value"
     );
   }
 
   private VBox createTotalReturnCard() {
-    return StatCardFactory.createTextCard(
-        "Portfolio Value",
+    BigDecimal totalReturn = new BigDecimal("-18232.322");
+
+    VBox card = StatCardFactory.createTextCard(
+        "Total return",
         "+18,232.322",
         "(17.2%)",
-        "portfolio-stat-value",
-        "portfolio-stat-card-bottom-text"
+        "portfolio-stat-value-with-state",
+        "portfolio-stat-card-bottom-text-with-state",
+        PriceStyleHelper.getPriceChangeStyle(totalReturn)
     );
+    return card;
   }
 
   @Override

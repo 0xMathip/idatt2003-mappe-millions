@@ -702,6 +702,16 @@
     -fx-font-size: 36px;
 }
 
+.portfolio-stat-value-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.portfolio-stat-card-bottom-text-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
 .portfolio-stat-card-bottom-text {
     -fx-text-fill: -color-border-light;
     -fx-font-family: "Almarai Regular";
