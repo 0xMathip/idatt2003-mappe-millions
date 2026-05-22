@@ -13,7 +13,12 @@ import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
+import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.transaction.Purchase;
+import no.ntnu.group51.model.transaction.Sale;
+import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.model.transaction.TransactionArchive;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 import no.ntnu.group51.view.GameView;
 
@@ -50,8 +55,21 @@ public class MainApp extends Application {
     }
 
 
+    // testing
+    Player player = new Player("Mathias",new BigDecimal("2000"));
+    Exchange ex = new Exchange("NASDAQ", stocks);
+    GameModel gameModel = new GameModel(player, ex);
 
-    GameModel gameModel = new GameModel(new Player("Mathias",new BigDecimal("2000")), new Exchange("NASDAQ", stocks));
+    Share share1 = new Share(stocks.getFirst(), new BigDecimal(30), new BigDecimal("1"));
+    Purchase p1 = new Purchase(share1, 2);
+    Share share2 = new Share(stocks.getLast(), new BigDecimal(14), new BigDecimal("578.42"));
+    Sale s = new Sale(share2, 3);
+    Share share3 = new Share(stocks.get(2), new BigDecimal(100), new BigDecimal("22.67"));
+    Purchase p2 = new Purchase(share3, 6);
+    player.getTransactionArchive().add(p1);
+    player.getTransactionArchive().add(s);
+    player.getTransactionArchive().add(p2);
+
     gameModel.setSelectedStock(gameModel.getExchange().getStock("AAPL"));
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
@@ -68,6 +86,7 @@ public class MainApp extends Application {
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
     gameModel.getExchange().advance();
+    // end of testing
 
     SceneManager sceneManager = new SceneManager(scene);
     Start.initialize(gameModel, sceneManager);

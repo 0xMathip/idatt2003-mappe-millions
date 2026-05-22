@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -22,7 +23,7 @@ public class PortfolioListing implements View {
    * Creates a listing for the portfolio panel. Contains each part in a VBox, which is
    * all contained in a GridPane.
    *
-   * @param share The share from the portfolio you want to create a listing for.
+   * @param share The portfolio you want to create listings for
    * @return The GridPane
    */
   public static Parent portfolioListing(Share share) {
@@ -83,7 +84,7 @@ public class PortfolioListing implements View {
 
     stock.setPadding(new Insets(0, 0, 0, 20));
 
-    /*
+    /* for debugging
     stock.setStyle("-fx-border-color: red");
     symbol.setStyle("-fx-border-color: green");
     shares.setStyle("-fx-border-color: green");

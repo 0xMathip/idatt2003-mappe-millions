@@ -72,6 +72,18 @@
 .dashboard-portfolio-icon {
 }
 
+.dashboard-empty-portfolio {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+.dashboard-empty-transaction {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
 
 
 

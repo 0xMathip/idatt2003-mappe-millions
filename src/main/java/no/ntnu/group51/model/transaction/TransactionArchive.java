@@ -44,13 +44,29 @@ public class TransactionArchive {
    * @param week The week you want to see transactions from
    * @return A list of the transactions in the given week
    */
-  public List<Transaction> getTransactions(int week) {
+  public List<Transaction> getTransactionsByWeek(int week) {
     if (week <= 0) {
       throw new IllegalArgumentException("week is 0 or negative");
     }
     return transactions.stream()
         .filter(t -> t.getWeek() == week)
         .toList();
+  }
+
+  public List<Transaction> getTransactions() {
+    return transactions;
+  }
+
+  public List<Transaction> getLast3Transactions() {
+    List<Transaction> last3Transactions = new ArrayList<>();
+
+    int start = Math.max(0, transactions.size() - 3);
+
+    for (int i = start; i < transactions.size(); i++) {
+      last3Transactions.add(transactions.get(i));
+    }
+
+    return last3Transactions;
   }
 
   /**
@@ -104,5 +120,9 @@ public class TransactionArchive {
         .map(Transaction::getWeek)
         .distinct()
         .count();
+  }
+
+  public int size() {
+    return transactions.size();
   }
 }

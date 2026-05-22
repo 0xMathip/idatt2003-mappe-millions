@@ -1,22 +1,30 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.util.List;
 
 /**
  * Class for the transaction panel on the dashboard.
  */
 public class DashboardTransactionPanel implements View {
 
-  VBox root  = new VBox();
+  private final BorderPane root  = new BorderPane();
+  private final VBox upper = new VBox();
+  private final Button viewAll = new Button("View all transactions");
 
   /**
    * Creates a transaction panel. HBox for the text on the lower part.
@@ -29,11 +37,10 @@ public class DashboardTransactionPanel implements View {
     separator.getStyleClass().add("separator-grey");
     separator.setPadding(new Insets(15, 0, 0, 0));
 
-    HBox lower = new HBox();
-    Button viewAll = new Button("View all transactions");
+    HBox text = new HBox();
     viewAll.getStyleClass().add("dashboard-view-button");
-    lower.getChildren().add(viewAll);
-    lower.setPadding(new Insets(0, 0, 0, 15));
+    text.getChildren().add(viewAll);
+    text.setPadding(new Insets(10, 0, 15, 15));
 
     FontIcon arrow = new FontIcon("cil-arrow-right");
     viewAll.setGraphic(arrow);
@@ -41,24 +48,47 @@ public class DashboardTransactionPanel implements View {
     viewAll.setAlignment(Pos.CENTER_LEFT);
     viewAll.setGraphicTextGap(12);
 
-    VBox upper = new VBox();
-    upper.getChildren().addAll(
-        TransactionListing.createTransactionListing(),
-        TransactionListing.createTransactionListing(),
-        TransactionListing.createTransactionListing()
-    );
+    VBox lower = new VBox();
+    lower.getChildren().addAll(separator, text);
+    lower.setAlignment(Pos.CENTER);
+    lower.setSpacing(0);
 
     upper.setSpacing(15);
 
-    root.getChildren().addAll(
-        upper,
-        separator,
-        lower
-    );
+    root.setCenter(upper);
+    root.setBottom(lower);
+
 
     root.getStyleClass().addAll("card", "dashboard-transaction-window");
-    root.setAlignment(Pos.CENTER);
   }
+
+  public void createTransactionListings(List<Transaction> transactions) {
+    if (transactions == null) {
+      throw new IllegalArgumentException("transactions cannot be null");
+    }
+
+    upper.getChildren().clear();
+
+    if (transactions.isEmpty()) {
+      Label label = new Label("No transactions yet");
+      label.getStyleClass().add("dashboard-empty-portfolio");
+      upper.getChildren().add(label);
+
+    } else {
+      for (Transaction t : transactions) {
+        upper.getChildren().add(TransactionListing.createTransactionListing(t));
+      }
+    }
+  }
+
+  public void clearListings() {
+    upper.getChildren().clear();
+  }
+
+  public void addToPanel(Node node) {
+    upper.getChildren().add(node);
+  }
+
 
 
   @Override

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.view.View;
@@ -19,14 +20,13 @@ import no.ntnu.group51.view.View;
 public class DashboardPortfolioPanel implements View {
 
   private final VBox root =  new VBox();
+  private final VBox portView = new VBox();
 
   /**
    * Creates the big yellow portfolio panel by putting portfolio listing
    * within a VBox. Then a separator before an HBox with 2 VBoxes in it.
    */
   public DashboardPortfolioPanel() {
-
-    VBox portView = new VBox();
 
     Label portfolioTitle = new Label("Portfolio");
     portfolioTitle.setAlignment(Pos.CENTER_LEFT);
@@ -79,6 +79,22 @@ public class DashboardPortfolioPanel implements View {
     portfolioReturn.setStyle("-fx-border-color: green");
     separator.setStyle("-fx-border-color: green");
     */
+  }
+
+  public void createListings(Portfolio portfolio) {
+    if (portfolio ==  null) {
+      throw new IllegalArgumentException("Portfolio is null");
+    }
+
+    if (portfolio.size() == 0) {
+      Label emptyPortfolio = new Label("No shares in your portfolio");
+      emptyPortfolio.getStyleClass().add("dashboard-empty-portfolio");
+      portView.getChildren().add(emptyPortfolio);
+      portView.setAlignment(Pos.CENTER);
+
+    } else {
+
+    }
   }
 
   @Override

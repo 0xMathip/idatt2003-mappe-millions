@@ -96,4 +96,22 @@ public class Portfolio {
 
     return shares.containsKey(symbol);
   }
+  /*
+  public List<Share> portfolioSorted() {
+    List<Share> shareList = shares.entrySet().stream()
+        .sorted((a, b) -> b.getValue().compareTo(a.getValue()))
+        .forEach(entry ->
+
+            );
+  }
+  */
+
+  /**
+   * Finds the size of the map.
+   *
+   * @return the number of key-value pairs.
+   */
+  public int size() {
+    return shares.size();
+  }
 }
