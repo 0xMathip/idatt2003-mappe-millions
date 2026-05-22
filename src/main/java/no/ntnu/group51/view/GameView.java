@@ -22,7 +22,7 @@ public class GameView implements View {
     PortfolioView portfolio = new PortfolioView(gameModel);
 
     root.setLeft(sidebar.getRoot());
-    root.setCenter(market.getRoot());
+    root.setCenter(portfolio.getRoot());
   }
 
   @Override

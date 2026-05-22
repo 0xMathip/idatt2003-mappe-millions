@@ -19,7 +19,7 @@ import no.ntnu.group51.view.util.PriceStyleHelper;
 
 
 public class PortfolioStockDetails implements View, Observer {
-  private final VBox root = new VBox(60);
+  private final VBox root = new VBox(10);
   private final GameModel gameModel;
   private StockChartCard stockChartCard;
 
@@ -70,11 +70,11 @@ public class PortfolioStockDetails implements View, Observer {
 
     HBox headerBox = new HBox(companyBox, spacer, priceBox);
 
-    HBox stockChart = createStockChart();
-    stockChart.getStyleClass().add("portfolio-details-stock-chart");
+    HBox stockShart = new HBox(createStockChart());
+    stockShart.getStyleClass().add("portfolio-details-stock-chart");
 
-    Separator separator = new Separator();
-    separator.getStyleClass().add("separator-details-grey");
+    Separator separator1 = new Separator();
+    separator1.getStyleClass().add("separator-details-grey");
 
     GridPane statsGrid = new GridPane();
     statsGrid.getStyleClass().addAll("card", "portfolio-details-stats-grid");
@@ -94,11 +94,14 @@ public class PortfolioStockDetails implements View, Observer {
 
     statsGrid.add(pnlBox, 3, 0, 1, 2);
 
+    Separator separator = new Separator();
+    separator.getStyleClass().add("separator-details-grey");
+
     Label marketButton = new Label("Open in Market ➜ ");
     marketButton.getStyleClass().addAll("dashboard-view-button", "portfolio-market-button");
 
-    VBox topRow = new VBox(10, headerBox, stockChart);
-    VBox botRow = new VBox(20, statsGrid, separator, marketButton);
+    VBox topRow = new VBox(headerBox, stockShart);
+    VBox botRow = new VBox(statsGrid, separator, marketButton);
 
 
     root.getChildren().addAll(
@@ -107,7 +110,6 @@ public class PortfolioStockDetails implements View, Observer {
     );
 
   }
-
 
   private HBox createStockChart() {
     stockChartCard.addRootStyleClass("stock-chart-card-small");

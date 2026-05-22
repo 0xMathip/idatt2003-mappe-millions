@@ -28,7 +28,7 @@ public class MarketView implements View {
     this.gameModel = gameModel;
 
     marketContent = new VBox();
-    marketContent.getStyleClass().add("market-view");
+    marketContent.getStyleClass().addAll("page-layout","market-view");
 
     Label title = new Label("Market");
     title.getStyleClass().add("page-title");

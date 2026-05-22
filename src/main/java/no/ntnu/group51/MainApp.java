@@ -25,8 +25,8 @@ public class MainApp extends Application {
 
   @Override
   public void start(Stage stage) {
-    int width = 1400;
-    int height = 800;
+    int width = 1920;
+    int height = 1080;
 
     Scene scene = new Scene(new Pane(), width, height);
     scene.getStylesheets().addAll(
