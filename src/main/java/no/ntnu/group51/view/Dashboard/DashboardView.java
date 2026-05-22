@@ -117,6 +117,10 @@ public class DashboardView implements View {
     dashboardTopMoversPanel.setOnViewMarket(action);
   }
 
+  public void setOnTransactionPress(EventHandler<ActionEvent> action) {
+    dashboardTransactionPanel.setOnViewAll(action);
+  }
+
   @Override
   public Parent getRoot() {
     return root;

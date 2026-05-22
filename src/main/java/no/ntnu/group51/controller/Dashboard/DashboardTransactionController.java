@@ -20,4 +20,8 @@ public class DashboardTransactionController {
         model.getPlayer().getTransactionArchive().getLast3Transactions());
   }
 
+  public void setOnViewAllPress(Runnable runnable) {
+    view.setOnTransactionPress(e -> runnable.run());
+  }
+
 }

@@ -1,5 +1,7 @@
 package no.ntnu.group51.view.Dashboard;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -72,6 +74,9 @@ public class DashboardTransactionPanel implements View {
     upper.getChildren().add(node);
   }
 
+  public void setOnViewAll(EventHandler<ActionEvent> action) {
+    viewAll.setOnAction(action);
+  }
 
 
   @Override
