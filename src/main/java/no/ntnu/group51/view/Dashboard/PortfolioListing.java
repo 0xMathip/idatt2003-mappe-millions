@@ -11,6 +11,7 @@ import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.stocks.Share;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
+import no.ntnu.group51.view.util.PriceStyleHelper;
 
 /**
  * Class for a portfolio listing on the portfolio panel.
@@ -48,7 +49,7 @@ public class PortfolioListing implements View {
     cashLabel.getStyleClass().add("dashboard-portfolio-amount-cash");
     Label diffLabel = new Label(share.getStock().getLatestPriceChangePercent().toString());
     diffLabel.getStyleClass().add("dashboard-portfolio-diff");
-    applyStyleChange(diffLabel, share.getStock().getLatestPriceChange());
+    PriceStyleHelper.applyPriceChangeStyle(diffLabel, share.getStock().getLatestPriceChange());
     diffLabel.setAlignment(Pos.CENTER);
     VBox money = new VBox();
     money.getChildren().addAll(cashLabel, diffLabel);
@@ -93,24 +94,6 @@ public class PortfolioListing implements View {
      */
 
     return stock;
-  }
-
-  private static void applyStyleChange(Label label, BigDecimal latestChange) {
-    label.getStyleClass().removeAll(
-        "positive-price-change",
-        "negative-price-change",
-        "neutral-price-change"
-    );
-
-    int sign = latestChange.signum();
-
-    if (sign < 0) {
-      label.getStyleClass().add("negative-price-change");
-    } else if (sign > 0) {
-      label.getStyleClass().add("positive-price-change");
-    } else {
-      label.getStyleClass().add("neutral-price-change");
-    }
   }
 
   @Override

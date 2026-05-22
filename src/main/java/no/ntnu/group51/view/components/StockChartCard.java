@@ -2,12 +2,15 @@ package no.ntnu.group51.view.components;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
+import javafx.util.StringConverter;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.stocks.Stock;
@@ -15,28 +18,35 @@ import no.ntnu.group51.view.View;
 
 public class StockChartCard implements View, Observer {
   private final StackPane root = new StackPane();
-  private GameModel gameModel;
-  private LineChart<Number, Number> stockChart;
+  private final GameModel gameModel;
+  private final boolean showLabels;
+  private AreaChart<Number, Number> stockChart;
 
-  public StockChartCard(GameModel gameModel) {
+  public StockChartCard(GameModel gameModel, boolean showLabels) {
+    if (gameModel == null) {
+      throw new IllegalArgumentException("Game model cannot be null.");
+    }
+
     this.gameModel = gameModel;
+    this.showLabels = showLabels;
 
-    root.getStyleClass().addAll("card","stock-chart-card");
     root.setAlignment(Pos.CENTER_LEFT);
 
-    createLayout();
     gameModel.addObserver(this);
-
     updateDisplay();
   }
 
-  private LineChart<Number, Number> createChart(Stock stock) {
+  public StockChartCard(GameModel gameModel) {
+    this(gameModel, true);
+  }
+
+  private AreaChart<Number, Number> createChart(Stock stock) {
     List<BigDecimal> prices = stock.getHistoricalPrices();
 
     NumberAxis xAxis = createXAxis(prices);
     NumberAxis yAxis = createYAxis(prices);
 
-    LineChart<Number, Number> stockChart = new LineChart<>(xAxis, yAxis);
+    AreaChart<Number, Number> stockChart = new AreaChart<>(xAxis, yAxis);
     stockChart.setLegendVisible(false);
     stockChart.setAnimated(false);
     stockChart.setCreateSymbols(false);
@@ -50,11 +60,6 @@ public class StockChartCard implements View, Observer {
     return stockChart;
   }
 
-  private void createLayout() {
-    stockChart = createChart(gameModel.getSelectedStock());
-    root.getChildren().add(stockChart);
-  }
-
   private void updateDisplay() {
     root.getChildren().clear();
     stockChart = createChart(gameModel.getSelectedStock());
@@ -65,8 +70,10 @@ public class StockChartCard implements View, Observer {
     NumberAxis xAxis = new NumberAxis();
     xAxis.setAutoRanging(false);
     xAxis.setLowerBound(1);
-    xAxis.setUpperBound(prices.size());
-    xAxis.setTickUnit(1);
+    xAxis.setUpperBound(prices.size() - 1);
+    xAxis.setTickUnit(2);
+    xAxis.setTickLabelsVisible(showLabels);
+    xAxis.setTickMarkVisible(false);
     xAxis.setMinorTickVisible(false);
 
     return xAxis;
@@ -92,9 +99,25 @@ public class StockChartCard implements View, Observer {
     double range = upperBound - lowerBound;
     NumberAxis yAxis = new NumberAxis();
     yAxis.setAutoRanging(false);
+    yAxis.setSide(Side.RIGHT);
+    yAxis.setTickMarkVisible(false);
+    yAxis.setMinorTickVisible(false);
+    yAxis.setTickLabelsVisible(showLabels);
     yAxis.setLowerBound(lowerBound);
     yAxis.setUpperBound(upperBound);
-    yAxis.setTickUnit(range / 10);
+    yAxis.setTickUnit(range / 5);
+
+    yAxis.setTickLabelFormatter(new StringConverter<>() {
+      @Override
+      public String toString(Number value) {
+        return String.format(Locale.US,"$%.1f", value.doubleValue());
+      }
+
+      @Override
+      public Number fromString(String string) {
+        return null;
+      }
+    });
 
     return yAxis;
   }
@@ -108,6 +131,14 @@ public class StockChartCard implements View, Observer {
       );
     }
     return series;
+
+  }
+
+  public void addRootStyleClass(String style) {
+    if (style == null){
+      throw new IllegalArgumentException("Enter a valid style.");
+    }
+    root.getStyleClass().add(style);
   }
 
   @Override

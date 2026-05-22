@@ -281,38 +281,62 @@
     StockChartCard styling
  ===================*/
 
-.stock-chart-card {
-    -fx-background-radius: 30px;
+.stock-chart-card-large {
     -fx-pref-height: 830px;
-    -fx-max-height: 830px;
-    -fx-min-height: 830px;
-
-    -fx-pref-width: 1500px;
-    -fx-min-width: 1100px;
-    -fx-max-width: 1100px;
-
-    -fx-border-radius: 30px;
-    -fx-border-width: 2px;
-    -fx-border-color: -color-border;
+    -fx-pref-width: 1000px;
+    -fx-padding: 20px 30px 20px 30px;
 }
 
-.chart-plot-background{
-    -fx-background-color: -color-dark;
-    -fx-background-radius: 30px;
-}
+.stock-chart-card-small {
+    -fx-pref-height: 260px;
+    -fx-pref-width: 645px;
+    -fx-min-width: 645px;
+    -fx-max-width: 645px;
 
-.chart-series-line {
-    -fx-stroke: -color-chart-stroke;
+    -fx-padding: 0 10px 0 0;
 }
 
 .stock-chart-card-chart {
-    -fx-background-color: -color-dark;
-    -fx-background-radius: 30px;
-    -fx-pref-height: 830px;
-    -fx-max-height: infinity;
+    -fx-background-color: transparent;
+}
 
-    -fx-pref-width: 1100px;
-    -fx-max-width: infinity;
+.stock-chart-card-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.stock-chart-card-chart .chart-horizontal-grid-lines,
+.stock-chart-card-chart .chart-vertical-grid-lines {
+    -fx-stroke: -color-border;
+}
+
+.default-color0.chart-series-area-line,
+.default-color0.chart-series-line {
+    -fx-stroke: -color-yellow;
+    -fx-stroke-width: 3px;
+}
+
+.default-color0.chart-series-area-fill {
+    -fx-fill: rgba(246, 218, 54, 0.10);
+}
+
+.stock-chart-card-large .axis {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-tick-label-fill: -color-border-light;
+    -fx-tick-label-font-family: "Almarai Regular";
+    -fx-tick-label-font-size: 15px;
+
+    -fx-padding: 0 40px 0 0;
+}
+
+.stock-chart-card-small .axis {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.stock-chart-card-small .chart-horizontal-grid-lines,
+.stock-chart-card-small .chart-vertical-grid-lines {
+    -fx-stroke: transparent;
 }
 
 /* ===================
@@ -468,7 +492,6 @@
 }
 
 .factory-stat-card {
-
     -fx-pref-width: 290px;
     -fx-min-width: 290px;
     -fx-max-width: 290px;
@@ -498,10 +521,6 @@
 /* ===================
     Transaction styling
  ===================*/
-.transaction-view {
-    -fx-padding: 10 0 10 0;
-}
-
 .transaction-stat-value {
     -fx-text-fill: -color-text;
     -fx-font-family: "Almarai Regular";
@@ -568,7 +587,7 @@
     -fx-min-width: 683px;
     -fx-max-width: 683px;
 
-    -fx-padding: 20;
+    -fx-padding: 20px;
 }
 
 .transaction-details-title {
@@ -606,8 +625,13 @@
     -fx-font-size: 20px;
 }
 
-.transaction-details-separator {
+.transaction-details-separator-horizontal,
+.transaction-details-separator-vertical {
     -fx-background-color: -color-text;
+}
+
+.transaction-details-separator-horizontal {
+    -fx-background-color: -color-border-light;
 
     -fx-pref-width: 640px;
     -fx-min-width: 640px;
@@ -616,6 +640,18 @@
     -fx-pref-height: 1px;
     -fx-min-height: 1px;
     -fx-max-height: 1px;
+}
+
+.transaction-details-separator-vertical {
+    -fx-background-color: -color-border-light;
+
+    -fx-pref-width: 1px;
+    -fx-min-width: 1px;
+    -fx-max-width: 1px;
+
+    -fx-pref-height: 640px;
+    -fx-min-height: 640px;
+    -fx-max-height: 640px;
 }
 
 .transaction-details-note-icon {
@@ -645,8 +681,84 @@
     -fx-padding: 10, 10, 20, 0
 }
 
+/* ===================
+    PortfolioView styling
+ ===================*/
 
+.portfolio-details-price {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
 
+.portfolio-details-change {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.portfolio-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.portfolio-stat-value-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.portfolio-stat-card-bottom-text-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.portfolio-stat-card-bottom-text {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.portfolio-details-stats-grid {
+    -fx-hgap: 40px;
+    -fx-vgap: 18px;
+    -fx-alignment: center;
+
+    -fx-pref-width: 635px;
+    -fx-max-width: 635px;
+
+    -fx-pref-height: 200px;
+    -fx-max-height: 200px;
+
+}
+
+.portfolio-details-pnl {
+
+}
+
+.portfolio-details-stat-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 14px;
+}
+
+.portfolio-details-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.separator.separator-details-grey {
+    -fx-background-color: transparent;
+    -fx-pref-width: 640px;
+    -fx-max-width: 640px;
+
+    -fx-padding: 25px 0 25px 0;
+}
+
+.separator.separator-details-grey .line {
+    -fx-background-color: #202020;
+    -fx-border-color: #202020;
+}
 
 /* ===================
     SearchMenu styling
@@ -676,6 +788,13 @@
     -fx-font-size: 20px;
     -fx-padding: 0 20 0 20;
 }
+
+.search-menu-no-close .search-menu-text-field {
+    -fx-pref-width: 650px;
+    -fx-min-width: 650px;
+    -fx-max-width: 650px;
+}
+
 
 .search-menu-top-bar {
     -fx-spacing: 16px;

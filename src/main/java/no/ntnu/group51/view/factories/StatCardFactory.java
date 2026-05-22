@@ -40,12 +40,32 @@ public final class StatCardFactory {
     return iconCard;
   }
 
-  public static VBox createTextCard(
+  public static VBox createTextCard (
+      String title,
+      String value,
+      String valueStyle
+  ) {
+    return createTextCard(title, value, "", valueStyle, "factory-stat-card-bot-text", null);
+  }
+
+  public static VBox createTextCard (
       String title,
       String value,
       String subtitle,
       String valueStyle,
       String subtitleStyle
+  ) {
+    return createTextCard(title, value, subtitle, valueStyle, subtitleStyle, null);
+  }
+
+
+  public static VBox createTextCard (
+      String title,
+      String value,
+      String subtitle,
+      String valueStyle,
+      String subtitleStyle,
+      String valueStateStyle
   ) {
     Label top = new Label(title);
     Label middle = new Label(value);
@@ -53,22 +73,18 @@ public final class StatCardFactory {
 
     top.getStyleClass().add("factory-stat-card-top-text");
     middle.getStyleClass().add(valueStyle);
+
+    if (valueStateStyle != null && !valueStateStyle.isBlank()) {
+      middle.getStyleClass().add(valueStateStyle);
+      bottom.getStyleClass().add(valueStateStyle);
+    }
+
     bottom.getStyleClass().add(subtitleStyle);
 
-    VBox textCard = new VBox(8, top, middle, bottom);
+    VBox textCard = new VBox(4, top, middle, bottom);
     textCard.setAlignment(Pos.CENTER_LEFT);
-
     textCard.getStyleClass().addAll("card", "factory-stat-card");
 
     return textCard;
-  }
-
-  public static VBox createTextCard(
-      String title,
-      String value,
-      String titleStyle,
-      String valueStyle
-  ) {
-    return createTextCard(title, value, "", valueStyle, "factory-stat-card-bot-text");
   }
 }

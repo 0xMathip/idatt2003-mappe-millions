@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.pages;
 
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
@@ -12,14 +13,14 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.StockChartCard;
-import no.ntnu.group51.view.components.StockSearchMenu;
+import no.ntnu.group51.view.components.MarketSearchMenu;
 import no.ntnu.group51.view.components.StockSelectorCard;
 import no.ntnu.group51.view.components.TradePanel;
 
 public class MarketView implements View {
   private final StackPane root = new StackPane();
   private VBox marketContent;
-  private StockSearchMenu stockSearchMenu;
+  private MarketSearchMenu stockSearchMenu;
   private Pane overlay;
   private final GameModel gameModel;
 
@@ -27,7 +28,7 @@ public class MarketView implements View {
     this.gameModel = gameModel;
 
     marketContent = new VBox();
-    marketContent.getStyleClass().add("market-view");
+    marketContent.getStyleClass().addAll("page-layout","market-view");
 
     Label title = new Label("Market");
     title.getStyleClass().add("page-title");
@@ -45,11 +46,13 @@ public class MarketView implements View {
     StockSelectorCard stockSelectorCard = new StockSelectorCard(gameModel);
     TradePanel tradePanel = new TradePanel(gameModel);
     StockChartCard stockChartCard = new StockChartCard(gameModel);
+    stockChartCard.addRootStyleClass("card");
+    stockChartCard.addRootStyleClass("stock-chart-card-large");
 
     HBox stockChart = new HBox();
     HBox.setHgrow(stockChart, Priority.ALWAYS);
+    stockChart.setAlignment(Pos.CENTER);
     stockChart.getChildren().addAll(stockChartCard.getRoot());
-    stockChart.getStyleClass().add("market-chart");
 
     leftColumn.getChildren().addAll(
        stockSelectorCard.getRoot(),
@@ -83,7 +86,7 @@ public class MarketView implements View {
     overlay = new Pane();
     overlay.getStyleClass().add("market-overlay");
 
-    stockSearchMenu = new StockSearchMenu(gameModel);
+    stockSearchMenu = new MarketSearchMenu(gameModel);
 
     GaussianBlur blur = new GaussianBlur(15);
     marketContent.getChildren()
