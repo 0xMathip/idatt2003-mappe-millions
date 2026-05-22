@@ -153,9 +153,6 @@ public class MainApp extends Application {
     Transaction aapl = transactionList.stream().findFirst().orElse(null);
     gameModel.setSelectedTransaction(aapl);
 
-    System.out.println(gameModel.getSelectedStock().toString());
-    System.out.println(String.valueOf(gameModel.getSelectedTransaction().getShare().getQuantity()));
-
     SceneManager sceneManager = new SceneManager(scene);
     sceneManager.changeScene(new GameView(gameModel));
 

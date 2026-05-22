@@ -98,7 +98,7 @@ public class PortfolioView implements View {
   }
 
   private VBox createTotalReturnCard() {
-    BigDecimal totalReturn = new BigDecimal("-18232.322");
+    BigDecimal totalReturn = new BigDecimal("+18232.322");
 
     VBox card = StatCardFactory.createTextCard(
         "Total return",

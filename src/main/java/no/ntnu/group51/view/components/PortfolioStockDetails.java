@@ -59,11 +59,6 @@ public class PortfolioStockDetails implements View, Observer {
     priceValue.getStyleClass().add("portfolio-details-price");
     changeValue.getStyleClass().add("portfolio-details-change");
 
-    priceValue.setText("<$3.2322>");
-    changeValue.setText("<(3.265%)>");
-
-    PriceStyleHelper.applyPriceChangeStyle(changeValue, new BigDecimal("3.2"));
-
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -140,5 +135,8 @@ public class PortfolioStockDetails implements View, Observer {
 
   @Override
   public void update() {
+    priceValue.setText("<$3.2322>");
+    changeValue.setText("<(3.265%)>");
+    PriceStyleHelper.applyPriceChangeStyle(changeValue, new BigDecimal("3.2"));
   }
 }
