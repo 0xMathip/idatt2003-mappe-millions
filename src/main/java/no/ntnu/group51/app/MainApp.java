@@ -9,7 +9,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import no.ntnu.group51.Start;
 import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
@@ -172,7 +171,7 @@ public class MainApp extends Application {
 
     // end of testing
     SceneManager sceneManager = new SceneManager(scene);
-    Start.initialize(gameModel, sceneManager);
+    ApplicationStarter.initialize(gameModel, sceneManager);
 
     stage.setScene(scene);
     stage.setTitle("MILLION$");
