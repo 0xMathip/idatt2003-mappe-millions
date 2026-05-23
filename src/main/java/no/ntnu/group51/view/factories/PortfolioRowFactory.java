@@ -1,6 +1,5 @@
 package no.ntnu.group51.view.factories;
 
-import java.math.RoundingMode;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -9,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stocks.Share;
-import no.ntnu.group51.view.components.SearchRow;
+import no.ntnu.group51.view.components.shared.SearchRow;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class PortfolioRowFactory {

@@ -6,8 +6,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
-import no.ntnu.group51.view.components.TransactionDetailsCard;
-import no.ntnu.group51.view.components.TransactionSearchMenu;
+import no.ntnu.group51.view.components.transaction.TransactionDetailsCard;
+import no.ntnu.group51.view.components.transaction.TransactionSearchMenu;
 import no.ntnu.group51.view.factories.StatCardFactory;
 
 public class TransactionView implements View {

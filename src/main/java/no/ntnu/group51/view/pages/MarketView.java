@@ -12,10 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
-import no.ntnu.group51.view.components.StockChartCard;
-import no.ntnu.group51.view.components.MarketSearchMenu;
-import no.ntnu.group51.view.components.StockSelectorCard;
-import no.ntnu.group51.view.components.TradePanel;
+import no.ntnu.group51.view.components.shared.StockChartCard;
+import no.ntnu.group51.view.components.market.MarketSearchMenu;
+import no.ntnu.group51.view.components.market.StockSelectorCard;
+import no.ntnu.group51.view.components.market.TradePanel;
 
 public class MarketView implements View {
   private final StackPane root = new StackPane();

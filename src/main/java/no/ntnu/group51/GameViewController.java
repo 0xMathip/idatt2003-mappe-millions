@@ -1,16 +1,15 @@
 package no.ntnu.group51;
 
-import javafx.application.Platform;
-import no.ntnu.group51.controller.Dashboard.DashboardController;
-import no.ntnu.group51.controller.Dashboard.DashboardMoversController;
-import no.ntnu.group51.controller.Dashboard.DashboardTransactionController;
-import no.ntnu.group51.controller.MarketController;
+import no.ntnu.group51.controller.dashboard.DashboardController;
+import no.ntnu.group51.controller.dashboard.DashboardMoversController;
+import no.ntnu.group51.controller.dashboard.DashboardTransactionController;
+import no.ntnu.group51.controller.market.MarketController;
 import no.ntnu.group51.controller.SceneManager;
-import no.ntnu.group51.controller.SidebarController;
+import no.ntnu.group51.controller.sidebar.SidebarController;
 import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.view.Dashboard.DashboardView;
+import no.ntnu.group51.view.pages.DashboardView;
 import no.ntnu.group51.view.GameView;
-import no.ntnu.group51.view.SidebarView;
+import no.ntnu.group51.view.components.shared.SidebarView;
 import no.ntnu.group51.view.pages.MarketView;
 
 public class GameViewController {

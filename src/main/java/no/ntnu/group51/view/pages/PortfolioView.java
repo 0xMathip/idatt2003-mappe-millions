@@ -8,8 +8,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
-import no.ntnu.group51.view.components.PortfolioSearchMenu;
-import no.ntnu.group51.view.components.PortfolioStockDetails;
+import no.ntnu.group51.view.components.portfolio.PortfolioSearchMenu;
+import no.ntnu.group51.view.components.portfolio.PortfolioStockDetails;
 import no.ntnu.group51.view.factories.StatCardFactory;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 

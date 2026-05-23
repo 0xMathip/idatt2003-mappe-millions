@@ -1,13 +1,11 @@
 package no.ntnu.group51.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import no.ntnu.group51.view.Dashboard.DashboardView;
+import no.ntnu.group51.view.components.shared.SidebarView;
+import no.ntnu.group51.view.pages.DashboardView;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.MarketView;
-import no.ntnu.group51.view.pages.PortfolioView;
 import no.ntnu.group51.view.pages.TransactionView;
 
 public class GameView implements View {

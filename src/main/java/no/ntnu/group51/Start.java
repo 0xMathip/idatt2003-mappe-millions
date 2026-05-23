@@ -1,10 +1,8 @@
 package no.ntnu.group51;
 
-import no.ntnu.group51.controller.MainMenuController;
+import no.ntnu.group51.controller.mainmenu.MainMenuController;
 import no.ntnu.group51.controller.SceneManager;
-import no.ntnu.group51.controller.SidebarController;
 import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.view.GameView;
 import no.ntnu.group51.view.MainMenuView;
 
 public class Start {

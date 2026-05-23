@@ -3,12 +3,11 @@ package no.ntnu.group51.view.factories;
 import java.math.BigDecimal;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import no.ntnu.group51.model.stocks.Stock;
-import no.ntnu.group51.view.components.SearchRow;
+import no.ntnu.group51.view.components.shared.SearchRow;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 import org.kordamp.ikonli.javafx.FontIcon;
 

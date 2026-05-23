@@ -1,6 +1,5 @@
 package no.ntnu.group51.view;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import no.ntnu.group51.controller.MainMenuController;
 import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 
