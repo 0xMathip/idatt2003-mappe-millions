@@ -1,8 +1,8 @@
 package no.ntnu.group51.model.player;
 
 import no.ntnu.group51.model.calculator.SaleCalculator;
-import no.ntnu.group51.model.stocks.Share;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Share;
+import no.ntnu.group51.model.stock.Stock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

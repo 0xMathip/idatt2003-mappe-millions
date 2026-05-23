@@ -1,10 +1,9 @@
-package no.ntnu.group51;
+package no.ntnu.group51.controller;
 
 import no.ntnu.group51.controller.dashboard.DashboardController;
 import no.ntnu.group51.controller.dashboard.DashboardMoversController;
 import no.ntnu.group51.controller.dashboard.DashboardTransactionController;
 import no.ntnu.group51.controller.market.MarketController;
-import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.controller.sidebar.SidebarController;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.DashboardView;

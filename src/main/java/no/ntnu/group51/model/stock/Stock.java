@@ -1,4 +1,4 @@
-package no.ntnu.group51.model.stocks;
+package no.ntnu.group51.model.stock;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

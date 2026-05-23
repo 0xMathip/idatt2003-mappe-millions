@@ -11,8 +11,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
-import no.ntnu.group51.model.enums.Leverage;
-import no.ntnu.group51.model.enums.TradeMode;
+import no.ntnu.group51.model.trading.Leverage;
+import no.ntnu.group51.model.trading.TradeMode;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.view.View;
 

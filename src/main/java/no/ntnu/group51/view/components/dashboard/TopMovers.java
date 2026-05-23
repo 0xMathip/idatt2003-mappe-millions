@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Stock;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;

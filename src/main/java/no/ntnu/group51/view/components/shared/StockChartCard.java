@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 
 public class StockChartCard implements View, Observer {

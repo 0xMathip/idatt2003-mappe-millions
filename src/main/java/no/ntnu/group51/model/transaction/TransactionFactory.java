@@ -1,6 +1,6 @@
 package no.ntnu.group51.model.transaction;
 
-import no.ntnu.group51.model.stocks.Share;
+import no.ntnu.group51.model.stock.Share;
 
 /**
  * A factory for creating transactions.

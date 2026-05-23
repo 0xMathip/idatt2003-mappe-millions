@@ -9,8 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.stocks.Share;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Share;
+import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 
 /**

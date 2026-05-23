@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import no.ntnu.group51.model.stocks.Share;
+import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
 import no.ntnu.group51.view.util.PriceStyleHelper;

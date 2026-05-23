@@ -1,4 +1,4 @@
-package no.ntnu.group51.view;
+package no.ntnu.group51.view.pages;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.view.View;
 
 /**
  * The view for the main menu.

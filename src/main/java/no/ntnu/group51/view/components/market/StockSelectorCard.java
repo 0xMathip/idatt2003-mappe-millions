@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 import org.kordamp.ikonli.javafx.FontIcon;
 

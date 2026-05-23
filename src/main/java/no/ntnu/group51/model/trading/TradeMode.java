@@ -1,4 +1,6 @@
 package no.ntnu.group51.model.trading;
 
-public class TradeMode {
+public enum TradeMode {
+  SHARES,
+  AMOUNT
 }
