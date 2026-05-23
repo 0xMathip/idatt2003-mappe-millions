@@ -1,6 +1,7 @@
 package no.ntnu.group51;
 
 import javafx.application.Platform;
+import no.ntnu.group51.controller.Dashboard.CashPanelController;
 import no.ntnu.group51.controller.Dashboard.DashboardController;
 import no.ntnu.group51.controller.Dashboard.DashboardMoversController;
 import no.ntnu.group51.controller.Dashboard.DashboardTransactionController;
@@ -32,6 +33,7 @@ public class GameViewController {
     DashboardController dashboardController = new DashboardController(model, dashboardView);
     DashboardMoversController dashboardMoversController = new DashboardMoversController(model, dashboardView);
     DashboardTransactionController dashboardTransactionController = new DashboardTransactionController(model, dashboardView);
+    CashPanelController cashPanelController = new CashPanelController(model, dashboardView);
 
     view.setLeftView(sidebarView);
     view.setCenterView(dashboardView);

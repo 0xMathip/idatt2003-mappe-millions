@@ -68,6 +68,9 @@ public class MainApp extends Application {
     player.getTransactionArchive().add(p1);
     player.getTransactionArchive().add(s);
     player.getTransactionArchive().add(p2);
+    player.getPortfolio().addShare(share1);
+    player.getPortfolio().addShare(share2);
+    player.getPortfolio().addShare(share3);
 
 
     gameModel.setSelectedStock(gameModel.getExchange().getStock("AAPL"));
