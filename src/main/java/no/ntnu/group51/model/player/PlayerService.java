@@ -14,7 +14,7 @@ public class PlayerService {
   public PlayerService(GameModel model) {
     this.model = Objects.requireNonNull(model);
   }
-
+/*
   public BigDecimal getNetWorth() {
     BigDecimal netWorth = BigDecimal.ZERO;
     Exchange exchange = model.getExchange();
@@ -35,6 +35,8 @@ public class PlayerService {
    * a transaction or going to the stats page. Think of it as something
    * that updates the player level when conditions are met.
    */
+
+  /*
   public void updatePlayerLevel() {
     int week = model.getExchange().getWeek();
     Player player = model.getPlayer();
@@ -61,5 +63,5 @@ public class PlayerService {
             player.getStartingMoney().multiply(BigDecimal.valueOf(1.2))) <= 0) {
       player.setPlayerLevel(PlayerLevel.NOVICE);
     }
-  }
+  }*/
 }

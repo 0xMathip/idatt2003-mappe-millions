@@ -124,7 +124,7 @@ public class Stock {
     BigDecimal lastChange = prices.get(prices.size() - 1);
     BigDecimal secondLastChange = prices.get(prices.size() - 2);
 
-    return lastChange.subtract(secondLastChange);
+    return lastChange.subtract(secondLastChange).setScale(3, RoundingMode.HALF_UP);
   }
 
   /**

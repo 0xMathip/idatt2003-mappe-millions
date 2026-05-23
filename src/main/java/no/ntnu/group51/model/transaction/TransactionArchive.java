@@ -153,4 +153,20 @@ public class TransactionArchive {
 
     return false;
   }
+
+  public List<Transaction> getTransactions() {
+    return transactions;
+  }
+
+  public List<Transaction> getLast3Transactions() {
+    List<Transaction> last3Transactions = new ArrayList<>();
+
+    int start = Math.max(0, transactions.size() - 3);
+
+    for (int i = start; i < transactions.size(); i++) {
+      last3Transactions.add(transactions.get(i));
+    }
+
+    return last3Transactions;
+  }
 }

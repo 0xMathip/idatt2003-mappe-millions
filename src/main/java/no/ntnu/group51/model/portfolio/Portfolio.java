@@ -99,4 +99,8 @@ public class Portfolio {
     }
     return netWorth;
   }
+
+  public int size() {
+    return shares.size();
+  }
 }
