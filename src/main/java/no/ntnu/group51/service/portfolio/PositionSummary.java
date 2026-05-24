@@ -1,4 +1,19 @@
 package no.ntnu.group51.service.portfolio;
 
-public class PositionSummary {
+import java.math.BigDecimal;
+import no.ntnu.group51.model.stock.Stock;
+
+public record PositionSummary (
+    Stock stock,
+    BigDecimal sharesOwned,
+    BigDecimal averageBuyPrice,
+    BigDecimal currentPrice,
+    BigDecimal positionValue,
+    BigDecimal totalInvested,
+    BigDecimal profitLoss,
+    BigDecimal roiPercent,
+    BigDecimal lowestPrice,
+    BigDecimal highestPrice
+) {
+
 }

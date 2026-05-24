@@ -1,4 +1,13 @@
 package no.ntnu.group51.service.portfolio;
 
-public class PortfolioSummary {
+import java.math.BigDecimal;
+
+public record PortfolioSummary(
+    BigDecimal portfolioValue,
+    BigDecimal availableCash,
+    BigDecimal totalInvested,
+    BigDecimal totalReturn,
+    BigDecimal totalReturnPercent
+) {
+
 }
