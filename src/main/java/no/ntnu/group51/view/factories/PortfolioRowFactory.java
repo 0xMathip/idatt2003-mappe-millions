@@ -7,8 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.stock.Share;
+import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.components.shared.SearchRow;
+import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.PercentFormatter;
+import no.ntnu.group51.view.util.PriceStyleHelper;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class PortfolioRowFactory {
@@ -17,14 +20,18 @@ public class PortfolioRowFactory {
 
   }
 
-  public static SearchRow createPortfolioRow(Share share) {
+  public static SearchRow createPortfolioRow(PositionSummary position) {
+    if (position == null) {
+      throw new IllegalArgumentException("Position summary cannnot be null.");
+    }
+
     SearchRow row = new SearchRow(40, 10, 40, 10);
     row.getStyleClass().addAll("card", "factory-search-row");
 
-    Label ticker = new Label(share.getStock().getSymbol());
+    Label ticker = new Label(position.stock().getSymbol());
     ticker.getStyleClass().add("factory-search-row-ticker");
 
-    Label company = new Label(share.getStock().getCompany());
+    Label company = new Label(position.stock().getCompany());
     company.getStyleClass().add("factory-search-row-company");
     company.setAlignment(Pos.CENTER_LEFT);
 
@@ -35,19 +42,25 @@ public class PortfolioRowFactory {
     Label quantityLabel = new Label("shares");
     quantityLabel.getStyleClass().add("factory-portfolio-quantity");
 
-    Label quantityValue = new Label(String.valueOf(share.getQuantity()));
+    Label quantityValue = new Label(String.valueOf(position.sharesOwned()));
     quantityValue.getStyleClass().add("factory-portfolio-quantity-value");
 
     VBox quantityBox = new VBox(2, quantityValue, quantityLabel);
     quantityBox.setAlignment(Pos.CENTER);
 
-    Label total = new Label("$" + "1234.32");
+    Label total = new Label(CurrencyFormatter.format(position.positionValue()));
     total.getStyleClass().add("factory-search-row-price");
 
-    Label changeValue = new Label("+$323.32");
-    Label changePercent = new Label("(+4,3%)");
+    Label changeValue = new Label(CurrencyFormatter.format(position.profitLoss()));
+    Label changePercent = new Label(
+        "(" + PercentFormatter.format(position.roiPercent()) + ")"
+    );
+
     changeValue.getStyleClass().add("factory-portfolio-change");
     changePercent.getStyleClass().add("factory-portfolio-change");
+
+    PriceStyleHelper.applyPriceChangeStyle(changeValue, position.profitLoss());
+    PriceStyleHelper.applyPriceChangeStyle(changePercent, position.profitLoss());
 
     HBox changeBox = new HBox(changeValue, changePercent);
 

@@ -1,21 +1,16 @@
 package no.ntnu.group51.view.pages;
 
-import java.math.BigDecimal;
 import java.util.List;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.service.portfolio.PortfolioSummary;
 import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.portfolio.PortfolioSearchMenu;
 import no.ntnu.group51.view.components.portfolio.PortfolioStatsSection;
 import no.ntnu.group51.view.components.portfolio.PortfolioStockDetails;
-import no.ntnu.group51.view.factories.StatCardFactory;
-import no.ntnu.group51.view.util.PriceStyleHelper;
 
 public class PortfolioView implements View {
   private final GridPane root = new GridPane();
@@ -36,7 +31,6 @@ public class PortfolioView implements View {
     root.getStyleClass().addAll("page-layout", "portfolio-view");
 
     Label title = createTitle();
-    HBox statsRow = createStatsRow();
     HBox body = createBody();
 
     root.add(title, 0, 0);
