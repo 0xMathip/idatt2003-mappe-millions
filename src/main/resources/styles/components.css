@@ -832,6 +832,12 @@
     -fx-max-height: 22px;
 }
 
+.search-menu-close:hover {
+    -fx-fill: #a6a6a6;
+    -fx-stroke: #a6a6a6;
+    -fx-cursor: hand;
+}
+
 .search-menu-scroll {
     -fx-pref-height: 580px;
     -fx-min-height: 580px;
