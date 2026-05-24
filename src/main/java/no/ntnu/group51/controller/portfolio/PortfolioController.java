@@ -1,11 +1,16 @@
 package no.ntnu.group51.controller.portfolio;
 
+import java.util.List;
 import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.model.Observer;
+import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.service.portfolio.PortfolioService;
 import no.ntnu.group51.service.portfolio.PositionService;
+import no.ntnu.group51.service.portfolio.PortfolioSummary;
+import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.pages.PortfolioView;
 
-public class PortfolioController {
+public class PortfolioController implements Observer {
 
   private final GameModel gameModel;
   private final PortfolioView portfolioView;
@@ -19,19 +24,19 @@ public class PortfolioController {
       PositionService positionService
   ) {
     if (gameModel == null) {
-      throw new IllegalArgumentException("Gamemodel cannot be null.");
+      throw new IllegalArgumentException("Game model cannot be null.");
     }
 
     if (portfolioView == null) {
-      throw new IllegalArgumentException("PortfolioView cannot be null.");
+      throw new IllegalArgumentException("Portfolio view cannot be null.");
     }
 
     if (portfolioService == null) {
-      throw new IllegalArgumentException("PortfolioService cannot be null.");
+      throw new IllegalArgumentException("Portfolio service cannot be null.");
     }
 
     if (positionService == null) {
-      throw new IllegalArgumentException("PositionService cannot be null.");
+      throw new IllegalArgumentException("Position service cannot be null.");
     }
 
     this.gameModel = gameModel;
@@ -39,6 +44,7 @@ public class PortfolioController {
     this.portfolioService = portfolioService;
     this.positionService = positionService;
 
+    gameModel.addObserver(this);
     initialize();
   }
 
@@ -46,7 +52,27 @@ public class PortfolioController {
     updateView();
   }
 
-  public void updateView() {
+  @Override
+  public void update() {
+    updateView();
+  }
 
+  public void updateView() {
+    Player player = gameModel.getPlayer();
+
+    PortfolioSummary portfolioSummary =
+        portfolioService.createPortfolioSummary(player);
+
+    List<PositionSummary> positionSummaries =
+        positionService.createPositionSummaries(player.getPortfolio());
+
+    portfolioView.updateSummary(portfolioSummary);
+    portfolioView.updatePositions(positionSummaries);
+
+    if (!positionSummaries.isEmpty()) {
+      portfolioView.updateSelectedPosition(positionSummaries.get(0));
+    } else {
+      portfolioView.clearSelectedPosition();
+    }
   }
 }

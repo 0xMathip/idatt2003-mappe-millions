@@ -15,12 +15,19 @@ import no.ntnu.group51.view.util.PriceStyleHelper;
 
 public class PortfolioView implements View {
   private final GridPane root = new GridPane();
+
   private final PortfolioSearchMenu pSearchMenu;
   private final PortfolioStockDetails pStockDetails;
+
+  private Label portfolioValueLabel;
+  private Label netWorthLabel;
+  private Label cashLabel;
+  private Label totalReturnLabel;
+  private Label totalReturnPercentLabel;
+
   private GameModel gameModel;
 
-  public PortfolioView(GameModel gameModel) {
-    this.gameModel = gameModel;
+  public PortfolioView() {
     this.pSearchMenu = new PortfolioSearchMenu(gameModel);
     this.pStockDetails = new PortfolioStockDetails(gameModel);
 
@@ -28,7 +35,7 @@ public class PortfolioView implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("page-layout","portfolio-view");
+    root.getStyleClass().addAll("page-layout", "portfolio-view");
 
     Label title = createTitle();
     HBox statsRow = createStatsRow();
@@ -56,14 +63,13 @@ public class PortfolioView implements View {
   }
 
   private HBox createStatsRow() {
-    HBox statsRow = new HBox(100,
+    return new HBox(
+        100,
         createPortfolioValueCard(),
         createNetWorthCard(),
         createCashCard(),
         createTotalReturnCard()
     );
-
-    return statsRow;
   }
 
   private VBox createPortfolioValueCard() {
