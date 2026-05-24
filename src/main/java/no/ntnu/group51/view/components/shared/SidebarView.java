@@ -151,6 +151,14 @@ public class SidebarView implements View {
     marketButton.setOnAction(action);
   }
 
+  public void setOnPortfolioButton(EventHandler<ActionEvent> action) {
+    portfolioButton.setOnAction(action);
+  }
+
+  public void setOnTransactionButton(EventHandler<ActionEvent> action) {
+    transactionsButton.setOnAction(action);
+  }
+
   public void setCurrentWeek(int week) {
     currentWeek.setText("Week " + week);
   }
@@ -174,6 +182,14 @@ public class SidebarView implements View {
 
   public void toggleMarket() {
     marketButton.setSelected(true);
+  }
+
+  public void togglePortfolio() {
+    portfolioButton.setSelected(true);
+  }
+
+  public void toggleTransaction() {
+    transactionsButton.setSelected(true);
   }
 
 

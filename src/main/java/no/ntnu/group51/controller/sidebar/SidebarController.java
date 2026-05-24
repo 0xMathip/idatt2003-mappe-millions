@@ -24,6 +24,16 @@ public class SidebarController {
     updateSidebar();
   }
 
+  public void setOnPortfolio(Runnable runnable) {
+    view.setOnPortfolioButton(e -> runnable.run());
+    updateSidebar();
+  }
+
+  public void setOnTransaction(Runnable runnable) {
+    view.setOnTransactionButton(e -> runnable.run());
+    updateSidebar();
+  }
+
   public void updateWeek() {
     view.setCurrentWeek(model.getExchange().getWeek());
   }
