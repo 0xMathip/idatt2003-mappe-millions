@@ -1,26 +1,26 @@
-package no.ntnu.group51.controller.Dashboard;
+package no.ntnu.group51.controller;
 
-import no.ntnu.group51.controller.SceneManager;
+import no.ntnu.group51.controller.Dashboard.CashPanelController;
+import no.ntnu.group51.controller.Dashboard.DashboardController;
+import no.ntnu.group51.controller.Dashboard.DashboardMoversController;
+import no.ntnu.group51.controller.Dashboard.DashboardTransactionController;
 import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.view.Dashboard.CashPanel;
-import no.ntnu.group51.view.Dashboard.DashboardTransactionPanel;
 import no.ntnu.group51.view.Dashboard.DashboardView;
 
-public class DashboardController {
+public class GameController {
 
   private final GameModel model;
   private final DashboardView view;
-  private final CashPanelController cashPanelController;
-  private final DashboardMoversController dashboardMoversController;
-  private final DashboardTransactionController dashboardTransactionController;
+  private CashPanelController cashPanelController;
+  private DashboardMoversController dashboardMoversController;
+  private DashboardTransactionController dashboardTransactionController;
 
-  public DashboardController(GameModel model, DashboardView view) {
+  public GameController(GameModel model, DashboardView view) {
     this.model = model;
     this.view = view;
     cashPanelController = new CashPanelController(model, view);
     dashboardMoversController = new DashboardMoversController(model, view);
     dashboardTransactionController = new DashboardTransactionController(model, view);
-    refresh();
   }
 
   public void refresh() {
@@ -28,4 +28,5 @@ public class DashboardController {
     dashboardMoversController.refreshMovers();
     dashboardTransactionController.updateTransactionListings();
   }
+
 }

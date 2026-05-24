@@ -11,14 +11,14 @@ public class DashboardMoversController {
   public DashboardMoversController(GameModel model, DashboardView view) {
     this.model = model;
     this.view = view;
-    updateMovers();
+    refreshMovers();
   }
 
   public void setOnMarketPress(Runnable runnable) {
     view.setOnMarketPress(e -> runnable.run());
   }
 
-  public void updateMovers() {
+  public void refreshMovers() {
     view.addMovers(model.getExchange());
   }
 

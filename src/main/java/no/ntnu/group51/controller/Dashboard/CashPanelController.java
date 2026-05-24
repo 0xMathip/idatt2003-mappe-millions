@@ -11,10 +11,10 @@ public class CashPanelController {
   public CashPanelController(GameModel model, DashboardView view) {
     this.model = model;
     this.view = view;
-    updateCashPanel();
+    refreshCashPanel();
   }
 
-  public void updateCashPanel() {
+  public void refreshCashPanel() {
     view.addCashPanel(model);
   }
 }

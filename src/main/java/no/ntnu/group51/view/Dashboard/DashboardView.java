@@ -27,6 +27,7 @@ public class DashboardView implements View {
   private final DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
   private final DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
   private final DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
+  private final ActionsPanel actionsPanel = new ActionsPanel();
 
   /**
    * Creates the dashboard view by creating all the panels from the other classes,
@@ -52,7 +53,8 @@ public class DashboardView implements View {
 
     HBox rightBottom = new HBox();
     rightBottom.getChildren().addAll(
-        dashboardTopMoversPanel.getRoot()
+        dashboardTopMoversPanel.getRoot(),
+        actionsPanel.getRoot()
     );
 
     HBox rightTop = new HBox();
@@ -126,6 +128,10 @@ public class DashboardView implements View {
 
   public void setOnTransactionPress(EventHandler<ActionEvent> action) {
     dashboardTransactionPanel.setOnViewAll(action);
+  }
+
+  public void setOnAdvanceWeekPress(EventHandler<ActionEvent> action) {
+    actionsPanel.setOnAdvanceWeek(action);
   }
 
   @Override

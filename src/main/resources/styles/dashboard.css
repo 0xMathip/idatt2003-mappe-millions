@@ -270,3 +270,29 @@
     -fx-text-fill: -color-red;
 }
 
+
+
+
+.dashboard-actions-advance-week {
+    -fx-pref-width: 250;
+    -fx-max-width: 250;
+    -fx-pref-height: 70;
+    -fx-max-height: 70;
+    -fx-background-radius: 30;
+    -fx-background-color: -color-yellow;
+
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24;
+    -fx-text-fill: black;
+}
+
+.dashboard-actions-advance-week:hover {
+    -fx-background-color: -color-yellow-hover;
+}
+
+.dashboard-actions-panel {
+    -fx-pref-height: 330px;
+    -fx-max-height: 330px;
+    -fx-pref-width: 389px;
+    -fx-max-width: 389px;
+}
