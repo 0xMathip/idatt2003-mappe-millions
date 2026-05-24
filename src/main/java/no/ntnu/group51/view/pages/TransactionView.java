@@ -12,15 +12,18 @@ import no.ntnu.group51.view.factories.StatCardFactory;
 
 public class TransactionView implements View {
   private final GridPane root = new GridPane();
+
   private final TransactionSearchMenu transactionSearchMenu;
+  private final TransactionStatsSection statsSection;
   private final TransactionDetailsCard transactionDetailsCard;
-  private final GameModel gameModel;
+
   private static final String ALL_TIME = "All time";
 
   public TransactionView(GameModel gameModel) {
-    this.gameModel = gameModel;
-    this.transactionSearchMenu = new TransactionSearchMenu(gameModel);
-    this.transactionDetailsCard = new TransactionDetailsCard(gameModel);
+
+    this.statsSection = new TransactionStatsSection();
+    this.transactionSearchMenu = new TransactionSearchMenu();
+    this.transactionDetailsCard = new TransactionDetailsCard();
 
     createLayout();
   }
@@ -116,6 +119,10 @@ public class TransactionView implements View {
         "transaction-stat-value",
         "transaction-stat-card-bottom-text"
       );
+  }
+
+  public void updateStats(TransactionSummary summary) {
+    statsSection.updateStats(summary);
   }
 
   @Override

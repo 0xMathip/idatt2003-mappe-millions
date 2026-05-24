@@ -9,43 +9,48 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
+import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.factories.TransactionBadgeFactory;
+import no.ntnu.group51.view.util.CurrencyFormatter;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class TransactionDetailsCard implements View, Observer {
-  private final GameModel gameModel;
+public class TransactionDetailsCard implements View {
+
   private final VBox root = new VBox(20);
-  private final TransactionBadgeFactory transactionBadge;
-  private final Label ticker = new Label();
-  private final Label company = new Label();
-  private final Label weekValue = new Label();
-  private final Label quantityValue = new Label();
-  private final Label priceValue = new Label();
-  private final Label grossValue = new Label();
-  private final Label taxValue = new Label();
-  private final Label totalValue = new Label();
-  private final Label noteValue = new Label();
 
+  private final Label ticker = new Label("-");
+  private final Label company = new Label("No transaction selected.");
+  private final Label weekValue = new Label("-");
+  private final Label quantityValue = new Label("-");
+  private final Label priceValue = new Label("$0.00");
+  private final Label grossValue = new Label("$0.00");
+  private final Label taxValue = new Label("$0.00");
+  private final Label totalValue = new Label("$0.00");
+  private final Label noteValue = new Label("Select a transaction to view details.");
 
+  private HBox badgeContainer;
 
-  public TransactionDetailsCard(GameModel gameModel) {
-    this.gameModel = gameModel;
+  public TransactionDetailsCard() {
+    createLayout();
+    clear();
+  }
 
+  private void createLayout() {
     root.getStyleClass().addAll("card","transaction-details");
     root.setAlignment(Pos.CENTER_LEFT);
 
-    transactionBadge = new TransactionBadgeFactory(gameModel.getSelectedTransaction());
-    ticker.setText(gameModel.getSelectedStock().getSymbol());
-    company.setText(gameModel.getSelectedStock().getCompany());
+    ticker.getStyleClass().add("transaction-details-ticker");
+    company.getStyleClass().add("transaction-details-company");
 
     VBox companyBox = new VBox(ticker, company);
     companyBox.setAlignment(Pos.CENTER_LEFT);
 
-    HBox detailTitle = new HBox(15, transactionBadge, companyBox);
+    badgeContainer = new HBox(15, badgeContainer, companyBox);
+    badgeContainer.setAlignment(Pos.CENTER_LEFT);
+
+    HBox detailTitle = new HBox(15, badgeContainer, companyBox);
     detailTitle.getStyleClass().add("transaction-details-title");
-    ticker.getStyleClass().add("transaction-details-ticker");
-    company.getStyleClass().add("transaction-details-company");
     detailTitle.setAlignment(Pos.CENTER_LEFT);
 
     VBox detailRows = new VBox(27,
@@ -63,11 +68,7 @@ public class TransactionDetailsCard implements View, Observer {
     totalLabel.getStyleClass().add("transaction-details-total");
     totalValue.getStyleClass().add("transaction-details-total");
 
-    HBox totalRow = new HBox(
-        totalLabel,
-        spacer,
-        totalValue);
-
+    HBox totalRow = new HBox(totalLabel, spacer, totalValue);
     totalRow.setAlignment(Pos.CENTER_LEFT);
 
     Region sep1 = new Region();
@@ -86,16 +87,7 @@ public class TransactionDetailsCard implements View, Observer {
     noteBox.setAlignment(Pos.CENTER_LEFT);
     noteBox.getStyleClass().add("transaction-details-notebox");
 
-    weekValue.setText(String.valueOf(gameModel.getExchange().getWeek()));
-    quantityValue.setText(String.valueOf(gameModel.getSelectedTransaction().getShare().getQuantity()));
-    priceValue.setText(gameModel.getSelectedTransaction().getShare().getPurchasePrice().toString());
-    grossValue.setText(gameModel.getSelectedTransaction().getCalculator().calculateGross().toString());
-    taxValue.setText(gameModel.getSelectedTransaction().getCalculator().calculateTax().toString());
-    totalValue.setText("$" + gameModel.getSelectedTransaction().getTotal().stripTrailingZeros().toString());
-    noteValue.setText("Note coming soon.");
-
     Region vSpacer = new Region();
-    //VBox.setVgrow(vSpacer, Priority.ALWAYS);
     vSpacer.setPrefHeight(30);
 
     root.getChildren().addAll(
@@ -107,7 +99,41 @@ public class TransactionDetailsCard implements View, Observer {
         sep2,
         noteBox
     );
+  }
 
+  public void updateSummary(TransactionSummary transaction) {
+    if (transaction == null) {
+      throw new IllegalArgumentException("Transaction cannot be null.");
+    }
+
+    badgeContainer.getChildren().setAll(
+        new TransactionBadgeFactory(transaction.transaction())
+    );
+
+    ticker.setText(transaction.stock().getSymbol());
+    company.setText(transaction.stock().getCompany());
+    weekValue.setText(String.valueOf(transaction.week()));
+    quantityValue.setText(transaction.quantity().toPlainString());
+    priceValue.setText(CurrencyFormatter.format(transaction.unitPrice()));
+    grossValue.setText(CurrencyFormatter.format(transaction.gross()));
+    taxValue.setText(CurrencyFormatter.format(transaction.tax()));
+    totalValue.setText(CurrencyFormatter.format(transaction.total()));
+    noteValue.setText(transaction.note());
+
+  }
+
+  public void clear() {
+    badgeContainer.getChildren().clear();
+
+    ticker.setText("-");
+    company.setText("No transaction selected");
+    weekValue.setText("-");
+    quantityValue.setText("-");
+    priceValue.setText("$0.00");
+    grossValue.setText("$0.00");
+    taxValue.setText("$0.00");
+    totalValue.setText("$0.00");
+    noteValue.setText("Select a transaction to view details.");
   }
 
   private HBox createDetailRow(String labelText, Label valueLabel) {
@@ -118,12 +144,7 @@ public class TransactionDetailsCard implements View, Observer {
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
-    HBox row = new HBox(
-        label,
-        spacer,
-        valueLabel
-    );
-
+    HBox row = new HBox(label, spacer, valueLabel);
     row.setAlignment(Pos.CENTER_LEFT);
 
     return row;
@@ -133,10 +154,5 @@ public class TransactionDetailsCard implements View, Observer {
   @Override
   public Parent getRoot() {
     return root;
-  }
-
-
-  @Override
-  public void update() {
   }
 }

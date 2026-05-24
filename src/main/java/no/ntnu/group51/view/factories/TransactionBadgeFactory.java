@@ -11,6 +11,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class TransactionBadgeFactory extends HBox {
 
   public TransactionBadgeFactory(Transaction transaction) {
+    if (transaction == null) {
+      throw new IllegalArgumentException("Transaction cannot be null.");
+    }
     super(16);
     setAlignment(Pos.CENTER);
     FontIcon transactionIcon = new FontIcon();
