@@ -6,6 +6,7 @@ import no.ntnu.group51.view.components.shared.SidebarView;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.DashboardView;
 import no.ntnu.group51.view.pages.MarketView;
+import no.ntnu.group51.view.pages.PortfolioView;
 import no.ntnu.group51.view.pages.TransactionView;
 
 public class GameView implements View {
@@ -16,13 +17,15 @@ public class GameView implements View {
   private final DashboardView dashboard;
   private final MarketView market;
   private final TransactionView transaction;
+  private final PortfolioView portfolio;
 
   public GameView(GameModel gameModel) {
     this.gameModel = gameModel;
     this.sidebar = new SidebarView();
     this.dashboard = new DashboardView();
     this.market = new MarketView(gameModel);
-    this.transaction = new TransactionView(gameModel);
+    this.transaction = new TransactionView();
+    this.portfolio = new PortfolioView();
   }
 
   public void setCenterView(View view) {

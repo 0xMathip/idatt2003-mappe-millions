@@ -5,11 +5,14 @@ import no.ntnu.group51.controller.dashboard.DashboardMoversController;
 import no.ntnu.group51.controller.dashboard.DashboardTransactionController;
 import no.ntnu.group51.controller.market.MarketController;
 import no.ntnu.group51.controller.sidebar.SidebarController;
+import no.ntnu.group51.controller.transaction.TransactionController;
 import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.service.transaction.TransactionService;
 import no.ntnu.group51.view.pages.DashboardView;
 import no.ntnu.group51.view.GameView;
 import no.ntnu.group51.view.components.shared.SidebarView;
 import no.ntnu.group51.view.pages.MarketView;
+import no.ntnu.group51.view.pages.TransactionView;
 
 public class GameViewController {
 
@@ -26,13 +29,18 @@ public class GameViewController {
     DashboardView dashboardView = new DashboardView();
     MarketView marketView = new MarketView(model);
 
+    TransactionView transactionView = new TransactionView();
+    TransactionService transactionService = new TransactionService();
+    TransactionController transactionController =
+        new TransactionController(model, transactionView, transactionService);
+
     SidebarController sidebarController = new SidebarController(model, sidebarView);
     DashboardController dashboardController = new DashboardController(model, dashboardView);
     DashboardMoversController dashboardMoversController = new DashboardMoversController(model, dashboardView);
     DashboardTransactionController dashboardTransactionController = new DashboardTransactionController(model, dashboardView);
 
     view.setLeftView(sidebarView);
-    view.setCenterView(dashboardView);
+    view.setCenterView(transactionView);
 
     Runnable setDashboardCenter = () -> {
       sidebarView.toggleDashboard();
