@@ -1,6 +1,7 @@
 package no.ntnu.group51.view.pages;
 
 import java.util.List;
+import java.util.function.Consumer;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -55,20 +56,38 @@ public class PortfolioView implements View {
   }
 
   public void updateSummary(PortfolioSummary summary) {
+    if (summary == null) {
+      throw new IllegalArgumentException("Summary cannot be null.");
+    }
     statsSection.updateSummary(summary);
   }
 
   public void updatePositions(List<PositionSummary> positions) {
+    if (positions == null) {
+      throw new IllegalArgumentException("Positions cannot be null.");
+    }
     pSearchMenu.updatePositions(positions);
   }
 
+  public void setOnPositionSelected(Consumer<PositionSummary> handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+    pSearchMenu.setOnPositionSelected(handler);
+  }
+
   public void updateSelectedPosition(PositionSummary position) {
+    if (position == null) {
+      throw new IllegalArgumentException("Position cannot be null.");
+    }
+
     pStockDetails.updatePosition(position);
   }
 
   public void clearSelectedPosition() {
     pStockDetails.clear();
   }
+
 
   @Override
   public Parent getRoot() {

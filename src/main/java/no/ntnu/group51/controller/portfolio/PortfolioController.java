@@ -49,6 +49,7 @@ public class PortfolioController implements Observer {
   }
 
   private void initialize() {
+    portfolioView.setOnPositionSelected(portfolioView::updateSelectedPosition);
     updateView();
   }
 

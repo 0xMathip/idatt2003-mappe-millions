@@ -1,6 +1,7 @@
 package no.ntnu.group51.view.components.portfolio;
 
 import java.util.List;
+import java.util.function.Consumer;
 import javafx.scene.Parent;
 import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.View;
@@ -11,6 +12,8 @@ import no.ntnu.group51.view.factories.PortfolioRowFactory;
 public class PortfolioSearchMenu implements View {
   private final SearchMenu root;
   private List<PositionSummary> positions = List.of();
+  private Consumer<PositionSummary> onPositionSelected = position -> {
+  };
 
   public PortfolioSearchMenu() {
     this.root = new SearchMenu("⌕ Search portfolio", false);
@@ -35,10 +38,16 @@ public class PortfolioSearchMenu implements View {
     List<SearchRow> rows = positions
         .stream()
         .filter(position -> matchesSearch(position, searchText))
-        .map(PortfolioRowFactory::createPortfolioRow)
+        .map(this::createRow)
         .toList();
 
     root.setRows(rows);
+  }
+
+  private SearchRow createRow(PositionSummary position) {
+    SearchRow row = PortfolioRowFactory.createPortfolioRow(position);
+    row.setOnMouseClicked(e -> onPositionSelected.accept(position));
+    return row;
   }
 
   private boolean matchesSearch(PositionSummary position, String searchText) {
@@ -50,6 +59,14 @@ public class PortfolioSearchMenu implements View {
 
     return position.stock().getSymbol().toLowerCase().contains(lowerCase)
         || position.stock().getCompany().toLowerCase().contains(lowerCase);
+  }
+
+  public void setOnPositionSelected(Consumer<PositionSummary> handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    this.onPositionSelected = handler;
   }
 
   @Override
