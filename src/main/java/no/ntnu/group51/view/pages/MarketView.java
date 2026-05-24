@@ -45,7 +45,7 @@ public class MarketView implements View {
 
     StockSelectorCard stockSelectorCard = new StockSelectorCard(gameModel);
     TradePanel tradePanel = new TradePanel(gameModel);
-    StockChartCard stockChartCard = new StockChartCard(gameModel);
+    StockChartCard stockChartCard = new StockChartCard(true);
     stockChartCard.addRootStyleClass("card");
     stockChartCard.addRootStyleClass("stock-chart-card-large");
 

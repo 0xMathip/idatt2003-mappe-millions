@@ -11,33 +11,36 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
-import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 
-public class StockChartCard implements View, Observer {
+public class StockChartCard implements View {
   private final StackPane root = new StackPane();
-  private final GameModel gameModel;
   private final boolean showLabels;
   private AreaChart<Number, Number> stockChart;
 
-  public StockChartCard(GameModel gameModel, boolean showLabels) {
-    if (gameModel == null) {
-      throw new IllegalArgumentException("Game model cannot be null.");
-    }
-
-    this.gameModel = gameModel;
+  public StockChartCard(boolean showLabels) {
     this.showLabels = showLabels;
 
     root.setAlignment(Pos.CENTER_LEFT);
-
-    gameModel.addObserver(this);
-    updateDisplay();
   }
 
-  public StockChartCard(GameModel gameModel) {
-    this(gameModel, true);
+  public void updateStock(Stock stock) {
+    if (stock == null) {
+      throw new IllegalArgumentException("Stock cannot be null.");
+    }
+    updateDisplay(stock);
+  }
+
+  public void clear() {
+    root.getChildren().clear();
+    stockChart = null;
+  }
+
+  private void updateDisplay(Stock stock) {
+    root.getChildren().clear();
+    stockChart = createChart(stock);
+    root.getChildren().add(stockChart);
   }
 
   private AreaChart<Number, Number> createChart(Stock stock) {
@@ -60,17 +63,11 @@ public class StockChartCard implements View, Observer {
     return stockChart;
   }
 
-  private void updateDisplay() {
-    root.getChildren().clear();
-    stockChart = createChart(gameModel.getSelectedStock());
-    root.getChildren().add(stockChart);
-  }
-
   private NumberAxis createXAxis(List<BigDecimal> prices) {
     NumberAxis xAxis = new NumberAxis();
     xAxis.setAutoRanging(false);
     xAxis.setLowerBound(1);
-    xAxis.setUpperBound(prices.size() - 1);
+    xAxis.setUpperBound(Math.max(1, prices.size()));
     xAxis.setTickUnit(2);
     xAxis.setTickLabelsVisible(showLabels);
     xAxis.setTickMarkVisible(false);
@@ -110,7 +107,7 @@ public class StockChartCard implements View, Observer {
     yAxis.setTickLabelFormatter(new StringConverter<>() {
       @Override
       public String toString(Number value) {
-        return String.format(Locale.US,"$%.1f", value.doubleValue());
+        return String.format(Locale.US, "$%.1f", value.doubleValue());
       }
 
       @Override
@@ -125,7 +122,7 @@ public class StockChartCard implements View, Observer {
   private XYChart.Series<Number, Number> createSeries(List<BigDecimal> prices) {
     XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
-    for (int i=0; i < prices.size(); i++) {
+    for (int i = 0; i < prices.size(); i++) {
       series.getData().add(
           new XYChart.Data<>(i + 1, prices.get(i))
       );
@@ -135,8 +132,8 @@ public class StockChartCard implements View, Observer {
   }
 
   public void addRootStyleClass(String style) {
-    if (style == null){
-      throw new IllegalArgumentException("Enter a valid style.");
+    if (style == null || style.isBlank()) {
+      throw new IllegalArgumentException("Style cannot be null or blank.");
     }
     root.getStyleClass().add(style);
   }
@@ -144,10 +141,5 @@ public class StockChartCard implements View, Observer {
   @Override
   public Parent getRoot() {
     return root;
-  }
-
-  @Override
-  public void update() {
-    updateDisplay();
   }
 }

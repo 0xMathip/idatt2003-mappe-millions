@@ -34,7 +34,7 @@ public class PortfolioView implements View {
     HBox body = createBody();
 
     root.add(title, 0, 0);
-    root.add(statsRow, 0, 1);
+    root.add(statsSection.getRoot(), 0, 1);
     root.add(body, 0, 2);
   }
 
@@ -59,7 +59,7 @@ public class PortfolioView implements View {
   }
 
   public void updatePositions(List<PositionSummary> positions) {
-    statsSection.updatePositions(positions);
+    pSearchMenu.updatePositions(positions);
   }
 
   public void updateSelectedPosition(PositionSummary position) {
