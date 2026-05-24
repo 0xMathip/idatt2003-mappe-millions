@@ -10,22 +10,37 @@ public class DashboardController {
 
   private final GameModel model;
   private final DashboardView view;
-  private final CashPanelController cashPanelController;
-  private final DashboardMoversController dashboardMoversController;
-  private final DashboardTransactionController dashboardTransactionController;
 
   public DashboardController(GameModel model, DashboardView view) {
     this.model = model;
     this.view = view;
-    cashPanelController = new CashPanelController(model, view);
-    dashboardMoversController = new DashboardMoversController(model, view);
-    dashboardTransactionController = new DashboardTransactionController(model, view);
     refresh();
   }
 
   public void refresh() {
-    cashPanelController.refreshCashPanel();
-    dashboardMoversController.refreshMovers();
-    dashboardTransactionController.updateTransactionListings();
+    refreshCashPanel();
+    refreshMovers();
+    updateTransactionListings();
+  }
+
+  public void refreshCashPanel() {
+    view.addCashPanel(model);
+  }
+
+  public void refreshMovers() {
+    view.addMovers(model.getExchange());
+  }
+
+  public void updateTransactionListings() {
+    view.createTransactionListings(
+        model.getPlayer().getTransactionArchive().getLast3Transactions());
+  }
+
+  public void setOnMarketPress(Runnable runnable) {
+    view.setOnMarketPress(e -> runnable.run());
+  }
+
+  public void setOnViewAllPress(Runnable runnable) {
+    view.setOnTransactionPress(e -> runnable.run());
   }
 }

@@ -28,9 +28,6 @@ public class GameViewController {
 
     SidebarController sidebarController = new SidebarController(model, sidebarView);
     DashboardController dashboardController = new DashboardController(model, dashboardView);
-    DashboardMoversController dashboardMoversController = new DashboardMoversController(model, dashboardView);
-    DashboardTransactionController dashboardTransactionController = new DashboardTransactionController(model, dashboardView);
-    CashPanelController cashPanelController = new CashPanelController(model, dashboardView);
     ActionsController actionsController = new ActionsController(model, dashboardView, sidebarView);
 
     view.setLeftView(sidebarView);
@@ -50,8 +47,8 @@ public class GameViewController {
 
     sidebarController.setOnDashboard(setDashboardCenter);
     sidebarController.setOnMarket(setMarketCenter);
-    dashboardMoversController.setOnMarketPress(setMarketCenter);
-    dashboardTransactionController.setOnViewAllPress(setMarketCenter);
+    dashboardController.setOnMarketPress(setMarketCenter);
+    dashboardController.setOnViewAllPress(setMarketCenter);
   }
 
 
