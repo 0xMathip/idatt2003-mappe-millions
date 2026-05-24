@@ -35,13 +35,15 @@ public class TransactionListing {
     leftSide.setSpacing(spacing);
     statusLabel.getStyleClass().add("dashboard-transaction-text");
     Label sharesAmountLabel = new Label(quantity + " shares");
+    System.out.println(quantity);
     sharesAmountLabel.getStyleClass().add("dashboard-subtext");
     leftSide.getChildren().addAll(statusLabel, sharesAmountLabel);
     leftSide.setAlignment(Pos.CENTER_LEFT);
 
     VBox rightSide =  new VBox();
     rightSide.setSpacing(spacing);
-    Label cashAmountLabel = new Label("$" + stockSalesPrice.multiply(quantity).setScale(2, RoundingMode.HALF_UP));
+    Label cashAmountLabel = new Label("$" + transaction.getShare().getPurchasePrice()
+        .multiply(quantity).setScale(2, RoundingMode.HALF_UP));
     cashAmountLabel.getStyleClass().add("dashboard-transaction-amount");
     Label weekLabel = new Label("Week " + transaction.getWeek());
     weekLabel.getStyleClass().add("dashboard-subtext");

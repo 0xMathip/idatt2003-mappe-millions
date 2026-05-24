@@ -5,6 +5,8 @@ import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.Dashboard.DashboardView;
 import no.ntnu.group51.view.SidebarView;
 
+import java.math.BigDecimal;
+
 /**
  * The controller for the different actions you can press on the dashboard.
  *
@@ -42,6 +44,7 @@ public class ActionsController {
   public void setupButtons() {
     view.setOnAdvanceWeekPress(e -> {
       model.getExchange().advance();
+      model.getPlayer().addMoney(BigDecimal.valueOf(50));
       dashboardController.refresh();
       sidebarController.updateSidebar();
     });
