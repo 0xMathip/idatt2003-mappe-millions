@@ -29,7 +29,7 @@ public class PortfolioStatsSection {
         "Portfolio Value",
         portfolioValueLabel,
         portfolioValueChangeLabel,
-        "portfolio-stat-icon",
+        "transaction-stat-trades-icon",
         "portfolio-stat-value",
         "portfolio-stat-card-bottom-text"
     );
@@ -38,7 +38,7 @@ public class PortfolioStatsSection {
         "cil-gem",
         "Net Worth",
         netWorthLabel,
-        "portfolio-stat-icon",
+        "transaction-stat-trades-icon",
         "portfolio-stat-value"
     );
 
@@ -46,7 +46,7 @@ public class PortfolioStatsSection {
         "cil-wallet",
         "Available Cash",
         cashLabel,
-        "portfolio-stat-icon",
+        "transaction-stat-trades-icon",
         "portfolio-stat-value"
     );
 
@@ -55,7 +55,7 @@ public class PortfolioStatsSection {
         "Total Return",
         totalReturnLabel,
         totalReturnPercentLabel,
-        "portfolio-stat-icon",
+        "transaction-stat-trades-icon",
         "portfolio-stat-value-with-state",
         "portfolio-stat-card-bottom-text-with-state"
     );

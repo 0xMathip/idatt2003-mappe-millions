@@ -100,5 +100,8 @@ public class GameViewController {
     view.setCenterView(portfolioView);
   }
 
-  public void openTransactions() {}
+  public void openTransactions() {
+    TransactionView transactionView = new TransactionView();
+    view.setCenterView(transactionView);
+  }
 }

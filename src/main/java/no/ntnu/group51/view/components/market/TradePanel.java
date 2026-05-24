@@ -1,5 +1,7 @@
 package no.ntnu.group51.view.components.market;
 
+import java.math.BigDecimal;
+import java.util.function.Consumer;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -9,94 +11,70 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.TradeMode;
-import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.CurrencyFormatter;
 
-public class TradePanel implements View, Observer {
+public class TradePanel implements View {
   private final VBox root = new VBox();
-  private final GameModel gameModel;
-  private TradeMode tradeMode = TradeMode.AMOUNT;
-  private Leverage selectedLeverage = Leverage.OFF;
 
-  private Label cashLabel;
-  private Button buyButton;
-  private Button sellButton;
+  private final Label cashLabel = new Label("$0.00");
+  private final TextField inputField = new TextField();
 
-  private Button shareButton;
-  private Button amountButton;
+  private final Label estimateTitleLabel = new Label();
+  private final Label estimateValueLabel = new Label();
 
-  private Button leverageOffButton;
-  private Button leverage5Button;
-  private Button leverage10Button;
-  private Button leverage20Button;
+  private final Button buyButton = createButton("Buy", "trade-panel-buy-button");
+  private final Button sellButton = createButton("Sell", "trade-panel-sell-button");
 
-  private TextField inputField;
-  private Label estimateTitleLabel;
-  private Label estimateValueLabel;
+  private final Button shareButton = createButton("Shares", "trade-panel-mode-button");
+  private final Button amountButton = createButton("Amount", "trade-panel-mode-button");
+
+  private final Button leverageOffButton = createButton("Off", "trade-panel-leverage-button");
+  private final Button leverage5Button = createButton("5x", "trade-panel-leverage-button");
+  private final Button leverage10Button = createButton("10x", "trade-panel-leverage-button");
+  private final Button leverage20Button = createButton("20x", "trade-panel-leverage-button");
 
 
-  public TradePanel(GameModel gameModel) {
-    this.gameModel = gameModel;
-
-    root.getStyleClass().addAll("card","trade-panel");
-    root.setAlignment(Pos.CENTER);
-    root.setSpacing(17);
-
+  public TradePanel() {
     createLayout();
-    registerEvents();
-    updateSelectedStyles();
-    gameModel.addObserver(this);
-    updateDisplay();
+    updateTradeMode(TradeMode.AMOUNT);
+    updateLeverage(Leverage.OFF);
+    setCash(BigDecimal.ZERO);
   }
 
   private void createLayout() {
+    root.getStyleClass().addAll("card", "trade-panel");
+    root.setAlignment(Pos.CENTER);
+    root.setSpacing(17);
+
     Label cashTitle = new Label("Available cash");
     cashTitle.getStyleClass().add("trade-panel-label");
 
-    cashLabel = new Label();
     cashLabel.getStyleClass().add("trade-panel-cash");
 
     VBox cashBox = new VBox(-6, cashTitle, cashLabel);
-    cashBox.getStyleClass().addAll("surface","trade-panel-cashbox");
+    cashBox.getStyleClass().addAll("surface", "trade-panel-cashbox");
     cashBox.setAlignment(Pos.CENTER_LEFT);
 
-    shareButton = createButton("Shares", "trade-panel-mode-button");
-    amountButton = createButton("Amount", "trade-panel-mode-button");
-
     HBox modeButtons = new HBox(8, shareButton, amountButton);
+    modeButtons.setAlignment(Pos.CENTER);
 
+    inputField.getStyleClass().addAll("surface", "trade-panel-input");
 
-    inputField = new TextField();
-    inputField.getStyleClass().addAll("surface","trade-panel-input");
-
-    estimateTitleLabel = new Label();
     estimateTitleLabel.getStyleClass().add("trade-panel-estimate");
-
-    estimateValueLabel = new Label();
     estimateValueLabel.getStyleClass().add("trade-panel-row-value");
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
-    HBox estimateRow = new HBox(
-        estimateTitleLabel,
-        spacer,
-        estimateValueLabel
-    );
-
-    estimateRow.getStyleClass().addAll("surface","trade-panel-row");
+    HBox estimateRow = new HBox(estimateTitleLabel, spacer, estimateValueLabel);
+    estimateRow.getStyleClass().addAll("surface", "trade-panel-row");
     estimateRow.setAlignment(Pos.CENTER_LEFT);
 
     Label leverageLabel = new Label("Leverage");
     leverageLabel.getStyleClass().add("trading-panel-lev-label");
-    leverageOffButton = createButton("Off","trade-panel-leverage-button");
-    leverage5Button = createButton("5x","trade-panel-leverage-button");
-    leverage10Button = createButton("10x","trade-panel-leverage-button");
-    leverage20Button = createButton("20x","trade-panel-leverage-button");
 
     HBox leverageButtons = new HBox(
         8,
@@ -106,16 +84,8 @@ public class TradePanel implements View, Observer {
         leverage10Button,
         leverage20Button
     );
-
-    modeButtons.setAlignment(Pos.CENTER);
     leverageButtons.setAlignment(Pos.CENTER);
-
     leverageButtons.getStyleClass().add("trade-panel-leverage-buttons");
-
-    buyButton = createButton("Buy", "trade-panel-buy-button");
-
-    sellButton = createButton("Sell", "trade-panel-sell-button");
-
 
     root.getChildren().addAll(
         cashBox,
@@ -127,52 +97,24 @@ public class TradePanel implements View, Observer {
         sellButton);
   }
 
-  private void registerEvents() {
-    shareButton.setOnAction(e -> {
-      tradeMode = TradeMode.SHARES;
-      updateSelectedStyles();
-    });
-
-    amountButton.setOnAction(e -> {
-      tradeMode = TradeMode.AMOUNT;
-      updateSelectedStyles();
-    });
-
-    leverageOffButton.setOnAction(e -> {
-      selectedLeverage = Leverage.OFF;
-      updateSelectedStyles();
-    });
-
-    leverage5Button.setOnAction(e -> {
-      selectedLeverage = Leverage.X5;
-      updateSelectedStyles();
-    });
-
-    leverage10Button.setOnAction(e -> {
-      selectedLeverage = Leverage.X10;
-      updateSelectedStyles();
-    });
-
-    leverage20Button.setOnAction(e -> {
-      selectedLeverage = Leverage.X20;
-      updateSelectedStyles();
-    });
-
-  }
-
-  private void updateDisplay(){
-    Player player = gameModel.getPlayer();
-
-    cashLabel.setText("$" + player.getMoney().toString());
-  }
-
   private Button createButton(String text, String styleClass) {
     Button button = new Button(text);
     button.getStyleClass().add(styleClass);
     return button;
   }
 
-  private void updateSelectedStyles(){
+  public void setCash(BigDecimal cash) {
+    if (cash == null) {
+      throw new IllegalArgumentException("Cash cannot be null.");
+    }
+    cashLabel.setText(CurrencyFormatter.format(cash));
+  }
+
+  public void updateTradeMode(TradeMode tradeMode) {
+    if (tradeMode == null) {
+      throw new IllegalArgumentException("Trade mode cannot be null.");
+    }
+
     shareButton.getStyleClass().remove("trade-panel-selected");
     amountButton.getStyleClass().remove("trade-panel-selected");
 
@@ -180,20 +122,25 @@ public class TradePanel implements View, Observer {
       shareButton.getStyleClass().add("trade-panel-selected");
       inputField.setPromptText("Shares");
       estimateTitleLabel.setText("Estimated cost");
-      estimateValueLabel.setText("$" + "Soon");
-    } else{
+      estimateValueLabel.setText("$0.00");
+    } else {
       amountButton.getStyleClass().add("trade-panel-selected");
       inputField.setPromptText("Amount");
       estimateTitleLabel.setText("Estimated shares");
-      estimateValueLabel.setText("Soon");
+      estimateValueLabel.setText("0 shares");
     }
+  }
 
+  public void updateLeverage(Leverage leverage) {
+    if (leverage == null) {
+      throw new IllegalArgumentException("Leverage cannot be null.");
+    }
     leverageOffButton.getStyleClass().remove("trade-panel-selected");
     leverage5Button.getStyleClass().remove("trade-panel-selected");
     leverage10Button.getStyleClass().remove("trade-panel-selected");
     leverage20Button.getStyleClass().remove("trade-panel-selected");
 
-    switch (selectedLeverage) {
+    switch (leverage) {
       case OFF -> leverageOffButton.getStyleClass().add("trade-panel-selected");
       case X5 -> leverage5Button.getStyleClass().add("trade-panel-selected");
       case X10 -> leverage10Button.getStyleClass().add("trade-panel-selected");
@@ -201,38 +148,60 @@ public class TradePanel implements View, Observer {
     }
   }
 
-  public Button getBuyButton() {
-    return buyButton;
-  }
+  public void setEstimateText(String text) {
+    if (text == null || text.isBlank()) {
+      throw new IllegalArgumentException("Text cannot be null or blank.");
+    }
 
-  public Button getSellButton() {
-    return sellButton;
-  }
-
-  public TradeMode getTradeMode() {
-    return tradeMode;
-  }
-
-  public Leverage getSelectedLeverage() {
-    return selectedLeverage;
+    estimateValueLabel.setText(text);
   }
 
   public String getInputText() {
     return inputField.getText();
   }
 
-  public void setEstimateText(String text) {
-    estimateValueLabel.setText(text);
+  public void clearInput() {
+    inputField.clear();
   }
 
+  public void setOnBuy(Runnable handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    buyButton.setOnAction(e -> handler.run());
+  }
+
+  public void setOnSell(Runnable handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    sellButton.setOnAction(e -> handler.run());
+  }
+
+  public void setOnTradeModeChanged(Consumer<TradeMode> handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    shareButton.setOnAction(e -> handler.accept(TradeMode.SHARES));
+    amountButton.setOnAction(e -> handler.accept(TradeMode.AMOUNT));
+  }
+
+  public void setOnLeverageChanged(Consumer<Leverage> handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    leverageOffButton.setOnAction(event -> handler.accept(Leverage.OFF));
+    leverage5Button.setOnAction(event -> handler.accept(Leverage.X5));
+    leverage10Button.setOnAction(event -> handler.accept(Leverage.X10));
+    leverage20Button.setOnAction(event -> handler.accept(Leverage.X20));
+  }
 
   @Override
   public Parent getRoot() {
     return root;
-  }
-
-  @Override
-  public void update(){
-    updateDisplay();
   }
 }
