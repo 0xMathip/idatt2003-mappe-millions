@@ -29,7 +29,9 @@ public class PortfolioService {
         positionService.createPositionSummaries(player.getPortfolio());
 
     BigDecimal portfolioValue =
-        player.getPortfolio().getNetWorth().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+        player.getPortfolio().getPortfolioNetWorth().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    BigDecimal netWorth =
+        player.getNetWorth().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
     BigDecimal availableCash = player.getMoney().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
     BigDecimal totalInvested = calculateTotalInvested(positions);
     BigDecimal totalReturn = calculateTotalReturn(portfolioValue, totalInvested);
@@ -37,6 +39,7 @@ public class PortfolioService {
 
     return new PortfolioSummary(
         portfolioValue,
+        netWorth,
         availableCash,
         totalInvested,
         totalReturn,

@@ -70,11 +70,11 @@ public class PortfolioStatsSection {
 
   public void updateSummary(PortfolioSummary summary) {
     if (summary == null) {
-      throw new IllegalArgumentException("Summary cannot be null.");
+      throw new IllegalArgumentException("Portfolio summary cannot be null.");
     }
 
     portfolioValueLabel.setText(CurrencyFormatter.format(summary.portfolioValue()));
-    portfolioValueChangeLabel.setText(PercentFormatter.format(summary.totalReturn()));
+    portfolioValueChangeLabel.setText(CurrencyFormatter.format(summary.totalReturn()));
     netWorthLabel.setText(CurrencyFormatter.format(summary.netWorth()));
     cashLabel.setText(CurrencyFormatter.format(summary.availableCash()));
     totalReturnLabel.setText(CurrencyFormatter.format(summary.totalReturn()));
