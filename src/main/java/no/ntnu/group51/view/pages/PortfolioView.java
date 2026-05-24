@@ -70,7 +70,6 @@ public class PortfolioView implements View {
     pStockDetails.clear();
   }
 
-
   @Override
   public Parent getRoot() {
     return root;
