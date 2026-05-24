@@ -35,7 +35,6 @@ public class TransactionListing {
     leftSide.setSpacing(spacing);
     statusLabel.getStyleClass().add("dashboard-transaction-text");
     Label sharesAmountLabel = new Label(quantity + " shares");
-    System.out.println(quantity);
     sharesAmountLabel.getStyleClass().add("dashboard-subtext");
     leftSide.getChildren().addAll(statusLabel, sharesAmountLabel);
     leftSide.setAlignment(Pos.CENTER_LEFT);

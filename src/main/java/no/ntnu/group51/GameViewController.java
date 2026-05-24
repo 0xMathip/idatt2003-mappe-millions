@@ -1,6 +1,7 @@
 package no.ntnu.group51;
 
 import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
 import no.ntnu.group51.controller.Dashboard.*;
 import no.ntnu.group51.controller.MarketController;
 import no.ntnu.group51.controller.SceneManager;
@@ -60,5 +61,11 @@ public class GameViewController {
     sidebarController.setOnMarket(setMarketCenter);
     dashboardController.setOnMarketPress(setMarketCenter);
     dashboardController.setOnViewAllPress(setMarketCenter);
+
+    sceneManager.getScene().setOnKeyPressed(e -> {
+      if (e.getCode() == KeyCode.ESCAPE) {
+        Platform.exit();
+      }
+    });
   }
 }
