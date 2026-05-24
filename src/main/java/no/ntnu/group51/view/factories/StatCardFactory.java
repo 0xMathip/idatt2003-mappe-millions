@@ -58,7 +58,6 @@ public final class StatCardFactory {
     return createTextCard(title, value, subtitle, valueStyle, subtitleStyle, null);
   }
 
-
   public static VBox createTextCard (
       String title,
       String value,
