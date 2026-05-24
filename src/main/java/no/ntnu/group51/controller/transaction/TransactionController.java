@@ -38,7 +38,7 @@ public class TransactionController implements Observer {
     initialize();
   }
 
-  public void initialize() {
+  private void initialize() {
     transactionView.setOnTransactionSelected(transactionView::updateSelectedTransaction);
     updateView();
   }
