@@ -90,7 +90,7 @@ public class Portfolio {
     return shares.contains(share);
   }
 
-  public BigDecimal getNetWorth() {
+  public BigDecimal getPortfolioNetWorth() {
     BigDecimal netWorth = BigDecimal.ZERO;
 
     for (Share share : getShares()) {

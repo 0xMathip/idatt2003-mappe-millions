@@ -10,34 +10,48 @@ public final class StatCardFactory {
   private StatCardFactory() {
   }
 
-  public static HBox createIconCard(
+  public static HBox createCard(
       String icon,
       String title,
-      String value,
-      String subtitle,
+      Label valueLabel,
+      String iconStyle,
+      String valueStyle
+  ) {
+    return createCard(icon, title, valueLabel, null, iconStyle, valueStyle, null);
+  }
+
+  public static HBox createCard(
+      String icon,
+      String title,
+      Label valueLabel,
+      Label subtitleLabel,
       String iconStyle,
       String valueStyle,
       String subtitleStyle
   ) {
     FontIcon fontIcon = new FontIcon(icon);
-
-    Label top = new Label(title);
-    Label middle = new Label(value);
-    Label bottom = new Label(subtitle);
+    Label titleLabel = new Label(title);
 
     fontIcon.getStyleClass().add(iconStyle);
-    top.getStyleClass().add("factory-stat-card-top-text");
-    middle.getStyleClass().add(valueStyle);
-    bottom.getStyleClass().add(subtitleStyle);
+    titleLabel.getStyleClass().add("factory-stat-card-top-text");
+    valueLabel.getStyleClass().add(valueStyle);
 
-    VBox textBox = new VBox(4, top, middle, bottom);
+    VBox textBox;
+
+    if (subtitleLabel == null) {
+      textBox = new VBox(4, titleLabel, valueLabel);
+    } else {
+      subtitleLabel.getStyleClass().add(subtitleStyle);
+      textBox = new VBox(4, titleLabel, valueLabel, subtitleLabel);
+    }
+
     textBox.setAlignment(Pos.CENTER_LEFT);
 
-    HBox iconCard = new HBox(16, fontIcon, textBox);
-    iconCard.setAlignment(Pos.CENTER_LEFT);
-    iconCard.getStyleClass().addAll("card", "factory-stat-card");
+    HBox card = new HBox(16, fontIcon, textBox);
+    card.setAlignment(Pos.CENTER_LEFT);
+    card.getStyleClass().addAll("card", "factory-stat-card");
 
-    return iconCard;
+    return card;
   }
 
   public static VBox createTextCard(

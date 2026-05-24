@@ -28,7 +28,8 @@ public class PortfolioService {
     List<PositionSummary> positions =
         positionService.createPositionSummaries(player.getPortfolio());
 
-    BigDecimal portfolioValue = calculatePortfolioValue(positions);
+    BigDecimal portfolioValue =
+        player.getPortfolio().getNetWorth().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
     BigDecimal availableCash = player.getMoney().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
     BigDecimal totalInvested = calculateTotalInvested(positions);
     BigDecimal totalReturn = calculateTotalReturn(portfolioValue, totalInvested);
@@ -41,14 +42,6 @@ public class PortfolioService {
         totalReturn,
         totalReturnPercent
     );
-  }
-
-  private BigDecimal calculatePortfolioValue(List<PositionSummary> positions) {
-    return positions
-        .stream()
-        .map(PositionSummary::positionValue)
-        .reduce(BigDecimal.ZERO, BigDecimal::add)
-        .setScale(MONEY_SCALE, RoundingMode.HALF_UP);
   }
 
   private BigDecimal calculateTotalInvested(List<PositionSummary> positions) {

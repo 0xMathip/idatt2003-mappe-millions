@@ -66,7 +66,7 @@ public class TransactionView implements View {
   }
 
   private HBox createTotalTradesCard() {
-    return StatCardFactory.createIconCard(
+    return StatCardFactory.createCard(
         "cil-swap-horizontal",
         "Total Trades",
         String.valueOf(
@@ -83,7 +83,7 @@ public class TransactionView implements View {
   }
 
   private HBox createTotalBoughtCard() {
-    return StatCardFactory.createIconCard(
+    return StatCardFactory.createCard(
         "cil-money",
         "Total Bought",
         String.valueOf(gameModel.getPlayer().getTransactionArchive().getPurchases(gameModel.getExchange().getWeek()).size()),
@@ -95,7 +95,7 @@ public class TransactionView implements View {
   }
 
   private HBox createTotalSoldCard() {
-    return StatCardFactory.createIconCard(
+    return StatCardFactory.createCard(
         "cil-money",
         "Total Sold",
         String.valueOf(gameModel.getPlayer().getTransactionArchive().getSales(gameModel.getExchange().getWeek()).size()),
@@ -107,7 +107,7 @@ public class TransactionView implements View {
   }
 
   private HBox createTotalFeesCard() {
-    return StatCardFactory.createIconCard(
+    return StatCardFactory.createCard(
         "cil-dollar",
         "Fees Paid",
         "COMING",

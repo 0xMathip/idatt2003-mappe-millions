@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public record PortfolioSummary(
     BigDecimal portfolioValue,
+    BigDecimal netWorth,
     BigDecimal availableCash,
     BigDecimal totalInvested,
     BigDecimal totalReturn,
