@@ -69,6 +69,8 @@ public class TransactionService {
 
     String type = transaction instanceof Purchase ? "Buy" : "Sell";
 
+    String note = "transaction.note();";
+
     return new TransactionSummary(
         transaction,
         stock,
