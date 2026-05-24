@@ -13,6 +13,7 @@ public record TransactionSummary(
     BigDecimal tax,
     BigDecimal total,
     String type,
+    String note,
     int week
 ) {
 }

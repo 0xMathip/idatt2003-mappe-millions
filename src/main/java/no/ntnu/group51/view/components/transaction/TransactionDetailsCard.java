@@ -7,8 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.factories.TransactionBadgeFactory;
@@ -46,7 +44,7 @@ public class TransactionDetailsCard implements View {
     VBox companyBox = new VBox(ticker, company);
     companyBox.setAlignment(Pos.CENTER_LEFT);
 
-    badgeContainer = new HBox(15, badgeContainer, companyBox);
+    badgeContainer = new HBox();
     badgeContainer.setAlignment(Pos.CENTER_LEFT);
 
     HBox detailTitle = new HBox(15, badgeContainer, companyBox);
@@ -101,7 +99,7 @@ public class TransactionDetailsCard implements View {
     );
   }
 
-  public void updateSummary(TransactionSummary transaction) {
+  public void updateTransaction(TransactionSummary transaction) {
     if (transaction == null) {
       throw new IllegalArgumentException("Transaction cannot be null.");
     }

@@ -1,6 +1,5 @@
 package no.ntnu.group51.view.factories;
 
-import java.math.RoundingMode;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -8,26 +7,30 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.components.shared.SearchRow;
+import no.ntnu.group51.view.util.CurrencyFormatter;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TransactionRowFactory {
 
   private TransactionRowFactory() {
-
   }
 
-  public static SearchRow createTransactionRow(Transaction transaction) {
+  public static SearchRow createTransactionRow(TransactionSummary transaction) {
+    if (transaction == null) {
+      throw new IllegalArgumentException("Transaction summary cannot be null.");
+    }
+
     SearchRow row = new SearchRow(25, 24, 14, 27, 10);
     row.getStyleClass().addAll("card", "factory-search-row");
 
-    HBox transactionBadge = new TransactionBadgeFactory(transaction);
+    HBox transactionBadge = new TransactionBadgeFactory(transaction.transaction());
 
-    Label ticker = new Label(transaction.getShare().getStock().getSymbol());
+    Label ticker = new Label(transaction.stock().getSymbol());
     ticker.getStyleClass().add("factory-search-row-ticker");
 
-    Label company = new Label(transaction.getShare().getStock().getCompany());
+    Label company = new Label(transaction.stock().getCompany());
     company.getStyleClass().add("factory-search-row-company");
     company.setAlignment(Pos.CENTER_LEFT);
 
@@ -38,16 +41,16 @@ public class TransactionRowFactory {
     Label week = new Label("Week");
     week.getStyleClass().add("factory-transaction-week");
 
-    Label weekCount = new Label(String.valueOf(transaction.getWeek()));
+    Label weekCount = new Label(String.valueOf(transaction.week()));
     weekCount.getStyleClass().add("factory-transaction-week-count");
 
     VBox weekBox = new VBox(2, week, weekCount);
     weekBox.setAlignment(Pos.CENTER);
 
-    Label shareCount = new Label(transaction.getShare().getQuantity().toString() + " shares");
+    Label shareCount = new Label(transaction.quantity().toPlainString() + " shares");
     shareCount.getStyleClass().add("factory-transaction-share-count");
 
-    Label total = new Label("$" + transaction.getTotal().setScale(2, RoundingMode.HALF_UP));
+    Label total = new Label(CurrencyFormatter.format(transaction.total()));
     total.getStyleClass().add("factory-search-row-price");
 
     VBox tradeBox = new VBox(2, shareCount, total);
