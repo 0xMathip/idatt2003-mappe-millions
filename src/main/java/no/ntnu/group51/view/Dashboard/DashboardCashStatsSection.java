@@ -20,11 +20,6 @@ public class DashboardCashStatsSection implements View {
    */
   public DashboardCashStatsSection() {
 
-    root.getChildren().addAll(
-        CashPanel.createCashPanel("Net Worth", new BigDecimal("173057.4")),
-        CashPanel.createCashPanel("Available cash", new BigDecimal("13057.4"))
-    );
-
     root.setSpacing(20);
   }
 

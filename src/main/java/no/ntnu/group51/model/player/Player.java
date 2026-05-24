@@ -1,6 +1,7 @@
 package no.ntnu.group51.model.player;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 import no.ntnu.group51.model.portfolio.Portfolio;
@@ -97,7 +98,7 @@ public class Player {
   }
 
   public BigDecimal getMoney() {
-    return money;
+    return money.setScale(2, RoundingMode.HALF_EVEN);
   }
 
   public BigDecimal getStartingMoney() {
@@ -113,7 +114,7 @@ public class Player {
   }
 
   public BigDecimal getNetWorth() {
-    return money.add(portfolio.getNetWorth());
+    return money.add(portfolio.getNetWorth()).setScale(2, RoundingMode.HALF_EVEN);
   }
 
   public void setPlayerLevel(PlayerLevel playerLevel) {

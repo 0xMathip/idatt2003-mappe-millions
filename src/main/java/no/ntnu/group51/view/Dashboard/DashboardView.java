@@ -10,6 +10,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.view.View;
@@ -25,6 +26,8 @@ public class DashboardView implements View {
   private final DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
   private final DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
   private final DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
+  private final DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
+  private final ActionsPanel actionsPanel = new ActionsPanel();
 
   /**
    * Creates the dashboard view by creating all the panels from the other classes,
@@ -46,12 +49,12 @@ public class DashboardView implements View {
 
     leftSide.setSpacing(20);
 
-    DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
     DiffOverWeeks diffOverWeeks = new DiffOverWeeks();
 
     HBox rightBottom = new HBox();
     rightBottom.getChildren().addAll(
-        dashboardTopMoversPanel.getRoot()
+        dashboardTopMoversPanel.getRoot(),
+        actionsPanel.getRoot()
     );
 
     HBox rightTop = new HBox();
@@ -113,12 +116,22 @@ public class DashboardView implements View {
     dashboardTopMoversPanel.addToPanel(TopMovers.createMover("loser", exchange.getLosers(1)));
   }
 
+  public void addCashPanel(GameModel model) {
+    dashboardCashStatsSection.clearPanel();
+    dashboardCashStatsSection.setPanel(CashPanel.createCashPanel("Net Worth", model.getPlayer().getNetWorth()));
+    dashboardCashStatsSection.setPanel(CashPanel.createCashPanel("Available cash", model.getPlayer().getMoney()));
+  }
+
   public void setOnMarketPress(EventHandler<ActionEvent> action) {
     dashboardTopMoversPanel.setOnViewMarket(action);
   }
 
   public void setOnTransactionPress(EventHandler<ActionEvent> action) {
     dashboardTransactionPanel.setOnViewAll(action);
+  }
+
+  public void setOnAdvanceWeekPress(EventHandler<ActionEvent> action) {
+    actionsPanel.setOnAdvanceWeek(action);
   }
 
   @Override

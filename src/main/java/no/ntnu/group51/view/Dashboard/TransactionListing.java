@@ -41,7 +41,8 @@ public class TransactionListing {
 
     VBox rightSide =  new VBox();
     rightSide.setSpacing(spacing);
-    Label cashAmountLabel = new Label("$" + stockSalesPrice.multiply(quantity).setScale(2, RoundingMode.HALF_UP));
+    Label cashAmountLabel = new Label("$" + transaction.getShare().getPurchasePrice()
+        .multiply(quantity).setScale(2, RoundingMode.HALF_UP));
     cashAmountLabel.getStyleClass().add("dashboard-transaction-amount");
     Label weekLabel = new Label("Week " + transaction.getWeek());
     weekLabel.getStyleClass().add("dashboard-subtext");

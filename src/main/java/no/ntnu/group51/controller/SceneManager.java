@@ -14,4 +14,8 @@ public class SceneManager {
   public void changeScene(View view) {
     scene.setRoot(view.getRoot());
   }
+
+  public Scene getScene() {
+    return scene;
+  }
 }

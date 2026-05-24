@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -23,6 +24,7 @@ public class SidebarView implements View {
   private final Label currentWeek = new Label("Week <N>");
   private final Label currentLevelLabel = new Label("<CURRENT_LEVEL>");
   private final Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
+  private final Button pauseButton = new Button();
 
   public SidebarView() {
 
@@ -32,6 +34,15 @@ public class SidebarView implements View {
         oldToggle.setSelected(true);
       }
     });
+
+    // Pause button
+    FontIcon pauseIcon = new FontIcon("cil-account-logout");
+    pauseIcon.setTranslateX(-2);
+    pauseButton.setGraphic(pauseIcon);
+    pauseButton.getStyleClass().add("sidebar-pause-button");
+    HBox pause =  new HBox();
+    pause.getChildren().add(pauseButton);
+    pause.setAlignment(Pos.CENTER_LEFT);
 
     // Dashboard button
     dashboardButton.getStyleClass().add("sidebar-button");
@@ -126,6 +137,7 @@ public class SidebarView implements View {
 
 
     root.getChildren().addAll(
+        pauseButton,
         currentWeek,
         spacer1,
         dashboardButton,
@@ -152,6 +164,10 @@ public class SidebarView implements View {
 
   public void setCurrentWeek(int week) {
     currentWeek.setText("Week " + week);
+  }
+
+  public void setOnPauseButton(EventHandler<ActionEvent> action) {
+    pauseButton.setOnAction(action);
   }
 
   public void setCurrentLevelLabel(PlayerLevel level) {

@@ -95,7 +95,7 @@ public class Portfolio {
 
     for (Share share : getShares()) {
       SaleCalculator saleCalc = new SaleCalculator(share);
-         netWorth = netWorth.add(saleCalc.calculateTotal());
+      netWorth = netWorth.add(saleCalc.calculateTotal());
     }
     return netWorth;
   }
