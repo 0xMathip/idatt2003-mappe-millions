@@ -7,46 +7,32 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.GameModel;
-import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.PriceStyleHelper;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class StockSelectorCard implements View, Observer {
-  private final GameModel gameModel;
+public class StockSelectorCard implements View {
 
   private final HBox root = new HBox();
-  private Label tickerLabel;
-  private Label companyLabel;
-  private Label priceLabel;
-  private Label changeLabel;
 
+  private final Label tickerLabel = new Label();
+  private final Label companyLabel = new Label();
+  private final Label priceLabel = new Label();
+  private final Label changeLabel = new Label();
 
-  public StockSelectorCard(GameModel gameModel) {
-    this.gameModel = gameModel;
-
-    root.getStyleClass().addAll("card","stock-selector-card");
+  public StockSelectorCard() {
+    root.getStyleClass().addAll("card", "stock-selector-card");
     root.setAlignment(Pos.CENTER_LEFT);
 
     createLayout();
-    registerEvents();
-
-    gameModel.addObserver(this);
-    updateDisplay();
   }
 
   private void createLayout() {
-    tickerLabel = new Label();
     tickerLabel.getStyleClass().add("stock-selector-card-ticker-label");
-
-    companyLabel = new Label();
     companyLabel.getStyleClass().add("stock-selector-card-company-label");
-
-    priceLabel = new Label();
     priceLabel.getStyleClass().add("stock-selector-card-price-label");
-
-    changeLabel = new Label();
     changeLabel.getStyleClass().add("stock-selector-card-change-label");
 
     Region topSpacer = new Region();
@@ -55,17 +41,8 @@ public class StockSelectorCard implements View, Observer {
     Region botSpacer = new Region();
     HBox.setHgrow(botSpacer, Priority.ALWAYS);
 
-    HBox topRow = new HBox(
-        tickerLabel,
-        topSpacer,
-        priceLabel
-    );
-
-    HBox botRow = new HBox(
-        companyLabel,
-        botSpacer,
-        changeLabel
-    );
+    HBox topRow = new HBox(tickerLabel, topSpacer, priceLabel);
+    HBox botRow = new HBox(companyLabel, botSpacer, changeLabel);
 
     topRow.getStyleClass().add("stock-selector-card-row");
     botRow.getStyleClass().add("stock-selector-card-row");
@@ -80,45 +57,34 @@ public class StockSelectorCard implements View, Observer {
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-down-alt");
     arrowIcon.getStyleClass().add("stock-selector-card-arrow");
 
-    root.getChildren().addAll(
-        content,
-        arrowIcon
-    );
-
+    root.getChildren().addAll(content, arrowIcon);
   }
 
-  private void registerEvents() {
-    //root.setOnMouseClicked();
-  }
-
-  private void updateDisplay() {
-    Stock stock = gameModel.getSelectedStock();
+  public void updateStock(Stock stock) {
+    if (stock == null) {
+      throw new IllegalArgumentException("Stock cannot be null.");
+    }
 
     tickerLabel.setText(stock.getSymbol());
     companyLabel.setText(stock.getCompany());
-    priceLabel.setText("$" + stock.getSalesPrice().toString());
-    changeLabel.setText(stock.getLatestPriceChangePercent().toString() + "%");
+    priceLabel.setText(CurrencyFormatter.format(stock.getSalesPrice()));
+    changeLabel.setText(stock.getLatestPriceChangePercent().toPlainString() + "%");
 
-    if (stock.getLatestPriceChange().signum() == -1) {
-      changeLabel.getStyleClass().remove("positive-price-change");
-      changeLabel.getStyleClass().add("negative-price-change");
-    } else if (stock.getLatestPriceChange().signum() == 1) {
-      changeLabel.getStyleClass().remove("negative-price-change");
-      changeLabel.getStyleClass().add("positive-price-change");
-    } else {
-      changeLabel.getStyleClass().remove("negative-price-change");
-      changeLabel.getStyleClass().remove("positive-price-change");
-      changeLabel.getStyleClass().add("neutral-price-change");
-    }
+    PriceStyleHelper.applyPriceChangeStyle(
+        changeLabel,
+        stock.getLatestPriceChange()
+    );
+  }
+
+  public void clear() {
+    tickerLabel.setText("-");
+    companyLabel.setText("No stock selected");
+    priceLabel.setText("$0.00");
+    changeLabel.setText("0%");
   }
 
   @Override
   public Parent getRoot() {
     return root;
-  }
-
-  @Override
-  public void update() {
-    updateDisplay();
   }
 }

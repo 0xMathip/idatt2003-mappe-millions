@@ -200,6 +200,16 @@ public class TradePanel implements View {
     leverage20Button.setOnAction(event -> handler.accept(Leverage.X20));
   }
 
+  public void setOnInputChanged(Runnable handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    inputField.textProperty().addListener(
+        (obs, oldValue, newValue) -> handler.run()
+    );
+  }
+
   @Override
   public Parent getRoot() {
     return root;

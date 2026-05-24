@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.trading.Leverage;
+import no.ntnu.group51.model.trading.LeveragedPosition;
 
 public class LeverageService {
 
-  private static final int MONEY_SCALE = 2;
   private static final int CALCULATION_SCALE = 8;
 
   public LeverageSummary createSummary(
@@ -35,7 +35,7 @@ public class LeverageService {
     return new LeverageSummary(
         leverage,
         multiplier,
-        marginRequired.setScale(MONEY_SCALE, RoundingMode.HALF_UP),
+        marginRequired,
         exposure,
         liquidationPrice
     );
@@ -62,9 +62,7 @@ public class LeverageService {
       throw new IllegalArgumentException("Multiplier cannot be null.");
     }
 
-    return marginRequired
-        .multiply(multiplier)
-        .setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    return marginRequired.multiply(multiplier);
   }
 
   public BigDecimal calculateLiquidationPrice(
@@ -83,7 +81,7 @@ public class LeverageService {
     }
 
     if (leverage == Leverage.OFF) {
-      return BigDecimal.ZERO.setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+      return BigDecimal.ZERO;
     }
 
     BigDecimal entryPrice = stock.getSalesPrice();
@@ -92,9 +90,19 @@ public class LeverageService {
         BigDecimal.ONE.divide(multiplier, CALCULATION_SCALE, RoundingMode.HALF_UP)
     );
 
-    return entryPrice
-        .multiply(liquidationFactor)
-        .setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    return entryPrice.multiply(liquidationFactor);
+  }
+
+  public boolean isLiquidated(LeveragedPosition position) {
+    if (position == null) {
+      throw new IllegalArgumentException("Leveraged position cannot be null.");
+    }
+
+    return position.isLeveraged()
+        && position.getShare()
+        .getStock()
+        .getSalesPrice()
+        .compareTo(position.getLiquidationPrice()) <= 0;
   }
 
 }

@@ -168,5 +168,4 @@ public class Stock {
   public String getIcon() {
     return icon;
   }
-
 }

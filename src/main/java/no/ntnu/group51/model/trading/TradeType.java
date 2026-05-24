@@ -1,4 +1,6 @@
 package no.ntnu.group51.model.trading;
 
-public class TradeType {
+public enum TradeType {
+  BUY,
+  SELL
 }

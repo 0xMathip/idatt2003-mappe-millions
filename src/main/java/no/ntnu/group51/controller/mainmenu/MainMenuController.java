@@ -23,7 +23,7 @@ public class MainMenuController {
   public void setupButtons() {
 
     view.setOnNewGame(e -> {
-      GameView gameView = new GameView(model);
+      GameView gameView = new GameView();
       new GameViewController(model, gameView, sceneManager);
       sceneManager.changeScene(gameView);
     });

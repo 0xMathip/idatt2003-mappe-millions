@@ -2,6 +2,7 @@ package no.ntnu.group51.service.portfolio;
 
 import java.math.BigDecimal;
 import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.model.trading.Leverage;
 
 public record PositionSummary (
     Stock stock,
@@ -13,7 +14,11 @@ public record PositionSummary (
     BigDecimal profitLoss,
     BigDecimal roiPercent,
     BigDecimal lowestPrice,
-    BigDecimal highestPrice
+    BigDecimal highestPrice,
+    boolean leveraged,
+    Leverage leverage,
+    BigDecimal marginRequired,
+    BigDecimal liquidationPrice
 ) {
 
 }

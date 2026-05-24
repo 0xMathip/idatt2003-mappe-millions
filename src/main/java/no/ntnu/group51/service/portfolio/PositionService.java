@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import no.ntnu.group51.model.calculator.LeverageCalculator;
 import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.model.trading.Leverage;
+import no.ntnu.group51.model.trading.LeveragedPosition;
 
 public class PositionService {
 
@@ -28,6 +31,10 @@ public class PositionService {
 
     sharesByStock.forEach((stock, shares) ->
         summaries.add(createPositionSummary(stock, shares)));
+
+    portfolio.getLeveragedPositions().forEach(position ->
+        summaries.add(createLeveragedPositionSummary(position))
+    );
 
     return summaries;
   }
@@ -61,7 +68,47 @@ public class PositionService {
         profitLoss,
         roiPercent,
         stock.getLowestPrice(),
-        stock.getHighestPrice()
+        stock.getHighestPrice(),
+        false,
+        Leverage.OFF,
+        BigDecimal.ZERO,
+        BigDecimal.ZERO
+    );
+  }
+
+  private PositionSummary createLeveragedPositionSummary(LeveragedPosition position) {
+    if (position == null) {
+      throw new IllegalArgumentException("Leveraged position cannot be null.");
+    }
+
+    Share share = position.getShare();
+    Stock stock = share.getStock();
+
+    LeverageCalculator calculator = new LeverageCalculator(position);
+
+    BigDecimal sharesOwned = share.getQuantity();
+    BigDecimal totalInvested = position.getMarginRequired();
+    BigDecimal averageBuyPrice = share.getPurchasePrice();
+    BigDecimal currentPrice = stock.getSalesPrice();
+    BigDecimal positionValue = calculator.calculateTotal().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    BigDecimal profitLoss = positionValue.subtract(totalInvested).setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    BigDecimal roiPercent = calculateRoiPercent(profitLoss, totalInvested);
+
+    return new PositionSummary(
+        stock,
+        sharesOwned,
+        averageBuyPrice,
+        currentPrice,
+        positionValue,
+        totalInvested,
+        profitLoss,
+        roiPercent,
+        stock.getLowestPrice(),
+        stock.getHighestPrice(),
+        true,
+        position.getLeverage(),
+        position.getMarginRequired(),
+        position.getLiquidationPrice()
     );
   }
 

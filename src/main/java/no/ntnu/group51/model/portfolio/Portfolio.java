@@ -4,14 +4,17 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import no.ntnu.group51.model.calculator.LeverageCalculator;
 import no.ntnu.group51.model.calculator.SaleCalculator;
 import no.ntnu.group51.model.stock.Share;
+import no.ntnu.group51.model.trading.LeveragedPosition;
 
 /**
  * Portfolio class.
  */
 public class Portfolio {
-  private List<Share> shares;
+  private final List<Share> shares;
+  private final List<LeveragedPosition> leveragedPositions;
 
   /**
    * Constructor for the Portfolio class.
@@ -19,6 +22,7 @@ public class Portfolio {
    */
   public Portfolio() {
     this.shares = new ArrayList<>();
+    this.leveragedPositions = new ArrayList<>();
   }
 
   /**
@@ -90,12 +94,37 @@ public class Portfolio {
     return shares.contains(share);
   }
 
+  public boolean addLeveragedPosition(LeveragedPosition leveragedPosition) {
+    if (leveragedPosition == null) {
+      throw new IllegalArgumentException("Leveraged position cannot be null.");
+    }
+
+    return leveragedPositions.add(leveragedPosition);
+  }
+
+  public boolean removeLeveragedPosition(LeveragedPosition leveragedPosition) {
+    if (leveragedPosition == null) {
+      throw new IllegalArgumentException("Leveraged position cannot be null.");
+    }
+
+    return leveragedPositions.remove(leveragedPosition);
+  }
+
+  public List<LeveragedPosition> getLeveragedPositions() {
+    return Collections.unmodifiableList(leveragedPositions);
+  }
+
   public BigDecimal getPortfolioNetWorth() {
     BigDecimal netWorth = BigDecimal.ZERO;
 
     for (Share share : getShares()) {
       SaleCalculator saleCalc = new SaleCalculator(share);
-         netWorth = netWorth.add(saleCalc.calculateTotal());
+      netWorth = netWorth.add(saleCalc.calculateTotal());
+    }
+
+    for (LeveragedPosition leveragedPosition : getLeveragedPositions()) {
+      LeverageCalculator levCalc = new LeverageCalculator(leveragedPosition);
+      netWorth = netWorth.add(levCalc.calculateTotal());
     }
     return netWorth;
   }
