@@ -78,6 +78,7 @@ public class TransactionService {
         transaction.getCalculator().calculateTax().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
         transaction.getCalculator().calculateTotal().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
         type,
+        note,
         transaction.getWeek()
     );
   }

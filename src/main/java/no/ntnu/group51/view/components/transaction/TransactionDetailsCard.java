@@ -56,7 +56,7 @@ public class TransactionDetailsCard implements View {
         createDetailRow("Quantity", quantityValue),
         createDetailRow("Price per share", priceValue),
         createDetailRow("Gross value", grossValue),
-        createDetailRow("Tax", taxValue)
+        createDetailRow("Tax / Fees", taxValue)
     );
 
     Region spacer = new Region();

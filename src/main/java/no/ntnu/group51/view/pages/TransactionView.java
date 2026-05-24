@@ -1,26 +1,27 @@
 package no.ntnu.group51.view.pages;
 
+import java.util.List;
+import java.util.function.Consumer;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.service.transaction.TransactionPageSummary;
+import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.transaction.TransactionDetailsCard;
 import no.ntnu.group51.view.components.transaction.TransactionSearchMenu;
-import no.ntnu.group51.view.factories.StatCardFactory;
+import no.ntnu.group51.view.components.transaction.TransactionStatsSection;
 
 public class TransactionView implements View {
+
   private final GridPane root = new GridPane();
 
   private final TransactionSearchMenu transactionSearchMenu;
   private final TransactionStatsSection statsSection;
   private final TransactionDetailsCard transactionDetailsCard;
 
-  private static final String ALL_TIME = "All time";
-
-  public TransactionView(GameModel gameModel) {
-
+  public TransactionView() {
     this.statsSection = new TransactionStatsSection();
     this.transactionSearchMenu = new TransactionSearchMenu();
     this.transactionDetailsCard = new TransactionDetailsCard();
@@ -32,11 +33,10 @@ public class TransactionView implements View {
     root.getStyleClass().addAll("page-layout", "transaction-view");
 
     Label title = createTitle();
-    HBox statsRow = createStatsRow();
     HBox body = createBody();
 
     root.add(title, 0, 0);
-    root.add(statsRow, 0, 1);
+    root.add(statsSection.getRoot(), 0, 1);
     root.add(body, 0, 2);
   }
 
@@ -46,20 +46,9 @@ public class TransactionView implements View {
     return title;
   }
 
-  private HBox createStatsRow() {
-    HBox statsRow = new HBox(100,
-        createTotalTradesCard(),
-        createTotalBoughtCard(),
-        createTotalSoldCard(),
-        createTotalFeesCard()
-    );
-
-    statsRow.getStyleClass().add("transaction-stats-row");
-    return statsRow;
-  }
-
   private HBox createBody() {
-    HBox body = new HBox(95,
+    HBox body = new HBox(
+        95,
         transactionSearchMenu.getRoot(),
         transactionDetailsCard.getRoot()
     );
@@ -68,61 +57,37 @@ public class TransactionView implements View {
     return body;
   }
 
-  private HBox createTotalTradesCard() {
-    return StatCardFactory.createCard(
-        "cil-swap-horizontal",
-        "Total Trades",
-        String.valueOf(
-            gameModel.getPlayer()
-                .getTransactionArchive()
-                .getTransactions(gameModel.getExchange().getWeek())
-                .size()
-        ),
-        ALL_TIME,
-        "transaction-stat-trades-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
-    );
+  public void updateSummary(TransactionPageSummary summary) {
+    if (summary == null) {
+      throw new IllegalArgumentException("Transactions page summary cannot be null.");
+    }
+    statsSection.updateSummary(summary);
   }
 
-  private HBox createTotalBoughtCard() {
-    return StatCardFactory.createCard(
-        "cil-money",
-        "Total Bought",
-        String.valueOf(gameModel.getPlayer().getTransactionArchive().getPurchases(gameModel.getExchange().getWeek()).size()),
-        ALL_TIME,
-        "transaction-stat-bought-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
-    );
+  public void updateTransactions(List<TransactionSummary> transactions) {
+    if (transactions == null) {
+      throw new IllegalArgumentException("Transactions cannot be null.");
+    }
+    transactionSearchMenu.updateTransactions(transactions);
   }
 
-  private HBox createTotalSoldCard() {
-    return StatCardFactory.createCard(
-        "cil-money",
-        "Total Sold",
-        String.valueOf(gameModel.getPlayer().getTransactionArchive().getSales(gameModel.getExchange().getWeek()).size()),
-        ALL_TIME,
-        "transaction-stat-sold-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
-    );
+  public void updateSelectedTransaction(TransactionSummary transaction) {
+    if (transaction == null) {
+      throw new IllegalArgumentException("Transaction cannot be null.");
+    }
+
+    transactionDetailsCard.updateTransaction(transaction);
   }
 
-  private HBox createTotalFeesCard() {
-    return StatCardFactory.createCard(
-        "cil-dollar",
-        "Fees Paid",
-        "COMING",
-        ALL_TIME,
-        "transaction-stat-fees-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
-      );
+  public void clearSelectedTransaction() {
+    transactionDetailsCard.clear();
   }
 
-  public void updateStats(TransactionSummary summary) {
-    statsSection.updateStats(summary);
+  public void setOnTransactionSelected(Consumer<TransactionSummary> handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+    transactionSearchMenu.setOnTransactionSelected(handler);
   }
 
   @Override

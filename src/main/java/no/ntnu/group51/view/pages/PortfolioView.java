@@ -57,14 +57,14 @@ public class PortfolioView implements View {
 
   public void updateSummary(PortfolioSummary summary) {
     if (summary == null) {
-      throw new IllegalArgumentException("Summary cannot be null.");
+      throw new IllegalArgumentException("Portfolio summary cannot be null.");
     }
     statsSection.updateSummary(summary);
   }
 
   public void updatePositions(List<PositionSummary> positions) {
     if (positions == null) {
-      throw new IllegalArgumentException("Positions cannot be null.");
+      throw new IllegalArgumentException("Position cannot be null.");
     }
     pSearchMenu.updatePositions(positions);
   }
