@@ -16,6 +16,9 @@ import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Sidebar navigation view for the main application.
+ */
 public class SidebarView implements View {
 
   private final VBox root = new VBox();
@@ -28,6 +31,9 @@ public class SidebarView implements View {
   private final Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
   private final Button pauseButton = new Button();
 
+  /**
+   * Creates the sidebar view.
+   */
   public SidebarView() {
 
     ToggleGroup sidebar = new ToggleGroup();
@@ -152,39 +158,95 @@ public class SidebarView implements View {
     root.setSpacing(15);
     root.setAlignment(Pos.CENTER);
     root.setPrefWidth(362);
-    root.setStyle("-fx-background-color: #171717");
+    root.getStyleClass().add(StyleClass.SIDEBAR_PANEL);
 
   }
 
+  /**
+   * Sets the dashboard button action.
+   *
+   * @param action the action handler
+   */
   public void setOnDashboardButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     dashboardButton.setOnAction(action);
   }
 
+  /**
+   * Sets the market button action.
+   *
+   * @param action the action handler
+   */
   public void setOnMarketButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     marketButton.setOnAction(action);
   }
 
+  /**
+   * Sets the transaction button action.
+   *
+   * @param action the action handler
+   */
   public void setOnPortfolioButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     portfolioButton.setOnAction(action);
   }
 
+  /**
+   * Sets the transaction button action.
+   *
+   * @param action the action handler
+   */
   public void setOnTransactionButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     transactionsButton.setOnAction(action);
   }
 
+  /**
+   * Updates the displayed current week.
+   *
+   * @param week the current week
+   */
   public void setCurrentWeek(int week) {
     currentWeek.setText("Week " + week);
   }
 
   public void setOnPauseButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     pauseButton.setOnAction(action);
   }
 
+  /**
+   * Updates the displayed current player level.
+   *
+   * @param level the current player level
+   */
   public void setCurrentLevelLabel(PlayerLevel level) {
+    if (level == null) {
+      throw new IllegalArgumentException("Level cannot be null.");
+    }
     currentLevelLabel.setText(level.toString());
   }
 
+  /**
+   * Updates the displayed next player level.
+   *
+   * @param level the next player level
+   */
   public void setNextLevelLabel(PlayerLevel level) {
+    if (level == null) {
+      throw new IllegalArgumentException("Level cannot be null.");
+    }
     if (level != PlayerLevel.SPECULATOR) {
       nextLevelLabel.setText("Next level: " + level.toString());
 
@@ -193,23 +255,37 @@ public class SidebarView implements View {
     }
   }
 
+  /**
+   * Selects the dashboard button.
+   */
   public void toggleDashboard() {
     dashboardButton.setSelected(true);
   }
 
+  /**
+   * Selects the market button.
+   */
   public void toggleMarket() {
     marketButton.setSelected(true);
   }
 
+  /**
+   * Selects the portfolio button.
+   */
   public void togglePortfolio() {
     portfolioButton.setSelected(true);
   }
 
+  /**
+   * Selects the transaction button.
+   */
   public void toggleTransaction() {
     transactionsButton.setSelected(true);
   }
 
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

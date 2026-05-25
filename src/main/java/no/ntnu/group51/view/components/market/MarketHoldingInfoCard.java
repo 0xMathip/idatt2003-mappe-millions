@@ -10,20 +10,28 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * UI card showing the player's current normal and leveraged holdings
+ * for the selected stock.
+ */
 public class MarketHoldingInfoCard implements View {
 
   private final HBox root = new HBox(14);
 
-  private final Label normalValueLabel = new Label("0 shares");
+  private final Label normalValueLabel = new Label();
 
-  private final Label leveragedValueLabel = new Label("0 shares");
-  private final Label leveragedSubLabel = new Label("Liq: -");
-  private final Label leverageBadge = new Label("-");
+  private final Label leveragedValueLabel = new Label();
+  private final Label leveragedSubLabel = new Label();
+  private final Label leverageBadge = new Label();
 
+  /**
+   * Creates the market holding info card.
+   */
   public MarketHoldingInfoCard() {
     createLayout();
     clear();
   }
+
 
   private void createLayout() {
     root.getStyleClass().addAll(StyleClass.CARD, StyleClass.MARKET_HOLDING_INFO);
@@ -73,6 +81,12 @@ public class MarketHoldingInfoCard implements View {
     return box;
   }
 
+  /**
+   * Updates the displayed normal holdings.
+   *
+   * @param sharesText the text to display for normal holdings
+   * @throws IllegalArgumentException if sharesText is null or blank
+   */
   public void updateNormalHoldings(String sharesText) {
     if (sharesText == null || sharesText.isBlank()) {
       throw new IllegalArgumentException("Shares text cannot be null or blank.");
@@ -81,6 +95,14 @@ public class MarketHoldingInfoCard implements View {
     normalValueLabel.setText(sharesText);
   }
 
+  /**
+   * Updates the displayed leveraged holdings information.
+   *
+   * @param sharesText the leveraged shares text
+   * @param leverageText the leverage badge text
+   * @param liquidationText the liquidation price text
+   * @throws IllegalArgumentException if any argument is null or blank
+   */
   public void updateLeveragedHoldings(
       String sharesText,
       String leverageText,
@@ -101,6 +123,9 @@ public class MarketHoldingInfoCard implements View {
     leveragedSubLabel.setText(liquidationText);
   }
 
+  /**
+   * Resets the displayed holding information to default values.
+   */
   public void clear() {
     normalValueLabel.setText("0 shares");
     leveragedValueLabel.setText("0 shares");
@@ -108,6 +133,9 @@ public class MarketHoldingInfoCard implements View {
     leveragedSubLabel.setText("Liq: -");
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

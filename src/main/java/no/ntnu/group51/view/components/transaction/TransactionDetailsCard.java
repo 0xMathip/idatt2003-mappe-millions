@@ -10,11 +10,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.View;
-import no.ntnu.group51.view.factories.TransactionBadgeFactory;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * UI card displaying details for the selected transaction.
+ */
 public class TransactionDetailsCard implements View {
 
   private final VBox root = new VBox(20);
@@ -28,9 +30,11 @@ public class TransactionDetailsCard implements View {
   private final Label feesValue = new Label("$0.00");
   private final Label totalValue = new Label("$0.00");
   private final Label noteValue = new Label("Select a transaction to view details.");
+  private final HBox badgeContainer = new HBox();
 
-  private HBox badgeContainer;
-
+  /**
+   * Creates the transaction details card.
+   */
   public TransactionDetailsCard() {
     createLayout();
     clear();
@@ -46,9 +50,7 @@ public class TransactionDetailsCard implements View {
     VBox companyBox = new VBox(ticker, company);
     companyBox.setAlignment(Pos.CENTER_LEFT);
 
-    badgeContainer = new HBox();
     badgeContainer.setAlignment(Pos.CENTER_LEFT);
-
     HBox detailTitle = new HBox(15, badgeContainer, companyBox);
     detailTitle.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TITLE);
     detailTitle.setAlignment(Pos.CENTER_LEFT);
@@ -64,7 +66,7 @@ public class TransactionDetailsCard implements View {
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
-    Label totalLabel = new Label("Total cost");
+    Label totalLabel = new Label("Net total");
     totalLabel.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TOTAL);
     totalValue.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TOTAL);
 
@@ -101,13 +103,19 @@ public class TransactionDetailsCard implements View {
     );
   }
 
+  /**
+   * Updates the displayed transaction details.
+   *
+   * @param transaction the transaction summary to display
+   * @throws IllegalArgumentException if transaction is null
+   */
   public void updateTransaction(TransactionSummary transaction) {
     if (transaction == null) {
       throw new IllegalArgumentException("Transaction cannot be null.");
     }
 
     badgeContainer.getChildren().setAll(
-        new TransactionBadgeFactory(transaction.transaction())
+        new TransactionBadge(transaction.transaction())
     );
 
     ticker.setText(transaction.stock().getSymbol());
@@ -133,11 +141,14 @@ public class TransactionDetailsCard implements View {
 
   }
 
+  /**
+   * Resets the displayed transaction details to default values.
+   */
   public void clear() {
     badgeContainer.getChildren().clear();
 
     ticker.setText("-");
-    company.setText("No transaction selected");
+    company.setText("No transaction selected.");
     weekValue.setText("-");
     quantityValue.setText("-");
     priceValue.setText("$0.00");
@@ -161,7 +172,9 @@ public class TransactionDetailsCard implements View {
     return row;
   }
 
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

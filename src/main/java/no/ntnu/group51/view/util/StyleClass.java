@@ -180,6 +180,7 @@ public final class StyleClass {
 
 
   // ==================== SIDEBAR / NAVIGATION ====================
+  public static final String SIDEBAR_PANEL = "sidebar-panel";
   public static final String SIDEBAR_BUTTON = "sidebar-button";
   public static final String YELLOW_BOSS_BABY_BOX = "yellow-boss-baby-box";
   public static final String PLAYER_LEVEL_LABEL = "player-level-label";
@@ -200,4 +201,5 @@ public final class StyleClass {
   public static final String TRANSACTION_STAT_BOUGHT_ICON = "transaction-stat-bought-icon";
   public static final String TRANSACTION_STAT_SOLD_ICON = "transaction-stat-sold-icon";
   public static final String TRANSACTION_STAT_FEES_ICON = "transaction-stat-fees-icon";
+  public static final String TRANSACTION_STAT_ROW = "transaction-stat-row";
 }

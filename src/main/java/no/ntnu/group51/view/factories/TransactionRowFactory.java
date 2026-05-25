@@ -9,15 +9,29 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.components.shared.SearchRow;
+import no.ntnu.group51.view.components.transaction.TransactionBadge;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Factory for creating transaction rows used in search menus.
+ */
 public class TransactionRowFactory {
 
+  /**
+   * Prevents instantiation of this utility class.
+   */
   private TransactionRowFactory() {
   }
 
+  /**
+   * Creates a transaction row for a transaction summary.
+   *
+   * @param transaction the transaction summary to display
+   * @return a search row representing the transaction
+   * @throws IllegalArgumentException if transaction is null
+   */
   public static SearchRow createTransactionRow(TransactionSummary transaction) {
     if (transaction == null) {
       throw new IllegalArgumentException("Transaction summary cannot be null.");
@@ -26,7 +40,7 @@ public class TransactionRowFactory {
     SearchRow row = new SearchRow(25, 24, 14, 27, 10);
     row.getStyleClass().addAll(StyleClass.CARD, StyleClass.FACTORY_SEARCH_ROW);
 
-    HBox transactionBadge = new TransactionBadgeFactory(transaction.transaction());
+    HBox transactionBadge = new TransactionBadge(transaction.transaction());
 
     Label ticker = new Label(transaction.stock().getSymbol());
     ticker.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_TICKER);
@@ -34,7 +48,6 @@ public class TransactionRowFactory {
     Label company = new Label(transaction.stock().getCompany());
     company.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_COMPANY);
     company.setAlignment(Pos.CENTER_LEFT);
-
 
     VBox stockBox = new VBox(2, ticker, company);
     stockBox.setAlignment(Pos.CENTER_LEFT);

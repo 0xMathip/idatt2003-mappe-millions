@@ -7,9 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import no.ntnu.group51.controller.SceneManager;
-import no.ntnu.group51.model.GameModel;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.StyleClass;
 
@@ -19,16 +24,14 @@ import no.ntnu.group51.view.util.StyleClass;
 public class MainMenuView implements View {
 
   private final BorderPane root = new BorderPane();
-  private Button cont = new Button("CONTINUE");
-  private Button newG = new Button("NEW GAME");
-  private Button exit = new Button("EXIT");
+  private final Button cont = new Button("CONTINUE");
+  private final Button newG = new Button("NEW GAME");
+  private final Button exit = new Button("EXIT");
 
   /**
    * Creates the main menu view.
-   *
-   * @param sceneManager The scene manager for the stage.
    */
-  public MainMenuView(SceneManager sceneManager, GameModel model) {
+  public MainMenuView() {
 
     cont.getStyleClass().add(StyleClass.MAIN_MENU_BUTTON);
     newG.getStyleClass().add(StyleClass.MAIN_MENU_BUTTON);
@@ -66,14 +69,34 @@ public class MainMenuView implements View {
     menuButtons.setTranslateY(100);
   }
 
+  /**
+   * Sets the action for starting a new game.
+   *
+   * @param action the action handler
+   */
   public void setOnNewGame(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     newG.setOnAction(action);
   }
 
+  /**
+   * Sets the action for exiting the application.
+   *
+   * @param action the action handler
+   */
   public void setOnExit(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     exit.setOnAction(action);
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public Parent getRoot() {
     return root;
   }

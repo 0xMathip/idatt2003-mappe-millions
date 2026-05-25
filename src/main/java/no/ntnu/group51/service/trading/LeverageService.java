@@ -8,10 +8,25 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.LeveragedPosition;
 
+/**
+ * Handles calculations and validation for leveraged trading.
+ *
+ * <p>Provides leverage summaries, exposure calculations,
+ * liquidation price calculations, and liquidation checks.
+ */
 public class LeverageService {
 
   private static final int CALCULATION_SCALE = 8;
 
+  /**
+   * Creates a leverage summary for a potential leveraged trade.
+   *
+   * @param stock the stock being traded
+   * @param marginRequired the required margin for the trade
+   * @param leverage the selected leverage level
+   * @return a leverage summary
+   * @throws IllegalArgumentException if arguments are invalid
+   */
   public LeverageSummary createSummary(
       Stock stock,
       BigDecimal marginRequired,
@@ -43,6 +58,13 @@ public class LeverageService {
     );
   }
 
+  /**
+   * Returns the multiplier for a leverage level.
+   *
+   * @param leverage the leverage level
+   * @return the leverage multiplier
+   * @throws IllegalArgumentException if leverage is null
+   */
   public BigDecimal getMultiplier(Leverage leverage) {
     if (leverage == null) {
       throw new IllegalArgumentException("Leverage cannot be null.");
@@ -56,6 +78,14 @@ public class LeverageService {
     };
   }
 
+  /**
+   * Calculates total market exposure from margin and leverage multiplier.
+   *
+   * @param marginRequired the required margin
+   * @param multiplier the leverage multiplier
+   * @return the total exposure
+   * @throws IllegalArgumentException if arguments are null
+   */
   public BigDecimal calculateExposure(BigDecimal marginRequired, BigDecimal multiplier) {
     if (marginRequired == null) {
       throw new IllegalArgumentException("Margin required cannot be null.");
@@ -67,6 +97,15 @@ public class LeverageService {
     return marginRequired.multiply(multiplier);
   }
 
+  /**
+   * Calculates the liquidation price for a leveraged position.
+   *
+   * @param stock the stock being traded
+   * @param multiplier the leverage multiplier
+   * @param leverage the leverage level
+   * @return the liquidation price, or zero if leverage is off
+   * @throws IllegalArgumentException if arguments are null
+   */
   public BigDecimal calculateLiquidationPrice(
       Stock stock,
       BigDecimal multiplier,
@@ -95,6 +134,13 @@ public class LeverageService {
     return entryPrice.multiply(liquidationFactor);
   }
 
+  /**
+   * Checks whether a leveraged position has reached liquidation.
+   *
+   * @param position the leveraged position
+   * @return true if the position is liquidated, false otherwise
+   * @throws IllegalArgumentException if position is null
+   */
   public boolean isLiquidated(LeveragedPosition position) {
     if (position == null) {
       throw new IllegalArgumentException("Leveraged position cannot be null.");
@@ -106,6 +152,13 @@ public class LeverageService {
         .compareTo(position.getLiquidationPrice()) <= 0;
   }
 
+  /**
+   * Finds all liquidated leveraged positions in a portfolio.
+   *
+   * @param portfolio the portfolio to inspect
+   * @return a list of liquidated positions
+   * @throws IllegalArgumentException if portfolio is null
+   */
   public List<LeveragedPosition> findLiquidatedPositions(Portfolio portfolio) {
     if (portfolio == null) {
       throw new IllegalArgumentException("Portfolio cannot be null.");

@@ -1,6 +1,9 @@
 /* =====================================================
    SIDEBAR NAVIGATION BUTTONS
  ===================================================== */
+.sidebar-panel {
+    -fx-background-color: -color-border;
+}
 
 .sidebar-button {
     -fx-background-color: transparent;

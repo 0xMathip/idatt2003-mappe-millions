@@ -41,6 +41,9 @@ public class Player {
    * @param money How much you want to add
    */
   public void addMoney(BigDecimal money) {
+    if (money == null) {
+      throw new IllegalArgumentException("Amount cannot be null");
+    }
     this.money = this.money.add(Objects.requireNonNullElse(money, BigDecimal.ZERO));
   }
 

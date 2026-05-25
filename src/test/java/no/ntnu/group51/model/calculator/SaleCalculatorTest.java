@@ -14,7 +14,7 @@ class SaleCalculatorTest {
   // Negative tax
   @Test
   void testSaleCalculator() {
-    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"));
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"), "no-icon");
     Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("4.55"));
     SaleCalculator calc = new SaleCalculator(share);
 
@@ -34,7 +34,7 @@ class SaleCalculatorTest {
   // Positive tax
   @Test
   void testSaleCalculator2() {
-    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.55"));
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.55"), "no-icon");
     Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("3.55"));
     SaleCalculator calc = new SaleCalculator(share);
 
@@ -42,5 +42,22 @@ class SaleCalculatorTest {
     assertEquals(new BigDecimal("8.59050"), calc.calculateTax());
   }
 
+  @Test
+  void testSaleCalculatorWithTax() {
+    Stock apple = new Stock("AAPL", "Apple", new BigDecimal("200"), "icon");
+    Share share = new Share(apple, new BigDecimal("10"), new BigDecimal("100"));
 
+    SaleCalculator calc = new SaleCalculator(share);
+
+    BigDecimal gross = calc.calculateGross();
+    BigDecimal commission = calc.calculateCommission();
+    BigDecimal tax = calc.calculateTax();
+    BigDecimal total = calc.calculateTotal();
+
+    assertEquals(0, gross.compareTo(new BigDecimal("2000")));
+    assertEquals(0, commission.compareTo(new BigDecimal("20")));
+    assertTrue(tax.compareTo(new BigDecimal("293")) >= 0);
+    assertTrue(tax.compareTo(new BigDecimal("295")) <= 0);
+    assertEquals(0, total.compareTo(new BigDecimal("1686")));
+  }
 }

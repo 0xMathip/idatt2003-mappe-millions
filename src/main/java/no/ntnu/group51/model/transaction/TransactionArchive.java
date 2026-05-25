@@ -25,15 +25,18 @@ public class TransactionArchive {
    *         and false if something went wrong
    */
   public boolean add(Transaction transaction) {
-    try {
-      transactions.add(transaction);
-      return true;
-
-    } catch (Exception e) {
-      return false;
+    if (transaction == null) {
+      throw new IllegalArgumentException("Transaction cannot be null.");
     }
+
+    return transactions.add(transaction);
   }
 
+  /**
+   * Checks whether the archive contains no transactions.
+   *
+   * @return true if the archive is empty, false otherwise
+   */
   public boolean isEmpty() {
     return transactions.isEmpty();
   }
@@ -154,10 +157,20 @@ public class TransactionArchive {
     return false;
   }
 
+  /**
+   * Returns all transactions in the archive.
+   *
+   * @return a copy of all transactions
+   */
   public List<Transaction> getTransactions() {
     return transactions;
   }
 
+  /**
+   * Returns the three most recent transactions in the archive.
+   *
+   * @return a list containing up to three latest transactions
+   */
   public List<Transaction> getLast3Transactions() {
     List<Transaction> last3Transactions = new ArrayList<>();
 

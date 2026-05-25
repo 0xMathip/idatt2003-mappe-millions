@@ -14,6 +14,9 @@ import no.ntnu.group51.view.util.PriceStyleHelper;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * UI card displaying the currently selected stock.
+ */
 public class StockSelectorCard implements View {
 
   private final HBox root = new HBox();
@@ -23,6 +26,9 @@ public class StockSelectorCard implements View {
   private final Label priceLabel = new Label();
   private final Label changeLabel = new Label();
 
+  /**
+   * Creates the stock selector card.
+   */
   public StockSelectorCard() {
     root.getStyleClass().addAll(StyleClass.CARD, StyleClass.STOCK_SELECTOR_CARD);
     root.setAlignment(Pos.CENTER_LEFT);
@@ -61,6 +67,12 @@ public class StockSelectorCard implements View {
     root.getChildren().addAll(content, arrowIcon);
   }
 
+  /**
+   * Updates the displayed stock information.
+   *
+   * @param stock the stock to display
+   * @throws IllegalArgumentException if stock is null
+   */
   public void updateStock(Stock stock) {
     if (stock == null) {
       throw new IllegalArgumentException("Stock cannot be null.");
@@ -77,6 +89,9 @@ public class StockSelectorCard implements View {
     );
   }
 
+  /**
+   * Resets the displayed stock information.
+   */
   public void clear() {
     tickerLabel.setText("-");
     companyLabel.setText("No stock selected");
@@ -84,6 +99,9 @@ public class StockSelectorCard implements View {
     changeLabel.setText("0%");
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

@@ -20,7 +20,8 @@ public class Stock {
    * @param symbol     The symbol of the company. Example: AAPL for Apple
    * @param company    The name of the company
    * @param salesPrice The sales price of the stock
-   * @throws IllegalArgumentException if symbol, company or salesPrice is null
+   * @param icon       the icon identifier for the stock
+   * @throws IllegalArgumentException if symbol, company, salesPrice or icon is null
    */
   public Stock(String symbol, String company, BigDecimal salesPrice, String icon) {
     if (symbol == null) {
@@ -88,7 +89,7 @@ public class Stock {
    * Returns the highest price for this stock.
    *
    * @return the highest price of a stock, or {@code BigDecimal.ZERO}
-   *         if no prices are available
+   * if no prices are available
    */
   public BigDecimal getHighestPrice() {
 
@@ -101,7 +102,7 @@ public class Stock {
    * Returns the lowest price for this stock.
    *
    * @return the lowest price of a stock, or {@code BigDecimal.ZERO}
-   *         if prices unexpectedly is an empty list
+   * if prices unexpectedly is an empty list
    */
   public BigDecimal getLowestPrice() {
     return prices.stream()
@@ -114,7 +115,7 @@ public class Stock {
    * and the previous price.
    *
    * @return the latest price change, or {@code BigDecimal.ZERO}
-   *         if fewer than two prices have been recorded
+   * if fewer than two prices have been recorded
    */
   public BigDecimal getLatestPriceChange() {
     if (prices.size() < 2) {
@@ -124,15 +125,16 @@ public class Stock {
     BigDecimal lastChange = prices.get(prices.size() - 1);
     BigDecimal secondLastChange = prices.get(prices.size() - 2);
 
-    return lastChange.subtract(secondLastChange).setScale(3, RoundingMode.HALF_UP);
+    return lastChange.subtract(secondLastChange);
   }
 
   /**
-   Returns the percentage change between the most recent price.
-   and the previous price
+   * Returns the percentage change between the most recent price
+   * and the previous price.
    *
-   @return the latest price change in percent, or {@code BigDecimal.ZERO}
-   if fewer than two prices have been recorded*/
+   * @return the latest price change in percent, or {@code BigDecimal.ZERO}
+   * if fewer than two prices have been recorded
+   */
   public BigDecimal getLatestPriceChangePercent() {
     if (prices.size() < 2) {
       return BigDecimal.ZERO;
@@ -142,7 +144,7 @@ public class Stock {
 
 
     return getLatestPriceChange()
-        .divide(previousPrice, 4, RoundingMode.HALF_UP)
+        .divide(previousPrice, 8, RoundingMode.HALF_UP)
         .multiply(BigDecimal.valueOf(100))
         .stripTrailingZeros();
   }
@@ -165,7 +167,36 @@ public class Stock {
     return prices.getLast();
   }
 
+  /**
+   * Returns the icon identifier for this stock.
+   *
+   * @return the stock icon identifier
+   */
   public String getIcon() {
     return icon;
+  }
+
+  /**
+   * Checks equality based on stock symbol (case-insensitive).
+   *
+   * @param o the object to compare
+   * @return true if both stocks have the same symbol
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Stock)) return false;
+    Stock stock = (Stock) o;
+    return symbol.equalsIgnoreCase(stock.symbol);
+  }
+
+  /**
+   * Returns hash code based on stock symbol.
+   *
+   * @return the hash code
+   */
+  @Override
+  public int hashCode() {
+    return symbol.toUpperCase().hashCode();
   }
 }

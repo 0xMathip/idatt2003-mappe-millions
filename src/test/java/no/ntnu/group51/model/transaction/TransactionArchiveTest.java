@@ -19,7 +19,7 @@ class TransactionArchiveTest {
   @BeforeEach
   void testSetup() {
     archive = new TransactionArchive();
-    apple = new Stock("AAPL", "Apple", new BigDecimal("100"));
+    apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "no-icon");
     share = new Share(apple, BigDecimal.ONE, apple.getSalesPrice());
   }
 
@@ -41,11 +41,31 @@ class TransactionArchiveTest {
     archive.add(new Purchase(share, 1));
     archive.add(new Sale(share, 2));
 
-    List<Transaction> week1 = archive.getTransactionsByWeek(1);
-    List<Transaction> week2 = archive.getTransactionsByWeek(2);
+    List<Transaction> week1 = archive.getTransactions(1);
+    List<Transaction> week2 = archive.getTransactions(2);
 
     assertEquals(1, week1.size());
     assertEquals(1, week2.size());
+  }
+
+  @Test
+  void getTransactionsByWeekThrowsWhenNegative() {
+    assertThrows(IllegalArgumentException.class, () -> archive.getTransactions(-1));
+  }
+
+  @Test
+  void findTransactionsReturnsAllWhenNullWeek() {
+    Purchase purchase1 = new Purchase(share, 1);
+    Purchase purchase2 = new Purchase(share, 2);
+    Sale sale = new Sale(share, 3);
+
+    archive.add(purchase1);
+    archive.add(purchase2);
+    archive.add(sale);
+
+    List<Transaction> all = archive.findTransactions(null);
+
+    assertEquals(3, all.size());
   }
 
   @Test

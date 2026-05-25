@@ -19,18 +19,23 @@ public class Purchase extends Transaction {
     super(share, week, new PurchaseCalculator(share));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void commit(Player player) {
     if (committed) {
-      System.out.println("Purchase is already committed");
-
-    } else if (player.getMoney().compareTo(getTotal()) < 0) {
-      System.out.println("Insufficient funds.");
-
-    } else {
-      player.withdrawMoney(getTotal());
-      player.getPortfolio().addShare(share);
-      committed = true;
+      throw new IllegalStateException("Purchase already committed.");
     }
+    if (player == null) {
+      throw new IllegalArgumentException("Player cannot be null.");
+    }
+    if (player.getMoney().compareTo(getTotal()) < 0) {
+      throw new IllegalArgumentException("Insufficient funds.");
+    }
+
+    player.withdrawMoney(getTotal());
+    player.getPortfolio().addShare(share);
+    committed = true;
   }
 }
