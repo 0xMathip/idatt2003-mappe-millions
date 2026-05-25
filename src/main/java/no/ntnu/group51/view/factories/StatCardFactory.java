@@ -11,11 +11,21 @@ import org.kordamp.ikonli.javafx.FontIcon;
  * Factory for creating reusable statistic cards and text cards.
  */
 public final class StatCardFactory {
+  /**
+   * Prevents instantiation of this utility class.
+   */
   private StatCardFactory() {
   }
 
   /**
-   * Prevents instantiation of this utility class.
+   * Creates a statistic card without subtitle.
+   *
+   * @param icon the icon identifier
+   * @param title the card title
+   * @param valueLabel the value label
+   * @param iconStyle the icon style class
+   * @param valueStyle the value style class
+   * @return the created card
    */
   public static HBox createCard(
       String icon,
@@ -27,14 +37,17 @@ public final class StatCardFactory {
     return createCard(icon, title, valueLabel, null, iconStyle, valueStyle, null);
   }
 
+
   /**
-   * Creates a statistic card without subtitle.
+   * Creates a statistic card with optional subtitle.
    *
    * @param icon the icon identifier
    * @param title the card title
    * @param valueLabel the value label
+   * @param subtitleLabel the subtitle label, or null
    * @param iconStyle the icon style class
    * @param valueStyle the value style class
+   * @param subtitleStyle the subtitle style class
    * @return the created card
    */
   public static HBox createCard(
@@ -72,15 +85,11 @@ public final class StatCardFactory {
   }
 
   /**
-   * Creates a statistic card with optional subtitle.
+   * Creates a text-based statistic card without subtitle.
    *
-   * @param icon the icon identifier
    * @param title the card title
-   * @param valueLabel the main value label
-   * @param subtitleLabel the subtitle label, or null
-   * @param iconStyle the icon style class
+   * @param value the displayed value
    * @param valueStyle the value style class
-   * @param subtitleStyle the subtitle style class
    * @return the created card
    */
   public static VBox createTextCard(
@@ -104,7 +113,15 @@ public final class StatCardFactory {
   }
 
   /**
-   * Creates a text-based statistic card.
+   * Creates a text-based statistic card with optional state styling.
+   *
+   * @param title the card title
+   * @param value the displayed value
+   * @param subtitle the subtitle text
+   * @param valueStyle the value style class
+   * @param subtitleStyle the subtitle style class
+   * @param valueStateStyle optional shared state style
+   * @return the created card
    */
   public static VBox createTextCard(
       String title,
@@ -117,6 +134,7 @@ public final class StatCardFactory {
     return createTextCard(title, new Label(value), new Label(subtitle),
         valueStyle, subtitleStyle, valueStateStyle);
   }
+
 
   /**
    * Creates a fully configurable text-based statistic card.

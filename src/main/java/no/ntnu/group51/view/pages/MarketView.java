@@ -184,27 +184,44 @@ public class MarketView implements View {
     this.onStockSelectorClicked = handler;
   }
 
+  /**
+   * Returns the stock selector card.
+   *
+   * @return the stock selector card
+   */
   public StockSelectorCard getStockSelectorCard() {
     return stockSelectorCard;
   }
 
+  /**
+   * Returns the trade panel.
+   *
+   * @return the trade panel
+   */
   public TradePanel getTradePanel() {
     return tradePanel;
   }
 
+  /**
+   * Returns the stock chart card.
+   *
+   * @return the stock chart card
+   */
   public StockChartCard getStockChartCard() {
     return stockChartCard;
   }
 
+  /**
+   * Returns the holding info card.
+   *
+   * @return the holding info card
+   */
   public MarketHoldingInfoCard getHoldingInfoCard() {
     return holdingInfoCard;
   }
 
   /**
-   * Sets the action triggered when the stock selector is clicked.
-   *
-   * @param handler the click handler
-   * @throws IllegalArgumentException if handler is null
+   * Clears the selected stock and stock chart.
    */
   public void clear() {
     stockSelectorCard.clear();

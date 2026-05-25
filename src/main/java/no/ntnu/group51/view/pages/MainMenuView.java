@@ -30,8 +30,6 @@ public class MainMenuView implements View {
 
   /**
    * Creates the main menu view.
-   *
-   * @param sceneManager The scene manager for the stage.
    */
   public MainMenuView() {
 
@@ -98,6 +96,7 @@ public class MainMenuView implements View {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Parent getRoot() {
     return root;
   }

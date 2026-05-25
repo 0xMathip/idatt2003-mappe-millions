@@ -98,7 +98,7 @@ public class GameModel {
   /**
    * Registers an observer to be notified when the model changes.
    *
-   * @param o the observer to add
+   * @param observer the observer to add
    * @throws IllegalArgumentException if observer is null
    */
   public void addObserver(Observer observer) {

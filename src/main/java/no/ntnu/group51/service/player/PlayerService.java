@@ -1,4 +1,4 @@
-package no.ntnu.group51.model.player;
+package no.ntnu.group51.service.player;
 
 import java.math.BigDecimal;
 import java.util.Objects;

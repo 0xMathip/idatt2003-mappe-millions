@@ -21,7 +21,6 @@ public class Stock {
    * @param company    The name of the company
    * @param salesPrice The sales price of the stock
    * @param icon       the icon identifier for the stock
-   * @throws IllegalArgumentException if symbol, company or salesPrice is null
    * @throws IllegalArgumentException if symbol, company, salesPrice or icon is null
    */
   public Stock(String symbol, String company, BigDecimal salesPrice, String icon) {
