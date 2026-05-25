@@ -14,6 +14,7 @@ import no.ntnu.group51.model.stocks.Stock;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.model.xp.XpCalc;
 
 /**
  * Represents a stock exchange.
@@ -196,6 +197,7 @@ public class Exchange {
 
     Share purchasedShare = new Share(stock, quantity, purchasePricePerShare);
     Transaction transaction = new Purchase(purchasedShare, week);
+    XpCalc.calculateXp(player, transaction, purchasedShare);
     transaction.commit(player);
 
     return transaction;
@@ -220,6 +222,7 @@ public class Exchange {
     }
 
     Transaction transaction = new Sale(share, week);
+    XpCalc.calculateXp(player, transaction, share);
     transaction.commit(player);
 
     return transaction;

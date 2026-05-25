@@ -17,6 +17,7 @@ public class Player {
   private final Portfolio portfolio;
   private final TransactionArchive transactionArchive;
   private PlayerLevel playerLevel;
+  private BigDecimal xp;
 
   /**
    * Creates a new player.
@@ -34,6 +35,7 @@ public class Player {
     this.portfolio = new Portfolio();
     this.transactionArchive = new TransactionArchive();
     this.playerLevel = PlayerLevel.NOVICE;
+    this.xp = BigDecimal.ZERO;
   }
 
   /**
@@ -43,6 +45,14 @@ public class Player {
    */
   public void addMoney(BigDecimal money) {
     this.money = this.money.add(Objects.requireNonNullElse(money, BigDecimal.ZERO));
+  }
+
+  public void addXp(BigDecimal amount) {
+    xp = xp.add(amount);
+  }
+
+  public BigDecimal getXp() {
+    return xp;
   }
 
   /**

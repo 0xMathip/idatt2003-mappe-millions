@@ -11,8 +11,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.player.PlayerLevel;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.math.BigDecimal;
 
 public class SidebarView implements View {
 
@@ -25,6 +28,11 @@ public class SidebarView implements View {
   private final Label currentLevelLabel = new Label("<CURRENT_LEVEL>");
   private final Label nextLevelLabel = new Label("Next level: " + "<NEXT_LEVEL>");
   private final Button pauseButton = new Button();
+  private final ImageView currentLevel = new ImageView();
+  private final ProgressBar progressBar = new ProgressBar();
+  private Image novice = new Image("/images/novice.png");
+  private Image investor = new Image("/images/investor.png");
+  private Image speculator = new Image("/images/speculator.png");
 
   public SidebarView() {
 
@@ -86,11 +94,8 @@ public class SidebarView implements View {
     transactionsButton.setGraphicTextGap(12);
 
     // Level box
-    Image novice = new Image("/images/novice.png");
-    Image investor = new Image("/images/investor.png");
-    Image speculator = new Image("/images/speculator.png");
 
-    ImageView currentLevel = new ImageView(speculator);
+    currentLevel.setImage(novice);
     currentLevel.setFitHeight(103);
     currentLevel.setFitWidth(120);
 
@@ -98,7 +103,6 @@ public class SidebarView implements View {
     yellowContainer.getChildren().add(currentLevel);
     yellowContainer.getStyleClass().add("yellow-boss-baby-box");
 
-    ProgressBar progressBar = new ProgressBar();
 
     Label playerLevelLabel = new Label("Player level");
     playerLevelLabel.getStyleClass().add("player-level-label");
@@ -181,6 +185,14 @@ public class SidebarView implements View {
     } else {
       nextLevelLabel.setText("Max level");
     }
+  }
+
+  public void setLevelImage(PlayerLevel level) {
+    currentLevel.setImage(new Image("/images/" + level.toString().toLowerCase() + ".png"));
+  }
+
+  public void setProgressBar(BigDecimal xp) {
+    progressBar.setProgress(xp.doubleValue());
   }
 
   public void toggleDashboard() {

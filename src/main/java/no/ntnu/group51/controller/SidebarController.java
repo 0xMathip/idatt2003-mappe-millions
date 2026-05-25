@@ -5,6 +5,8 @@ import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.player.PlayerLevel;
 import no.ntnu.group51.view.SidebarView;
 
+import java.math.BigDecimal;
+
 /**
  * Controller for the sidebar.
  */
@@ -53,6 +55,26 @@ public class SidebarController {
   }
 
   /**
+   * Updates the entire sidebar in one method.
+   */
+  public void updateSidebar() {
+    updateWeek();
+    updateLevel();
+    updateNextLevel();
+    updateLevelTab();
+  }
+
+  /**
+   * Updates the entire level tab.
+   */
+  public void updateLevelTab() {
+    updateLevel();
+    updateNextLevel();
+    updateLevelImage();
+    updateProgressBar();
+  }
+
+  /**
    * Updates the current week label.
    */
   public void updateWeek() {
@@ -79,11 +101,17 @@ public class SidebarController {
   }
 
   /**
-   * Updates the entire sidebar in one method.
+   * Sets the level image to the current one.
    */
-  public void updateSidebar() {
-    updateWeek();
-    updateLevel();
-    updateNextLevel();
+  public void updateLevelImage() {
+    view.setLevelImage(model.getPlayer().getPlayerLevel());
   }
+
+  /**
+   * Sets the progress bar to match the current state.
+   */
+  public void updateProgressBar() {
+    view.setProgressBar(model.getPlayer().getXp());
+  }
+
 }

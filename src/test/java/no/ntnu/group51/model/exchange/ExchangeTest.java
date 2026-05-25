@@ -22,10 +22,10 @@ class ExchangeTest {
 
     @BeforeEach
     void testSetup() {
-        apple = new Stock("AAPL", "Apple", new BigDecimal("100"));
-        google = new Stock("GOOG", "Google", new BigDecimal("200"));
-        tesla = new Stock("TSLA", "Tesla", new BigDecimal("300"));
-        microsoft = new Stock("MSFT", "Microsoft", new BigDecimal("120"));
+        apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "cib-apple");
+        google = new Stock("GOOG", "Google", new BigDecimal("200"),  "cib-google");
+        tesla = new Stock("TSLA", "Tesla", new BigDecimal("300"),   "cib-tesla");
+        microsoft = new Stock("MSFT", "Microsoft", new BigDecimal("120"), "cib-microsoft");
         exchange = new Exchange("Oslo Børs", List.of(apple, google, tesla, microsoft));
     }
 
