@@ -1,3 +1,7 @@
+/* =====================================================
+   BADGE UTILITIES
+ ===================================================== */
+
 .badge {
     -fx-padding: 2px 8px;
     -fx-background-radius: 999px;
@@ -22,3 +26,4 @@
     -fx-padding: 2px 8px;
     -fx-background-radius: 999px;
 }
+

@@ -1,6 +1,6 @@
-/* ===================
-   TEXT
-=================== */
+/* =====================================================
+   TEXT UTILITIES
+ ===================================================== */
 
 .text-body {
     -fx-text-fill: -color-text;
@@ -20,16 +20,34 @@
     -fx-font-size: 15px;
 }
 
+.text-body-large {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 20px;
+}
+
 .text-title {
     -fx-text-fill: -color-text;
     -fx-font-family: -font-bold;
     -fx-font-size: 20px;
 }
 
+.text-title-large {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 24px;
+}
+
 .text-heading {
     -fx-text-fill: -color-text;
     -fx-font-family: -font-bold;
     -fx-font-size: 24px;
+}
+
+.text-heading-large {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 32px;
 }
 
 .text-display {
@@ -44,9 +62,9 @@
     -fx-font-size: 16px;
 }
 
-/* ===================
-   ICONS
-=================== */
+/* =====================================================
+   ICON UTILITIES
+ ===================================================== */
 
 .icon-small {
     -fx-icon-size: 20px;
@@ -88,9 +106,9 @@
     -fx-max-height: 40px;
 }
 
-/* ===================
+/* =====================================================
    COMMON COMPONENTS
-=================== */
+ ===================================================== */
 
 .card {
     -fx-background-color: -color-surface;
@@ -127,15 +145,9 @@
     -fx-text-fill: -color-text;
 }
 
-/* ===================
-   GLOBAL PAGE STYLES
-=================== */
-
-.page-title {
-    -fx-text-fill: -color-yellow;
-    -fx-font-family: "Almarai Bold";
-    -fx-font-size: 64px;
-}
+/* =====================================================
+   PAGE LAYOUT
+ ===================================================== */
 
 .page-layout {
     -fx-background-color: -color-bg;
@@ -143,25 +155,44 @@
     -fx-vgap: 24px;
 }
 
+.page-content {
+    -fx-max-width: 1500px;
+    -fx-pref-width: 1500px;
+}
+
+.page-title {
+    -fx-text-fill: -color-yellow;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 64px;
+}
+
 .section-title {
-    -fx-text-fill: white;
+    -fx-text-fill: -color-text;
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 32px;
 }
 
 .body-text {
-    -fx-text-fill: white;
+    -fx-text-fill: -color-text;
     -fx-font-family: "Almarai Regular";
     -fx-font-size: 20px;
+}
+
+/* =====================================================
+   PRICE CHANGE STATES
+ ===================================================== */
+
+.positive-price-change {
+    -fx-text-fill: -color-green;
 }
 
 .negative-price-change {
     -fx-text-fill: -color-red;
 }
 
-.positive-price-change {
-    -fx-text-fill: -color-green;
-}
+/* =====================================================
+   GLOBAL INTERACTIVE ELEMENTS
+ ===================================================== */
 
 .button {
     -fx-cursor: hand;
@@ -170,3 +201,5 @@
 .toggle-button {
     -fx-cursor: hand;
 }
+
+

@@ -1,10 +1,6 @@
 package no.ntnu.group51.view.util;
 
-/**
- * Centralized CSS class name constants.
- *
- * Prevents typos, enables refactoring support, and documents available styles.
- */
+
 public final class StyleClass {
   private StyleClass() {
   }

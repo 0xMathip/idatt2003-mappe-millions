@@ -1,3 +1,7 @@
+/* =====================================================
+   ICON UTILITIES
+ ===================================================== */
+
 .stat-icon {
     -fx-stroke-width: 1px;
     -fx-icon-size: 40px;
@@ -5,7 +9,22 @@
     -fx-pref-height: 40px;
 }
 
-.stat-icon-positive { -fx-fill: -color-green; -fx-stroke: -color-green; }
-.stat-icon-negative { -fx-fill: -color-red; -fx-stroke: -color-red; }
-.stat-icon-neutral { -fx-text-fill: -color-text; }
-.stat-icon-warning { -fx-fill: -color-yellow; -fx-stroke: -color-yellow; }
+.stat-icon-positive {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+}
+
+.stat-icon-negative {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+}
+
+.stat-icon-neutral {
+    -fx-text-fill: -color-text;
+}
+
+.stat-icon-warning {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+}
+

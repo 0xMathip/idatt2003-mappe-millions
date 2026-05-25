@@ -1,2 +1,179 @@
-.market-view {
+/* =====================================================
+   MARKET HOLDING CARD
+ ===================================================== */
+
+.market-holding-info-card {
+    -fx-padding: 12px;
+    -fx-spacing: 14px;
+    -fx-pref-width: 368px;
+    -fx-alignment: center;
 }
+
+.market-holding-box {
+    -fx-padding: 12px 14px;
+    -fx-pref-width: 165px;
+    -fx-min-width: 165px;
+    -fx-background-radius: 18px;
+    -fx-alignment: center-left;
+}
+
+.market-holding-box-leveraged {
+    -fx-border-color: -color-warning;
+    -fx-border-width: 1px;
+    -fx-border-radius: 18px;
+}
+
+.market-holding-box-title {
+    -fx-font-family: "Almarai Regular";
+    -fx-text-fill: -color-border-light;
+    -fx-font-size: 14px;
+}
+
+.market-holding-box-value {
+    -fx-font-family: "Almarai Bold";
+    -fx-text-fill: -color-text;
+    -fx-font-size: 17px;
+}
+
+.market-holding-box-subvalue {
+    -fx-font-family: "Almarai Regular";
+    -fx-text-fill: -color-red;
+    -fx-font-size: 12px;
+}
+
+.market-holding-leverage-badge {
+    -fx-background-color: -color-warning-dark;
+    -fx-text-fill: -color-warning;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 11px;
+    -fx-padding: 2px 8px;
+    -fx-background-radius: 999px;
+}
+
+/* =====================================================
+   STOCK SELECTOR CARD
+ ===================================================== */
+
+.stock-selector-card {
+    -fx-pref-height: 107px;
+    -fx-max-height: 107px;
+    -fx-min-height: 107px;
+    -fx-pref-width: 368px;
+    -fx-min-width: 368px;
+    -fx-max-width: 368px;
+    -fx-spacing: 25px;
+    -fx-padding: 0 20px 0 20px;
+}
+
+.stock-selector-card:hover {
+    -fx-border-color: -color-yellow;
+}
+
+.stock-selector-card-ticker-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 36px;
+    -fx-padding: 0 0 2px 0;
+}
+
+.stock-selector-card-company-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 2px 0 0 0;
+}
+
+.stock-selector-card-price-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+    -fx-padding: 0 0 2px 0;
+}
+
+.stock-selector-card-change-label {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 2px 0 0 0;
+}
+
+.stock-selector-card-content {
+    -fx-min-width: 270px;
+    -fx-max-width: 270px;
+    -fx-min-height: 70px;
+    -fx-max-height: 70px;
+}
+
+.stock-selector-card-row {
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+}
+
+.stock-selector-card-arrow {
+    -fx-fill: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 22px;
+    -fx-pref-width: 22px;
+    -fx-pref-height: 22px;
+}
+
+/* =====================================================
+   STOCK CHART CARD
+ ===================================================== */
+
+.stock-chart-card-large {
+    -fx-pref-height: 830px;
+    -fx-pref-width: 1050px;
+    -fx-padding: 20px 30px 20px 30px;
+}
+
+.stock-chart-card-small {
+    -fx-pref-height: 260px;
+    -fx-pref-width: 645px;
+    -fx-min-width: 645px;
+    -fx-max-width: 645px;
+    -fx-padding: 0 10px 0 0;
+}
+
+.stock-chart-card-chart {
+    -fx-background-color: transparent;
+}
+
+.stock-chart-card-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.stock-chart-card-chart .chart-horizontal-grid-lines,
+.stock-chart-card-chart .chart-vertical-grid-lines {
+    -fx-stroke: -color-border;
+}
+
+.default-color0.chart-series-area-line,
+.default-color0.chart-series-line {
+    -fx-stroke: -color-yellow;
+    -fx-stroke-width: 3px;
+}
+
+.default-color0.chart-series-area-fill {
+    -fx-fill: rgba(246, 218, 54, 0.10);
+}
+
+.stock-chart-card-large .axis {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-tick-label-fill: -color-border-light;
+    -fx-tick-label-font-family: "Almarai Regular";
+    -fx-tick-label-font-size: 15px;
+    -fx-padding: 0 40px 0 0;
+}
+
+.stock-chart-card-small .axis {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.stock-chart-card-small .chart-horizontal-grid-lines,
+.stock-chart-card-small .chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+

@@ -1,0 +1,137 @@
+/* =====================================================
+   SEARCH MENU CONTAINER
+ ===================================================== */
+
+.search-menu {
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
+    -fx-pref-width: 683px;
+    -fx-min-width: 683px;
+    -fx-max-width: 683px;
+}
+
+/* =====================================================
+   SEARCH MENU COMPONENTS
+ ===================================================== */
+
+.search-menu-text-field {
+    -fx-pref-height: 50px;
+    -fx-max-height: 50px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 610px;
+    -fx-min-width: 610px;
+    -fx-max-width: 610px;
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 0 20 0 20;
+}
+
+.search-menu-no-close .search-menu-text-field {
+    -fx-pref-width: 650px;
+    -fx-min-width: 650px;
+    -fx-max-width: 650px;
+}
+
+.search-menu-top-bar {
+    -fx-spacing: 16px;
+}
+
+.search-menu-separator {
+    -fx-background-color: -color-border;
+    -fx-border-color: transparent;
+    -fx-pref-width: 679px;
+    -fx-min-width: 679px;
+    -fx-max-width: 679px;
+    -fx-pref-height: 2px;
+    -fx-max-height: 2px;
+    -fx-min-height: 2px;
+    -fx-padding: 0 10px 0 0;
+}
+
+.search-menu-close {
+    -fx-fill: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 22px;
+    -fx-pref-width: 22px;
+    -fx-min-width: 22px;
+    -fx-max-width: 22px;
+    -fx-pref-height: 22px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
+}
+
+/* =====================================================
+   SEARCH MENU SCROLLBAR
+ ===================================================== */
+
+.search-menu-scroll {
+    -fx-pref-height: 580px;
+    -fx-min-height: 580px;
+    -fx-max-height: infinity;
+    -fx-pref-width: 650px;
+    -fx-min-width: 650px;
+    -fx-max-width: 650px;
+    -fx-background-color: transparent;
+    -fx-border-radius: 30px;
+}
+
+.search-menu-scroll .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30px;
+}
+
+.search-menu-scroll .scroll-bar:vertical {
+    -fx-pref-width: 20px;
+    -fx-background-color: transparent;
+    -fx-padding: 0 2px 0 0;
+}
+
+.search-menu-scroll .scroll-bar:vertical .track {
+    -fx-background-color: -color-border;
+    -fx-background-radius: 20px;
+    -fx-background-insets: 0 0 20 0;
+}
+
+.search-menu-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: -color-yellow;
+    -fx-background-radius: 20px;
+    -fx-background-insets: 5 5 25 5;
+}
+
+.search-menu-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -color-yellow;
+}
+
+.search-menu-scroll .scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: #a1a100;
+}
+
+.search-menu-scroll .increment-button,
+.search-menu-scroll .decrement-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.search-menu-scroll .increment-arrow,
+.search-menu-scroll .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+.search-menu-content {
+    -fx-fill: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 22px;
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
+    -fx-pref-width: 648px;
+    -fx-min-width: 648px;
+    -fx-max-width: 648px;
+    -fx-padding: 12px 0 0 0;
+}
+

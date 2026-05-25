@@ -1,8 +1,0 @@
-.transaction-stat-trades-icon { -fx-fill: -color-text; -fx-stroke: -color-text; }
-.transaction-stat-bought-icon { -fx-fill: -color-green; -fx-stroke: -color-green; }
-.transaction-stat-sold-icon { -fx-fill: -color-red; -fx-stroke: -color-red; }
-.transaction-stat-fees-icon { -fx-fill: -color-yellow; -fx-stroke: -color-yellow; }
-
-
-.market-holding-leverage-badge { -fx-font-size: 11px; }
-.factory-portfolio-leverage-badge { -fx-font-size: 12px; }

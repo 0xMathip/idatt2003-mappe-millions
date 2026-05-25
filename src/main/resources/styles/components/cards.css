@@ -1,0 +1,171 @@
+/* =====================================================
+   SEARCH ROW STYLING
+ ===================================================== */
+
+.search-row {
+    -fx-pref-height: 115px;
+    -fx-max-height: 115px;
+    -fx-min-height: 115px;
+    -fx-pref-width: 610px;
+    -fx-min-width: 610px;
+    -fx-max-width: 610px;
+}
+
+.search-row:hover {
+    -fx-border-color: -color-yellow;
+}
+
+.search-row:selected {
+    -fx-border-color: -color-yellow;
+}
+
+/* =====================================================
+   FACTORY SEARCH ROW COMPONENTS
+ ===================================================== */
+
+.factory-search-row-ticker {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 36px;
+}
+
+.factory-search-row-company {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+}
+
+.factory-search-row-price {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-search-row-change {
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+}
+
+.factory-search-row-change-percent {
+    -fx-font-family: "Almarai";
+    -fx-font-size: 20px;
+}
+
+.factory-search-row-arrow {
+    -fx-fill: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 22px;
+    -fx-pref-width: 22px;
+    -fx-min-width: 22px;
+    -fx-max-width: 22px;
+    -fx-pref-height: 22px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
+}
+
+/* =====================================================
+   FACTORY TRANSACTION STATUS
+ ===================================================== */
+
+.factory-transaction-week {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-transaction-week-count {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-transaction-share-count {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai";
+    -fx-font-size: 24px;
+}
+
+.factory-transaction-status {
+    -fx-pref-height: 43px;
+    -fx-max-height: 43px;
+    -fx-min-height: 43px;
+    -fx-pref-width: 123px;
+    -fx-min-width: 123px;
+    -fx-max-width: 123px;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+}
+
+.factory-transaction-status-icon {
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 20px;
+    -fx-pref-width: 20px;
+    -fx-min-width: 20px;
+    -fx-max-width: 20px;
+    -fx-pref-height: 20px;
+    -fx-min-height: 20px;
+    -fx-max-height: 20px;
+}
+
+.factory-transaction-status-label {
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-pref-width: 63px;
+    -fx-min-width: 63px;
+    -fx-max-width: 63px;
+}
+
+.factory-transaction-status-sell {
+    -fx-border-color: -color-red;
+}
+
+.factory-transaction-status-sell .factory-transaction-status-label {
+    -fx-text-fill: -color-red;
+}
+
+.factory-transaction-status-sell .factory-transaction-status-icon {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+}
+
+.factory-transaction-status-buy {
+    -fx-border-color: -color-green;
+}
+
+.factory-transaction-status-buy .factory-transaction-status-label {
+    -fx-text-fill: -color-green;
+}
+
+.factory-transaction-status-buy .factory-transaction-status-icon {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+}
+
+/* =====================================================
+   FACTORY STAT CARD
+ ===================================================== */
+
+.factory-stat-card {
+    -fx-pref-width: 290px;
+    -fx-min-width: 290px;
+    -fx-max-width: 290px;
+    -fx-pref-height: 148px;
+    -fx-min-height: 148px;
+    -fx-max-height: 148px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 2px;
+    -fx-border-color: -color-border;
+    -fx-padding: 0 0 0 30px;
+}
+
+.factory-stat-card-icon {
+    /* Icon styling handled by stat-icon classes */
+}
+
+.factory-stat-card-top-text {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+

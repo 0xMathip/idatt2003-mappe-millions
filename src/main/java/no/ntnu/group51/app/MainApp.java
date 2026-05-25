@@ -31,14 +31,21 @@ public class MainApp extends Application {
         getClass().getResource("/styles/theme.css").toExternalForm(),
         getClass().getResource("/styles/base.css").toExternalForm(),
         getClass().getResource("/styles/layout.css").toExternalForm(),
-        getClass().getResource("/styles/navigation.css").toExternalForm(),
-        getClass().getResource("/styles/components.css").toExternalForm(),
+
+        getClass().getResource("/styles/components/badges.css").toExternalForm(),
+        getClass().getResource("/styles/components/buttons.css").toExternalForm(),
+        getClass().getResource("/styles/components/cards.css").toExternalForm(),
+        getClass().getResource("/styles/components/icons.css").toExternalForm(),
+
+        getClass().getResource("/styles/panels/trade-panel.css").toExternalForm(),
         getClass().getResource("/styles/panels/market.css").toExternalForm(),
-        getClass().getResource("/styles/panels/dashboard.css").toExternalForm(),
         getClass().getResource("/styles/panels/portfolio.css").toExternalForm(),
         getClass().getResource("/styles/panels/transactions.css").toExternalForm(),
-        getClass().getResource("/styles/menus/overlays.css").toExternalForm(),
-        getClass().getResource("/styles/pages/mainmenu.css").toExternalForm()
+        getClass().getResource("/styles/panels/dashboard.css").toExternalForm(),
+
+        getClass().getResource("/styles/menus/sidebar.css").toExternalForm(),
+        getClass().getResource("/styles/menus/search-menu.css").toExternalForm(),
+        getClass().getResource("/styles/menus/overlays.css").toExternalForm()
     );
 
     CsvStartupFileHandler csv = new CsvStartupFileHandler();
