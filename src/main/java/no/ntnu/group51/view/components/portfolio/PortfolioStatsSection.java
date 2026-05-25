@@ -10,16 +10,22 @@ import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * UI section displaying portfolio summary statistics.
+ */
 public class PortfolioStatsSection {
   private final HBox root = new HBox(100);
 
-  private Label portfolioValueLabel = new Label("$0.00");
-  private Label portfolioValueChangeLabel = new Label("$0.00");
-  private Label netWorthLabel = new Label("$0.00");
-  private Label cashLabel = new Label("$0.00");
-  private Label totalReturnLabel = new Label("$0.00");
-  private Label totalReturnPercentLabel = new Label("(0.00%)");
+  private final Label portfolioValueLabel = new Label("$0.00");
+  private final Label portfolioValueChangeLabel = new Label("$0.00");
+  private final Label netWorthLabel = new Label("$0.00");
+  private final Label cashLabel = new Label("$0.00");
+  private final Label totalReturnLabel = new Label("$0.00");
+  private final Label totalReturnPercentLabel = new Label("(0.00%)");
 
+  /**
+   * Creates the portfolio statistics section.
+   */
   public PortfolioStatsSection() {
     createLayout();
   }
@@ -69,6 +75,12 @@ public class PortfolioStatsSection {
     );
   }
 
+  /**
+   * Updates the displayed portfolio statistics.
+   *
+   * @param summary the portfolio summary to display
+   * @throws IllegalArgumentException if summary is null
+   */
   public void updateSummary(PortfolioSummary summary) {
     if (summary == null) {
       throw new IllegalArgumentException("Portfolio summary cannot be null.");
@@ -88,6 +100,11 @@ public class PortfolioStatsSection {
     PriceStyleHelper.applyPriceChangeStyle(totalReturnPercentLabel, summary.totalReturn());
   }
 
+  /**
+   * Returns the root UI node.
+   *
+   * @return the root node
+   */
   public Parent getRoot() {
     return root;
   }

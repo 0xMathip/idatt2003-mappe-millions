@@ -175,6 +175,9 @@ public class MarketView implements View {
     stockChartCard.clear();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

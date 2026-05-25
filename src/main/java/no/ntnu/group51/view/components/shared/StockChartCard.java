@@ -139,6 +139,9 @@ public class StockChartCard implements View {
     root.getStyleClass().add(style);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

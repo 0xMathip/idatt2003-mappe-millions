@@ -95,6 +95,9 @@ public class PortfolioView implements View {
     pStockDetails.setOnOpenMarketPress(action);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

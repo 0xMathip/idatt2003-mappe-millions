@@ -185,6 +185,9 @@ public class DashboardView implements View {
     diffOverWeeks.updateDifferences(thisWeek, last4Weeks, allTime);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

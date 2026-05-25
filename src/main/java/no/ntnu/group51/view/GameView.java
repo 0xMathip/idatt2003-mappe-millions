@@ -57,6 +57,9 @@ public class GameView implements View {
     root.setLeft(view.getRoot());
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

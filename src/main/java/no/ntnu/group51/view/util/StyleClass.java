@@ -180,6 +180,7 @@ public final class StyleClass {
 
 
   // ==================== SIDEBAR / NAVIGATION ====================
+  public static final String SIDEBAR_PANEL = "sidebar-panel";
   public static final String SIDEBAR_BUTTON = "sidebar-button";
   public static final String YELLOW_BOSS_BABY_BOX = "yellow-boss-baby-box";
   public static final String PLAYER_LEVEL_LABEL = "player-level-label";

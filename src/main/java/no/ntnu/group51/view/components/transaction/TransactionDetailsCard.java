@@ -161,7 +161,9 @@ public class TransactionDetailsCard implements View {
     return row;
   }
 
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

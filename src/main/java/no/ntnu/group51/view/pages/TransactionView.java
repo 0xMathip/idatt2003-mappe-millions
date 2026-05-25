@@ -91,6 +91,9 @@ public class TransactionView implements View {
     transactionSearchMenu.setOnTransactionSelected(handler);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

@@ -72,6 +72,9 @@ public class TransactionSearchMenu implements View {
         || String.valueOf(transaction.week()).contains(lowerCase);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;
