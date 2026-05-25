@@ -176,4 +176,28 @@ public class Stock {
   public String getIcon() {
     return icon;
   }
+
+  /**
+   * Checks equality based on stock symbol (case-insensitive).
+   *
+   * @param o the object to compare
+   * @return true if both stocks have the same symbol
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Stock)) return false;
+    Stock stock = (Stock) o;
+    return symbol.equalsIgnoreCase(stock.symbol);
+  }
+
+  /**
+   * Returns hash code based on stock symbol.
+   *
+   * @return the hash code
+   */
+  @Override
+  public int hashCode() {
+    return symbol.toUpperCase().hashCode();
+  }
 }

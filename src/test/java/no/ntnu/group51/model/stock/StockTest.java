@@ -1,5 +1,7 @@
 package no.ntnu.group51.model.stock;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -130,6 +132,50 @@ class StockTest {
     BigDecimal expected = new BigDecimal("8.534221");
 
     assertEquals(expected, appleStockTest.getHighestPrice());
+  }
+
+  @Test
+  void testStockEqualsWithSameSymbol() {
+    Stock stock1 = new Stock("AAPL", "Apple", new BigDecimal("150"), "icon");
+    Stock stock2 = new Stock("AAPL", "Apple Inc", new BigDecimal("155"), "icon2");
+
+    assertEquals(stock1, stock2);  // Should be equal (same symbol)
+  }
+
+  @Test
+  void testStockEqualsIsCaseInsensitive() {
+    Stock stock1 = new Stock("AAPL", "Apple", new BigDecimal("150"), "icon");
+    Stock stock2 = new Stock("aapl", "Apple", new BigDecimal("150"), "icon");
+
+    assertEquals(stock1, stock2);
+  }
+
+  @Test
+  void testStockNotEqualsWithDifferentSymbol() {
+    Stock stock1 = new Stock("AAPL", "Apple", new BigDecimal("150"), "icon");
+    Stock stock2 = new Stock("GOOGL", "Google", new BigDecimal("150"), "icon");
+
+    assertNotEquals(stock1, stock2);
+  }
+
+  @Test
+  void testStockHashCodeConsistent() {
+    Stock stock1 = new Stock("AAPL", "Apple", new BigDecimal("150"), "icon");
+    Stock stock2 = new Stock("AAPL", "Apple", new BigDecimal("150"), "icon");
+
+    assertEquals(stock1.hashCode(), stock2.hashCode());
+  }
+
+  @Test
+  void testStockInSet() {
+    Set<Stock> stocks = new HashSet<>();
+    Stock apple1 = new Stock("AAPL", "Apple", new BigDecimal("150"), "icon");
+    Stock apple2 = new Stock("AAPL", "Apple Inc", new BigDecimal("160"), "icon2");
+
+    stocks.add(apple1);
+    stocks.add(apple2);
+
+    assertEquals(1, stocks.size());  // Should be 1 (same symbol)
   }
 
 }

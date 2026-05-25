@@ -144,4 +144,53 @@ class PortfolioTest {
     void getNetWorthReturnsZeroWhenNoShares() {
         assertEquals(BigDecimal.ZERO, portfolio.getPortfolioNetWorth());
     }
+
+    @Test
+    void testAddShareMergesExistingStock() {
+        Portfolio portfolio = new Portfolio();
+        Stock apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "icon");
+
+        Share share1 = new Share(apple, new BigDecimal("10"), new BigDecimal("150"));  // 10 @ $150
+        Share share2 = new Share(apple, new BigDecimal("5"), new BigDecimal("160"));   // 5 @ $160
+
+        portfolio.addShare(share1);
+        portfolio.addShare(share2);
+
+        // Should have merged into 1 share
+        assertEquals(1, portfolio.getShares().size());
+
+        Share merged = portfolio.getShares().get(0);
+        assertEquals(new BigDecimal("15"), merged.getQuantity());  // 10 + 5
+    }
+
+    @Test
+    void testAddShareCalculatesAverageCostBasis() {
+        Portfolio portfolio = new Portfolio();
+        Stock apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "icon");
+
+        Share share1 = new Share(apple, new BigDecimal("10"), new BigDecimal("150"));  // $1500 invested
+        Share share2 = new Share(apple, new BigDecimal("5"), new BigDecimal("160"));   // $800 invested
+
+        portfolio.addShare(share1);
+        portfolio.addShare(share2);
+
+        Share merged = portfolio.getShares().get(0);
+        // Average: (1500 + 800) / 15 = 153.333...
+        assertEquals(new BigDecimal("153.33333333"), merged.getPurchasePrice());
+    }
+
+    @Test
+    void testAddShareKeepsSeparateStocks() {
+        Portfolio portfolio = new Portfolio();
+        Stock apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "icon");
+        Stock google = new Stock("GOOGL", "Google", new BigDecimal("100"), "icon");
+
+        Share appleShare = new Share(apple, new BigDecimal("10"), new BigDecimal("150"));
+        Share googleShare = new Share(google, new BigDecimal("5"), new BigDecimal("160"));
+
+        portfolio.addShare(appleShare);
+        portfolio.addShare(googleShare);
+
+        assertEquals(2, portfolio.getShares().size());  // Two separate positions
+    }
 }

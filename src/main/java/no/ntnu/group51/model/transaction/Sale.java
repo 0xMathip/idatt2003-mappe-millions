@@ -14,7 +14,7 @@ public class Sale extends Transaction {
    * Creates a sale transaction.
    *
    * @param share the share being sold
-   * @param week the trading week when the transaction occurs
+   * @param week  the trading week when the transaction occurs
    */
   public Sale(Share share, int week) {
     super(share, week, new SaleCalculator(share));
@@ -25,6 +25,13 @@ public class Sale extends Transaction {
    */
   @Override
   public void commit(Player player) {
+    if (committed) {
+      throw new IllegalStateException("Sale already committed.");
+    }
+    if (player == null) {
+      throw new IllegalArgumentException("Player cannot be null.");
+    }
+
     Share ownedShare = player.getPortfolio()
         .getShares()
         .stream()
@@ -33,30 +40,25 @@ public class Sale extends Transaction {
         .findFirst()
         .orElse(null);
 
-    if (committed) {
-      System.out.println("Sale is already committed");
-
-    } else if (ownedShare != null) {
-      player.getPortfolio().removeShare(ownedShare);
-
-      BigDecimal remainingQuantity = ownedShare.getQuantity()
-          .subtract(share.getQuantity());
-
-      if (remainingQuantity.compareTo(BigDecimal.ZERO) > 0) {
-        Share remainingShare = new Share(
-            ownedShare.getStock(),
-            remainingQuantity,
-            ownedShare.getPurchasePrice()
-        );
-
-        player.getPortfolio().addShare(remainingShare);
-      }
-
-      player.addMoney(getTotal());
-      committed = true;
-
-    } else {
-      System.out.println("You don't own this share.");
+    if (ownedShare == null) {
+      throw new IllegalArgumentException("You don't own " + share.getQuantity()
+          + " shares of " + share.getStock().getSymbol() + ".");
     }
+
+    player.getPortfolio().removeShare(ownedShare);
+    BigDecimal remainingQuantity = ownedShare.getQuantity()
+        .subtract(share.getQuantity());
+
+    if (remainingQuantity.compareTo(BigDecimal.ZERO) > 0) {
+      Share remainingShare = new Share(
+          ownedShare.getStock(),
+          remainingQuantity,
+          ownedShare.getPurchasePrice()
+      );
+      player.getPortfolio().addShare(remainingShare);
+    }
+
+    player.addMoney(getTotal());
+    committed = true;
   }
 }
