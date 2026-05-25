@@ -1,5 +1,6 @@
 package no.ntnu.group51.controller.market;
 
+import java.util.List;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.stock.Stock;
@@ -79,10 +80,35 @@ public class MarketController implements Observer {
     updateView();
   }
 
+
   private void updateView() {
+    Stock selectedStock = getSelectedOrFirstStock();
+
+    if (selectedStock == null) {
+      marketView.clear();
+      return;
+    }
+
+    marketView.updateSelectedStock(selectedStock);
+  }
+
+  private Stock getSelectedOrFirstStock() {
     Stock selectedStock = gameModel.getSelectedStock();
 
-    marketView.getStockSelectorCard().updateStock(selectedStock);
-    marketView.getStockChartCard().updateStock(selectedStock);
+    if (selectedStock != null) {
+      return selectedStock;
+    }
+
+    List<Stock> stocks = gameModel
+        .getExchange().findStocks("");
+
+    if (stocks.isEmpty()) {
+      return null;
+    }
+
+    selectedStock = stocks.getFirst();
+    gameModel.setSelectedStock(selectedStock);
+
+    return selectedStock;
   }
 }

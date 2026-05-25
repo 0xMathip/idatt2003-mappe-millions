@@ -12,6 +12,7 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -28,8 +29,8 @@ public class TransactionListing {
 
     Stock stock = transaction.getShare().getStock();
     Share share = transaction.getShare();
-    BigDecimal quantity = share.getQuantity().setScale(2, RoundingMode.HALF_UP);
-    BigDecimal stockSalesPrice = stock.getSalesPrice().setScale(2, RoundingMode.HALF_UP);
+    BigDecimal quantity = share.getQuantity().setScale(4, RoundingMode.HALF_UP);
+    BigDecimal transactionValue = share.getPurchasePrice().multiply(share.getQuantity());
 
     VBox leftSide =  new VBox();
     Label statusLabel = new Label();
@@ -42,7 +43,7 @@ public class TransactionListing {
 
     VBox rightSide =  new VBox();
     rightSide.setSpacing(spacing);
-    Label cashAmountLabel = new Label("$" + stockSalesPrice.multiply(quantity).setScale(2, RoundingMode.HALF_UP));
+    Label cashAmountLabel = new Label(CurrencyFormatter.format(transactionValue));
     cashAmountLabel.getStyleClass().add(StyleClass.DASHBOARD_TRANSACTION_AMOUNT);
     Label weekLabel = new Label("Week " + transaction.getWeek());
     weekLabel.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);

@@ -10,6 +10,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.market.MarketHoldingInfoCard;
 import no.ntnu.group51.view.components.market.MarketSearchMenu;
@@ -140,6 +141,11 @@ public class MarketView implements View {
     stockSearchMenu = null;
   }
 
+  public void updateSelectedStock(Stock stock) {
+    stockSelectorCard.updateStock(stock);
+    stockChartCard.updateStock(stock);
+  }
+
   public void setOnStockSelectorClicked(Runnable handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -162,6 +168,11 @@ public class MarketView implements View {
 
   public MarketHoldingInfoCard getHoldingInfoCard() {
     return holdingInfoCard;
+  }
+
+  public void clear() {
+    stockSelectorCard.clear();
+    stockChartCard.clear();
   }
 
   @Override

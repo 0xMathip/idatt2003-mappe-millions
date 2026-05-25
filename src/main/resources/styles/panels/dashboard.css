@@ -7,8 +7,8 @@
     -fx-background-color: #F6DA36;
     -fx-pref-width: 476;
     -fx-max-width: 476;
-    -fx-pref-height: 563;
-    -fx-max-height: 563;
+    -fx-pref-height: 533;
+    -fx-max-height: 533;
 }
 
 .dashboard-portfolio-title {
@@ -86,8 +86,8 @@
 .dashboard-chart-section {
     -fx-pref-width: 476;
     -fx-max-width: 476;
-    -fx-pref-height: 470;
-    -fx-max-height: 470;
+    -fx-pref-height: 430;
+    -fx-max-height: 430;
 }
 
 /* =====================================================

@@ -32,10 +32,13 @@ public class TradePanel implements View {
   private final Button shareButton = createButton("Shares", StyleClass.TRADE_PANEL_MODE_BUTTON);
   private final Button amountButton = createButton("Amount", StyleClass.TRADE_PANEL_MODE_BUTTON);
 
-  private final Button leverageOffButton = createButton("Off", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
+  private final Button leverageOffButton =
+      createButton("Off", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
   private final Button leverage5Button = createButton("5x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
-  private final Button leverage10Button = createButton("10x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
-  private final Button leverage20Button = createButton("20x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
+  private final Button leverage10Button =
+      createButton("10x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
+  private final Button leverage20Button =
+      createButton("20x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
 
 
   public TradePanel() {
