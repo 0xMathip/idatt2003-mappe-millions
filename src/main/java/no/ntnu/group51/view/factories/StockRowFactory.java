@@ -3,13 +3,13 @@ package no.ntnu.group51.view.factories;
 import java.math.BigDecimal;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import no.ntnu.group51.model.stocks.Stock;
-import no.ntnu.group51.view.components.SearchRow;
+import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.view.components.shared.SearchRow;
 import no.ntnu.group51.view.util.PriceStyleHelper;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public final class StockRowFactory {
@@ -21,22 +21,22 @@ public final class StockRowFactory {
     SearchRow row = new SearchRow(55, 30, 15, 10);
 
     Label ticker = new Label(stock.getSymbol());
-    ticker.getStyleClass().add("factory-search-row-ticker");
+    ticker.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_TICKER);
 
     Label company = new Label(stock.getCompany());
-    company.getStyleClass().add("factory-search-row-company");
+    company.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_COMPANY);
 
     Label price = new Label("$" + stock.getSalesPrice().toString());
-    price.getStyleClass().add("factory-search-row-price");
+    price.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_PRICE);
 
     BigDecimal latestChange = stock.getLatestPriceChange();
 
     Label priceChange = new Label(valueExpression(latestChange, "$"));
-    priceChange.getStyleClass().add("factory-search-row-change");
+    priceChange.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_CHANGE);
 
     Label priceChangePercentage = new Label("(" +
         valueExpression(stock.getLatestPriceChangePercent(),"%") + ")");
-    priceChangePercentage.getStyleClass().add("factory-search-row-change-percent");
+    priceChangePercentage.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_CHANGE_PERCENT);
 
     HBox changeBox = new HBox(6, priceChange, priceChangePercentage);
     changeBox.setAlignment(Pos.CENTER_RIGHT);
@@ -45,7 +45,7 @@ public final class StockRowFactory {
     PriceStyleHelper.applyPriceChangeStyle(priceChangePercentage, latestChange);
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
-    arrowIcon.getStyleClass().add("factory-search-row-arrow");
+    arrowIcon.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_ARROW);
 
     row.addToCell(ticker, 0, 0);
     row.addToCell(company, 0, 1);
@@ -61,6 +61,7 @@ public final class StockRowFactory {
 
     return row;
   }
+
 
   private static String valueExpression(BigDecimal value, String symbol) {
     BigDecimal absValue = value.abs().stripTrailingZeros();

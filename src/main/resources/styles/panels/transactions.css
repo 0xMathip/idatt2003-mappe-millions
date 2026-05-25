@@ -1,0 +1,105 @@
+/* =====================================================
+   TRANSACTION STATISTICS
+ ===================================================== */
+
+.transaction-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.transaction-stat-card-bottom-text {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+/* =====================================================
+   TRANSACTION DETAILS
+ ===================================================== */
+
+.transaction-details {
+    -fx-pref-height: 667px;
+    -fx-max-height: 667px;
+    -fx-min-height: 667px;
+    -fx-pref-width: 683px;
+    -fx-min-width: 683px;
+    -fx-max-width: 683px;
+    -fx-padding: 20px;
+}
+
+.transaction-details-title {
+    /* Title styling */
+}
+
+.transaction-details-ticker {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 40px;
+}
+
+.transaction-details-company {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-total {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+    -fx-padding: 5px;
+}
+
+.transaction-details-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-separator {
+    -fx-background-color: -color-border-light;
+    -fx-pref-width: 640px;
+    -fx-min-width: 640px;
+    -fx-max-width: 640px;
+    -fx-pref-height: 1px;
+    -fx-min-height: 1px;
+    -fx-max-height: 1px;
+}
+
+/* =====================================================
+   TRANSACTION NOTES
+ ===================================================== */
+
+.transaction-details-note-icon {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+    -fx-icon-size: 25px;
+    -fx-stroke-width: 1px;
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+}
+
+.transaction-details-note-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 24px;
+}
+
+.transaction-details-note-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai regular";
+    -fx-font-size: 20px;
+}
+
+.transaction-details-notebox {
+    -fx-padding: 10, 10, 20, 0;
+}
+
+

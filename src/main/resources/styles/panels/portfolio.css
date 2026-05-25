@@ -1,0 +1,128 @@
+/* =====================================================
+   PORTFOLIO DETAILS
+ ===================================================== */
+
+.portfolio-details-price {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.portfolio-details-change {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.portfolio-details-pnl {
+    /* Profit/Loss styling */
+}
+
+.portfolio-details-stat-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 14px;
+}
+
+.portfolio-details-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.portfolio-details-stat-value-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.portfolio-details-stats-grid {
+    -fx-pref-width: 635px;
+    -fx-max-width: 635px;
+    -fx-pref-height: 200px;
+    -fx-max-height: 200px;
+    -fx-hgap: 0px;
+    -fx-vgap: 18px;
+}
+
+/* =====================================================
+   PORTFOLIO STATISTICS
+ ===================================================== */
+
+.portfolio-stat-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.portfolio-stat-value-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.portfolio-stat-card-bottom-text {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.portfolio-stat-card-bottom-text-with-state {
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+/* =====================================================
+   PORTFOLIO SEPARATORS
+ ===================================================== */
+
+.separator.separator-details-grey {
+    -fx-background-color: transparent;
+    -fx-pref-width: 640px;
+    -fx-max-width: 640px;
+    -fx-padding: 25px 0 25px 0;
+}
+
+.separator.separator-details-grey .line {
+    -fx-background-color: -color-border;
+    -fx-border-color: -color-border;
+}
+
+.separator-white {
+    -fx-background-color: transparent;
+    -fx-pref-width: 2px;
+    -fx-max-width: 2px;
+    -fx-pref-height: 35px;
+    -fx-max-height: 35px;
+}
+
+.separator-white .line {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-pref-width: 1px;
+    -fx-max-width: 1px;
+}
+
+/* =====================================================
+   PORTFOLIO BADGES
+ ===================================================== */
+
+.factory-portfolio-leverage-badge {
+    -fx-background-color: -color-warning-dark;
+    -fx-text-fill: -color-warning;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 12px;
+    -fx-padding: 3px 8px;
+    -fx-background-radius: 999px;
+}
+
+.factory-portfolio-quantity-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.factory-portfolio-quantity-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 16px;
+}
+
+

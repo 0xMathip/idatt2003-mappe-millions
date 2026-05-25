@@ -1,0 +1,74 @@
+/* =====================================================
+   ICON UTILITIES
+ ===================================================== */
+
+.stat-icon {
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.stat-icon-positive {
+    -fx-fill: -color-green;
+    -fx-stroke: -color-green;
+}
+
+.stat-icon-negative {
+    -fx-fill: -color-red;
+    -fx-stroke: -color-red;
+}
+
+.stat-icon-neutral {
+    -fx-text-fill: -color-text;
+}
+
+.stat-icon-warning {
+    -fx-fill: -color-yellow;
+    -fx-stroke: -color-yellow;
+}
+
+.transaction-stat-trades-icon {
+    -fx-icon-color: -color-text;
+    -fx-stroke: -color-text;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-bought-icon {
+    -fx-icon-color: -color-green;
+    -fx-stroke: -color-green;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-sold-icon {
+    -fx-icon-color: -color-red;
+    -fx-stroke: -color-red;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-stat-fees-icon {
+    -fx-icon-color: -color-yellow;
+    -fx-stroke: -color-yellow;
+    -fx-stroke-width: 1px;
+    -fx-icon-size: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.transaction-details-note-icon {
+    -fx-icon-color: -color-yellow;
+    -fx-stroke: -color-yellow;
+    -fx-icon-size: 25px;
+    -fx-stroke-width: 1px;
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+}
