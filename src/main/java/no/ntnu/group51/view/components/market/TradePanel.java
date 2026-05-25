@@ -121,13 +121,13 @@ public class TradePanel implements View {
     if (tradeMode == TradeMode.SHARES) {
       shareButton.getStyleClass().add("trade-panel-selected");
       inputField.setPromptText("Shares");
-      estimateTitleLabel.setText("Estimated cost");
+      estimateTitleLabel.setText("Cost");
       estimateValueLabel.setText("$0.00");
     } else {
       amountButton.getStyleClass().add("trade-panel-selected");
       inputField.setPromptText("Amount");
-      estimateTitleLabel.setText("Estimated shares");
-      estimateValueLabel.setText("0 shares");
+      estimateTitleLabel.setText("Shares");
+      estimateValueLabel.setText("0");
     }
   }
 

@@ -6,12 +6,15 @@ import java.util.List;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.model.transaction.Liquidation;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.model.transaction.TransactionArchive;
 
 public class TransactionService {
 
+  private final TransactionNoteService noteService = new TransactionNoteService();
   private static final int MONEY_SCALE = 2;
 
   public List<TransactionSummary> createTransactionSummaries(Player player) {
@@ -69,7 +72,9 @@ public class TransactionService {
 
     String type = transaction instanceof Purchase ? "Buy" : "Sell";
 
-    String note = "transaction.note();";
+    String note = transaction instanceof Liquidation
+        ? "Liquidated."
+        : noteService.createNote(transaction, isLeveraged(transaction));
 
     return new TransactionSummary(
         transaction,
@@ -84,6 +89,10 @@ public class TransactionService {
         note,
         transaction.getWeek()
     );
+  }
+
+  private boolean isLeveraged(Transaction transaction) {
+    return transaction.getShare().getQuantity().scale() > 0;
   }
 
 }

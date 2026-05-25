@@ -1,5 +1,6 @@
 package no.ntnu.group51.controller.market;
 
+import java.math.RoundingMode;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.stock.Stock;
@@ -92,17 +93,20 @@ public class TradePanelController implements Observer {
         String estimateText = CurrencyFormatter.format(preview.marginRequired());
 
         if (preview.leverage() != Leverage.OFF) {
-          estimateText += " | Liq.: "
+          estimateText += " | Liq: "
               + CurrencyFormatter.format(preview.leveragedPosition().getLiquidationPrice());
         }
 
         tradePanel.setEstimateText(estimateText);
       } else {
         String estimateText =
-            preview.quantity().stripTrailingZeros().toPlainString() + " shares";
+            preview.quantity()
+                .setScale(4, RoundingMode.HALF_UP)
+                .stripTrailingZeros()
+                .toPlainString();
 
         if (preview.leverage() != Leverage.OFF) {
-          estimateText += " | Liq.: "
+          estimateText += " | Liq: "
               + CurrencyFormatter.format(preview.leveragedPosition().getLiquidationPrice());
         }
 

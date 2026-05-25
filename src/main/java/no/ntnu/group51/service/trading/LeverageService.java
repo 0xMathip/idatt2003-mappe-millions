@@ -2,6 +2,8 @@ package no.ntnu.group51.service.trading;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
+import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.LeveragedPosition;
@@ -98,11 +100,21 @@ public class LeverageService {
       throw new IllegalArgumentException("Leveraged position cannot be null.");
     }
 
-    return position.isLeveraged()
-        && position.getShare()
+    return position.getShare()
         .getStock()
         .getSalesPrice()
         .compareTo(position.getLiquidationPrice()) <= 0;
+  }
+
+  public List<LeveragedPosition> findLiquidatedPositions(Portfolio portfolio) {
+    if (portfolio == null) {
+      throw new IllegalArgumentException("Portfolio cannot be null.");
+    }
+
+    return portfolio.getLeveragedPositions()
+        .stream()
+        .filter(this::isLiquidated)
+        .toList();
   }
 
 }

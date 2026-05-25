@@ -39,8 +39,8 @@ public class GameViewController {
 
     TransactionService transactionService = new TransactionService();
     PositionService positionService = new PositionService();
-    PortfolioService portfolioService = new PortfolioService(positionService);
     LeverageService leverageService = new LeverageService();
+    PortfolioService portfolioService = new PortfolioService(positionService);
     TradeService tradeService = new TradeService(leverageService);
 
     SidebarController sidebarController =
