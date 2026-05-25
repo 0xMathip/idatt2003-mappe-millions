@@ -6,20 +6,23 @@ import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stock.Share;
 
 /**
- * Class for a sale transaction.
+ * Represents a stock sale transaction.
  */
 public class Sale extends Transaction {
 
   /**
-   * Creates a sale.
+   * Creates a sale transaction.
    *
-   * @param share The share being sold
-   * @param week The week the transaction is happening
+   * @param share the share being sold
+   * @param week the trading week when the transaction occurs
    */
   public Sale(Share share, int week) {
     super(share, week, new SaleCalculator(share));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void commit(Player player) {
     Share ownedShare = player.getPortfolio()

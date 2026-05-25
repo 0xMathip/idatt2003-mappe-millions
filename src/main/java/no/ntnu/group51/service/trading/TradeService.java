@@ -13,6 +13,11 @@ import no.ntnu.group51.model.trading.TradeType;
 import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.model.transaction.TransactionFactory;
 
+/**
+ * Handles trade preview generation and trade execution.
+ *
+ * <p>Supports regular and leveraged buy/sell transactions.
+ */
 public class TradeService {
 
   private static final int MONEY_SCALE = 2;
@@ -21,6 +26,12 @@ public class TradeService {
 
   private final LeverageService leverageService;
 
+  /**
+   * Creates a trade service.
+   *
+   * @param leverageService the leverage service used for leverage calculations
+   * @throws IllegalArgumentException if leverageService is null
+   */
   public TradeService(LeverageService leverageService) {
     if (leverageService == null) {
       throw new IllegalArgumentException("Leverage service cannot be null.");
@@ -29,6 +40,22 @@ public class TradeService {
     this.leverageService = leverageService;
   }
 
+  /**
+   * Creates a preview of a trade before execution.
+   *
+   * <p>Supports regular and leveraged trades,
+   * including buy and sell operations.
+   *
+   * @param player    the active player
+   * @param stock     the stock being traded
+   * @param input     the entered trade input
+   * @param tradeMode the selected trade input mode
+   * @param tradeType the type of trade
+   * @param leverage  the selected leverage level
+   * @param week      the current trading week
+   * @return a prepared trade preview
+   * @throws IllegalArgumentException if inputs are invalid
+   */
   public TradePreview createPreview(
       Player player,
       Stock stock,
@@ -101,6 +128,16 @@ public class TradeService {
     );
   }
 
+  /**
+   * Executes a prepared trade preview.
+   *
+   * <p>Handles regular transactions, leveraged buys,
+   * and leveraged position closures.
+   *
+   * @param player  the player executing the trade
+   * @param preview the prepared trade preview
+   * @throws IllegalArgumentException if arguments are invalid
+   */
   public void commitTrade(Player player, TradePreview preview) {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null.");

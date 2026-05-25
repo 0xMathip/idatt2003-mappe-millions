@@ -19,6 +19,9 @@ public class Purchase extends Transaction {
     super(share, week, new PurchaseCalculator(share));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void commit(Player player) {
     if (committed) {
