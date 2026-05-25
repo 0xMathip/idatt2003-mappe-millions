@@ -23,21 +23,33 @@ public class PurchaseCalculator implements TransactionCalculator {
     this.quantity = share.getQuantity();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateGross() {
     return purchasePrice.multiply(quantity);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateCommission() {
     return calculateGross().multiply(new BigDecimal("0.005"));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateTax() {
     return new BigDecimal("0");
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateTotal() {
     return calculateGross().add(calculateCommission());

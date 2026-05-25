@@ -3,6 +3,9 @@ package no.ntnu.group51.model.calculator;
 import java.math.BigDecimal;
 import no.ntnu.group51.model.trading.LeveragedPosition;
 
+/**
+ * Calculates values, fees, tax, and total return for a leveraged position.
+ */
 public class LeverageCalculator implements TransactionCalculator {
 
   private static final BigDecimal TAX_RATE = new BigDecimal("0.30");
@@ -11,6 +14,12 @@ public class LeverageCalculator implements TransactionCalculator {
 
   private final LeveragedPosition leveragedPosition;
 
+  /**
+   * Creates a calculator for a leveraged position.
+   *
+   * @param leveragedPosition the leveraged position to calculate values for
+   * @throws IllegalArgumentException if the leveraged position is null
+   */
   public LeverageCalculator(LeveragedPosition leveragedPosition) {
     if (leveragedPosition == null) {
       throw new IllegalArgumentException("Leveraged position cannot be null.");
@@ -19,6 +28,9 @@ public class LeverageCalculator implements TransactionCalculator {
     this.leveragedPosition = leveragedPosition;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateGross() {
     BigDecimal currentPrice = leveragedPosition.getShare().getStock().getSalesPrice();
@@ -38,11 +50,17 @@ public class LeverageCalculator implements TransactionCalculator {
     return gross;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateCommission() {
     return calculateGross().multiply(COMMISSION_RATE);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateTax() {
     BigDecimal earnings = calculateGross()
@@ -58,6 +76,9 @@ public class LeverageCalculator implements TransactionCalculator {
     return tax;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public BigDecimal calculateTotal() {
     return calculateGross()
@@ -66,6 +87,11 @@ public class LeverageCalculator implements TransactionCalculator {
         .subtract(calculateTax());
   }
 
+  /**
+   * Calculates the leverage fee based on the current gross value.
+   *
+   * @return the leverage fee
+   */
   public BigDecimal calculateLeverageFee() {
     return calculateGross().multiply(LEVERAGE_FEE_RATE);
   }
