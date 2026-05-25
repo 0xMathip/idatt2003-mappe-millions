@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class StockChartCard implements View {
   private final StackPane root = new StackPane();
@@ -55,7 +56,7 @@ public class StockChartCard implements View {
     stockChart.setCreateSymbols(false);
     stockChart.setHorizontalGridLinesVisible(false);
     stockChart.setVerticalGridLinesVisible(false);
-    stockChart.getStyleClass().add("stock-chart-card-chart");
+    stockChart.getStyleClass().add(StyleClass.STOCK_CHART_CARD_CHART);
 
     XYChart.Series<Number, Number> series = createSeries(prices);
     stockChart.getData().add(series);

@@ -22,6 +22,7 @@ import no.ntnu.group51.view.components.dashboard.DashboardTransactionPanel;
 import no.ntnu.group51.view.components.dashboard.DiffOverWeeks;
 import no.ntnu.group51.view.components.dashboard.TopMovers;
 import no.ntnu.group51.view.components.dashboard.TransactionListing;
+import no.ntnu.group51.view.util.StyleClass;
 
 /**
  * Class for the dashboard itself. Does not include the sidebar.
@@ -41,7 +42,7 @@ public class DashboardView implements View {
   public DashboardView() {
 
     Label dashboardTitle = new Label("Dashboard");
-    dashboardTitle.getStyleClass().add("dashboard-title");
+    dashboardTitle.getStyleClass().add(StyleClass.DASHBOARD_TITLE);
     dashboardTitle.setPadding(new Insets(30, 0, 30, 0));
 
     VBox leftSide = new VBox();
@@ -103,7 +104,7 @@ public class DashboardView implements View {
 
     if (transactions.isEmpty()) {
       Label label = new Label("No transactions yet");
-      label.getStyleClass().add("dashboard-empty-transaction");
+      label.getStyleClass().add(StyleClass.DASHBOARD_EMPTY_TRANSACTION);
       label.setAlignment(Pos.CENTER);
       dashboardTransactionPanel.addToPanel(label);
 

@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 
 /**
  * Class for the big yellow panel on the dashboard showing the portfolio.
@@ -29,7 +30,7 @@ public class DashboardPortfolioPanel implements View {
 
     Label portfolioTitle = new Label("Portfolio");
     portfolioTitle.setAlignment(Pos.CENTER_LEFT);
-    portfolioTitle.getStyleClass().add("dashboard-portfolio-title");
+    portfolioTitle.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_TITLE);
     portView.getChildren().add(portfolioTitle);
 
 
@@ -44,17 +45,17 @@ public class DashboardPortfolioPanel implements View {
 
     VBox invested = new VBox();
     Label totalInvested = new Label("Total invested");
-    totalInvested.getStyleClass().add("dashboard-portfolio-bottom-text");
+    totalInvested.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_BOTTOM_TEXT);
     Label totalInvestedAmount = new Label("$63,093.2");
-    totalInvestedAmount.getStyleClass().add("dashboard-portfolio-amount-cash");
+    totalInvestedAmount.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_AMOUNT_CASH);
     invested.getChildren().addAll(totalInvested, totalInvestedAmount);
     invested.setAlignment(Pos.CENTER_LEFT);
 
     VBox portfolioReturn = new VBox();
     Label portReturn = new Label("Portfolio return");
-    portReturn.getStyleClass().add("dashboard-portfolio-bottom-text");
+    portReturn.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_BOTTOM_TEXT);
     Label portReturnGainLoss = new Label("+52,3%");
-    portReturnGainLoss.getStyleClass().add("dashboard-portfolio-return-gain");
+    portReturnGainLoss.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_RETURN_GAIN);
     portfolioReturn.getChildren().addAll(portReturn, portReturnGainLoss);
     portfolioReturn.setAlignment(Pos.CENTER_RIGHT);
 
@@ -65,13 +66,13 @@ public class DashboardPortfolioPanel implements View {
     bottom.setPadding(new Insets(0, 0, 0, 0));
 
     Separator separator = new Separator(Orientation.HORIZONTAL);
-    separator.getStyleClass().add("separator");
+    separator.getStyleClass().add(StyleClass.SEPARATOR);
 
     root.getChildren().addAll(portView, separator, bottom);
     root.setAlignment(Pos.CENTER);
     portView.setSpacing(30);
     root.setSpacing(20);
-    root.getStyleClass().add("dashboard-portfolio");
+    root.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO);
 
     /*
     invested.setStyle("-fx-border-color: green");

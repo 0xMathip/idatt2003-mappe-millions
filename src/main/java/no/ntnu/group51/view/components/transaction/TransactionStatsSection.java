@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import no.ntnu.group51.service.transaction.TransactionPageSummary;
 import no.ntnu.group51.view.factories.StatCardFactory;
 import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class TransactionStatsSection {
 
@@ -35,9 +36,9 @@ public class TransactionStatsSection {
         "Total Trades",
         totalTradesLabel,
         totalTradesSubtitle,
-        "transaction-stat-trades-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
+        StyleClass.TRANSACTION_STAT_TRADES_ICON,
+        StyleClass.TRANSACTION_STAT_VALUE,
+        StyleClass.TRANSACTION_STAT_CARD_BOTTOM_TEXT
     );
 
     HBox totalBoughtCard = StatCardFactory.createCard(
@@ -45,9 +46,9 @@ public class TransactionStatsSection {
         "Total Bought",
         totalBoughtLabel,
         totalBoughtSubtitle,
-        "transaction-stat-bought-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
+        StyleClass.TRANSACTION_STAT_BOUGHT_ICON,
+        StyleClass.TRANSACTION_STAT_VALUE,
+        StyleClass.TRANSACTION_STAT_CARD_BOTTOM_TEXT
     );
 
     HBox totalSoldCard = StatCardFactory.createCard(
@@ -55,9 +56,9 @@ public class TransactionStatsSection {
         "Total Sold",
         totalSoldLabel,
         totalSoldSubtitle,
-        "transaction-stat-sold-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
+        StyleClass.TRANSACTION_STAT_SOLD_ICON,
+        StyleClass.TRANSACTION_STAT_VALUE,
+        StyleClass.TRANSACTION_STAT_CARD_BOTTOM_TEXT
     );
 
     HBox totalFeesCard = StatCardFactory.createCard(
@@ -65,9 +66,9 @@ public class TransactionStatsSection {
         "Fees Paid",
         totalFeesLabel,
         totalFeesSubtitle,
-        "transaction-stat-fees-icon",
-        "transaction-stat-value",
-        "transaction-stat-card-bottom-text"
+        StyleClass.TRANSACTION_STAT_FEES_ICON,
+        StyleClass.TRANSACTION_STAT_VALUE,
+        StyleClass.TRANSACTION_STAT_CARD_BOTTOM_TEXT
     );
 
     root.getChildren().addAll(

@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class SearchRow extends GridPane {
   private static final double[] COLUMN_WIDTHS = {
@@ -20,7 +21,7 @@ public class SearchRow extends GridPane {
   }
 
   public SearchRow(double... columnWidths) {
-    getStyleClass().addAll("card", "search-row");
+    getStyleClass().addAll(StyleClass.CARD, StyleClass.SEARCH_ROW);
     setAlignment(Pos.CENTER_LEFT);
     setHgap(8);
     setVgap(2);

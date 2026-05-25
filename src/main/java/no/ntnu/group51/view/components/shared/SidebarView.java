@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.player.PlayerLevel;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class SidebarView implements View {
@@ -35,7 +36,7 @@ public class SidebarView implements View {
     });
 
     // Dashboard button
-    dashboardButton.getStyleClass().add("sidebar-button");
+    dashboardButton.getStyleClass().add(StyleClass.SIDEBAR_BUTTON);
     dashboardButton.setToggleGroup(sidebar);
 
     FontIcon dashIcon = new FontIcon("cil-applications");
@@ -47,7 +48,7 @@ public class SidebarView implements View {
 
     // Market button
     marketButton.setToggleGroup(sidebar);
-    marketButton.getStyleClass().add("sidebar-button");
+    marketButton.getStyleClass().add(StyleClass.SIDEBAR_BUTTON);
 
     FontIcon marketIcon = new FontIcon("cil-chart-line");
     marketButton.setGraphic(marketIcon);
@@ -57,7 +58,7 @@ public class SidebarView implements View {
 
     // Portfolio button
     portfolioButton.setToggleGroup(sidebar);
-    portfolioButton.getStyleClass().add("sidebar-button");
+    portfolioButton.getStyleClass().add(StyleClass.SIDEBAR_BUTTON);
 
     FontIcon portIcon = new FontIcon("cil-chart-pie");
     portfolioButton.setGraphic(portIcon);
@@ -67,7 +68,7 @@ public class SidebarView implements View {
 
     // Transaction button
     transactionsButton.setToggleGroup(sidebar);
-    transactionsButton.getStyleClass().add("sidebar-button");
+    transactionsButton.getStyleClass().add(StyleClass.SIDEBAR_BUTTON);
 
     FontIcon trIcon = new FontIcon("cil-cash");
     transactionsButton.setGraphic(trIcon);
@@ -86,16 +87,16 @@ public class SidebarView implements View {
 
     StackPane yellowContainer = new StackPane();
     yellowContainer.getChildren().add(currentLevel);
-    yellowContainer.getStyleClass().add("yellow-boss-baby-box");
+    yellowContainer.getStyleClass().add(StyleClass.YELLOW_BOSS_BABY_BOX);
 
     ProgressBar progressBar = new ProgressBar();
 
     Label playerLevelLabel = new Label("Player level");
-    playerLevelLabel.getStyleClass().add("player-level-label");
+    playerLevelLabel.getStyleClass().add(StyleClass.PLAYER_LEVEL_LABEL);
 
-    currentLevelLabel.getStyleClass().add("current-level-label");
+    currentLevelLabel.getStyleClass().add(StyleClass.CURRENT_LEVEL_LABEL);
 
-    nextLevelLabel.getStyleClass().add("next-level-label");
+    nextLevelLabel.getStyleClass().add(StyleClass.NEXT_LEVEL_LABEL);
 
     VBox levelBox = new VBox();
     levelBox.getChildren().addAll(
@@ -106,18 +107,18 @@ public class SidebarView implements View {
         nextLevelLabel
     );
 
-    levelBox.getStyleClass().add("level-box");
+    levelBox.getStyleClass().add(StyleClass.LEVEL_BOX);
     levelBox.setAlignment(Pos.CENTER);
     levelBox.setSpacing(12);
 
     FontIcon currentWeekIcon = new FontIcon("cil-calendar");
-    currentWeekIcon.getStyleClass().add("current-week-icon");
+    currentWeekIcon.getStyleClass().add(StyleClass.CURRENT_WEEK_ICON);
     currentWeek.setGraphic(currentWeekIcon);
     currentWeek.setContentDisplay(ContentDisplay.LEFT);
     currentWeek.setAlignment(Pos.CENTER);
     currentWeek.setGraphicTextGap(12);
 
-    currentWeek.getStyleClass().add("current-week-label");
+    currentWeek.getStyleClass().add(StyleClass.CURRENT_WEEK_LABEL);
 
     Region spacer1 = new Region();
     spacer1.setPrefHeight(70);

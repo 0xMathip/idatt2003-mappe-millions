@@ -8,6 +8,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class TopMovers {
     Label topMover = new Label();
 
     Label company = new Label(movers.getFirst().getSymbol());
-    company.getStyleClass().add("dashboard-subtext");
+    company.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
 
     text.getChildren().addAll(topMover, company);
     text.setAlignment(Pos.CENTER_LEFT);
@@ -46,7 +47,7 @@ public class TopMovers {
     Label gain = new Label();
 
     Label amount = new Label("$" + movers.getFirst().getLatestPriceChange());
-    amount.getStyleClass().add("dashboard-subtext");
+    amount.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
 
     gainAmount.getChildren().addAll(gain, amount);
     gainAmount.setAlignment(Pos.CENTER_RIGHT);
@@ -55,22 +56,22 @@ public class TopMovers {
 
     if (type.equalsIgnoreCase("Gainer")) {
       topMover.setText("Top Gainer");
-      topMover.getStyleClass().add("dashboard-movers-gainer");
+      topMover.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_GAINER);
 
       gain.setText("+" + movers.getFirst().getLatestPriceChangePercent() + "%");
-      gain.getStyleClass().add("dashboard-movers-gainer");
+      gain.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_GAINER);
 
-      circle.getStyleClass().add("filled-circle-green");
+      circle.getStyleClass().add(StyleClass.FILLED_CIRCLE_GREEN);
     }
 
     if (type.equalsIgnoreCase("Loser")) {
       topMover.setText("Top Loser");
-      topMover.getStyleClass().add("dashboard-movers-loser");
+      topMover.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_LOSER);
 
       gain.setText(movers.getFirst().getLatestPriceChangePercent() + "%");
-      gain.getStyleClass().add("dashboard-movers-loser");
+      gain.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_LOSER);
 
-      circle.getStyleClass().add("filled-circle-red");
+      circle.getStyleClass().add(StyleClass.FILLED_CIRCLE_RED);
     }
 
     ColumnConstraints icon = new ColumnConstraints();

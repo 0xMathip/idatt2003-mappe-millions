@@ -15,6 +15,7 @@ import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.TradeMode;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class TradePanel implements View {
   private final VBox root = new VBox();
@@ -25,16 +26,16 @@ public class TradePanel implements View {
   private final Label estimateTitleLabel = new Label();
   private final Label estimateValueLabel = new Label();
 
-  private final Button buyButton = createButton("Buy", "trade-panel-buy-button");
-  private final Button sellButton = createButton("Sell", "trade-panel-sell-button");
+  private final Button buyButton = createButton("Buy", StyleClass.TRADE_PANEL_BUY_BUTTON);
+  private final Button sellButton = createButton("Sell", StyleClass.TRADE_PANEL_SELL_BUTTON);
 
-  private final Button shareButton = createButton("Shares", "trade-panel-mode-button");
-  private final Button amountButton = createButton("Amount", "trade-panel-mode-button");
+  private final Button shareButton = createButton("Shares", StyleClass.TRADE_PANEL_MODE_BUTTON);
+  private final Button amountButton = createButton("Amount", StyleClass.TRADE_PANEL_MODE_BUTTON);
 
-  private final Button leverageOffButton = createButton("Off", "trade-panel-leverage-button");
-  private final Button leverage5Button = createButton("5x", "trade-panel-leverage-button");
-  private final Button leverage10Button = createButton("10x", "trade-panel-leverage-button");
-  private final Button leverage20Button = createButton("20x", "trade-panel-leverage-button");
+  private final Button leverageOffButton = createButton("Off", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
+  private final Button leverage5Button = createButton("5x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
+  private final Button leverage10Button = createButton("10x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
+  private final Button leverage20Button = createButton("20x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
 
 
   public TradePanel() {
@@ -45,36 +46,36 @@ public class TradePanel implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("card", "trade-panel");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.TRADE_PANEL);
     root.setAlignment(Pos.CENTER);
     root.setSpacing(17);
 
     Label cashTitle = new Label("Available cash");
-    cashTitle.getStyleClass().add("trade-panel-label");
+    cashTitle.getStyleClass().add(StyleClass.TRADE_PANEL_LABEL);
 
-    cashLabel.getStyleClass().add("trade-panel-cash");
+    cashLabel.getStyleClass().add(StyleClass.TRADE_PANEL_CASH);
 
     VBox cashBox = new VBox(-6, cashTitle, cashLabel);
-    cashBox.getStyleClass().addAll("surface", "trade-panel-cashbox");
+    cashBox.getStyleClass().addAll(StyleClass.SURFACE, StyleClass.TRADE_PANEL_CASHBOX);
     cashBox.setAlignment(Pos.CENTER_LEFT);
 
     HBox modeButtons = new HBox(8, shareButton, amountButton);
     modeButtons.setAlignment(Pos.CENTER);
 
-    inputField.getStyleClass().addAll("surface", "trade-panel-input");
+    inputField.getStyleClass().addAll(StyleClass.SURFACE, StyleClass.TRADE_PANEL_INPUT);
 
-    estimateTitleLabel.getStyleClass().add("trade-panel-estimate");
-    estimateValueLabel.getStyleClass().add("trade-panel-row-value");
+    estimateTitleLabel.getStyleClass().add(StyleClass.TRADE_PANEL_ESTIMATE);
+    estimateValueLabel.getStyleClass().add(StyleClass.TRADE_PANEL_ROW_VALUE);
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
     HBox estimateRow = new HBox(estimateTitleLabel, spacer, estimateValueLabel);
-    estimateRow.getStyleClass().addAll("surface", "trade-panel-row");
+    estimateRow.getStyleClass().addAll(StyleClass.SURFACE, StyleClass.TRADE_PANEL_ROW);
     estimateRow.setAlignment(Pos.CENTER_LEFT);
 
     Label leverageLabel = new Label("Leverage");
-    leverageLabel.getStyleClass().add("trading-panel-lev-label");
+    leverageLabel.getStyleClass().add(StyleClass.TRADE_PANEL_LEVERAGE_LABEL);
 
     HBox leverageButtons = new HBox(
         8,
@@ -85,7 +86,6 @@ public class TradePanel implements View {
         leverage20Button
     );
     leverageButtons.setAlignment(Pos.CENTER);
-    leverageButtons.getStyleClass().add("trade-panel-leverage-buttons");
 
     root.getChildren().addAll(
         cashBox,
@@ -115,16 +115,16 @@ public class TradePanel implements View {
       throw new IllegalArgumentException("Trade mode cannot be null.");
     }
 
-    shareButton.getStyleClass().remove("trade-panel-selected");
-    amountButton.getStyleClass().remove("trade-panel-selected");
+    shareButton.getStyleClass().remove(StyleClass.TRADE_PANEL_SELECTED);
+    amountButton.getStyleClass().remove(StyleClass.TRADE_PANEL_SELECTED);
 
     if (tradeMode == TradeMode.SHARES) {
-      shareButton.getStyleClass().add("trade-panel-selected");
+      shareButton.getStyleClass().add(StyleClass.TRADE_PANEL_SELECTED);
       inputField.setPromptText("Shares");
       estimateTitleLabel.setText("Cost");
       estimateValueLabel.setText("$0.00");
     } else {
-      amountButton.getStyleClass().add("trade-panel-selected");
+      amountButton.getStyleClass().add(StyleClass.TRADE_PANEL_SELECTED);
       inputField.setPromptText("Amount");
       estimateTitleLabel.setText("Shares");
       estimateValueLabel.setText("0");
@@ -135,16 +135,16 @@ public class TradePanel implements View {
     if (leverage == null) {
       throw new IllegalArgumentException("Leverage cannot be null.");
     }
-    leverageOffButton.getStyleClass().remove("trade-panel-selected");
-    leverage5Button.getStyleClass().remove("trade-panel-selected");
-    leverage10Button.getStyleClass().remove("trade-panel-selected");
-    leverage20Button.getStyleClass().remove("trade-panel-selected");
+    leverageOffButton.getStyleClass().remove(StyleClass.TRADE_PANEL_SELECTED);
+    leverage5Button.getStyleClass().remove(StyleClass.TRADE_PANEL_SELECTED);
+    leverage10Button.getStyleClass().remove(StyleClass.TRADE_PANEL_SELECTED);
+    leverage20Button.getStyleClass().remove(StyleClass.TRADE_PANEL_SELECTED);
 
     switch (leverage) {
-      case OFF -> leverageOffButton.getStyleClass().add("trade-panel-selected");
-      case X5 -> leverage5Button.getStyleClass().add("trade-panel-selected");
-      case X10 -> leverage10Button.getStyleClass().add("trade-panel-selected");
-      case X20 -> leverage20Button.getStyleClass().add("trade-panel-selected");
+      case OFF -> leverageOffButton.getStyleClass().add(StyleClass.TRADE_PANEL_SELECTED);
+      case X5 -> leverage5Button.getStyleClass().add(StyleClass.TRADE_PANEL_SELECTED);
+      case X10 -> leverage10Button.getStyleClass().add(StyleClass.TRADE_PANEL_SELECTED);
+      case X20 -> leverage20Button.getStyleClass().add(StyleClass.TRADE_PANEL_SELECTED);
     }
   }
 

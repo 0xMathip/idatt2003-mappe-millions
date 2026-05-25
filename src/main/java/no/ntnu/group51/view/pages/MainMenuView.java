@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 
 /**
  * The view for the main menu.
@@ -29,9 +30,9 @@ public class MainMenuView implements View {
    */
   public MainMenuView(SceneManager sceneManager, GameModel model) {
 
-    cont.getStyleClass().add("main-menu-button");
-    newG.getStyleClass().add("main-menu-button");
-    exit.getStyleClass().add("main-menu-button");
+    cont.getStyleClass().add(StyleClass.MAIN_MENU_BUTTON);
+    newG.getStyleClass().add(StyleClass.MAIN_MENU_BUTTON);
+    exit.getStyleClass().add(StyleClass.MAIN_MENU_BUTTON);
 
     VBox menuButtons = new VBox();
     menuButtons.getChildren().addAll(cont, newG, exit);

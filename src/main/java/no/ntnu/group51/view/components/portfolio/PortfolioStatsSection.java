@@ -8,6 +8,7 @@ import no.ntnu.group51.view.factories.StatCardFactory;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class PortfolioStatsSection {
   private final HBox root = new HBox(100);
@@ -29,25 +30,25 @@ public class PortfolioStatsSection {
         "Portfolio Value",
         portfolioValueLabel,
         portfolioValueChangeLabel,
-        "transaction-stat-trades-icon",
-        "portfolio-stat-value",
-        "portfolio-stat-card-bottom-text-with-state"
+        StyleClass.TRANSACTION_STAT_TRADES_ICON,
+        StyleClass.PORTFOLIO_STAT_VALUE,
+        StyleClass.PORTFOLIO_STAT_CARD_BOTTOM_TEXT_WITH_STATE
     );
 
     HBox netWorthCard = StatCardFactory.createCard(
         "cil-gem",
         "Net Worth",
         netWorthLabel,
-        "transaction-stat-trades-icon",
-        "portfolio-stat-value"
+        StyleClass.TRANSACTION_STAT_TRADES_ICON,
+        StyleClass.PORTFOLIO_STAT_VALUE
     );
 
     HBox availableCash = StatCardFactory.createCard(
         "cil-wallet",
         "Available Cash",
         cashLabel,
-        "transaction-stat-trades-icon",
-        "portfolio-stat-value"
+        StyleClass.TRANSACTION_STAT_TRADES_ICON,
+        StyleClass.PORTFOLIO_STAT_VALUE
     );
 
     HBox totalReturn = StatCardFactory.createCard(
@@ -55,9 +56,9 @@ public class PortfolioStatsSection {
         "Total Return",
         totalReturnLabel,
         totalReturnPercentLabel,
-        "transaction-stat-trades-icon",
-        "portfolio-stat-value-with-state",
-        "portfolio-stat-card-bottom-text-with-state"
+        StyleClass.TRANSACTION_STAT_TRADES_ICON,
+        StyleClass.PORTFOLIO_STAT_VALUE_WITH_STATE,
+        StyleClass.PORTFOLIO_STAT_CARD_BOTTOM_TEXT_WITH_STATE
     );
 
     root.getChildren().addAll(

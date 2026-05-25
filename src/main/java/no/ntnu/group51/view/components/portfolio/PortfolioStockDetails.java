@@ -18,6 +18,7 @@ import no.ntnu.group51.view.components.shared.StockChartCard;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class PortfolioStockDetails implements View {
 
@@ -52,11 +53,11 @@ public class PortfolioStockDetails implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("card", "transaction-details");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.TRANSACTION_DETAILS);
     root.setAlignment(Pos.CENTER_LEFT);
 
-    ticker.getStyleClass().add("transaction-details-ticker");
-    company.getStyleClass().add("transaction-details-company");
+    ticker.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TICKER);
+    company.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_COMPANY);
 
     VBox companyBox = new VBox(ticker, company);
     companyBox.setAlignment(Pos.CENTER_LEFT);
@@ -64,8 +65,8 @@ public class PortfolioStockDetails implements View {
     VBox priceBox = new VBox(priceValue, changeValue);
     priceBox.setAlignment(Pos.CENTER_RIGHT);
 
-    priceValue.getStyleClass().add("portfolio-details-price");
-    changeValue.getStyleClass().add("portfolio-details-change");
+    priceValue.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_PRICE);
+    changeValue.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_CHANGE);
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -73,15 +74,15 @@ public class PortfolioStockDetails implements View {
     HBox headerBox = new HBox(companyBox, spacer, priceBox);
 
     HBox stockChart = new HBox(createStockChart());
-    stockChart.getStyleClass().add("portfolio-details-stock-chart");
+    stockChart.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_STOCK_CHART);
 
     GridPane statsGrid = createStatsGrid();
 
     Separator separator = new Separator();
-    separator.getStyleClass().add("separator-details-grey");
+    separator.getStyleClass().add(StyleClass.SEPARATOR_DETAILS_GREY);
 
     Label marketButton = new Label("Open in Market ➜ ");
-    marketButton.getStyleClass().addAll("dashboard-view-button", "portfolio-market-button");
+    marketButton.getStyleClass().addAll(StyleClass.DASHBOARD_VIEW_BUTTON, StyleClass.PORTFOLIO_MARKET_BUTTON);
 
     VBox topRow = new VBox(headerBox, stockChart);
     VBox botRow = new VBox(statsGrid, separator, marketButton);
@@ -110,7 +111,7 @@ public class PortfolioStockDetails implements View {
         col4
     );
 
-    statsGrid.getStyleClass().addAll("card", "portfolio-details-stats-grid");
+    statsGrid.getStyleClass().addAll(StyleClass.CARD, StyleClass.PORTFOLIO_DETAILS_STATS_GRID);
     statsGrid.setAlignment(Pos.CENTER);
 
     statsGrid.add(createStatBox(stat1Title, stat1Value), 0, 0);
@@ -122,9 +123,9 @@ public class PortfolioStockDetails implements View {
     statsGrid.add(createStatBox(stat6Title, stat6Value), 2, 1);
 
     VBox pnlBox = createStatBox(new Label("Profit/Loss"), profitLoss);
-    profitLoss.getStyleClass().remove("portfolio-details-stat-value");
-    profitLoss.getStyleClass().add("portfolio-details-stat-value-with-state");
-    pnlBox.getStyleClass().add("portfolio-details-pnl");
+    profitLoss.getStyleClass().remove(StyleClass.PORTFOLIO_DETAILS_STAT_VALUE);
+    profitLoss.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_STAT_VALUE_WITH_STATE);
+    pnlBox.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_PNL);
 
     statsGrid.add(pnlBox, 3, 0, 1, 2);
 
@@ -132,7 +133,7 @@ public class PortfolioStockDetails implements View {
   }
 
   private HBox createStockChart() {
-    stockChartCard.addRootStyleClass("stock-chart-card-small");
+    stockChartCard.addRootStyleClass(StyleClass.STOCK_CHART_CARD_SMALL);
 
     HBox stockChart = new HBox(stockChartCard.getRoot());
     stockChart.setAlignment(Pos.CENTER);
@@ -141,8 +142,8 @@ public class PortfolioStockDetails implements View {
   }
 
   private VBox createStatBox(Label titleLabel, Label valueLabel) {
-    titleLabel.getStyleClass().add("portfolio-details-stat-label");
-    valueLabel.getStyleClass().add("portfolio-details-stat-value");
+    titleLabel.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_STAT_LABEL);
+    valueLabel.getStyleClass().add(StyleClass.PORTFOLIO_DETAILS_STAT_VALUE);
 
     titleLabel.setMaxWidth(Double.MAX_VALUE);
     valueLabel.setMaxWidth(Double.MAX_VALUE);

@@ -17,7 +17,6 @@ import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
-import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 
 public class MainApp extends Application {
@@ -34,12 +33,12 @@ public class MainApp extends Application {
         getClass().getResource("/styles/layout.css").toExternalForm(),
         getClass().getResource("/styles/navigation.css").toExternalForm(),
         getClass().getResource("/styles/components.css").toExternalForm(),
-        getClass().getResource("/styles/market.css").toExternalForm(),
-        getClass().getResource("/styles/dashboard.css").toExternalForm(),
-        getClass().getResource("/styles/portfolio.css").toExternalForm(),
-        getClass().getResource("/styles/transactions.css").toExternalForm(),
-        getClass().getResource("/styles/overlays.css").toExternalForm(),
-        getClass().getResource("/styles/mainmenu.css").toExternalForm()
+        getClass().getResource("/styles/panels/market.css").toExternalForm(),
+        getClass().getResource("/styles/panels/dashboard.css").toExternalForm(),
+        getClass().getResource("/styles/panels/portfolio.css").toExternalForm(),
+        getClass().getResource("/styles/panels/transactions.css").toExternalForm(),
+        getClass().getResource("/styles/menus/overlays.css").toExternalForm(),
+        getClass().getResource("/styles/pages/mainmenu.css").toExternalForm()
     );
 
     CsvStartupFileHandler csv = new CsvStartupFileHandler();

@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.view.util.StyleClass;
 
 /**
  * Class for creating a VBox difference to be used above the dashboard chart.
@@ -30,19 +31,19 @@ public class ChartDifference {
     }
 
     Label titleLabel = new Label(title);
-    titleLabel.getStyleClass().add("dashboard-subtext");
+    titleLabel.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
 
     Label differenceLabel = new Label();
 
     if (relation.compareTo(BigDecimal.ONE) < 0) {
       differenceLabel.setText("-" + BigDecimal.ONE.subtract(relation)
           .multiply(BigDecimal.valueOf(100)).toString() + "%");
-      differenceLabel.getStyleClass().add("dashboard-percent-red");
+      differenceLabel.getStyleClass().add(StyleClass.DASHBOARD_PERCENT_RED);
 
     } else if (relation.compareTo(BigDecimal.ONE) > 0) {
       differenceLabel.setText("+" + relation.subtract(BigDecimal.ONE)
           .multiply(BigDecimal.valueOf(100)).toString() + "%");
-      differenceLabel.getStyleClass().add("dashboard-percent-green");
+      differenceLabel.getStyleClass().add(StyleClass.DASHBOARD_PERCENT_GREEN);
     }
 
     VBox root = new VBox();

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 
@@ -28,24 +29,24 @@ public class PortfolioListing implements View {
 
     VBox symbol = new VBox();
     Label symbolLabel = new Label(share.getStock().getSymbol());
-    symbolLabel.getStyleClass().add("dashboard-portfolio-symbol");
+    symbolLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_SYMBOL);
     Label companyLabel = new Label(share.getStock().getCompany());
-    companyLabel.getStyleClass().add("dashboard-portfolio-subtext");
+    companyLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_SUBTEXT);
     symbol.getChildren().addAll(symbolLabel, companyLabel);
     symbol.setAlignment(Pos.CENTER_LEFT);
 
     VBox shares = new VBox();
     Label amountLabel = new Label(share.getQuantity().toString());
-    amountLabel.getStyleClass().add("dashboard-portfolio-amount-shares");
+    amountLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_AMOUNT_SHARES);
     Label sharesLabel = new Label("shares");
-    sharesLabel.getStyleClass().add("dashboard-portfolio-subtext");
+    sharesLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_SUBTEXT);
     shares.getChildren().addAll(amountLabel, sharesLabel);
     shares.setAlignment(Pos.CENTER);
 
     Label cashLabel = new Label("$" + share.getStock().getSalesPrice().toString());
-    cashLabel.getStyleClass().add("dashboard-portfolio-amount-cash");
+    cashLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_AMOUNT_CASH);
     Label diffLabel = new Label(share.getStock().getLatestPriceChangePercent().toString());
-    diffLabel.getStyleClass().add("dashboard-portfolio-diff");
+    diffLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_DIFF);
     PriceStyleHelper.applyPriceChangeStyle(diffLabel, share.getStock().getLatestPriceChange());
     diffLabel.setAlignment(Pos.CENTER);
     VBox money = new VBox();
@@ -54,7 +55,7 @@ public class PortfolioListing implements View {
     money.setSpacing(7);
 
     FontIcon icon = new FontIcon(share.getStock().getIcon());
-    icon.getStyleClass().add("dashboard-portfolio-icon");
+    icon.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_ICON);
     icon.setIconSize(40);
 
     StackPane iconBox = new StackPane(icon);

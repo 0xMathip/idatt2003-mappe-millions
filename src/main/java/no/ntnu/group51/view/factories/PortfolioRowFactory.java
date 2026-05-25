@@ -13,6 +13,7 @@ import no.ntnu.group51.view.components.shared.SearchRow;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class PortfolioRowFactory {
@@ -27,29 +28,29 @@ public class PortfolioRowFactory {
     }
 
     SearchRow row = new SearchRow(34, 18, 36, 12);
-    row.getStyleClass().addAll("card", "factory-search-row");
+    row.getStyleClass().addAll(StyleClass.CARD, StyleClass.FACTORY_SEARCH_ROW);
 
     Label ticker = new Label(position.stock().getSymbol());
-    ticker.getStyleClass().add("factory-search-row-ticker");
+    ticker.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_TICKER);
 
     HBox tickerBox = new HBox(8, ticker);
     tickerBox.setAlignment(Pos.CENTER_LEFT);
 
     if (position.leveraged()) {
       Label leverageBadge = new Label(position.leverage().getMultiplier() + "x");
-      leverageBadge.getStyleClass().add("factory-portfolio-leverage-badge");
+      leverageBadge.getStyleClass().add(StyleClass.FACTORY_PORTFOLIO_LEVERAGE_BADGE);
       tickerBox.getChildren().add(leverageBadge);
     }
 
     Label company = new Label(position.stock().getCompany());
-    company.getStyleClass().add("factory-search-row-company");
+    company.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_COMPANY);
     company.setAlignment(Pos.CENTER_LEFT);
 
     VBox stockBox = new VBox(2, tickerBox, company);
     stockBox.setAlignment(Pos.CENTER_LEFT);
 
     Label quantityLabel = new Label("shares");
-    quantityLabel.getStyleClass().add("factory-portfolio-quantity-label");
+    quantityLabel.getStyleClass().add(StyleClass.FACTORY_PORTFOLIO_QUANTITY_LABEL);
 
     Label quantityValue = new Label(
         position.sharesOwned()
@@ -57,21 +58,21 @@ public class PortfolioRowFactory {
             .stripTrailingZeros()
             .toPlainString()
     );
-    quantityValue.getStyleClass().add("factory-portfolio-quantity-value");
+    quantityValue.getStyleClass().add(StyleClass.FACTORY_PORTFOLIO_QUANTITY_VALUE);
 
     VBox quantityBox = new VBox(2, quantityValue, quantityLabel);
     quantityBox.setAlignment(Pos.CENTER);
 
     Label total = new Label(CurrencyFormatter.format(position.positionValue()));
-    total.getStyleClass().add("factory-search-row-price");
+    total.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_PRICE);
 
     Label changeValue = new Label(CurrencyFormatter.format(position.profitLoss()));
     Label changePercent = new Label(
         "(" + PercentFormatter.format(position.roiPercent()) + ")"
     );
 
-    changeValue.getStyleClass().add("factory-search-row-change");
-    changePercent.getStyleClass().add("factory-search-row-change-percent");
+    changeValue.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_CHANGE);
+    changePercent.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_CHANGE_PERCENT);
 
     PriceStyleHelper.applyPriceChangeStyle(changeValue, position.profitLoss());
     PriceStyleHelper.applyPriceChangeStyle(changePercent, position.profitLoss());
@@ -83,7 +84,7 @@ public class PortfolioRowFactory {
     priceBox.setAlignment(Pos.CENTER_RIGHT);
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-right-alt");
-    arrowIcon.getStyleClass().add("factory-search-row-arrow");
+    arrowIcon.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_ARROW);
 
     row.addToCell(stockBox, 0, 0, 1, 2);
     row.addToCell(quantityBox, 1, 0, 1, 2);

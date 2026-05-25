@@ -12,6 +12,7 @@ import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.factories.TransactionBadgeFactory;
 import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TransactionDetailsCard implements View {
@@ -36,11 +37,11 @@ public class TransactionDetailsCard implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("card","transaction-details");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.TRANSACTION_DETAILS);
     root.setAlignment(Pos.CENTER_LEFT);
 
-    ticker.getStyleClass().add("transaction-details-ticker");
-    company.getStyleClass().add("transaction-details-company");
+    ticker.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TICKER);
+    company.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_COMPANY);
 
     VBox companyBox = new VBox(ticker, company);
     companyBox.setAlignment(Pos.CENTER_LEFT);
@@ -49,7 +50,7 @@ public class TransactionDetailsCard implements View {
     badgeContainer.setAlignment(Pos.CENTER_LEFT);
 
     HBox detailTitle = new HBox(15, badgeContainer, companyBox);
-    detailTitle.getStyleClass().add("transaction-details-title");
+    detailTitle.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TITLE);
     detailTitle.setAlignment(Pos.CENTER_LEFT);
 
     VBox detailRows = new VBox(27,
@@ -64,27 +65,27 @@ public class TransactionDetailsCard implements View {
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
     Label totalLabel = new Label("Total cost");
-    totalLabel.getStyleClass().add("transaction-details-total");
-    totalValue.getStyleClass().add("transaction-details-total");
+    totalLabel.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TOTAL);
+    totalValue.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_TOTAL);
 
     HBox totalRow = new HBox(totalLabel, spacer, totalValue);
     totalRow.setAlignment(Pos.CENTER_LEFT);
 
     Region sep1 = new Region();
     Region sep2 = new Region();
-    sep1.getStyleClass().add("transaction-details-separator");
-    sep2.getStyleClass().add("transaction-details-separator");
+    sep1.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_SEPARATOR);
+    sep2.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_SEPARATOR);
 
     FontIcon noteIcon = new FontIcon("cil-notes");
     Label noteLabel = new Label("Notes");
-    noteIcon.getStyleClass().add("transaction-details-note-icon");
-    noteLabel.getStyleClass().add("transaction-details-note-label");
-    noteValue.getStyleClass().add("transaction-details-note-value");
+    noteIcon.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_NOTE_ICON);
+    noteLabel.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_NOTE_LABEL);
+    noteValue.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_NOTE_VALUE);
 
     HBox noteTitle = new HBox(15, noteIcon, noteLabel);
     VBox noteBox = new VBox(20, noteTitle, noteValue);
     noteBox.setAlignment(Pos.CENTER_LEFT);
-    noteBox.getStyleClass().add("transaction-details-notebox");
+    noteBox.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_NOTEBOX);
 
     Region vSpacer = new Region();
     vSpacer.setPrefHeight(30);
@@ -148,8 +149,8 @@ public class TransactionDetailsCard implements View {
 
   private HBox createDetailRow(String labelText, Label valueLabel) {
     Label label = new Label(labelText);
-    label.getStyleClass().add("transaction-details-label");
-    valueLabel.getStyleClass().add("transaction-details-value");
+    label.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_LABEL);
+    valueLabel.getStyleClass().add(StyleClass.TRANSACTION_DETAILS_VALUE);
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);

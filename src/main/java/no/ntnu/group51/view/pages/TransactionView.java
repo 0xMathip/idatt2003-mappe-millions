@@ -12,6 +12,7 @@ import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.transaction.TransactionDetailsCard;
 import no.ntnu.group51.view.components.transaction.TransactionSearchMenu;
 import no.ntnu.group51.view.components.transaction.TransactionStatsSection;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class TransactionView implements View {
 
@@ -30,7 +31,7 @@ public class TransactionView implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("page-layout", "transaction-view");
+    root.getStyleClass().addAll(StyleClass.PAGE_LAYOUT, StyleClass.TRANSACTION_VIEW);
 
     Label title = createTitle();
     HBox body = createBody();
@@ -42,7 +43,7 @@ public class TransactionView implements View {
 
   private Label createTitle() {
     Label title = new Label("Transactions");
-    title.getStyleClass().add("page-title");
+    title.getStyleClass().add(StyleClass.PAGE_TITLE);
     return title;
   }
 
@@ -53,7 +54,7 @@ public class TransactionView implements View {
         transactionDetailsCard.getRoot()
     );
 
-    body.getStyleClass().add("transaction-body");
+    body.getStyleClass().add(StyleClass.TRANSACTION_BODY);
     return body;
   }
 

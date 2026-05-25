@@ -16,6 +16,7 @@ import no.ntnu.group51.view.components.market.MarketSearchMenu;
 import no.ntnu.group51.view.components.market.StockSelectorCard;
 import no.ntnu.group51.view.components.market.TradePanel;
 import no.ntnu.group51.view.components.shared.StockChartCard;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class MarketView implements View {
 
@@ -44,10 +45,10 @@ public class MarketView implements View {
 
   private void createLayout() {
     marketContent = new VBox(24);
-    marketContent.getStyleClass().addAll("page-layout", "market-view");
+    marketContent.getStyleClass().addAll(StyleClass.PAGE_LAYOUT, StyleClass.MARKET_VIEW);
 
     Label title = new Label("Market");
-    title.getStyleClass().add("page-title");
+    title.getStyleClass().add(StyleClass.PAGE_TITLE);
 
     HBox body = createBody();
 
@@ -58,7 +59,7 @@ public class MarketView implements View {
 
   private HBox createBody() {
     HBox body = new HBox(25);
-    body.getStyleClass().add("market-body");
+    body.getStyleClass().add(StyleClass.MARKET_BODY);
 
     VBox leftColumn = createLeftColumn();
     HBox stockChart = createStockChart();
@@ -70,7 +71,7 @@ public class MarketView implements View {
 
   private VBox createLeftColumn() {
     VBox leftColumn = new VBox(25);
-    leftColumn.getStyleClass().add("market-left-column");
+    leftColumn.getStyleClass().add(StyleClass.MARKET_LEFT_COLUMN);
     leftColumn.setPrefHeight(800);
 
     leftColumn.getChildren().addAll(
@@ -83,8 +84,8 @@ public class MarketView implements View {
   }
 
   private HBox createStockChart() {
-    stockChartCard.addRootStyleClass("card");
-    stockChartCard.addRootStyleClass("stock-chart-card-large");
+    stockChartCard.addRootStyleClass(StyleClass.CARD);
+    stockChartCard.addRootStyleClass(StyleClass.STOCK_CHART_CARD_LARGE);
 
     HBox chartBox = new HBox(stockChartCard.getRoot());
     HBox.setHgrow(chartBox, Priority.ALWAYS);
@@ -107,7 +108,7 @@ public class MarketView implements View {
     }
 
     overlay = new Pane();
-    overlay.getStyleClass().add("market-overlay");
+    overlay.getStyleClass().add(StyleClass.MARKET_OVERLAY);
 
     stockSearchMenu = searchMenu;
 

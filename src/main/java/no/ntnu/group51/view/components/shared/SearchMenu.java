@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class SearchMenu extends StackPane {
@@ -20,36 +21,36 @@ public class SearchMenu extends StackPane {
   public SearchMenu(String promptText, boolean showCloseButton) {
     this.showCloseButton = showCloseButton;
 
-    getStyleClass().addAll("card", "search-menu");
+    getStyleClass().addAll(StyleClass.CARD, StyleClass.SEARCH_MENU);
     setAlignment(Pos.CENTER);
 
     searchField.setPromptText(promptText);
-    searchField.getStyleClass().addAll("card", "search-menu-text-field");
+    searchField.getStyleClass().addAll(StyleClass.CARD, StyleClass.SEARCH_MENU_TEXT_FIELD);
 
     HBox topBar = new HBox(searchField);
-    topBar.getStyleClass().add("search-menu-top-bar");
+    topBar.getStyleClass().add(StyleClass.SEARCH_MENU_TOP_BAR);
     topBar.setAlignment(Pos.CENTER_LEFT);
 
     if (showCloseButton) {
       closeIcon = new FontIcon("cil-x");
-      closeIcon.getStyleClass().add("search-menu-close");
+      closeIcon.getStyleClass().add(StyleClass.SEARCH_MENU_CLOSE);
       topBar.getChildren().add(closeIcon);
     } else {
       closeIcon = null;
-      getStyleClass().add("search-menu-no-close");
+      getStyleClass().add(StyleClass.SEARCH_MENU_NO_CLOSE);
     }
 
     ScrollPane scrollPane = new ScrollPane(list);
     scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
     scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     scrollPane.setFitToWidth(true);
-    scrollPane.getStyleClass().add("search-menu-scroll");
+    scrollPane.getStyleClass().add(StyleClass.SEARCH_MENU_SCROLL);
 
     Region separator = new Region();
-    separator.getStyleClass().add("search-menu-separator");
+    separator.getStyleClass().add(StyleClass.SEARCH_MENU_SEPARATOR);
 
     VBox content = new VBox(8, topBar, separator, scrollPane);
-    content.getStyleClass().add("search-menu-content");
+    content.getStyleClass().add(StyleClass.SEARCH_MENU_CONTENT);
     content.setAlignment(Pos.CENTER);
 
     getChildren().add(content);

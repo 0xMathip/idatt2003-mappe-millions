@@ -13,6 +13,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
@@ -31,10 +32,10 @@ public class DashboardTopMoversPanel implements View {
   public DashboardTopMoversPanel() {
 
     Label topMovers = new Label("Top Movers");
-    topMovers.getStyleClass().add("dashboard-movers-title");
+    topMovers.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_TITLE);
 
     Label thisWeek = new Label("(This week)");
-    thisWeek.getStyleClass().add("dashboard-movers-this-week");
+    thisWeek.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_THIS_WEEK);
 
     HBox title = new HBox();
     title.getChildren().addAll(topMovers, thisWeek);
@@ -43,12 +44,12 @@ public class DashboardTopMoversPanel implements View {
     title.setSpacing(15);
 
     Separator separator = new Separator();
-    separator.getStyleClass().add("separator-grey");
+    separator.getStyleClass().add(StyleClass.SEPARATOR_GREY);
     separator.setPadding(new Insets(15, 0, 0, 0));
 
 
     HBox text = new HBox();
-    viewMarket.getStyleClass().add("dashboard-view-button");
+    viewMarket.getStyleClass().add(StyleClass.DASHBOARD_VIEW_BUTTON);
     text.getChildren().add(viewMarket);
     text.setPadding(new Insets(10, 0, 15, 15));
 
@@ -73,7 +74,7 @@ public class DashboardTopMoversPanel implements View {
         lower
     );
 
-    root.getStyleClass().addAll("card", "dashboard-movers-window");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.DASHBOARD_MOVERS_WINDOW);
     root.setAlignment(Pos.CENTER);
     root.setSpacing(10);
   }

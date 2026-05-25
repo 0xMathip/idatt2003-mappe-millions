@@ -12,6 +12,7 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.math.BigDecimal;
@@ -33,18 +34,18 @@ public class TransactionListing {
     VBox leftSide =  new VBox();
     Label statusLabel = new Label();
     leftSide.setSpacing(spacing);
-    statusLabel.getStyleClass().add("dashboard-transaction-text");
+    statusLabel.getStyleClass().add(StyleClass.DASHBOARD_TRANSACTION_TEXT);
     Label sharesAmountLabel = new Label(quantity + " shares");
-    sharesAmountLabel.getStyleClass().add("dashboard-subtext");
+    sharesAmountLabel.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
     leftSide.getChildren().addAll(statusLabel, sharesAmountLabel);
     leftSide.setAlignment(Pos.CENTER_LEFT);
 
     VBox rightSide =  new VBox();
     rightSide.setSpacing(spacing);
     Label cashAmountLabel = new Label("$" + stockSalesPrice.multiply(quantity).setScale(2, RoundingMode.HALF_UP));
-    cashAmountLabel.getStyleClass().add("dashboard-transaction-amount");
+    cashAmountLabel.getStyleClass().add(StyleClass.DASHBOARD_TRANSACTION_AMOUNT);
     Label weekLabel = new Label("Week " + transaction.getWeek());
-    weekLabel.getStyleClass().add("dashboard-subtext");
+    weekLabel.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
     rightSide.getChildren().addAll(cashAmountLabel, weekLabel);
     rightSide.setAlignment(Pos.CENTER);
     rightSide.setPrefWidth(250);
@@ -70,11 +71,11 @@ public class TransactionListing {
 
     if (transaction instanceof Sale) {
       statusLabel.setText("Sold " + stock.getSymbol());
-      filledCircle.getStyleClass().add("filled-circle-red");
+      filledCircle.getStyleClass().add(StyleClass.FILLED_CIRCLE_RED);
 
     } else if (transaction instanceof Purchase) {
       statusLabel.setText("Bought " + stock.getSymbol());
-      filledCircle.getStyleClass().add("filled-circle-green");
+      filledCircle.getStyleClass().add(StyleClass.FILLED_CIRCLE_GREEN);
     }
 
     return listing;

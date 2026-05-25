@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.view.util.StyleClass;
 
 /**
  * Class for creating a panel of both net worth and available cash to be used on the dashboard.
@@ -24,17 +25,17 @@ public class CashPanel {
     VBox root = new VBox();
 
     Label titleLabel = new Label(title);
-    titleLabel.getStyleClass().add("dashboard-subtext");
+    titleLabel.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
 
     Label amountLabel = new Label("$" + amount.toString());
-    amountLabel.getStyleClass().add("dashboard-cash-stat-amount");
+    amountLabel.getStyleClass().add(StyleClass.DASHBOARD_CASH_STAT_AMOUNT);
 
     root.getChildren().addAll(
         titleLabel,
         amountLabel
     );
 
-    root.getStyleClass().addAll("card", "dashboard-cash-stat-window");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.DASHBOARD_CASH_STAT_WINDOW);
     root.setPadding(new Insets(18, 0, 15, 18));
     root.setSpacing(5);
 

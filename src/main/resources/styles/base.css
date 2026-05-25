@@ -1,6 +1,136 @@
 /* ===================
-    GLOBAL
- ===================*/
+   TEXT
+=================== */
+
+.text-body {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 16px;
+}
+
+.text-body-small {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 14px;
+}
+
+.text-body-medium {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 15px;
+}
+
+.text-title {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 20px;
+}
+
+.text-heading {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 24px;
+}
+
+.text-display {
+    -fx-text-fill: -color-text;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 36px;
+}
+
+.text-muted {
+    -fx-text-fill: -color-border-light;
+    -fx-font-family: -font-regular;
+    -fx-font-size: 16px;
+}
+
+/* ===================
+   ICONS
+=================== */
+
+.icon-small {
+    -fx-icon-size: 20px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-max-width: 20px;
+    -fx-max-height: 20px;
+}
+
+.icon-medium {
+    -fx-icon-size: 22px;
+    -fx-pref-width: 22px;
+    -fx-pref-height: 22px;
+    -fx-min-width: 22px;
+    -fx-min-height: 22px;
+    -fx-max-width: 22px;
+    -fx-max-height: 22px;
+}
+
+.icon-large {
+    -fx-icon-size: 25px;
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+    -fx-min-width: 25px;
+    -fx-min-height: 25px;
+    -fx-max-width: 25px;
+    -fx-max-height: 25px;
+}
+
+.icon-display {
+    -fx-icon-size: 40px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+}
+
+/* ===================
+   COMMON COMPONENTS
+=================== */
+
+.card {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 18px;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 18px;
+    -fx-border-width: 2px;
+    -fx-padding: 20px;
+}
+
+.panel {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 18px;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 18px;
+    -fx-border-width: 2px;
+    -fx-padding: 30px;
+}
+
+.surface {
+    -fx-background-color: -color-surface-light;
+    -fx-background-radius: 18px;
+}
+
+.value-positive {
+    -fx-text-fill: -color-green;
+}
+
+.value-negative {
+    -fx-text-fill: -color-red;
+}
+
+.value-neutral {
+    -fx-text-fill: -color-text;
+}
+
+/* ===================
+   GLOBAL PAGE STYLES
+=================== */
+
 .page-title {
     -fx-text-fill: -color-yellow;
     -fx-font-family: "Almarai Bold";
@@ -33,23 +163,10 @@
     -fx-text-fill: -color-green;
 }
 
-.card {
-    -fx-background-color: -color-surface;
-    -fx-background-radius: 30px;
-    -fx-border-color: -color-border;
-    -fx-border-radius:  30px;
-    -fx-border-width: 2px;
-}
-
-.surface {
-    -fx-background-color: -color-surface-light;
-    -fx-background-radius: 30px;
-}
-
 .button {
     -fx-cursor: hand;
 }
 
-.toggle-button  {
+.toggle-button {
     -fx-cursor: hand;
 }

@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public final class StatCardFactory {
@@ -33,7 +34,7 @@ public final class StatCardFactory {
     Label titleLabel = new Label(title);
 
     fontIcon.getStyleClass().add(iconStyle);
-    titleLabel.getStyleClass().add("factory-stat-card-top-text");
+    titleLabel.getStyleClass().add(StyleClass.FACTORY_STAT_CARD_TOP_TEXT);
     valueLabel.getStyleClass().add(valueStyle);
 
     VBox textBox;
@@ -49,7 +50,7 @@ public final class StatCardFactory {
 
     HBox card = new HBox(16, fontIcon, textBox);
     card.setAlignment(Pos.CENTER_LEFT);
-    card.getStyleClass().addAll("card", "factory-stat-card");
+    card.getStyleClass().addAll(StyleClass.CARD, StyleClass.FACTORY_STAT_CARD);
 
     return card;
   }
@@ -60,7 +61,7 @@ public final class StatCardFactory {
       String valueStyle
   ) {
     return createTextCard(title, new Label(value), null, valueStyle,
-        "factory-stat-card-bot-text", null);
+        StyleClass.FACTORY_STAT_CARD_TOP_TEXT, null);
   }
 
   public static VBox createTextCard(
@@ -96,7 +97,7 @@ public final class StatCardFactory {
   ) {
     Label top = new Label(title);
 
-    top.getStyleClass().add("factory-stat-card-top-text");
+    top.getStyleClass().add(StyleClass.FACTORY_STAT_CARD_TOP_TEXT);
     valueLabel.getStyleClass().add(valueStyle);
 
     if (subtitleLabel != null) {
@@ -116,7 +117,7 @@ public final class StatCardFactory {
         : new VBox(4, top, valueLabel, subtitleLabel);
 
     textCard.setAlignment(Pos.CENTER_LEFT);
-    textCard.getStyleClass().addAll("card", "factory-stat-card");
+    textCard.getStyleClass().addAll(StyleClass.CARD, StyleClass.FACTORY_STAT_CARD);
 
     return textCard;
   }

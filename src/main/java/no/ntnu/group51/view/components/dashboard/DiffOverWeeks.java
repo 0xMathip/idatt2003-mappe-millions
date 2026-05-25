@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 
 /**
  * Class for the section above the chart.
@@ -22,11 +23,11 @@ public class DiffOverWeeks implements View {
   public DiffOverWeeks() {
 
     Separator separator1 = new Separator();
-    separator1.getStyleClass().add("separator-white");
+    separator1.getStyleClass().add(StyleClass.SEPARATOR_WHITE);
     separator1.setOrientation(Orientation.VERTICAL);
 
     Separator separator2 = new Separator();
-    separator2.getStyleClass().add("separator-white");
+    separator2.getStyleClass().add(StyleClass.SEPARATOR_WHITE);
     separator2.setOrientation(Orientation.VERTICAL);
 
     root.getChildren().addAll(

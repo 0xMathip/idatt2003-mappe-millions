@@ -11,6 +11,7 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class StockSelectorCard implements View {
@@ -23,17 +24,17 @@ public class StockSelectorCard implements View {
   private final Label changeLabel = new Label();
 
   public StockSelectorCard() {
-    root.getStyleClass().addAll("card", "stock-selector-card");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.STOCK_SELECTOR_CARD);
     root.setAlignment(Pos.CENTER_LEFT);
 
     createLayout();
   }
 
   private void createLayout() {
-    tickerLabel.getStyleClass().add("stock-selector-card-ticker-label");
-    companyLabel.getStyleClass().add("stock-selector-card-company-label");
-    priceLabel.getStyleClass().add("stock-selector-card-price-label");
-    changeLabel.getStyleClass().add("stock-selector-card-change-label");
+    tickerLabel.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_TICKER);
+    companyLabel.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_COMPANY);
+    priceLabel.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_PRICE);
+    changeLabel.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_CHANGE);
 
     Region topSpacer = new Region();
     HBox.setHgrow(topSpacer, Priority.ALWAYS);
@@ -44,18 +45,18 @@ public class StockSelectorCard implements View {
     HBox topRow = new HBox(tickerLabel, topSpacer, priceLabel);
     HBox botRow = new HBox(companyLabel, botSpacer, changeLabel);
 
-    topRow.getStyleClass().add("stock-selector-card-row");
-    botRow.getStyleClass().add("stock-selector-card-row");
+    topRow.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_ROW);
+    botRow.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_ROW);
 
     topRow.setAlignment(Pos.CENTER_LEFT);
     botRow.setAlignment(Pos.CENTER_LEFT);
 
     VBox content = new VBox(topRow, botRow);
-    content.getStyleClass().add("stock-selector-card-content");
+    content.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_CONTENT);
     content.setAlignment(Pos.CENTER_LEFT);
 
     FontIcon arrowIcon = new FontIcon("cil-chevron-circle-down-alt");
-    arrowIcon.getStyleClass().add("stock-selector-card-arrow");
+    arrowIcon.getStyleClass().add(StyleClass.STOCK_SELECTOR_CARD_ARROW);
 
     root.getChildren().addAll(content, arrowIcon);
   }

@@ -12,6 +12,7 @@ import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.portfolio.PortfolioSearchMenu;
 import no.ntnu.group51.view.components.portfolio.PortfolioStatsSection;
 import no.ntnu.group51.view.components.portfolio.PortfolioStockDetails;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class PortfolioView implements View {
   private final GridPane root = new GridPane();
@@ -29,7 +30,7 @@ public class PortfolioView implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("page-layout", "portfolio-view");
+    root.getStyleClass().addAll(StyleClass.PAGE_LAYOUT, StyleClass.PORTFOLIO_VIEW);
 
     Label title = createTitle();
     HBox body = createBody();
@@ -41,7 +42,7 @@ public class PortfolioView implements View {
 
   private Label createTitle() {
     Label title = new Label("Portfolio");
-    title.getStyleClass().add("page-title");
+    title.getStyleClass().add(StyleClass.PAGE_TITLE);
     return title;
   }
 
@@ -51,7 +52,7 @@ public class PortfolioView implements View {
         pStockDetails.getRoot()
     );
 
-    body.getStyleClass().add("transaction-body");
+    body.getStyleClass().add(StyleClass.TRANSACTION_BODY);
     return body;
   }
 

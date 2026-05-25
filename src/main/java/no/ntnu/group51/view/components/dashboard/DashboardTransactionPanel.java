@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.*;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
@@ -32,11 +33,11 @@ public class DashboardTransactionPanel implements View {
   public DashboardTransactionPanel() {
 
     Separator separator = new Separator();
-    separator.getStyleClass().add("separator-grey");
+    separator.getStyleClass().add(StyleClass.SEPARATOR_GREY);
     separator.setPadding(new Insets(15, 0, 0, 0));
 
     HBox text = new HBox();
-    viewAll.getStyleClass().add("dashboard-view-button");
+    viewAll.getStyleClass().add(StyleClass.DASHBOARD_VIEW_BUTTON);
     text.getChildren().add(viewAll);
     text.setPadding(new Insets(10, 0, 15, 15));
 
@@ -58,7 +59,7 @@ public class DashboardTransactionPanel implements View {
     root.setBottom(lower);
 
 
-    root.getStyleClass().addAll("card", "dashboard-transaction-window");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.DASHBOARD_TRANSACTION_WINDOW);
   }
 
   public void clearListings() {

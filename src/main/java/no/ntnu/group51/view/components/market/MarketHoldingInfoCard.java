@@ -8,6 +8,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class MarketHoldingInfoCard implements View {
 
@@ -25,7 +26,7 @@ public class MarketHoldingInfoCard implements View {
   }
 
   private void createLayout() {
-    root.getStyleClass().addAll("card", "market-holding-info-card");
+    root.getStyleClass().addAll(StyleClass.CARD, StyleClass.MARKET_HOLDING_INFO);
     root.setAlignment(Pos.CENTER);
 
     VBox normalBox = createNormalBox();
@@ -36,12 +37,12 @@ public class MarketHoldingInfoCard implements View {
 
   private VBox createNormalBox() {
     Label titleLabel = new Label("Normal");
-    titleLabel.getStyleClass().add("market-holding-box-title");
+    titleLabel.getStyleClass().add(StyleClass.MARKET_HOLDING_BOX_TITLE);
 
-    normalValueLabel.getStyleClass().add("market-holding-box-value");
+    normalValueLabel.getStyleClass().add(StyleClass.MARKET_HOLDING_BOX_VALUE);
 
     VBox box = new VBox(4, titleLabel, normalValueLabel);
-    box.getStyleClass().addAll("surface", "market-holding-box");
+    box.getStyleClass().addAll(StyleClass.SURFACE, StyleClass.MARKET_HOLDING_BOX);
     box.setAlignment(Pos.CENTER_LEFT);
 
     return box;
@@ -49,11 +50,11 @@ public class MarketHoldingInfoCard implements View {
 
   private VBox createLeveragedBox() {
     Label titleLabel = new Label("Leveraged");
-    titleLabel.getStyleClass().add("market-holding-box-title");
+    titleLabel.getStyleClass().add(StyleClass.MARKET_HOLDING_BOX_TITLE);
 
-    leverageBadge.getStyleClass().add("market-holding-leverage-badge");
-    leveragedValueLabel.getStyleClass().add("market-holding-box-value");
-    leveragedSubLabel.getStyleClass().add("market-holding-box-subvalue");
+    leverageBadge.getStyleClass().add(StyleClass.MARKET_HOLDING_LEVERAGE_BADGE);
+    leveragedValueLabel.getStyleClass().add(StyleClass.MARKET_HOLDING_BOX_VALUE);
+    leveragedSubLabel.getStyleClass().add(StyleClass.MARKET_HOLDING_BOX_SUBVALUE);
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -63,9 +64,9 @@ public class MarketHoldingInfoCard implements View {
 
     VBox box = new VBox(4, header, leveragedValueLabel, leveragedSubLabel);
     box.getStyleClass().addAll(
-        "surface",
-        "market-holding-box",
-        "market-holding-box-leveraged"
+        StyleClass.SURFACE,
+        StyleClass.MARKET_HOLDING_BOX,
+        StyleClass.MARKET_HOLDING_BOX_LEVERAGED
     );
     box.setAlignment(Pos.CENTER_LEFT);
 
