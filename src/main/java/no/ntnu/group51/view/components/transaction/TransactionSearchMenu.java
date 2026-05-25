@@ -9,21 +9,32 @@ import no.ntnu.group51.view.components.shared.SearchMenu;
 import no.ntnu.group51.view.components.shared.SearchRow;
 import no.ntnu.group51.view.factories.TransactionRowFactory;
 
+/**
+ * Search menu for displaying and selecting transactions.
+ */
 public class TransactionSearchMenu implements View {
 
   private final SearchMenu root;
   private List<TransactionSummary> transactions = List.of();
-  private Consumer<TransactionSummary> onTransactionSelected
-      =transaction -> {};
+  private Consumer<TransactionSummary> onTransactionSelected = transaction -> {};
 
+  /**
+   * Creates the transaction search menu.
+   */
   public TransactionSearchMenu() {
     this.root = new SearchMenu("⌕ Search transactions", false);
 
     root.getSearchField().textProperty().addListener(
-            (obs, oldValue, newValue) -> updateDisplay()
+        (obs, oldValue, newValue) -> updateDisplay()
     );
   }
 
+  /**
+   * Updates the displayed transactions.
+   *
+   * @param transactions the transaction summaries to display
+   * @throws IllegalArgumentException if transactions is null
+   */
   public void updateTransactions(List<TransactionSummary> transactions) {
     if (transactions == null) {
       throw new IllegalArgumentException("Transactions cannot be null.");
@@ -33,6 +44,12 @@ public class TransactionSearchMenu implements View {
     updateDisplay();
   }
 
+  /**
+   * Sets the action to run when a transaction is selected.
+   *
+   * @param handler the transaction selection handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnTransactionSelected(Consumer<TransactionSummary> handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");

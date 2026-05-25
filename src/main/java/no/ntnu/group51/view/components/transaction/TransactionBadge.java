@@ -1,4 +1,4 @@
-package no.ntnu.group51.view.factories;
+package no.ntnu.group51.view.components.transaction;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -9,13 +9,24 @@ import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class TransactionBadgeFactory extends HBox {
+/**
+ * UI badge displaying whether a transaction is a buy or sell.
+ */
+public class TransactionBadge extends HBox {
 
-  public TransactionBadgeFactory(Transaction transaction) {
+  /**
+   * Creates a transaction badge for the given transaction.
+   *
+   * @param transaction the transaction to represent
+   * @throws IllegalArgumentException if transaction is null or unsupported
+   */
+  public TransactionBadge(Transaction transaction) {
+    super(16);
+
     if (transaction == null) {
       throw new IllegalArgumentException("Transaction cannot be null.");
     }
-    super(16);
+
     setAlignment(Pos.CENTER);
     FontIcon transactionIcon = new FontIcon();
     Label transactionLabel = new Label();

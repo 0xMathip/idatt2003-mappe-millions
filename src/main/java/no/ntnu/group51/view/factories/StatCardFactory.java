@@ -7,10 +7,16 @@ import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Factory for creating reusable statistic cards and text cards.
+ */
 public final class StatCardFactory {
   private StatCardFactory() {
   }
 
+  /**
+   * Prevents instantiation of this utility class.
+   */
   public static HBox createCard(
       String icon,
       String title,
@@ -21,6 +27,16 @@ public final class StatCardFactory {
     return createCard(icon, title, valueLabel, null, iconStyle, valueStyle, null);
   }
 
+  /**
+   * Creates a statistic card without subtitle.
+   *
+   * @param icon the icon identifier
+   * @param title the card title
+   * @param valueLabel the value label
+   * @param iconStyle the icon style class
+   * @param valueStyle the value style class
+   * @return the created card
+   */
   public static HBox createCard(
       String icon,
       String title,
@@ -55,6 +71,18 @@ public final class StatCardFactory {
     return card;
   }
 
+  /**
+   * Creates a statistic card with optional subtitle.
+   *
+   * @param icon the icon identifier
+   * @param title the card title
+   * @param valueLabel the main value label
+   * @param subtitleLabel the subtitle label, or null
+   * @param iconStyle the icon style class
+   * @param valueStyle the value style class
+   * @param subtitleStyle the subtitle style class
+   * @return the created card
+   */
   public static VBox createTextCard(
       String title,
       String value,
@@ -75,6 +103,9 @@ public final class StatCardFactory {
         valueStyle, subtitleStyle, null);
   }
 
+  /**
+   * Creates a text-based statistic card.
+   */
   public static VBox createTextCard(
       String title,
       String value,
@@ -87,6 +118,17 @@ public final class StatCardFactory {
         valueStyle, subtitleStyle, valueStateStyle);
   }
 
+  /**
+   * Creates a fully configurable text-based statistic card.
+   *
+   * @param title the card title
+   * @param valueLabel the main value label
+   * @param subtitleLabel the subtitle label, or null
+   * @param valueStyle the value style class
+   * @param subtitleStyle the subtitle style class
+   * @param valueStateStyle optional shared state style
+   * @return the created card
+   */
   public static VBox createTextCard(
       String title,
       Label valueLabel,

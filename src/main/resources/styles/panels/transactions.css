@@ -1,6 +1,9 @@
 /* =====================================================
    TRANSACTION STATISTICS
  ===================================================== */
+.transaction-stat-row {
+
+}
 
 .transaction-stat-value {
     -fx-text-fill: -color-text;

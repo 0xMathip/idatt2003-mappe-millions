@@ -16,6 +16,9 @@ import no.ntnu.group51.view.components.portfolio.PortfolioStatsSection;
 import no.ntnu.group51.view.components.portfolio.PortfolioStockDetails;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * Portfolio page view showing portfolio stats, positions, and selected position details.
+ */
 public class PortfolioView implements View {
   private final GridPane root = new GridPane();
 
@@ -23,6 +26,9 @@ public class PortfolioView implements View {
   private final PortfolioSearchMenu pSearchMenu;
   private final PortfolioStockDetails pStockDetails;
 
+  /**
+   * Creates the portfolio view.
+   */
   public PortfolioView() {
     this.statsSection = new PortfolioStatsSection();
     this.pSearchMenu = new PortfolioSearchMenu();
@@ -30,6 +36,7 @@ public class PortfolioView implements View {
 
     createLayout();
   }
+
 
   private void createLayout() {
     root.getStyleClass().addAll(StyleClass.PAGE_LAYOUT, StyleClass.PORTFOLIO_VIEW);
@@ -58,6 +65,12 @@ public class PortfolioView implements View {
     return body;
   }
 
+  /**
+   * Updates the portfolio statistics section.
+   *
+   * @param summary the portfolio summary to display
+   * @throws IllegalArgumentException if summary is null
+   */
   public void updateSummary(PortfolioSummary summary) {
     if (summary == null) {
       throw new IllegalArgumentException("Portfolio summary cannot be null.");
@@ -65,6 +78,12 @@ public class PortfolioView implements View {
     statsSection.updateSummary(summary);
   }
 
+  /**
+   * Updates the displayed portfolio positions.
+   *
+   * @param positions the positions to display
+   * @throws IllegalArgumentException if positions is null
+   */
   public void updatePositions(List<PositionSummary> positions) {
     if (positions == null) {
       throw new IllegalArgumentException("Position cannot be null.");
@@ -72,6 +91,12 @@ public class PortfolioView implements View {
     pSearchMenu.updatePositions(positions);
   }
 
+  /**
+   * Updates the selected position details.
+   *
+   * @param position the selected position
+   * @throws IllegalArgumentException if position is null
+   */
   public void updateSelectedPosition(PositionSummary position) {
     if (position == null) {
       throw new IllegalArgumentException("Position cannot be null.");
@@ -80,10 +105,19 @@ public class PortfolioView implements View {
     pStockDetails.updatePosition(position);
   }
 
+  /**
+   * Clears the selected position details.
+   */
   public void clearSelectedPosition() {
     pStockDetails.clear();
   }
 
+  /**
+   * Sets the action to run when a position is selected.
+   *
+   * @param handler the position selection handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnPositionSelected(Consumer<PositionSummary> handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -91,7 +125,16 @@ public class PortfolioView implements View {
     pSearchMenu.setOnPositionSelected(handler);
   }
 
+  /**
+   * Sets the action to run when opening the selected stock in the market.
+   *
+   * @param action the click handler
+   * @throws IllegalArgumentException if action is null
+   */
   public void setOnOpenMarketPress(EventHandler<MouseEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     pStockDetails.setOnOpenMarketPress(action);
   }
 

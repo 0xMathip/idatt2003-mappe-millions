@@ -14,6 +14,10 @@ import no.ntnu.group51.view.components.transaction.TransactionSearchMenu;
 import no.ntnu.group51.view.components.transaction.TransactionStatsSection;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * Transaction page view showing transaction statistics,
+ * searchable transaction history, and transaction details.
+ */
 public class TransactionView implements View {
 
   private final GridPane root = new GridPane();
@@ -22,6 +26,9 @@ public class TransactionView implements View {
   private final TransactionStatsSection statsSection;
   private final TransactionDetailsCard transactionDetailsCard;
 
+  /**
+   * Creates the transaction view.
+   */
   public TransactionView() {
     this.statsSection = new TransactionStatsSection();
     this.transactionSearchMenu = new TransactionSearchMenu();
@@ -58,13 +65,25 @@ public class TransactionView implements View {
     return body;
   }
 
+  /**
+   * Updates the transaction statistics section.
+   *
+   * @param summary the summary to display
+   * @throws IllegalArgumentException if summary is null
+   */
   public void updateSummary(TransactionPageSummary summary) {
     if (summary == null) {
-      throw new IllegalArgumentException("Transactions page summary cannot be null.");
+      throw new IllegalArgumentException("Transaction page summary cannot be null.");
     }
     statsSection.updateSummary(summary);
   }
 
+  /**
+   * Updates the displayed transactions.
+   *
+   * @param transactions the transactions to display
+   * @throws IllegalArgumentException if transactions is null
+   */
   public void updateTransactions(List<TransactionSummary> transactions) {
     if (transactions == null) {
       throw new IllegalArgumentException("Transactions cannot be null.");
@@ -72,6 +91,12 @@ public class TransactionView implements View {
     transactionSearchMenu.updateTransactions(transactions);
   }
 
+  /**
+   * Updates the selected transaction details.
+   *
+   * @param transaction the selected transaction
+   * @throws IllegalArgumentException if transaction is null
+   */
   public void updateSelectedTransaction(TransactionSummary transaction) {
     if (transaction == null) {
       throw new IllegalArgumentException("Transaction cannot be null.");
@@ -80,10 +105,19 @@ public class TransactionView implements View {
     transactionDetailsCard.updateTransaction(transaction);
   }
 
+  /**
+   * Clears the selected transaction details.
+   */
   public void clearSelectedTransaction() {
     transactionDetailsCard.clear();
   }
 
+  /**
+   * Sets the action to run when a transaction is selected.
+   *
+   * @param handler the selection handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnTransactionSelected(Consumer<TransactionSummary> handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");

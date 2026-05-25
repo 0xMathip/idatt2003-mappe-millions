@@ -201,4 +201,5 @@ public final class StyleClass {
   public static final String TRANSACTION_STAT_BOUGHT_ICON = "transaction-stat-bought-icon";
   public static final String TRANSACTION_STAT_SOLD_ICON = "transaction-stat-sold-icon";
   public static final String TRANSACTION_STAT_FEES_ICON = "transaction-stat-fees-icon";
+  public static final String TRANSACTION_STAT_ROW = "transaction-stat-row";
 }

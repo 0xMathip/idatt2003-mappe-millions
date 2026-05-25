@@ -8,6 +8,9 @@ import no.ntnu.group51.view.factories.StatCardFactory;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * UI section displaying transaction summary statistics.
+ */
 public class TransactionStatsSection {
 
   private static final String ALL_TIME = "All time";
@@ -24,12 +27,15 @@ public class TransactionStatsSection {
   private final Label totalSoldSubtitle = new Label(ALL_TIME);
   private final Label totalFeesSubtitle = new Label(ALL_TIME);
 
+  /**
+   * Creates the transaction statistics section.
+   */
   public TransactionStatsSection() {
     createLayout();
   }
 
   private void createLayout() {
-    root.getStyleClass().add("transaction-stat-row");
+    root.getStyleClass().add(StyleClass.TRANSACTION_STAT_ROW);
 
     HBox totalTradesCard = StatCardFactory.createCard(
         "cil-swap-horizontal",
@@ -79,6 +85,12 @@ public class TransactionStatsSection {
     );
   }
 
+  /**
+   * Updates the displayed transaction statistics.
+   *
+   * @param summary the transaction summary to display
+   * @throws IllegalArgumentException if summary is null
+   */
   public void updateSummary(TransactionPageSummary summary) {
     if (summary == null) {
       throw new IllegalArgumentException("Transaction summary cannot be null.");
@@ -89,6 +101,11 @@ public class TransactionStatsSection {
     totalFeesLabel.setText(CurrencyFormatter.format(summary.totalTaxFees()));
   }
 
+  /**
+   * Returns the root UI node.
+   *
+   * @return the root node
+   */
   public Parent getRoot() {
     return root;
   }
