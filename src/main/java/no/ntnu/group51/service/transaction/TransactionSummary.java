@@ -10,6 +10,7 @@ public record TransactionSummary(
     BigDecimal quantity,
     BigDecimal unitPrice,
     BigDecimal gross,
+    BigDecimal commission,
     BigDecimal tax,
     BigDecimal total,
     String type,

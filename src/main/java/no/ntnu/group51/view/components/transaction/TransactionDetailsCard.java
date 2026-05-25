@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.components.transaction;
 
+import java.math.RoundingMode;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -23,7 +24,7 @@ public class TransactionDetailsCard implements View {
   private final Label quantityValue = new Label("-");
   private final Label priceValue = new Label("$0.00");
   private final Label grossValue = new Label("$0.00");
-  private final Label taxValue = new Label("$0.00");
+  private final Label feesValue = new Label("$0.00");
   private final Label totalValue = new Label("$0.00");
   private final Label noteValue = new Label("Select a transaction to view details.");
 
@@ -56,7 +57,7 @@ public class TransactionDetailsCard implements View {
         createDetailRow("Quantity", quantityValue),
         createDetailRow("Price per share", priceValue),
         createDetailRow("Gross value", grossValue),
-        createDetailRow("Tax / Fees", taxValue)
+        createDetailRow("Tax / Fees", feesValue)
     );
 
     Region spacer = new Region();
@@ -111,10 +112,21 @@ public class TransactionDetailsCard implements View {
     ticker.setText(transaction.stock().getSymbol());
     company.setText(transaction.stock().getCompany());
     weekValue.setText(String.valueOf(transaction.week()));
-    quantityValue.setText(transaction.quantity().toPlainString());
+    quantityValue.setText(
+        transaction.quantity()
+            .setScale(4, RoundingMode.HALF_UP)
+            .stripTrailingZeros()
+            .toPlainString()
+    );
+
     priceValue.setText(CurrencyFormatter.format(transaction.unitPrice()));
     grossValue.setText(CurrencyFormatter.format(transaction.gross()));
-    taxValue.setText(CurrencyFormatter.format(transaction.tax()));
+    feesValue.setText(
+        CurrencyFormatter.format(
+            transaction.tax().add(transaction.commission())
+        )
+    );
+
     totalValue.setText(CurrencyFormatter.format(transaction.total()));
     noteValue.setText(transaction.note());
 
@@ -129,7 +141,7 @@ public class TransactionDetailsCard implements View {
     quantityValue.setText("-");
     priceValue.setText("$0.00");
     grossValue.setText("$0.00");
-    taxValue.setText("$0.00");
+    feesValue.setText("$0.00");
     totalValue.setText("$0.00");
     noteValue.setText("Select a transaction to view details.");
   }

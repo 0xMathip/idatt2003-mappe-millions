@@ -35,6 +35,22 @@ public class Share {
     this.purchasePrice = purchasePrice;
   }
 
+  public void addQuantity(BigDecimal additionalQuantity) {
+    if (additionalQuantity == null || additionalQuantity.compareTo(BigDecimal.ZERO) <= 0) {
+      throw new IllegalArgumentException("Additional quantity must be positive.");
+    }
+
+    this.quantity = this.quantity.add(additionalQuantity);
+  }
+
+  public void setPurchasePrice(BigDecimal purchasePrice) {
+    if (purchasePrice == null || purchasePrice.compareTo(BigDecimal.ZERO) < 0) {
+      throw new IllegalArgumentException("Purchase price cannot be negative.");
+    }
+
+    this.purchasePrice = purchasePrice;
+  }
+
   /**
    * Returns the stock associated with a share object.
    *

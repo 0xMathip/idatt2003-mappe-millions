@@ -47,7 +47,7 @@ public class TransactionService {
 
     BigDecimal totalTaxFees = summaries
         .stream()
-        .map(TransactionSummary::tax)
+        .map(summary -> summary.commission().add(summary.tax()))
         .reduce(BigDecimal.ZERO, BigDecimal::add)
         .setScale(MONEY_SCALE, RoundingMode.HALF_UP);
 
@@ -77,6 +77,7 @@ public class TransactionService {
         share.getQuantity(),
         share.getPurchasePrice(),
         transaction.getCalculator().calculateGross().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
+        transaction.getCalculator().calculateCommission().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
         transaction.getCalculator().calculateTax().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
         transaction.getCalculator().calculateTotal().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
         type,

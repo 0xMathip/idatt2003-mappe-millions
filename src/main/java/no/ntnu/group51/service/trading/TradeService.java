@@ -40,12 +40,19 @@ public class TradeService {
     validateInputs(player, stock, input, tradeMode, tradeType, leverage, week);
 
     BigDecimal enteredValue = parseInput(input);
-    BigDecimal quantity = calculateQuantity(stock, enteredValue, tradeMode, leverage);
+    BigDecimal quantity =
+        tradeType == TradeType.SELL
+            && leverage != Leverage.OFF
+            && tradeMode == TradeMode.AMOUNT
+            ? calculateLeveragedSellQuantity(player, stock, enteredValue)
+            : calculateQuantity(stock, enteredValue, tradeMode, tradeType, leverage);
+
     BigDecimal marginRequired = calculateMarginRequired(
         stock,
         quantity,
         enteredValue,
         tradeMode,
+        tradeType,
         leverage
     );
 
@@ -119,8 +126,7 @@ public class TradeService {
       return;
     }
 
-    player.addMoney(preview.total());
-    player.getPortfolio().removeLeveragedPosition(preview.leveragedPosition());
+    closeLeveragedPosition(player, preview);
     player.getTransactionArchive().add(preview.transaction());
   }
 
@@ -163,13 +169,73 @@ public class TradeService {
   }
 
   private LeveragedPosition createSellLeveragedPosition(Player player, Stock stock, BigDecimal quantity) {
-    return player.getPortfolio()
+    LeveragedPosition ownedPosition = player.getPortfolio()
         .getLeveragedPositions()
         .stream()
         .filter(position -> position.getShare().getStock().equals(stock))
         .filter(position -> position.getShare().getQuantity().compareTo(quantity) >= 0)
         .findFirst()
         .orElseThrow(() -> new IllegalArgumentException("Not enough leveraged shares owned."));
+
+    BigDecimal ownedQuantity = ownedPosition.getShare().getQuantity();
+    BigDecimal ratio = quantity.divide(ownedQuantity, 8, RoundingMode.HALF_UP);
+
+    Share sellShare = new Share(
+        stock,
+        quantity,
+        ownedPosition.getShare().getPurchasePrice()
+    );
+
+    return new LeveragedPosition(
+        sellShare,
+        ownedPosition.getLeverage(),
+        ownedPosition.getMarginRequired().multiply(ratio),
+        ownedPosition.getExposure().multiply(ratio),
+        ownedPosition.getLiquidationPrice()
+    );
+  }
+
+  private void closeLeveragedPosition(Player player, TradePreview preview) {
+    LeveragedPosition sellPosition = preview.leveragedPosition();
+
+    LeveragedPosition ownedPosition = player.getPortfolio()
+        .getLeveragedPositions()
+        .stream()
+        .filter(position -> position.getShare().getStock().equals(sellPosition.getShare().getStock()))
+        .filter(position -> position.getShare().getQuantity()
+            .compareTo(sellPosition.getShare().getQuantity()) >= 0)
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Leveraged position not found."));
+
+    player.addMoney(preview.total());
+    player.getPortfolio().removeLeveragedPosition(ownedPosition);
+
+    BigDecimal remainingQuantity = ownedPosition.getShare().getQuantity()
+        .subtract(sellPosition.getShare().getQuantity());
+
+    if (remainingQuantity.compareTo(BigDecimal.ZERO) > 0) {
+      BigDecimal ratio = remainingQuantity.divide(
+          ownedPosition.getShare().getQuantity(),
+          8,
+          RoundingMode.HALF_UP
+      );
+
+      Share remainingShare = new Share(
+          ownedPosition.getShare().getStock(),
+          remainingQuantity,
+          ownedPosition.getShare().getPurchasePrice()
+      );
+
+      LeveragedPosition remainingPosition = new LeveragedPosition(
+          remainingShare,
+          ownedPosition.getLeverage(),
+          ownedPosition.getMarginRequired().multiply(ratio),
+          ownedPosition.getExposure().multiply(ratio),
+          ownedPosition.getLiquidationPrice()
+      );
+
+      player.getPortfolio().addLeveragedPosition(remainingPosition);
+    }
   }
 
   private Share createSellShare(Player player, Stock stock, BigDecimal quantity) {
@@ -187,10 +253,19 @@ public class TradeService {
       Stock stock,
       BigDecimal enteredValue,
       TradeMode tradeMode,
+      TradeType tradeType,
       Leverage leverage
   ) {
     if (tradeMode == TradeMode.SHARES) {
       return enteredValue.setScale(QUANTITY_SCALE, RoundingMode.HALF_UP);
+    }
+
+    if (tradeType == TradeType.SELL) {
+      return enteredValue.divide(
+          stock.getSalesPrice(),
+          QUANTITY_SCALE,
+          RoundingMode.HALF_UP
+      );
     }
 
     LeverageSummary summary =
@@ -200,15 +275,57 @@ public class TradeService {
         .divide(stock.getSalesPrice(), QUANTITY_SCALE, RoundingMode.HALF_UP);
   }
 
+  private BigDecimal calculateLeveragedSellQuantity(
+      Player player,
+      Stock stock,
+      BigDecimal enteredValue
+  ) {
+    LeveragedPosition ownedPosition = player.getPortfolio()
+        .getLeveragedPositions()
+        .stream()
+        .filter(position -> position.getShare().getStock().equals(stock))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("No leveraged position owned."));
+
+    LeverageCalculator calculator = new LeverageCalculator(ownedPosition);
+    BigDecimal positionValue = calculator.calculateTotal();
+
+    if (enteredValue.compareTo(positionValue) >= 0) {
+      return ownedPosition.getShare().getQuantity();
+    }
+
+    BigDecimal ratio = enteredValue.divide(
+        positionValue,
+        QUANTITY_SCALE,
+        RoundingMode.HALF_UP
+    );
+
+    return ownedPosition.getShare()
+        .getQuantity()
+        .multiply(ratio)
+        .setScale(QUANTITY_SCALE, RoundingMode.HALF_UP);
+  }
+
   private BigDecimal calculateMarginRequired(
       Stock stock,
       BigDecimal quantity,
       BigDecimal enteredValue,
       TradeMode tradeMode,
+      TradeType tradeType,
       Leverage leverage
   ) {
     if (tradeMode == TradeMode.AMOUNT) {
-      return enteredValue.setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+      if (leverage == Leverage.OFF || tradeType == TradeType.BUY) {
+        return enteredValue.setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+      }
+
+      BigDecimal multiplier = leverageService.getMultiplier(leverage);
+
+      return enteredValue.divide(
+          multiplier,
+          MONEY_SCALE,
+          RoundingMode.HALF_UP
+      );
     }
 
     BigDecimal exposure = quantity.multiply(stock.getSalesPrice());

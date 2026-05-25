@@ -1,14 +1,17 @@
 package no.ntnu.group51.view.components.portfolio;
 
+import java.math.RoundingMode;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.components.shared.StockChartCard;
@@ -16,25 +19,31 @@ import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 
-
 public class PortfolioStockDetails implements View {
+
   private final VBox root = new VBox(10);
   private final StockChartCard stockChartCard;
-
 
   private final Label ticker = new Label("-");
   private final Label company = new Label("No position selected.");
   private final Label priceValue = new Label("$0.00");
   private final Label changeValue = new Label("0.00%");
 
-  private final Label avgBuyPriceValue = new Label("$0.00");
-  private final Label totalInvestedValue = new Label("$0.00");
-  private final Label sharesOwnedValue = new Label("0");
-  private final Label lowestPriceValue = new Label("$0.00");
-  private final Label highestPriceValue = new Label("$0.00");
-  private final Label positionValue = new Label("$0.00");
-  private final Label profitLoss = new Label("$0.00");
+  private final Label stat1Title = new Label();
+  private final Label stat2Title = new Label();
+  private final Label stat3Title = new Label();
+  private final Label stat4Title = new Label();
+  private final Label stat5Title = new Label();
+  private final Label stat6Title = new Label();
 
+  private final Label stat1Value = new Label("$0.00");
+  private final Label stat2Value = new Label("$0.00");
+  private final Label stat3Value = new Label("0");
+  private final Label stat4Value = new Label("$0.00");
+  private final Label stat5Value = new Label("$0.00");
+  private final Label stat6Value = new Label("$0.00");
+
+  private final Label profitLoss = new Label("$0.00");
 
   public PortfolioStockDetails() {
     this.stockChartCard = new StockChartCard(false);
@@ -57,7 +66,6 @@ public class PortfolioStockDetails implements View {
 
     priceValue.getStyleClass().add("portfolio-details-price");
     changeValue.getStyleClass().add("portfolio-details-change");
-
 
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -83,20 +91,38 @@ public class PortfolioStockDetails implements View {
 
   private GridPane createStatsGrid() {
     GridPane statsGrid = new GridPane();
+    ColumnConstraints col1 = new ColumnConstraints();
+    col1.setPercentWidth(26);
+
+    ColumnConstraints col2 = new ColumnConstraints();
+    col2.setPercentWidth(26);
+
+    ColumnConstraints col3 = new ColumnConstraints();
+    col3.setPercentWidth(26);
+
+    ColumnConstraints col4 = new ColumnConstraints();
+    col4.setPercentWidth(22);
+
+    statsGrid.getColumnConstraints().addAll(
+        col1,
+        col2,
+        col3,
+        col4
+    );
+
     statsGrid.getStyleClass().addAll("card", "portfolio-details-stats-grid");
     statsGrid.setAlignment(Pos.CENTER);
 
-    statsGrid.add(createStatBox("Avg. Buy Price", avgBuyPriceValue), 0, 0);
-    statsGrid.add(createStatBox("Total Invested", totalInvestedValue), 1, 0);
-    statsGrid.add(createStatBox("Shares Owned", sharesOwnedValue), 2, 0);
+    statsGrid.add(createStatBox(stat1Title, stat1Value), 0, 0);
+    statsGrid.add(createStatBox(stat2Title, stat2Value), 1, 0);
+    statsGrid.add(createStatBox(stat3Title, stat3Value), 2, 0);
 
-    statsGrid.add(createStatBox("Lowest Price", lowestPriceValue), 0, 1);
-    statsGrid.add(createStatBox("Highest Price", highestPriceValue), 1, 1);
-    statsGrid.add(createStatBox("Position Value", positionValue), 2, 1);
+    statsGrid.add(createStatBox(stat4Title, stat4Value), 0, 1);
+    statsGrid.add(createStatBox(stat5Title, stat5Value), 1, 1);
+    statsGrid.add(createStatBox(stat6Title, stat6Value), 2, 1);
 
-    VBox pnlBox = createStatBox("Profit/Loss", profitLoss);
+    VBox pnlBox = createStatBox(new Label("Profit/Loss"), profitLoss);
     pnlBox.getStyleClass().add("portfolio-details-pnl");
-
 
     statsGrid.add(pnlBox, 3, 0, 1, 2);
 
@@ -112,15 +138,20 @@ public class PortfolioStockDetails implements View {
     return stockChart;
   }
 
-  private VBox createStatBox(String title, Label value) {
-    Label titleLabel = new Label(title);
+  private VBox createStatBox(Label titleLabel, Label valueLabel) {
     titleLabel.getStyleClass().add("portfolio-details-stat-label");
-
-    Label valueLabel = value;
     valueLabel.getStyleClass().add("portfolio-details-stat-value");
 
+    titleLabel.setMaxWidth(Double.MAX_VALUE);
+    valueLabel.setMaxWidth(Double.MAX_VALUE);
+
+    titleLabel.setAlignment(Pos.CENTER);
+    valueLabel.setAlignment(Pos.CENTER);
+
     VBox box = new VBox(6, titleLabel, valueLabel);
-    box.setAlignment(Pos.CENTER_LEFT);
+    box.setAlignment(Pos.CENTER);
+    box.setMaxWidth(Double.MAX_VALUE);
+
     return box;
   }
 
@@ -132,20 +163,77 @@ public class PortfolioStockDetails implements View {
     ticker.setText(position.stock().getSymbol());
     company.setText(position.stock().getCompany());
     priceValue.setText(CurrencyFormatter.format(position.currentPrice()));
-    changeValue.setText("(" + PercentFormatter.format(position.roiPercent()) + ")");
+    changeValue.setText(
+        "(" + PercentFormatter.format(position.stock().getLatestPriceChangePercent()) + ")"
+    );
 
-    avgBuyPriceValue.setText(CurrencyFormatter.format(position.averageBuyPrice()));
-    totalInvestedValue.setText(CurrencyFormatter.format(position.totalInvested()));
-    sharesOwnedValue.setText(position.sharesOwned().toPlainString());
-    lowestPriceValue.setText(CurrencyFormatter.format(position.lowestPrice()));
-    highestPriceValue.setText(CurrencyFormatter.format(position.highestPrice()));
-    positionValue.setText(CurrencyFormatter.format(position.positionValue()));
+    if (position.leveraged()) {
+      updateLeveragedStats(position);
+    } else {
+      updateNormalStats(position);
+    }
+
     profitLoss.setText(CurrencyFormatter.format(position.profitLoss()));
 
-    PriceStyleHelper.applyPriceChangeStyle(changeValue, position.profitLoss());
+    PriceStyleHelper.applyPriceChangeStyle(changeValue, position.stock().getLatestPriceChange());
     PriceStyleHelper.applyPriceChangeStyle(profitLoss, position.profitLoss());
 
     stockChartCard.updateStock(position.stock());
+  }
+
+  private void updateNormalStats(PositionSummary position) {
+    stat1Title.setText("Avg. Buy Price");
+    stat1Value.setText(CurrencyFormatter.format(position.averageBuyPrice()));
+
+    stat2Title.setText("Total Invested");
+    stat2Value.setText(CurrencyFormatter.format(position.totalInvested()));
+
+    stat3Title.setText("Shares Owned");
+    stat3Value.setText(formatQuantity(position.sharesOwned()));
+
+    stat4Title.setText("Lowest Price");
+    stat4Value.setText(CurrencyFormatter.format(position.lowestPrice()));
+
+    stat5Title.setText("Highest Price");
+    stat5Value.setText(CurrencyFormatter.format(position.highestPrice()));
+
+    stat6Title.setText("Position Value");
+    stat6Value.setText(CurrencyFormatter.format(position.positionValue()));
+  }
+
+  private void updateLeveragedStats(PositionSummary position) {
+    stat1Title.setText("Entry Price");
+    stat1Value.setText(CurrencyFormatter.format(position.averageBuyPrice()));
+
+    stat2Title.setText("Margin Used");
+    stat2Value.setText(CurrencyFormatter.format(position.marginRequired()));
+
+    stat3Title.setText("Controlled Shares");
+    stat3Value.setText(formatQuantity(position.sharesOwned()));
+
+    stat4Title.setText("Leverage");
+    stat4Value.setText(formatLeverage(position.leverage()));
+
+    stat5Title.setText("Liquidation Price");
+    stat5Value.setText(CurrencyFormatter.format(position.liquidationPrice()));
+
+    stat6Title.setText("Position Value");
+    stat6Value.setText(CurrencyFormatter.format(position.positionValue()));
+  }
+
+  private String formatQuantity(java.math.BigDecimal quantity) {
+    return quantity
+        .setScale(4, RoundingMode.HALF_UP)
+        .stripTrailingZeros()
+        .toPlainString();
+  }
+
+  private String formatLeverage(Leverage leverage) {
+    if (leverage == null || leverage == Leverage.OFF) {
+      return "Off";
+    }
+
+    return leverage.getMultiplier() + "x";
   }
 
   public void clear() {
@@ -154,17 +242,28 @@ public class PortfolioStockDetails implements View {
     priceValue.setText("$0.00");
     changeValue.setText("(0.00%)");
 
-    avgBuyPriceValue.setText("$0.00");
-    totalInvestedValue.setText("$0.00");
-    sharesOwnedValue.setText("0");
-    lowestPriceValue.setText("$0.00");
-    highestPriceValue.setText("$0.00");
-    positionValue.setText("$0.00");
+    stat1Title.setText("Avg. Buy Price");
+    stat1Value.setText("$0.00");
+
+    stat2Title.setText("Total Invested");
+    stat2Value.setText("$0.00");
+
+    stat3Title.setText("Shares Owned");
+    stat3Value.setText("0");
+
+    stat4Title.setText("Lowest Price");
+    stat4Value.setText("$0.00");
+
+    stat5Title.setText("Highest Price");
+    stat5Value.setText("$0.00");
+
+    stat6Title.setText("Position Value");
+    stat6Value.setText("$0.00");
+
     profitLoss.setText("$0.00");
 
     stockChartCard.clear();
   }
-
 
   @Override
   public Parent getRoot() {

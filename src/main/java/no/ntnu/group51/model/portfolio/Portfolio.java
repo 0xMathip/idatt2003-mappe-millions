@@ -1,6 +1,7 @@
 package no.ntnu.group51.model.portfolio;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +37,28 @@ public class Portfolio {
     if (share == null) {
       throw new IllegalArgumentException("Share cannot be null.");
     }
+
+    for (Share existingShare : shares) {
+      if (existingShare.getStock().equals(share.getStock())) {
+        BigDecimal totalQuantity = existingShare.getQuantity().add(share.getQuantity());
+
+        BigDecimal totalInvested = existingShare.getPurchasePrice()
+            .multiply(existingShare.getQuantity())
+            .add(share.getPurchasePrice().multiply(share.getQuantity()));
+
+        BigDecimal averagePurchasePrice = totalInvested.divide(
+            totalQuantity,
+            8,
+            RoundingMode.HALF_UP
+        );
+
+        existingShare.addQuantity(share.getQuantity());
+        existingShare.setPurchasePrice(averagePurchasePrice);
+
+        return true;
+      }
+    }
+
     return shares.add(share);
   }
 

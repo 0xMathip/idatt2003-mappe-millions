@@ -40,6 +40,7 @@ public class SearchMenu extends StackPane {
     }
 
     ScrollPane scrollPane = new ScrollPane(list);
+    scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
     scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     scrollPane.setFitToWidth(true);
     scrollPane.getStyleClass().add("search-menu-scroll");
