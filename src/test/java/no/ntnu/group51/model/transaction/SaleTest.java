@@ -19,7 +19,7 @@ class SaleTest {
   @BeforeEach
   void setup() {
     player = new Player("Test", new BigDecimal("1000"));
-    apple = new Stock("AAPL", "Apple", new BigDecimal("100"));
+    apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "no-icon");
     share = new Share(apple, new BigDecimal("2"), new BigDecimal("90"));
   }
 

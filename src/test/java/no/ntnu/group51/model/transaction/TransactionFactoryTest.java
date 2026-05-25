@@ -12,7 +12,7 @@ class TransactionFactoryTest {
 
   @Test
   void testCreateTransaction() {
-    Stock apple = new Stock("AAPL", "Apple", new BigDecimal("100"));
+    Stock apple = new Stock("AAPL", "Apple", new BigDecimal("100"), "no-icon");
     Share share = new Share(apple, new BigDecimal("2"), new BigDecimal("90"));
     var gronk = TransactionFactory.createTransaction("buy", share, 2);
     var baby =  TransactionFactory.createTransaction("sEll", share, 2);

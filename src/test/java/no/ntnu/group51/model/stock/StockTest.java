@@ -11,46 +11,46 @@ class StockTest {
   @Test
   void constructorThrowsWhenSymbolIsNull() {
     assertThrows(IllegalArgumentException.class,
-        () -> new Stock(null, "Apple", new BigDecimal("4.7392781")));
+        () -> new Stock(null, "Apple", new BigDecimal("4.7392781"), "no-icon"));
   }
 
   @Test
   void constructorThrowsWhenCompanyIsNull() {
     assertThrows(IllegalArgumentException.class,
-        () -> new Stock("AAPL", null, new BigDecimal("4.7392781")));
+        () -> new Stock("AAPL", null, new BigDecimal("4.7392781"), "no-icon"));
   }
 
   @Test
   void constructorThrowsWhenPriceIsNull() {
     assertThrows(IllegalArgumentException.class,
-        () -> new Stock("AAPL", "Apple", null));
+        () -> new Stock("AAPL", "Apple", null, "no-icon"));
   }
 
 
   @Test
   void getLatestPriceChangeReturnsZeroWhenOnePrice() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
 
     assertEquals(BigDecimal.ZERO, appleStockTest.getLatestPriceChange());
   }
 
   @Test
   void addNewSalesPriceThrowsWhenPriceIsNull() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     assertThrows(IllegalArgumentException.class,
         () -> appleStockTest.addNewSalesPrice(null));
   }
 
   @Test
   void addNewSalesPriceThrowsWhenPriceIsInvalid() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     assertThrows(IllegalArgumentException.class,
         () -> appleStockTest.addNewSalesPrice("invalid input"));
   }
 
   @Test
     public void addNewSalesPriceUpdatesSalesPrice() {
-    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
 
     BigDecimal expected1 = new BigDecimal("4.7392781");
     BigDecimal actual1 = stock.getSalesPrice();
@@ -64,7 +64,7 @@ class StockTest {
 
   @Test
   public void gettersReturnSymbolCompanyAndSalesPrice() {
-    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock stock = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     assertEquals("AAPL", stock.getSymbol());
     assertEquals("Apple", stock.getCompany());
 
@@ -76,7 +76,7 @@ class StockTest {
 
   @Test
   void getLatestPriceChangeReturnsPositive() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     appleStockTest.addNewSalesPrice("5.443323");
     appleStockTest.addNewSalesPrice("8.534221");
 
@@ -87,7 +87,7 @@ class StockTest {
 
   @Test
   void getLatestPriceChangeReturnsNegative() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     appleStockTest.addNewSalesPrice("2.463521");
 
     BigDecimal expectedChange = new BigDecimal("2.463521").subtract(new BigDecimal("4.7392781"));
@@ -97,7 +97,7 @@ class StockTest {
 
   @Test
   void getLowestPriceReturnsLowestPrice() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     appleStockTest.addNewSalesPrice("1.163421");
     appleStockTest.addNewSalesPrice("5.443323");
     appleStockTest.addNewSalesPrice("2.463521");
@@ -110,18 +110,18 @@ class StockTest {
 
   @Test
   void getLowestPriceReturnsOriginalPriceWhenOnePrice() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     assertEquals(new BigDecimal("4.7392781"), appleStockTest.getLowestPrice());
   }
   @Test
   void getHighestPriceReturnsOriginalPriceWhenOnePrice() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("7.1324781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("7.1324781"), "no-icon");
     assertEquals(new BigDecimal("7.1324781"), appleStockTest.getHighestPrice());
   }
 
   @Test
   void getHighestPriceReturnsHighestPrice() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     appleStockTest.addNewSalesPrice("1.163421");
     appleStockTest.addNewSalesPrice("5.443323");
     appleStockTest.addNewSalesPrice("2.463521");

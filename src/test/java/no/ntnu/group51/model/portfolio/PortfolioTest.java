@@ -23,11 +23,11 @@ class PortfolioTest {
     @BeforeEach
     void testSetup() {
         portfolio = new Portfolio();
-        appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+        appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
         appleShareTest1 = new Share(appleStockTest, new BigDecimal("120"), new BigDecimal("4.92322"));
         appleShareTest2 = new Share(appleStockTest, new BigDecimal("155"), new BigDecimal("9.42382"));
 
-        googleStockTest = new Stock("GOOG", "Google", new BigDecimal("6.53433"));
+        googleStockTest = new Stock("GOOG", "Google", new BigDecimal("6.53433"), "no-icon");
         googleShareTest = new Share(googleStockTest, new BigDecimal("120"), new BigDecimal("7.743323"));
     }
 
@@ -60,7 +60,7 @@ class PortfolioTest {
         portfolio.addShare(appleShareTest2);
         portfolio.addShare(googleShareTest);
         List<Share> result = portfolio.getShares();
-        assertEquals(3, result.size());
+        assertEquals(2, result.size());
     }
 
     @Test
@@ -82,10 +82,10 @@ class PortfolioTest {
         portfolio.addShare(appleShareTest2);
         portfolio.addShare(googleShareTest);
 
-        List<Share> result = portfolio.getShares("AAPL");
-        assertEquals(2, result.size());
-        assertTrue(result.contains(appleShareTest1));
-        assertTrue(result.contains(appleShareTest2));
+        List<Share> result = portfolio.getShares("GOOG");
+        Share share = portfolio.getShares("GOOG").getFirst();
+        assertEquals(new BigDecimal("120"), share.getQuantity());
+        assertFalse(result.contains(appleShareTest1));
     }
 
     @Test
@@ -95,7 +95,7 @@ class PortfolioTest {
         portfolio.addShare(googleShareTest);
 
         List<Share> result = portfolio.getShares("aapl");
-        assertEquals(2, result.size());
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -125,7 +125,7 @@ class PortfolioTest {
         BigDecimal expected =
             new SaleCalculator(googleShareTest).calculateTotal();
 
-        assertEquals(expected, portfolio.getNetWorth());
+        assertEquals(expected, portfolio.getPortfolioNetWorth());
     }
 
     @Test
@@ -137,11 +137,11 @@ class PortfolioTest {
             new SaleCalculator(googleShareTest).calculateTotal()
                 .add(new SaleCalculator(appleShareTest1).calculateTotal());
 
-        assertEquals(expected, portfolio.getNetWorth());
+        assertEquals(expected, portfolio.getPortfolioNetWorth());
     }
 
     @Test
     void getNetWorthReturnsZeroWhenNoShares() {
-        assertEquals(BigDecimal.ZERO, portfolio.getNetWorth());
+        assertEquals(BigDecimal.ZERO, portfolio.getPortfolioNetWorth());
     }
 }

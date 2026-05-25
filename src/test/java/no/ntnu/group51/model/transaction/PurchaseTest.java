@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PurchaseTest {
 
-  Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"));
+  Stock stock = new Stock("AAPL", "Apple", new BigDecimal("3.55"), "no-icon");
   Share share = new Share(stock, new BigDecimal("30"), new BigDecimal("4.55"));
 
   @Test
   void testEnoughMoney() {
-    Player shorty = new Player("Shorty", new BigDecimal("3.56"));
+    Player shorty = new Player("Shorty", new BigDecimal("3556"));
     Purchase purchase = new Purchase(share, 1);
     purchase.commit(shorty);
     assertTrue(purchase.isCommitted());

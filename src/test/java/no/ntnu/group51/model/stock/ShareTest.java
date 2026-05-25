@@ -19,11 +19,11 @@ class ShareTest {
 
     @BeforeEach
     void testSetup(){
-        appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+        appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
         appleShareTest1 = new Share(appleStockTest, new BigDecimal("120"), new BigDecimal("4.92322"));
         appleShareTest2 = new Share(appleStockTest, new BigDecimal("155"), new BigDecimal("9.42382"));
 
-        googleStockTest = new Stock("GOOG", "Google", new BigDecimal("6.53433"));
+        googleStockTest = new Stock("GOOG", "Google", new BigDecimal("6.53433"), "no-icon");
         googleShareTest = new Share(googleStockTest, new BigDecimal("120"), new BigDecimal("7.743323"));
     }
 
