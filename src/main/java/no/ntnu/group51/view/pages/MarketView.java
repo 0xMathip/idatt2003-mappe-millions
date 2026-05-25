@@ -43,7 +43,7 @@ public class MarketView implements View {
   }
 
   private void createLayout() {
-    marketContent = new VBox();
+    marketContent = new VBox(24);
     marketContent.getStyleClass().addAll("page-layout", "market-view");
 
     Label title = new Label("Market");
@@ -52,11 +52,12 @@ public class MarketView implements View {
     HBox body = createBody();
 
     marketContent.getChildren().addAll(title, body);
+    StackPane.setAlignment(marketContent, Pos.TOP_CENTER);
     root.getChildren().add(marketContent);
   }
 
   private HBox createBody() {
-    HBox body = new HBox();
+    HBox body = new HBox(25);
     body.getStyleClass().add("market-body");
 
     VBox leftColumn = createLeftColumn();
@@ -71,9 +72,6 @@ public class MarketView implements View {
     VBox leftColumn = new VBox(25);
     leftColumn.getStyleClass().add("market-left-column");
     leftColumn.setPrefHeight(800);
-
-    Region spacer = new Region();
-    VBox.setVgrow(spacer, Priority.ALWAYS);
 
     leftColumn.getChildren().addAll(
         stockSelectorCard.getRoot(),

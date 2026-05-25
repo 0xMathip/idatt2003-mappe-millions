@@ -335,7 +335,7 @@
 
 .stock-chart-card-large {
     -fx-pref-height: 830px;
-    -fx-pref-width: 1000px;
+    -fx-pref-width: 1050px;
     -fx-padding: 20px 30px 20px 30px;
 }
 
@@ -673,12 +673,7 @@
     -fx-font-size: 20px;
 }
 
-.transaction-details-separator-horizontal,
-.transaction-details-separator-vertical {
-    -fx-background-color: -color-text;
-}
-
-.transaction-details-separator-horizontal {
+.transaction-details-separator {
     -fx-background-color: -color-border-light;
 
     -fx-pref-width: 640px;
@@ -688,18 +683,6 @@
     -fx-pref-height: 1px;
     -fx-min-height: 1px;
     -fx-max-height: 1px;
-}
-
-.transaction-details-separator-vertical {
-    -fx-background-color: -color-border-light;
-
-    -fx-pref-width: 1px;
-    -fx-min-width: 1px;
-    -fx-max-width: 1px;
-
-    -fx-pref-height: 640px;
-    -fx-min-height: 640px;
-    -fx-max-height: 640px;
 }
 
 .transaction-details-note-icon {
@@ -789,6 +772,11 @@
 
 .portfolio-details-stat-value {
     -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 24px;
+}
+
+.portfolio-details-stat-value-with-state {
     -fx-font-family: "Almarai Regular";
     -fx-font-size: 24px;
 }

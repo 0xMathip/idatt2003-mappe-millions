@@ -122,6 +122,8 @@ public class PortfolioStockDetails implements View {
     statsGrid.add(createStatBox(stat6Title, stat6Value), 2, 1);
 
     VBox pnlBox = createStatBox(new Label("Profit/Loss"), profitLoss);
+    profitLoss.getStyleClass().remove("portfolio-details-stat-value");
+    profitLoss.getStyleClass().add("portfolio-details-stat-value-with-state");
     pnlBox.getStyleClass().add("portfolio-details-pnl");
 
     statsGrid.add(pnlBox, 3, 0, 1, 2);
