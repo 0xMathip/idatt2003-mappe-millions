@@ -46,8 +46,7 @@ public class MainApp extends Application {
         getClass().getResource("/styles/panels/dashboard.css").toExternalForm(),
 
         getClass().getResource("/styles/menus/sidebar.css").toExternalForm(),
-        getClass().getResource("/styles/menus/search-menu.css").toExternalForm(),
-        getClass().getResource("/styles/menus/overlays.css").toExternalForm()
+        getClass().getResource("/styles/menus/search-menu.css").toExternalForm()
     );
 
     CsvStartupFileHandler csv = new CsvStartupFileHandler();
