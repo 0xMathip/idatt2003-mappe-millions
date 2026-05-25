@@ -63,34 +63,6 @@ public class MainApp extends Application {
     Player player = new Player("Mathias",new BigDecimal("2000"));
     Exchange ex = new Exchange("NASDAQ", stocks);
     GameModel gameModel = new GameModel(player, ex);
-
-    Share share1 = new Share(stocks.getFirst(), new BigDecimal(30), new BigDecimal("1"));
-    Purchase p1 = new Purchase(share1, 2);
-    Share share2 = new Share(stocks.getLast(), new BigDecimal(14), new BigDecimal("578.42"));
-    Sale s = new Sale(share2, 3);
-    Share share3 = new Share(stocks.get(2), new BigDecimal(100), new BigDecimal("22.67"));
-    Purchase p2 = new Purchase(share3, 6);
-    player.getTransactionArchive().add(p1);
-    player.getTransactionArchive().add(s);
-    player.getTransactionArchive().add(p2);
-
-
-    gameModel.setSelectedStock(gameModel.getExchange().getStock("AAPL"));
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
-    gameModel.getExchange().advance();
     // end of testing
     SceneManager sceneManager = new SceneManager(scene);
     ApplicationStarter.initialize(gameModel, sceneManager);

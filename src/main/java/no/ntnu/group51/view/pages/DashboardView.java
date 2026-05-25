@@ -52,8 +52,7 @@ public class DashboardView implements View {
   public DashboardView() {
 
     Label dashboardTitle = new Label("Dashboard");
-    dashboardTitle.getStyleClass().add(StyleClass.DASHBOARD_TITLE);
-    dashboardTitle.setPadding(new Insets(30, 0, 30, 0));
+    dashboardTitle.getStyleClass().add(StyleClass.PAGE_TITLE);
 
     VBox leftSide = new VBox();
     leftSide.getChildren().addAll(
@@ -79,8 +78,8 @@ public class DashboardView implements View {
         dashboardCashStatsSection.getRoot(),
         chartSection
     );
-    rightTop.setSpacing(50);
-    rightTop.setPadding(new Insets(50, 0, 0, 0));
+    rightTop.setSpacing(52);
+    rightTop.setPadding(new Insets(25, 0, 0, 0));
 
     HBox rightBottom = new HBox();
     rightBottom.getChildren().addAll(
@@ -88,7 +87,7 @@ public class DashboardView implements View {
         actionsPanel.getRoot()
     );
     rightBottom.setSpacing(50);
-    rightBottom.setPadding(new Insets(15, 0, 0, 0));
+    rightBottom.setPadding(new Insets(25, 0, 0, 0));
 
     VBox rightSide = new VBox();
     rightSide.getChildren().addAll(
@@ -99,7 +98,7 @@ public class DashboardView implements View {
     rightSide.setAlignment(Pos.BOTTOM_LEFT);
 
     root.setStyle("-fx-background-color: black;");
-    root.setPadding(new Insets(0, 0, 0, 46));
+    root.setPadding(new Insets(20, 0, 0, 46));
 
     ColumnConstraints left = new ColumnConstraints();
     left.setPercentWidth(35);
