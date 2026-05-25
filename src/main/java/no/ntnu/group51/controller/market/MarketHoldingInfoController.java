@@ -14,6 +14,12 @@ import no.ntnu.group51.model.trading.LeveragedPosition;
 import no.ntnu.group51.view.components.market.MarketHoldingInfoCard;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 
+/**
+ * Controller for updating the market holding information card.
+ *
+ * <p>Displays normal share holdings and leveraged position information
+ * for the currently selected stock.
+ */
 public class MarketHoldingInfoController implements Observer {
 
   private static final int QUANTITY_SCALE = 4;
@@ -21,6 +27,13 @@ public class MarketHoldingInfoController implements Observer {
   private final GameModel gameModel;
   private final MarketHoldingInfoCard holdingInfoCard;
 
+  /**
+   * Creates a market holding info controller.
+   *
+   * @param gameModel the game model
+   * @param holdingInfoCard the holding info card view
+   * @throws IllegalArgumentException if any argument is null
+   */
   public MarketHoldingInfoController(
       GameModel gameModel,
       MarketHoldingInfoCard holdingInfoCard
@@ -39,6 +52,9 @@ public class MarketHoldingInfoController implements Observer {
     update();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update() {
     Stock selectedStock = gameModel.getSelectedStock();
@@ -118,6 +134,9 @@ public class MarketHoldingInfoController implements Observer {
   }
 
   private String formatQuantity(BigDecimal quantity) {
+    if (quantity == null) {
+      throw new IllegalArgumentException("Quantity cannot be null.");
+    }
     return quantity
         .setScale(QUANTITY_SCALE, RoundingMode.HALF_UP)
         .stripTrailingZeros()

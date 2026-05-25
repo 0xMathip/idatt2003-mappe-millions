@@ -10,6 +10,11 @@ import no.ntnu.group51.service.portfolio.PortfolioSummary;
 import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.pages.PortfolioView;
 
+/**
+ * Controller for the portfolio page.
+ *
+ * <p>Updates portfolio summaries, position lists, and selected position details.
+ */
 public class PortfolioController implements Observer {
 
   private final GameModel gameModel;
@@ -18,7 +23,16 @@ public class PortfolioController implements Observer {
   private final PositionService positionService;
   private PositionSummary selectedPosition;
 
-  public PortfolioController (
+  /**
+   * Creates a portfolio controller.
+   *
+   * @param gameModel        the game model
+   * @param portfolioView    the portfolio view
+   * @param portfolioService the portfolio service
+   * @param positionService  the position service
+   * @throws IllegalArgumentException if any argument is null
+   */
+  public PortfolioController(
       GameModel gameModel,
       PortfolioView portfolioView,
       PortfolioService portfolioService,
@@ -58,12 +72,15 @@ public class PortfolioController implements Observer {
     updateView();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update() {
     updateView();
   }
 
-  public void updateView() {
+  private void updateView() {
     Player player = gameModel.getPlayer();
 
     PortfolioSummary portfolioSummary =
@@ -75,15 +92,30 @@ public class PortfolioController implements Observer {
     portfolioView.updateSummary(portfolioSummary);
     portfolioView.updatePositions(positionSummaries);
 
-    if (!positionSummaries.isEmpty()) {
-      selectedPosition = positionSummaries.get(0);
-      portfolioView.updateSelectedPosition(selectedPosition);
-    } else {
+    if (positionSummaries.isEmpty()) {
       selectedPosition = null;
       portfolioView.clearSelectedPosition();
+      return;
     }
+
+    if (selectedPosition == null) {
+      selectedPosition = positionSummaries.getFirst();
+    } else {
+      selectedPosition = positionSummaries.stream()
+          .filter(position -> position.stock().equals(selectedPosition.stock()))
+          .findFirst()
+          .orElse(positionSummaries.getFirst());
+    }
+
+    portfolioView.updateSelectedPosition(selectedPosition);
   }
 
+  /**
+   * Sets the action to run when opening the selected position in the market.
+   *
+   * @param runnable the navigation action
+   * @throws IllegalArgumentException if runnable is null
+   */
   public void setOnOpenMarketPress(Runnable runnable) {
     if (runnable == null) {
       throw new IllegalArgumentException("Runnable cannot be null.");
