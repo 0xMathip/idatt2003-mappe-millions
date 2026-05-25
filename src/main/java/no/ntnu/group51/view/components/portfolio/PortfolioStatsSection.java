@@ -31,7 +31,7 @@ public class PortfolioStatsSection {
         portfolioValueChangeLabel,
         "transaction-stat-trades-icon",
         "portfolio-stat-value",
-        "portfolio-stat-card-bottom-text"
+        "portfolio-stat-card-bottom-text-with-state"
     );
 
     HBox netWorthCard = StatCardFactory.createCard(

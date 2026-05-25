@@ -12,6 +12,7 @@ public class MarketController implements Observer {
   private final GameModel gameModel;
   private final MarketView marketView;
   private final TradePanelController tradePanelController;
+  private final MarketHoldingInfoController holdingInfoController;
 
   public MarketController(
       GameModel gameModel,
@@ -36,6 +37,12 @@ public class MarketController implements Observer {
         marketView.getTradePanel(),
         tradeService
     );
+
+    this.holdingInfoController =
+        new MarketHoldingInfoController(
+            gameModel,
+            marketView.getHoldingInfoCard()
+        );
 
     gameModel.addObserver(this);
     initialize();

@@ -200,6 +200,58 @@
     -fx-text-fill: -color-text-dark;
 }
 
+/* ===================
+    MarketHoldingInfo styling
+ ===================*/
+
+.market-holding-info-card {
+    -fx-padding: 12px;
+    -fx-spacing: 14px;
+    -fx-pref-width: 368px;
+    -fx-alignment: center;
+}
+
+.market-holding-box {
+    -fx-padding: 12px 14px;
+    -fx-pref-width: 165px;
+    -fx-min-width: 165px;
+    -fx-background-radius: 18px;
+    -fx-alignment: center-left;
+}
+
+.market-holding-box-leveraged {
+    -fx-border-color: -color-warning;
+    -fx-border-width: 1px;
+    -fx-border-radius: 18px;
+}
+
+.market-holding-box-title {
+    -fx-font-family: "Almarai Regular";
+    -fx-text-fill: -color-border-light;
+    -fx-font-size: 14px;
+}
+
+.market-holding-box-value {
+    -fx-font-family: "Almarai Bold";
+    -fx-text-fill: -color-text;
+    -fx-font-size: 17px;
+}
+
+.market-holding-box-subvalue {
+    -fx-font-family: "Almarai Regular";
+    -fx-text-fill: -color-red;
+    -fx-font-size: 12px;
+}
+
+.market-holding-leverage-badge {
+    -fx-background-color: -color-warning-dark;
+    -fx-text-fill: -color-warning;
+    -fx-font-family: "Almarai Bold";
+    -fx-font-size: 11px;
+    -fx-padding: 2px 8px;
+    -fx-background-radius: 999px;
+}
+
 
 /* ===================
     StockSelectorCard styling
@@ -755,8 +807,8 @@
 }
 
 .factory-portfolio-leverage-badge {
-    -fx-background-color: -color-yellow;
-    -fx-text-fill: -color-bg;
+    -fx-background-color: -color-warning-dark;
+    -fx-text-fill: -color-warning;
 
     -fx-font-family: "Almarai Bold";
     -fx-font-size: 12px;

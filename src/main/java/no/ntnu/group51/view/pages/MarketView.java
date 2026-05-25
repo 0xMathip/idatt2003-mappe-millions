@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.view.View;
+import no.ntnu.group51.view.components.market.MarketHoldingInfoCard;
 import no.ntnu.group51.view.components.market.MarketSearchMenu;
 import no.ntnu.group51.view.components.market.StockSelectorCard;
 import no.ntnu.group51.view.components.market.TradePanel;
@@ -23,6 +24,7 @@ public class MarketView implements View {
   private final StockSelectorCard stockSelectorCard;
   private final TradePanel tradePanel;
   private final StockChartCard stockChartCard;
+  private final MarketHoldingInfoCard holdingInfoCard;
 
   private VBox marketContent;
   private MarketSearchMenu stockSearchMenu;
@@ -34,6 +36,7 @@ public class MarketView implements View {
     this.stockSelectorCard = new StockSelectorCard();
     this.tradePanel = new TradePanel();
     this.stockChartCard = new StockChartCard(true);
+    this.holdingInfoCard = new MarketHoldingInfoCard();
 
     createLayout();
     registerEvents();
@@ -65,7 +68,7 @@ public class MarketView implements View {
   }
 
   private VBox createLeftColumn() {
-    VBox leftColumn = new VBox();
+    VBox leftColumn = new VBox(25);
     leftColumn.getStyleClass().add("market-left-column");
     leftColumn.setPrefHeight(800);
 
@@ -74,7 +77,7 @@ public class MarketView implements View {
 
     leftColumn.getChildren().addAll(
         stockSelectorCard.getRoot(),
-        spacer,
+        holdingInfoCard.getRoot(),
         tradePanel.getRoot()
     );
 
@@ -156,6 +159,10 @@ public class MarketView implements View {
 
   public StockChartCard getStockChartCard() {
     return stockChartCard;
+  }
+
+  public MarketHoldingInfoCard getHoldingInfoCard() {
+    return holdingInfoCard;
   }
 
   @Override
