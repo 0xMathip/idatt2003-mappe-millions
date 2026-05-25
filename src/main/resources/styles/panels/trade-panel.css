@@ -1,0 +1,80 @@
+/* =====================================================
+   TRADE PANEL LAYOUT
+ ===================================================== */
+
+.trade-panel {
+    -fx-pref-height: 558px;
+    -fx-max-height: 558px;
+    -fx-min-height: 558px;
+    -fx-pref-width: 368px;
+    -fx-min-width: 368px;
+    -fx-max-width: 368px;
+    -fx-spacing: 17px;
+}
+
+/* =====================================================
+   TRADE PANEL COMPONENTS
+ ===================================================== */
+
+.trade-panel-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+
+.trade-panel-cash {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 36px;
+}
+
+.trade-panel-cashbox {
+    -fx-pref-height: 91px;
+    -fx-pref-width: 322px;
+    -fx-max-width: 322px;
+    -fx-max-height: 91px;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-input {
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-estimate {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 0 0 0 20;
+}
+
+.trade-panel-row {
+    -fx-pref-height: 52px;
+    -fx-max-height: 52px;
+    -fx-min-height: 52px;
+    -fx-pref-width: 322px;
+    -fx-min-width: 322px;
+    -fx-max-width: 322px;
+}
+
+.trade-panel-row-value {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+    -fx-padding: 0 20 0 0;
+}
+
+.trading-panel-lev-label {
+    -fx-text-fill: -color-text;
+    -fx-font-family: "Almarai Regular";
+    -fx-font-size: 20px;
+}
+

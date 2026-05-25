@@ -12,22 +12,21 @@ public final class PriceStyleHelper {
     int sign = latestChange.signum();
 
     if (sign < 0) {
-      return "negative-price-change";
+      return StyleClass.NEGATIVE_PRICE_CHANGE;
     } else if (sign > 0) {
-      return "positive-price-change";
+      return StyleClass.POSITIVE_PRICE_CHANGE;
     }
 
-    return "neutral-price-change";
+    return StyleClass.NEUTRAL_PRICE_CHANGE;
   }
 
   public static void applyPriceChangeStyle(Node node, BigDecimal latestChange) {
     node.getStyleClass().removeAll(
-        "positive-price-change",
-        "negative-price-change",
-        "neutral-price-change"
+        StyleClass.POSITIVE_PRICE_CHANGE,
+        StyleClass.NEGATIVE_PRICE_CHANGE,
+        StyleClass.NEUTRAL_PRICE_CHANGE
     );
 
     node.getStyleClass().add(getPriceChangeStyle(latestChange));
   }
-
 }

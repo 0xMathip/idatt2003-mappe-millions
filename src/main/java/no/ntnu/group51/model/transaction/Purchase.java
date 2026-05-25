@@ -2,8 +2,7 @@ package no.ntnu.group51.model.transaction;
 
 import no.ntnu.group51.model.calculator.PurchaseCalculator;
 import no.ntnu.group51.model.player.Player;
-import no.ntnu.group51.model.stocks.Share;
-import no.ntnu.group51.model.xp.XpCalc;
+import no.ntnu.group51.model.stock.Share;
 
 /**
  * Class for a purchase transaction.
@@ -17,14 +16,6 @@ public class Purchase extends Transaction {
    * @param week The week the transaction is happening
    */
   public Purchase(Share share, int week) {
-    if (share == null) {
-      throw new IllegalArgumentException("share is null");
-    }
-
-    if (week <= 0) {
-      throw new IllegalArgumentException("week is 0 or negative");
-    }
-
     super(share, week, new PurchaseCalculator(share));
   }
 
@@ -33,11 +24,11 @@ public class Purchase extends Transaction {
     if (committed) {
       System.out.println("Purchase is already committed");
 
-    } else if (player.getMoney().compareTo(share.getStock().getSalesPrice()) < 0) {
+    } else if (player.getMoney().compareTo(getTotal()) < 0) {
       System.out.println("Insufficient funds.");
 
     } else {
-      player.withdrawMoney(share.getStock().getSalesPrice());
+      player.withdrawMoney(getTotal());
       player.getPortfolio().addShare(share);
       committed = true;
     }

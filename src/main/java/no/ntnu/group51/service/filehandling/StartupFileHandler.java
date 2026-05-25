@@ -3,7 +3,7 @@ package no.ntnu.group51.service.filehandling;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Stock;
 
 /**
  * Defines functionality for reading and writing startup stock data.

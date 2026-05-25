@@ -10,100 +10,127 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.GameModel;
+import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
-import no.ntnu.group51.view.components.StockChartCard;
-import no.ntnu.group51.view.components.MarketSearchMenu;
-import no.ntnu.group51.view.components.StockSelectorCard;
-import no.ntnu.group51.view.components.TradePanel;
+import no.ntnu.group51.view.components.market.MarketHoldingInfoCard;
+import no.ntnu.group51.view.components.market.MarketSearchMenu;
+import no.ntnu.group51.view.components.market.StockSelectorCard;
+import no.ntnu.group51.view.components.market.TradePanel;
+import no.ntnu.group51.view.components.shared.StockChartCard;
+import no.ntnu.group51.view.util.StyleClass;
 
 public class MarketView implements View {
+
   private final StackPane root = new StackPane();
+
+  private final StockSelectorCard stockSelectorCard;
+  private final TradePanel tradePanel;
+  private final StockChartCard stockChartCard;
+  private final MarketHoldingInfoCard holdingInfoCard;
+
   private VBox marketContent;
   private MarketSearchMenu stockSearchMenu;
   private Pane overlay;
-  private final GameModel gameModel;
 
-  public MarketView(GameModel gameModel){
-    this.gameModel = gameModel;
+  private Runnable onStockSelectorClicked = () -> {};
 
-    marketContent = new VBox();
-    marketContent.getStyleClass().addAll("page-layout","market-view");
+  public MarketView() {
+    this.stockSelectorCard = new StockSelectorCard();
+    this.tradePanel = new TradePanel();
+    this.stockChartCard = new StockChartCard(true);
+    this.holdingInfoCard = new MarketHoldingInfoCard();
+
+    createLayout();
+    registerEvents();
+  }
+
+  private void createLayout() {
+    marketContent = new VBox(24);
+    marketContent.getStyleClass().addAll(StyleClass.PAGE_LAYOUT, StyleClass.MARKET_VIEW);
 
     Label title = new Label("Market");
-    title.getStyleClass().add("page-title");
+    title.getStyleClass().add(StyleClass.PAGE_TITLE);
 
-    HBox body = new HBox();
-    body.getStyleClass().add("market-body");
+    HBox body = createBody();
 
-    VBox leftColumn = new VBox();
-    leftColumn.getStyleClass().add("market-left-column");
+    marketContent.getChildren().addAll(title, body);
+    StackPane.setAlignment(marketContent, Pos.TOP_CENTER);
+    root.getChildren().add(marketContent);
+  }
 
-    Region spacer = new Region();
+  private HBox createBody() {
+    HBox body = new HBox(25);
+    body.getStyleClass().add(StyleClass.MARKET_BODY);
+
+    VBox leftColumn = createLeftColumn();
+    HBox stockChart = createStockChart();
+
+    body.getChildren().addAll(leftColumn, stockChart);
+
+    return body;
+  }
+
+  private VBox createLeftColumn() {
+    VBox leftColumn = new VBox(25);
+    leftColumn.getStyleClass().add(StyleClass.MARKET_LEFT_COLUMN);
     leftColumn.setPrefHeight(800);
-    VBox.setVgrow(spacer, Priority.ALWAYS);
-
-    StockSelectorCard stockSelectorCard = new StockSelectorCard(gameModel);
-    TradePanel tradePanel = new TradePanel(gameModel);
-    StockChartCard stockChartCard = new StockChartCard(gameModel);
-    stockChartCard.addRootStyleClass("card");
-    stockChartCard.addRootStyleClass("stock-chart-card-large");
-
-    HBox stockChart = new HBox();
-    HBox.setHgrow(stockChart, Priority.ALWAYS);
-    stockChart.setAlignment(Pos.CENTER);
-    stockChart.getChildren().addAll(stockChartCard.getRoot());
 
     leftColumn.getChildren().addAll(
-       stockSelectorCard.getRoot(),
-        spacer,
+        stockSelectorCard.getRoot(),
+        holdingInfoCard.getRoot(),
         tradePanel.getRoot()
-   );
-
-    body.getChildren().addAll(
-        leftColumn,
-        stockChart
     );
 
-    marketContent.getChildren().addAll(
-        title,
-        body
-    );
-
-    root.getChildren().addAll(marketContent);
-    registerEvents(stockSelectorCard);
+    return leftColumn;
   }
 
-  private void registerEvents(StockSelectorCard stockSelectorCard) {
-    stockSelectorCard.getRoot().setOnMouseClicked(e -> showStockSearchMenu());
+  private HBox createStockChart() {
+    stockChartCard.addRootStyleClass(StyleClass.CARD);
+    stockChartCard.addRootStyleClass(StyleClass.STOCK_CHART_CARD_LARGE);
+
+    HBox chartBox = new HBox(stockChartCard.getRoot());
+    HBox.setHgrow(chartBox, Priority.ALWAYS);
+    chartBox.setAlignment(Pos.CENTER);
+
+    return chartBox;
   }
 
-  private void showStockSearchMenu() {
+  private void registerEvents() {
+    stockSelectorCard.getRoot().setOnMouseClicked(event -> onStockSelectorClicked.run());
+  }
+
+  public void showStockSearchMenu(MarketSearchMenu searchMenu) {
+    if (searchMenu == null) {
+      throw new IllegalArgumentException("Search menu cannot be null.");
+    }
+
     if (stockSearchMenu != null) {
       return;
     }
 
     overlay = new Pane();
-    overlay.getStyleClass().add("market-overlay");
+    overlay.getStyleClass().add(StyleClass.MARKET_OVERLAY);
 
-    stockSearchMenu = new MarketSearchMenu(gameModel);
+    stockSearchMenu = searchMenu;
 
     GaussianBlur blur = new GaussianBlur(15);
-    marketContent.getChildren()
-        .forEach(child -> child.setEffect(blur));
+    marketContent.getChildren().forEach(child -> child.setEffect(blur));
 
     root.getChildren().addAll(
         overlay,
         stockSearchMenu.getRoot()
     );
 
-    overlay.setOnMouseClicked(e -> closeStockSearchMenu());
+    overlay.setOnMouseClicked(event -> closeStockSearchMenu());
     stockSearchMenu.setOnClose(this::closeStockSearchMenu);
   }
 
-  private void closeStockSearchMenu() {
-    marketContent.getChildren()
-        .forEach(child -> child.setEffect(null));
+  public void closeStockSearchMenu() {
+    if (stockSearchMenu == null) {
+      return;
+    }
+
+    marketContent.getChildren().forEach(child -> child.setEffect(null));
 
     root.getChildren().removeAll(
         overlay,
@@ -112,6 +139,40 @@ public class MarketView implements View {
 
     overlay = null;
     stockSearchMenu = null;
+  }
+
+  public void updateSelectedStock(Stock stock) {
+    stockSelectorCard.updateStock(stock);
+    stockChartCard.updateStock(stock);
+  }
+
+  public void setOnStockSelectorClicked(Runnable handler) {
+    if (handler == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
+
+    this.onStockSelectorClicked = handler;
+  }
+
+  public StockSelectorCard getStockSelectorCard() {
+    return stockSelectorCard;
+  }
+
+  public TradePanel getTradePanel() {
+    return tradePanel;
+  }
+
+  public StockChartCard getStockChartCard() {
+    return stockChartCard;
+  }
+
+  public MarketHoldingInfoCard getHoldingInfoCard() {
+    return holdingInfoCard;
+  }
+
+  public void clear() {
+    stockSelectorCard.clear();
+    stockChartCard.clear();
   }
 
   @Override

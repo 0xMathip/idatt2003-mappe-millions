@@ -3,7 +3,7 @@ package no.ntnu.group51.model.transaction;
 import java.math.BigDecimal;
 import no.ntnu.group51.model.calculator.TransactionCalculator;
 import no.ntnu.group51.model.player.Player;
-import no.ntnu.group51.model.stocks.Share;
+import no.ntnu.group51.model.stock.Share;
 
 /**
  * The class for any kind of transaction.

@@ -1,6 +1,6 @@
 package no.ntnu.group51.model.calculator;
 
-import no.ntnu.group51.model.stocks.Share;
+import no.ntnu.group51.model.stock.Share;
 
 import java.math.BigDecimal;
 

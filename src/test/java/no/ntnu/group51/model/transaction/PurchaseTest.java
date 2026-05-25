@@ -1,8 +1,8 @@
 package no.ntnu.group51.model.transaction;
 
 import no.ntnu.group51.model.player.Player;
-import no.ntnu.group51.model.stocks.Share;
-import no.ntnu.group51.model.stocks.Stock;
+import no.ntnu.group51.model.stock.Share;
+import no.ntnu.group51.model.stock.Stock;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

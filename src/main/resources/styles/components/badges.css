@@ -1,0 +1,29 @@
+/* =====================================================
+   BADGE UTILITIES
+ ===================================================== */
+
+.badge {
+    -fx-padding: 2px 8px;
+    -fx-background-radius: 999px;
+    -fx-font-family: -font-bold;
+    -fx-font-size: 11px;
+}
+
+.badge-warning {
+    -fx-background-color: -color-warning-dark;
+    -fx-text-fill: -color-warning;
+}
+
+.badge-danger {
+    -fx-background-color: -color-danger-dark;
+    -fx-text-fill: -color-red;
+}
+
+.badge-leverage {
+    -fx-background-color: -color-warning-dark;
+    -fx-text-fill: -color-warning;
+    -fx-font-family: "Almarai Bold";
+    -fx-padding: 2px 8px;
+    -fx-background-radius: 999px;
+}
+

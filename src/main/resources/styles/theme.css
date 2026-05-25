@@ -1,3 +1,7 @@
+/* =====================================================
+   FONTS
+ ===================================================== */
+
 @font-face {
     -fx-font-family: "Almarai Bold";
     src: url("/fonts/Almarai-Bold.ttf");
@@ -13,7 +17,12 @@
     src: url("/fonts/Almarai-Regular.ttf");
 }
 
+/* =====================================================
+   DESIGN TOKENS
+ ===================================================== */
+
 .root {
+    /* Color Palette */
     -color-bg: #000000;
     -color-surface: #0E0E0E;
     -color-surface-light: #202020;
@@ -26,6 +35,9 @@
     -color-yellow: #F6DA36;
     -color-yellow-hover: #a1a100;
 
+    -color-warning: #e37133;
+    -color-warning-dark: rgb(98, 52, 29);
+
     -color-green: #2FBE51;
     -color-green-hover: #22913b;
     -color-green-pressed: #1b7a31;
@@ -37,11 +49,14 @@
     -color-chart-stroke: #2F95BE;
     -color-sidebar-hover: #505050;
 
+    /* Border Radius */
     -radius-card: 30px;
     -radius-small: 15px;
     -radius-button: 70px;
 
+    /* Fonts */
     -font-regular: "Almarai Regular";
     -font-bold: "Almarai Bold";
     -font-extra-bold: "Almarai ExtraBold";
 }
+
