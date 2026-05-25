@@ -32,10 +32,15 @@ public class PortfolioService {
         player.getPortfolio().getPortfolioNetWorth().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
     BigDecimal netWorth =
         player.getNetWorth().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
-    BigDecimal availableCash = player.getMoney().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    BigDecimal availableCash =
+        player.getMoney().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
     BigDecimal totalInvested = calculateTotalInvested(positions);
-    BigDecimal totalReturn = calculateTotalReturn(portfolioValue, totalInvested);
-    BigDecimal totalReturnPercent = calculateTotalReturnPercent(totalReturn, totalInvested);
+
+    BigDecimal startingMoney =
+        player.getStartingMoney().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+
+    BigDecimal totalReturn = calculateTotalReturn(netWorth, startingMoney);
+    BigDecimal totalReturnPercent = calculateTotalReturnPercent(totalReturn, startingMoney);
 
     return new PortfolioSummary(
         portfolioValue,

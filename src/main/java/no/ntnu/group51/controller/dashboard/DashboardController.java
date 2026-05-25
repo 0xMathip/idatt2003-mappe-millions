@@ -73,13 +73,14 @@ public class DashboardController {
         .map(share -> share.getPurchasePrice().multiply(share.getQuantity()))
         .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-    BigDecimal portfolioValue = portfolio.getPortfolioNetWorth();
-    BigDecimal portfolioReturn = portfolioValue.subtract(totalInvested);
+    BigDecimal totalReturn = model.getPlayer()
+        .getNetWorth()
+        .subtract(model.getPlayer().getStartingMoney());
 
-    BigDecimal returnPercent = totalInvested.compareTo(BigDecimal.ZERO) == 0
+    BigDecimal returnPercent = model.getPlayer().getStartingMoney().compareTo(BigDecimal.ZERO) == 0
         ? BigDecimal.ZERO
-        : portfolioReturn
-        .divide(totalInvested, 4, java.math.RoundingMode.HALF_UP)
+        : totalReturn
+        .divide(model.getPlayer().getStartingMoney(), 4, RoundingMode.HALF_UP)
         .multiply(BigDecimal.valueOf(100));
 
     view.updatePortfolioPanel(
