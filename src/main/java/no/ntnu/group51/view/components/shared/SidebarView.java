@@ -102,8 +102,9 @@ public class SidebarView implements View {
     // Level box
 
     currentLevel.setImage(novice);
-    currentLevel.setFitHeight(103);
-    currentLevel.setFitWidth(120);
+    currentLevel.setFitHeight(128);
+    currentLevel.setFitWidth(128);
+    currentLevel.setPreserveRatio(true);
 
     StackPane yellowContainer = new StackPane();
     yellowContainer.getChildren().add(currentLevel);
