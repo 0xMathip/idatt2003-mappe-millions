@@ -85,6 +85,18 @@ public class Player {
     this.money = this.money.subtract(money);
   }
 
+  public void updateLevel() {
+    if (getXp().compareTo(xpRequired[0]) < 0) {
+      this.playerLevel = PlayerLevel.NOVICE;
+
+    } else if (getXp().compareTo(xpRequired[0]) > 0 && getXp().compareTo(xpRequired[1]) < 0) {
+      this.playerLevel = PlayerLevel.INVESTOR;
+
+    } else {
+      this.playerLevel = PlayerLevel.SPECULATOR;
+    }
+  }
+
   /**
    * Used to do checks for the player level after events such as
    * a transaction or going to the stats page. Think of it as something

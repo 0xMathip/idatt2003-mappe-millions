@@ -79,14 +79,27 @@ public class DashboardTopMoversPanel implements View {
     root.setSpacing(10);
   }
 
+  /**
+   * Adds a node to the panel.
+   *
+   * @param node The node you want to add.
+   */
   public void addToPanel(Node node) {
     movers.getChildren().add(node);
   }
 
+  /**
+   * Clears the entire panel.
+   */
   public void clearMovers() {
     movers.getChildren().clear();
   }
 
+  /**
+   * Sets an action on pressing the view market button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnViewMarket(EventHandler<ActionEvent> action) {
     viewMarket.setOnAction(action);
   }

@@ -37,12 +37,12 @@ public class DashboardTransactionPanel implements View {
     separator.setPadding(new Insets(15, 0, 0, 0));
 
     HBox text = new HBox();
-    viewAll.getStyleClass().add(StyleClass.DASHBOARD_VIEW_BUTTON);
     text.getChildren().add(viewAll);
     text.setPadding(new Insets(10, 0, 15, 15));
 
     FontIcon arrow = new FontIcon("cil-arrow-right");
     viewAll.setGraphic(arrow);
+    viewAll.getStyleClass().add(StyleClass.DASHBOARD_VIEW_BUTTON);
     viewAll.setContentDisplay(ContentDisplay.RIGHT);
     viewAll.setAlignment(Pos.CENTER_LEFT);
     viewAll.setGraphicTextGap(12);
@@ -62,14 +62,27 @@ public class DashboardTransactionPanel implements View {
     root.getStyleClass().addAll(StyleClass.CARD, StyleClass.DASHBOARD_TRANSACTION_WINDOW);
   }
 
+  /**
+   * Clears all the listings in the panel.
+   */
   public void clearListings() {
     upper.getChildren().clear();
   }
 
+  /**
+   * Adds a node to the panel.
+   *
+   * @param node The node you want to add.
+   */
   public void addToPanel(Node node) {
     upper.getChildren().add(node);
   }
 
+  /**
+   * Sets an action on the view all transactions button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnViewAll(EventHandler<ActionEvent> action) {
     viewAll.setOnAction(action);
   }

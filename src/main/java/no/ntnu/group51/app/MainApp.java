@@ -19,6 +19,9 @@ import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.service.filehandling.csv.CsvStartupFileHandler;
 
+/**
+ * Class for the application start.
+ */
 public class MainApp extends Application {
 
   @Override
@@ -73,7 +76,7 @@ public class MainApp extends Application {
     stage.setMaximized(true);
   }
 
-  public static void main(String[] args) {
+  static void main(String[] args) {
     launch(args);
   }
 }

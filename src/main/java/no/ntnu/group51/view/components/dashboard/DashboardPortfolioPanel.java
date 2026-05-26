@@ -9,6 +9,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Share;
@@ -65,7 +67,6 @@ public class DashboardPortfolioPanel implements View {
     root.getChildren().addAll(portView, separator, bottom);
     root.setAlignment(Pos.CENTER);
     portView.setSpacing(30);
-    root.setSpacing(20);
     root.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO);
 
     showEmptyPortfolio();
@@ -140,8 +141,8 @@ public class DashboardPortfolioPanel implements View {
     );
   }
 
-@Override
-public Parent getRoot() {
-  return root;
-}
+  @Override
+  public Parent getRoot() {
+    return root;
+  }
 }

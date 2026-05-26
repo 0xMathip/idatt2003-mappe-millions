@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.components.shared;
 
+import java.math.BigDecimal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -11,14 +12,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.player.PlayerLevel;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.math.BigDecimal;
-
+/**
+ * Class for the sidebar.
+ */
 public class SidebarView implements View {
 
   private final VBox root = new VBox();
@@ -36,6 +37,9 @@ public class SidebarView implements View {
   private Image investor = new Image("/images/investor.png");
   private Image speculator = new Image("/images/speculator.png");
 
+  /**
+   * Creates a new sidebar view.
+   */
   public SidebarView() {
 
     ToggleGroup sidebar = new ToggleGroup();
@@ -160,36 +164,76 @@ public class SidebarView implements View {
 
   }
 
+  /**
+   * Sets an action on the dashboard button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnDashboardButton(EventHandler<ActionEvent> action) {
     dashboardButton.setOnAction(action);
   }
 
+  /**
+   * Sets an action on the market button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnMarketButton(EventHandler<ActionEvent> action) {
     marketButton.setOnAction(action);
   }
 
+  /**
+   * Sets an action on the portfolio button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnPortfolioButton(EventHandler<ActionEvent> action) {
     portfolioButton.setOnAction(action);
   }
 
+  /**
+   * Sets an action on the transaction button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnTransactionButton(EventHandler<ActionEvent> action) {
     transactionsButton.setOnAction(action);
   }
 
+  /**
+   * Sets the current week on the top of the sidebar.
+   *
+   * @param week The week you want to set it to.
+   */
   public void setCurrentWeek(int week) {
     currentWeek.setText("Week " + week);
   }
 
+  /**
+   * Sets an action on the pause button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnPauseButton(EventHandler<ActionEvent> action) {
     pauseButton.setOnAction(action);
   }
 
+  /**
+   * Sets the current level on the sidebar.
+   *
+   * @param level The level you want to set it to.
+   */
   public void setCurrentLevelLabel(PlayerLevel level) {
     currentLevelLabel.setText(level.toString());
   }
 
+  /**
+   * Sets the next level on the sidebar.
+   *
+   * @param level The level you want to set it to.
+   */
   public void setNextLevelLabel(PlayerLevel level) {
-    if (level != PlayerLevel.SPECULATOR) {
+    if (level != PlayerLevel.NOVICE) {
       nextLevelLabel.setText("Next level: " + level.toString());
 
     } else {
@@ -197,26 +241,49 @@ public class SidebarView implements View {
     }
   }
 
+  /**
+   * Sets the level image on the sidebar.
+   *
+   * @param level The level which the corresponding image should be changed to.
+   */
   public void setLevelImage(PlayerLevel level) {
     currentLevel.setImage(new Image("/images/" + level.toString().toLowerCase() + ".png"));
   }
 
+  /**
+   * Sets the progress bar. Works as a relation, so inputting 0 will empty it, and 1 will fill it.
+   * Inputting something like 200 out of 1000 xp would be the same as 200/1000 = 0.2, so 20% filled.
+   *
+   * @param xp The xp relation you want to set the progress bar to.
+   */
   public void setProgressBar(BigDecimal xp) {
     progressBar.setProgress(xp.doubleValue());
   }
 
+  /**
+   * Method to toggle the dashboard button.
+   */
   public void toggleDashboard() {
     dashboardButton.setSelected(true);
   }
 
+  /**
+   * Method to toggle the market button.
+   */
   public void toggleMarket() {
     marketButton.setSelected(true);
   }
 
+  /**
+   * Method to toggle the portfolio button.
+   */
   public void togglePortfolio() {
     portfolioButton.setSelected(true);
   }
 
+  /**
+   * Method to toggle the transaction button.
+   */
   public void toggleTransaction() {
     transactionsButton.setSelected(true);
   }

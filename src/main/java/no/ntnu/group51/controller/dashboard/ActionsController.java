@@ -53,7 +53,6 @@ public class ActionsController {
   public void setupButtons() {
     view.setOnAdvanceWeekPress(e -> {
       model.getExchange().advance();
-      //model.getPlayer().addMoney(BigDecimal.valueOf(50));
 
       liquidationService.checkLiquidations(
           model.getPlayer(),

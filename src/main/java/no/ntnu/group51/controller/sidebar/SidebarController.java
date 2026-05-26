@@ -7,6 +7,7 @@ import no.ntnu.group51.model.player.PlayerLevel;
 import no.ntnu.group51.view.components.shared.SidebarView;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Controller for the sidebar.
@@ -105,9 +106,12 @@ public class SidebarController {
   public void updateNextLevel() {
     if (model.getPlayer().getPlayerLevel() == PlayerLevel.NOVICE) {
       view.setNextLevelLabel(PlayerLevel.INVESTOR);
-    }
-    if (model.getPlayer().getPlayerLevel() == PlayerLevel.INVESTOR) {
+
+    } else if (model.getPlayer().getPlayerLevel() == PlayerLevel.INVESTOR) {
       view.setNextLevelLabel(PlayerLevel.SPECULATOR);
+
+    } else {
+      view.setNextLevelLabel(PlayerLevel.NOVICE);
     }
   }
 
@@ -122,7 +126,18 @@ public class SidebarController {
    * Sets the progress bar to match the current state.
    */
   public void updateProgressBar() {
-    view.setProgressBar(model.getPlayer().getXp().divide(model.getPlayer().getXpRequired()));
+
+    if (model.getPlayer().getPlayerLevel() == PlayerLevel.NOVICE) {
+      view.setProgressBar(model.getPlayer().getXp().divide(model.getPlayer().getXpRequired(), 2, RoundingMode.HALF_UP));
+    }
+
+    if (model.getPlayer().getPlayerLevel() == PlayerLevel.INVESTOR) {
+      view.setProgressBar(model.getPlayer().getXp().subtract(model.getPlayer().getXpRequired()).divide(model.getPlayer().getXpRequired(), 2, RoundingMode.HALF_UP));
+    }
+
+    if (model.getPlayer().getPlayerLevel() == PlayerLevel.SPECULATOR) {
+      view.setProgressBar(BigDecimal.ONE);
+    }
   }
 
 }

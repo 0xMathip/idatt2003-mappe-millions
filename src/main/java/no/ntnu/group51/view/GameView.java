@@ -8,6 +8,9 @@ import no.ntnu.group51.view.pages.MarketView;
 import no.ntnu.group51.view.pages.PortfolioView;
 import no.ntnu.group51.view.pages.TransactionView;
 
+/**
+ * Class for the main view of the game.
+ */
 public class GameView implements View {
 
   private final BorderPane root = new BorderPane();
@@ -18,6 +21,9 @@ public class GameView implements View {
   private final TransactionView transaction;
   private final PortfolioView portfolio;
 
+  /**
+   * Creates a new view for the game and sets left to sidebar and center to dashboard initially.
+   */
   public GameView() {
     this.sidebar = new SidebarView();
     this.dashboard = new DashboardView();
@@ -49,10 +55,20 @@ public class GameView implements View {
     return sidebar;
   }
 
+  /**
+   * Sets the center view in a borderpane.
+   *
+   * @param view The view you want to set to the center.
+   */
   public void setCenterView(View view) {
     root.setCenter(view.getRoot());
   }
 
+  /**
+   * Sets the left view in a borderpane.
+   *
+   * @param view The view you want to set to the left.
+   */
   public void setLeftView(View view) {
     root.setLeft(view.getRoot());
   }

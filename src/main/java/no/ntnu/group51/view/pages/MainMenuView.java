@@ -66,10 +66,20 @@ public class MainMenuView implements View {
     menuButtons.setTranslateY(100);
   }
 
+  /**
+   * Sets an action on pressing the new game button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnNewGame(EventHandler<ActionEvent> action) {
     newG.setOnAction(action);
   }
 
+  /**
+   * Sets an action on pressing the exit button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnExit(EventHandler<ActionEvent> action) {
     exit.setOnAction(action);
   }

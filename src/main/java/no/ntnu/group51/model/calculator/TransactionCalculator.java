@@ -2,6 +2,9 @@ package no.ntnu.group51.model.calculator;
 
 import java.math.BigDecimal;
 
+/**
+ * An interface for the calculator of the different types like sale or purchase.
+ */
 public interface TransactionCalculator {
 
   /**

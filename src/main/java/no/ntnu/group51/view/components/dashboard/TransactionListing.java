@@ -1,5 +1,7 @@
 package no.ntnu.group51.view.components.dashboard;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -16,13 +18,19 @@ import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
+/**
+ * Class for a singular transaction listing.
+ */
 public class TransactionListing {
 
   private TransactionListing() {}
 
+  /**
+   * Creates a transaction listing from a transaction.
+   *
+   * @param transaction The transaction you want to create a listing for.
+   * @return A GridPane listing.
+   */
   public static Parent createTransactionListing(Transaction transaction) {
 
     int spacing = -10;

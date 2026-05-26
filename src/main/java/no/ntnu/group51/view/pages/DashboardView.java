@@ -112,6 +112,11 @@ public class DashboardView implements View {
 
   }
 
+  /**
+   * Creates transaction listings from a list of transactions.
+   *
+   * @param transactions The list of transactions you want to create listings for.
+   */
   public void createTransactionListings(List<Transaction> transactions) {
     if (transactions == null) {
       throw new IllegalArgumentException("transactions cannot be null");
@@ -132,26 +137,51 @@ public class DashboardView implements View {
     }
   }
 
+  /**
+   * Adds a gainer and a loser from an exchange.
+   *
+   * @param exchange The exchange you want to get the gainers and losers from.
+   */
   public void addMovers(Exchange exchange) {
     dashboardTopMoversPanel.clearMovers();
     dashboardTopMoversPanel.addToPanel(TopMovers.createMover("gainer", exchange.getGainers(1)));
     dashboardTopMoversPanel.addToPanel(TopMovers.createMover("loser", exchange.getLosers(1)));
   }
 
+  /**
+   * Creates panels for Net Worth and Available cash using data from the game model.
+   *
+   * @param model The game model you want to retrieve the data from.
+   */
   public void addCashPanel(GameModel model) {
     dashboardCashStatsSection.clearPanel();
     dashboardCashStatsSection.setPanel(CashPanel.createCashPanel("Net Worth", model.getPlayer().getNetWorth()));
     dashboardCashStatsSection.setPanel(CashPanel.createCashPanel("Available cash", model.getPlayer().getMoney()));
   }
 
+  /**
+   * Sets an action on pressing the market button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnMarketPress(EventHandler<ActionEvent> action) {
     dashboardTopMoversPanel.setOnViewMarket(action);
   }
 
+  /**
+   * Sets an action on pressing the transaction button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnTransactionPress(EventHandler<ActionEvent> action) {
     dashboardTransactionPanel.setOnViewAll(action);
   }
 
+  /**
+   * Sets an action on pressing the advance week button.
+   *
+   * @param action The action you want to happen.
+   */
   public void setOnAdvanceWeekPress(EventHandler<ActionEvent> action) {
     actionsPanel.setOnAdvanceWeek(action);
   }
