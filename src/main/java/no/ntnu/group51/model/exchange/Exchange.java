@@ -174,6 +174,9 @@ public class Exchange {
    * <p>A new Share is created with the current sales price of the stock.
    * The purchase is executed through a Purchase transaction which is committed.
    *
+   * <p><strong>Note:</strong> This method is for simple, direct purchases.
+   *  For complex trading with leverage and preview calculations, use TradeService.
+   *
    * @param symbol   the stock symbol to buy
    * @param quantity the number of shares to purchase
    * @param player   the player making the purchase
@@ -198,7 +201,6 @@ public class Exchange {
 
     Share purchasedShare = new Share(stock, quantity, purchasePricePerShare);
     Transaction transaction = new Purchase(purchasedShare, week);
-    XpCalc.calculateXp(player, transaction, purchasedShare);
     transaction.commit(player);
 
     return transaction;
@@ -223,7 +225,6 @@ public class Exchange {
     }
 
     Transaction transaction = new Sale(share, week);
-    XpCalc.calculateXp(player, transaction, share);
     transaction.commit(player);
 
     return transaction;

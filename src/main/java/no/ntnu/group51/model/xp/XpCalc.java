@@ -11,14 +11,13 @@ import java.math.BigDecimal;
 public class XpCalc {
 
 
-  public static void calculateXp(Player player, Transaction transaction, Share share) {
+  public static void calculateXp(Player player, Transaction transaction, BigDecimal amount) {
 
     if (transaction instanceof Purchase) {
-      player.addXp(share.getPurchasePrice().multiply(BigDecimal.valueOf(0.5)));
+      player.addXp(amount.multiply(BigDecimal.valueOf(0.5)));
     }
     if (transaction instanceof Sale) {
-      BigDecimal amount = BigDecimal.valueOf(Math.max(0.0, share.getStock().getLatestPriceChange().doubleValue()));
-      player.addXp(amount.multiply(BigDecimal.valueOf(2)));
+      player.addXp(amount.max(BigDecimal.ZERO).multiply(BigDecimal.valueOf(2)));
     }
   }
 }
