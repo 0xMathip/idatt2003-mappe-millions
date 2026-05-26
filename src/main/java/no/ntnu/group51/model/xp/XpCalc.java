@@ -1,7 +1,7 @@
 package no.ntnu.group51.model.xp;
 
 import no.ntnu.group51.model.player.Player;
-import no.ntnu.group51.model.stocks.Share;
+import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;

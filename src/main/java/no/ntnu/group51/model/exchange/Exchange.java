@@ -160,13 +160,14 @@ public class Exchange {
    * @return a list of the top losing stocks
    */
   public List<Stock> getLosers(int limit) {
-    if(limit < 0) {
+    if (limit < 0) {
       throw new IllegalArgumentException("Limit cannot be negative.");
     }
     return stockMap.values().stream()
               .sorted(Comparator.comparing(Stock::getLatestPriceChange))
               .limit(limit).toList();
   }
+
   /**
    * Buys a given quantity of a stock for a player.
    *

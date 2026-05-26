@@ -66,7 +66,6 @@ public abstract class Transaction {
     return committed;
   }
 
-
   /**
    * The purpose is to convert the money of the player from their capital
    * to their portfolio and vise versa. After this it will save the

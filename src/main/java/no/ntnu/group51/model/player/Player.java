@@ -17,6 +17,7 @@ public class Player {
   private final TransactionArchive transactionArchive;
   private PlayerLevel playerLevel;
   private BigDecimal xp;
+  private final BigDecimal[] xpRequired = {BigDecimal.valueOf(1500), BigDecimal.valueOf(3000)};
 
   /**
    * Creates a new player.
@@ -46,12 +47,27 @@ public class Player {
     this.money = this.money.add(Objects.requireNonNullElse(money, BigDecimal.ZERO));
   }
 
+  /**
+   * Adds xp to the player.
+   *
+   * @param amount The amount you want to add
+   */
   public void addXp(BigDecimal amount) {
     xp = xp.add(amount);
   }
 
   public BigDecimal getXp() {
     return xp;
+  }
+
+  public BigDecimal getXpRequired() {
+    if (playerLevel == PlayerLevel.NOVICE) {
+      return xpRequired[0];
+
+    } else if (playerLevel == PlayerLevel.INVESTOR) {
+      return xpRequired[1];
+    }
+    return BigDecimal.ZERO;
   }
 
   /**

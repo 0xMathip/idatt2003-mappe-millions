@@ -12,6 +12,7 @@ import no.ntnu.group51.model.trading.TradeMode;
 import no.ntnu.group51.model.trading.TradeType;
 import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.model.transaction.TransactionFactory;
+import no.ntnu.group51.model.xp.XpCalc;
 
 public class TradeService {
 

@@ -72,11 +72,12 @@ public class GameViewController {
         new MarketController(model, marketView, tradeService);
 
     view.setLeftView(sidebarView);
-    view.setCenterView(transactionView);
+    view.setCenterView(dashboardView);
 
     Runnable setDashboardCenter = () -> {
       sidebarView.toggleDashboard();
       view.setCenterView(dashboardView);
+      dashboardController.refresh();
     };
 
     Runnable setMarketCenter = () -> {

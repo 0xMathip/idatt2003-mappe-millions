@@ -1,6 +1,7 @@
 package no.ntnu.group51.controller.sidebar;
 
 import javafx.application.Platform;
+import no.ntnu.group51.controller.dashboard.DashboardController;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.player.PlayerLevel;
 import no.ntnu.group51.view.components.shared.SidebarView;
@@ -121,7 +122,7 @@ public class SidebarController {
    * Sets the progress bar to match the current state.
    */
   public void updateProgressBar() {
-    view.setProgressBar(model.getPlayer().getXp());
+    view.setProgressBar(model.getPlayer().getXp().divide(model.getPlayer().getXpRequired()));
   }
 
 }
