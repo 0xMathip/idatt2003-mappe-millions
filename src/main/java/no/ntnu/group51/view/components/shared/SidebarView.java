@@ -222,6 +222,11 @@ public class SidebarView implements View {
     currentWeek.setText("Week " + week);
   }
 
+  /**
+   * Sets action on pressing the pause button.
+   *
+   * @param action The action handler.
+   */
   public void setOnPauseButton(EventHandler<ActionEvent> action) {
     if (action == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
