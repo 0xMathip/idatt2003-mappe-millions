@@ -116,6 +116,7 @@ public class TradeService {
       }
       preview.transaction().commit(player);
       player.getTransactionArchive().add(preview.transaction());
+      XpCalc.calculateXp(player, preview.transaction(), preview.transaction().getTotal());
       return;
     }
 
@@ -125,11 +126,13 @@ public class TradeService {
       player.withdrawMoney(preview.marginRequired());
       player.getPortfolio().addLeveragedPosition(preview.leveragedPosition());
       player.getTransactionArchive().add(preview.transaction());
+      XpCalc.calculateXp(player, preview.transaction(), preview.leveragedPosition().getMarginRequired());
       return;
     }
 
     closeLeveragedPosition(player, preview);
     player.getTransactionArchive().add(preview.transaction());
+    XpCalc.calculateXp(player, preview.transaction(), preview.leveragedPosition().getMarginRequired());
   }
 
   private Transaction createNormalTransaction(

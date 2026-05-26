@@ -189,7 +189,7 @@ public class SidebarView implements View {
   }
 
   public void setNextLevelLabel(PlayerLevel level) {
-    if (level != PlayerLevel.SPECULATOR) {
+    if (level != PlayerLevel.NOVICE) {
       nextLevelLabel.setText("Next level: " + level.toString());
 
     } else {

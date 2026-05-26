@@ -17,7 +17,7 @@ public class Player {
   private final TransactionArchive transactionArchive;
   private PlayerLevel playerLevel;
   private BigDecimal xp;
-  private final BigDecimal[] xpRequired = {BigDecimal.valueOf(1500), BigDecimal.valueOf(3000)};
+  private final BigDecimal[] xpRequired = {BigDecimal.valueOf(500), BigDecimal.valueOf(1000)};
 
   /**
    * Creates a new player.
@@ -67,7 +67,35 @@ public class Player {
     } else if (playerLevel == PlayerLevel.INVESTOR) {
       return xpRequired[1];
     }
-    return BigDecimal.ZERO;
+    return BigDecimal.ONE;
+  }
+
+  /**
+   * Gets the XP required to reach the previous level.
+   * Used to calculate progress within the current level.
+   *
+   * @return the XP threshold for the previous level (0 for NOVICE)
+   */
+  public BigDecimal getPreviousLevelXpThreshold() {
+    if (playerLevel == PlayerLevel.NOVICE) {
+      return BigDecimal.ZERO;  // NOVICE is the first level
+    } else if (playerLevel == PlayerLevel.INVESTOR) {
+      return xpRequired[0];  // Previous threshold is NOVICE's requirement
+    } else {  // SPECULATOR
+      return xpRequired[1];  // Previous threshold is INVESTOR's requirement
+    }
+  }
+
+  public void levelUp() {
+    if (getXp().compareTo(xpRequired[0]) < 0) {
+      this.playerLevel = PlayerLevel.NOVICE;
+
+    } else if (getXp().compareTo(xpRequired[0]) > 0 && getXp().compareTo(xpRequired[1]) < 0) {
+      this.playerLevel = PlayerLevel.INVESTOR;
+
+    } else {
+      this.playerLevel = PlayerLevel.SPECULATOR;
+    }
   }
 
   /**
