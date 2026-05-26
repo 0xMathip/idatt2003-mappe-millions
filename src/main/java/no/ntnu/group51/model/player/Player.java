@@ -17,7 +17,7 @@ public class Player {
   private final TransactionArchive transactionArchive;
   private PlayerLevel playerLevel;
   private BigDecimal xp;
-  private final BigDecimal[] xpRequired = {BigDecimal.valueOf(500), BigDecimal.valueOf(1000)};
+  private final BigDecimal[] xpRequired = {BigDecimal.valueOf(2000), BigDecimal.valueOf(6000)};
 
   /**
    * Creates a new player.

@@ -69,7 +69,7 @@ public class TopMovers {
       topMover.setText("Top Loser");
       topMover.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_LOSER);
 
-      gain.setText(movers.getFirst().getLatestPriceChangePercent() + "%");
+      gain.setText(PercentFormatter.format(movers.getFirst().getLatestPriceChangePercent()));
       gain.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_LOSER);
 
       circle.getStyleClass().add(StyleClass.FILLED_CIRCLE_RED);

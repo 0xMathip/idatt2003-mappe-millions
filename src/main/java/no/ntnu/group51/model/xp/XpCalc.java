@@ -17,7 +17,7 @@ public class XpCalc {
       player.addXp(amount.multiply(BigDecimal.valueOf(0.5)));
     }
     if (transaction instanceof Sale) {
-      player.addXp(amount.max(BigDecimal.ZERO).multiply(BigDecimal.valueOf(2)));
+      player.addXp(amount.max(BigDecimal.ZERO).multiply(BigDecimal.valueOf(0.8)));
     }
   }
 }
