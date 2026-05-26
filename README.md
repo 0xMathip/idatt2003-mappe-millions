@@ -14,7 +14,6 @@ The application allows users to simulate stock trading by buying and selling sha
 - View portfolio holdings, performance, and transaction history
 - Advance to the next trading week with updated stock prices
 - Track net worth, XP, and player level
-- Save and load game state
 
 ## Architecture
 
