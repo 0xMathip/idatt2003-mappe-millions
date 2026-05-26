@@ -42,9 +42,9 @@ public class Player {
    */
   public void addMoney(BigDecimal money) {
     if (money == null) {
-      throw new IllegalArgumentException("Amount cannot be null");
+      return;
     }
-    this.money = this.money.add(Objects.requireNonNullElse(money, BigDecimal.ZERO));
+    this.money = this.money.add(money);
   }
 
   /**

@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 import no.ntnu.group51.view.util.PriceStyleHelper;
@@ -58,7 +59,7 @@ public class PortfolioListing implements View {
         CurrencyFormatter.format(positionValue));
 
     cashLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_AMOUNT_CASH);
-    Label diffLabel = new Label(share.getStock().getLatestPriceChangePercent().toString());
+    Label diffLabel = new Label(PercentFormatter.format((share.getStock().getLatestPriceChangePercent())));
     diffLabel.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO_DIFF);
     PriceStyleHelper.applyPriceChangeStyle(diffLabel, share.getStock().getLatestPriceChange());
     diffLabel.setAlignment(Pos.CENTER);
