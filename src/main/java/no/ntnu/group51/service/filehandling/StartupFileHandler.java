@@ -16,7 +16,7 @@ public interface StartupFileHandler {
    * Reads the startup stock data from a file.
    *
    * <p>The file must contain lines on the specified format:
-   * symbol,company,price.
+   * symbol,company,price,icon.
    * Blank lines and lines starting with '#' are ignored.
    *
    * @param path the path to the file
@@ -30,7 +30,7 @@ public interface StartupFileHandler {
    * Writes the startup stock data to a file.
    *
    * <p>The output format is:
-   * symbol,company,price.
+   * symbol,company,price,icon.
    *
    * @param path the path to the file
    * @param stocks a list of stocks to write to file
