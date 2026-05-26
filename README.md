@@ -39,7 +39,6 @@ Implemented design patterns:
 - Ikonli
 - JUnit 5
 - CSS
-- PlantUML
 
 ## Project Structure
 
