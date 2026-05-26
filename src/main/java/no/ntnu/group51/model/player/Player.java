@@ -44,7 +44,10 @@ public class Player {
    * @param money How much you want to add
    */
   public void addMoney(BigDecimal money) {
-    this.money = this.money.add(Objects.requireNonNullElse(money, BigDecimal.ZERO));
+    if (money == null) {
+      return;
+    }
+    this.money = this.money.add(money);
   }
 
   /**

@@ -12,6 +12,12 @@ import no.ntnu.group51.service.trading.TradeService;
 import no.ntnu.group51.view.components.market.TradePanel;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 
+/**
+ * Controller for the trade panel.
+ *
+ * <p>Handles trade mode selection, leverage selection,
+ * trade previews, and trade execution.
+ */
 public class TradePanelController implements Observer {
 
   private final GameModel gameModel;
@@ -21,6 +27,14 @@ public class TradePanelController implements Observer {
   private TradeMode selectedTradeMode = TradeMode.AMOUNT;
   private Leverage selectedLeverage = Leverage.OFF;
 
+  /**
+   * Creates a trade panel controller.
+   *
+   * @param gameModel the game model
+   * @param tradePanel the trade panel view
+   * @param tradeService the trade service
+   * @throws IllegalArgumentException if any argument is null
+   */
   public TradePanelController(
       GameModel gameModel,
       TradePanel tradePanel,
@@ -72,7 +86,6 @@ public class TradePanelController implements Observer {
       tradeService.commitTrade(gameModel.getPlayer(), preview);
 
       tradePanel.clearInput();
-      updateView();
       gameModel.notifyObservers();
 
     } catch (IllegalArgumentException e) {
@@ -121,6 +134,10 @@ public class TradePanelController implements Observer {
   private TradePreview createPreview(TradeType tradeType) {
     Stock selectedStock = gameModel.getSelectedStock();
 
+    if (selectedStock == null) {
+      throw new IllegalArgumentException("No stock selected.");
+    }
+
     return tradeService.createPreview(
         gameModel.getPlayer(),
         selectedStock,
@@ -152,6 +169,9 @@ public class TradePanelController implements Observer {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update() {
     updateView();

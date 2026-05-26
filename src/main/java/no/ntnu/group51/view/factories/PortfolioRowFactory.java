@@ -16,12 +16,24 @@ import no.ntnu.group51.view.util.PriceStyleHelper;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Factory for creating portfolio position rows used in search menus.
+ */
 public class PortfolioRowFactory {
 
+  /**
+   * Prevents instantiation of this utility class.
+   */
   private PortfolioRowFactory() {
-
   }
 
+  /**
+   * Creates a portfolio row for a position summary.
+   *
+   * @param position the position summary to display
+   * @return a search row representing the position
+   * @throws IllegalArgumentException if position is null
+   */
   public static SearchRow createPortfolioRow(PositionSummary position) {
     if (position == null) {
       throw new IllegalArgumentException("Position summary cannot be null.");

@@ -18,14 +18,21 @@ import javafx.util.Duration;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import static com.sun.javafx.util.Utils.clamp;
-
+/**
+ * Reusable searchable menu component with optional close button.
+ */
 public class SearchMenu extends StackPane {
   private final TextField searchField = new TextField();
   private final VBox list = new VBox(8);
   private final FontIcon closeIcon;
   private final boolean showCloseButton;
 
+  /**
+   * Creates a search menu.
+   *
+   * @param promptText      the placeholder text for the search field
+   * @param showCloseButton whether the close button should be shown
+   */
   public SearchMenu(String promptText, boolean showCloseButton) {
     this.showCloseButton = showCloseButton;
 
@@ -54,7 +61,7 @@ public class SearchMenu extends StackPane {
     scrollPane.setFitToWidth(true);
     scrollPane.getStyleClass().add(StyleClass.SEARCH_MENU_SCROLL);
 
-    scrollPane.addEventFilter(ScrollEvent.SCROLL,e -> {
+    scrollPane.addEventFilter(ScrollEvent.SCROLL, e -> {
       e.consume();
 
       double deltaY = e.getDeltaY();
@@ -84,14 +91,31 @@ public class SearchMenu extends StackPane {
     getChildren().add(content);
   }
 
+  /**
+   * Returns the search input field.
+   *
+   * @return the search field
+   */
   public TextField getSearchField() {
     return searchField;
   }
 
+  /**
+   * Replaces the displayed rows in the search menu.
+   *
+   * @param rows the rows to display
+   */
   public void setRows(List<? extends Node> rows) {
     list.getChildren().setAll(rows);
   }
 
+  /**
+   * Sets the action to run when the close button is clicked.
+   *
+   * <p>Does nothing if the close button is disabled.
+   *
+   * @param onClose the close handler
+   */
   public void setOnClose(Runnable onClose) {
     if (!showCloseButton || onClose == null) {
       return;

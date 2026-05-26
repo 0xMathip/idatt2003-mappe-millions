@@ -11,15 +11,14 @@ import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.trading.LeveragedPosition;
 
 /**
- * Portfolio class.
+ * Represents a player's portfolio of regular shares and leveraged positions.
  */
 public class Portfolio {
   private final List<Share> shares;
   private final List<LeveragedPosition> leveragedPositions;
 
   /**
-   * Constructor for the Portfolio class.
-   * Creates a list with intention to add shares.
+   * Creates an empty portfolio.
    */
   public Portfolio() {
     this.shares = new ArrayList<>();
@@ -27,7 +26,7 @@ public class Portfolio {
   }
 
   /**
-   * Adds a share in the Portfolio-list.
+   * Adds a share to the portfolio.
    *
    * @param share the share you want to add.
    * @return true if the share was added, false if it was not.
@@ -63,7 +62,7 @@ public class Portfolio {
   }
 
   /**
-   * Removes a share in the Portfolio-list.
+   * Removes a share from the portfolio.
    *
    * @param share the share you want to remove.
    * @return true if the share was removed, false if it was not.
@@ -108,7 +107,7 @@ public class Portfolio {
    *
    * @param share the share you want to check in a portfolio
    * @return true if the portfolio contains the share, false if it does not.
-   * @throws IllegalArgumentException if symbol is null.
+   * @throws IllegalArgumentException if share is null
    */
   public boolean contains(Share share) {
     if (share == null) {
@@ -117,6 +116,13 @@ public class Portfolio {
     return shares.contains(share);
   }
 
+  /**
+   * Adds a leveraged position to the portfolio.
+   *
+   * @param leveragedPosition the leveraged position to add
+   * @return true if the position was added
+   * @throws IllegalArgumentException if leveragedPosition is null
+   */
   public boolean addLeveragedPosition(LeveragedPosition leveragedPosition) {
     if (leveragedPosition == null) {
       throw new IllegalArgumentException("Leveraged position cannot be null.");
@@ -125,6 +131,13 @@ public class Portfolio {
     return leveragedPositions.add(leveragedPosition);
   }
 
+  /**
+   * Removes a leveraged position from the portfolio.
+   *
+   * @param leveragedPosition the leveraged position to remove
+   * @return true if the position was removed
+   * @throws IllegalArgumentException if leveragedPosition is null
+   */
   public boolean removeLeveragedPosition(LeveragedPosition leveragedPosition) {
     if (leveragedPosition == null) {
       throw new IllegalArgumentException("Leveraged position cannot be null.");
@@ -133,10 +146,23 @@ public class Portfolio {
     return leveragedPositions.remove(leveragedPosition);
   }
 
+  /**
+   * Returns an unmodifiable list of leveraged positions in the portfolio.
+   *
+   * @return the leveraged positions in the portfolio
+   */
   public List<LeveragedPosition> getLeveragedPositions() {
     return Collections.unmodifiableList(leveragedPositions);
   }
 
+  /**
+   * Calculates the total net worth of the portfolio.
+   *
+   * <p>The net worth includes the sale value of regular shares
+   * and the current value of leveraged positions.
+   *
+   * @return the total portfolio net worth
+   */
   public BigDecimal getPortfolioNetWorth() {
     BigDecimal netWorth = BigDecimal.ZERO;
 
@@ -152,6 +178,11 @@ public class Portfolio {
     return netWorth;
   }
 
+  /**
+   * Returns the number of regular share positions in the portfolio.
+   *
+   * @return the number of regular share positions
+   */
   public int size() {
     return shares.size();
   }

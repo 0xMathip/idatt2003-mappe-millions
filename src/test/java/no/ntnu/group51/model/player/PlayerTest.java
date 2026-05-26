@@ -56,7 +56,7 @@ class PlayerTest {
 
   @Test
   void getNetWorthReturnsMoneyAndPortfolioValue() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     Share appleShareTest = new Share(appleStockTest, new BigDecimal("120"), new BigDecimal("4.92322"));
 
     player.getPortfolio().addShare(appleShareTest);
@@ -67,7 +67,7 @@ class PlayerTest {
 
   @Test
   void getNetWorthDoesNotChangePlayerMoney() {
-    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"));
+    Stock appleStockTest = new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon");
     Share appleShareTest = new Share(appleStockTest, new BigDecimal("120"), new BigDecimal("4.92322"));
 
     player.getPortfolio().addShare(appleShareTest);

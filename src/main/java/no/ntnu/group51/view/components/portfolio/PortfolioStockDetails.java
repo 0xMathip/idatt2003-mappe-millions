@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.components.portfolio;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -22,6 +23,10 @@ import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * Detailed portfolio view for the selected position,
+ * including stock chart, statistics, and profit/loss.
+ */
 public class PortfolioStockDetails implements View {
 
   private final VBox root = new VBox(10);
@@ -49,6 +54,9 @@ public class PortfolioStockDetails implements View {
   private final Label profitLoss = new Label("$0.00");
   private final Label marketButton = new Label("Open in Market ➜ ");
 
+  /**
+   * Creates the portfolio stock details component.
+   */
   public PortfolioStockDetails() {
     this.stockChartCard = new StockChartCard(false);
     createLayout();
@@ -84,7 +92,10 @@ public class PortfolioStockDetails implements View {
     Separator separator = new Separator();
     separator.getStyleClass().add(StyleClass.SEPARATOR_DETAILS_GREY);
 
-    marketButton.getStyleClass().addAll(StyleClass.DASHBOARD_VIEW_BUTTON, StyleClass.PORTFOLIO_MARKET_BUTTON);
+    marketButton.getStyleClass().addAll(
+        StyleClass.DASHBOARD_VIEW_BUTTON,
+        StyleClass.PORTFOLIO_MARKET_BUTTON
+    );
 
     VBox topRow = new VBox(headerBox, stockChart);
     VBox botRow = new VBox(statsGrid, separator, marketButton);
@@ -160,6 +171,15 @@ public class PortfolioStockDetails implements View {
     return box;
   }
 
+  /**
+   * Updates the displayed position details.
+   *
+   * <p>Shows either normal or leveraged statistics
+   * depending on the selected position.
+   *
+   * @param position the position summary to display
+   * @throws IllegalArgumentException if position is null
+   */
   public void updatePosition(PositionSummary position) {
     if (position == null) {
       throw new IllegalArgumentException("Position summary cannot be null.");
@@ -226,7 +246,7 @@ public class PortfolioStockDetails implements View {
     stat6Value.setText(CurrencyFormatter.format(position.positionValue()));
   }
 
-  private String formatQuantity(java.math.BigDecimal quantity) {
+  private String formatQuantity(BigDecimal quantity) {
     return quantity
         .setScale(4, RoundingMode.HALF_UP)
         .stripTrailingZeros()
@@ -241,6 +261,9 @@ public class PortfolioStockDetails implements View {
     return leverage.getMultiplier() + "x";
   }
 
+  /**
+   * Resets the displayed position details to default values.
+   */
   public void clear() {
     ticker.setText("-");
     company.setText("No position selected");
@@ -270,10 +293,21 @@ public class PortfolioStockDetails implements View {
     stockChartCard.clear();
   }
 
+  /**
+   * Sets the action to run when the market button is clicked.
+   *
+   * @param action the click handler
+   */
   public void setOnOpenMarketPress(EventHandler<MouseEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     marketButton.setOnMouseClicked(action);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

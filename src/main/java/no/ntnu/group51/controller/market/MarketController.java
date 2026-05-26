@@ -8,6 +8,12 @@ import no.ntnu.group51.service.trading.TradeService;
 import no.ntnu.group51.view.components.market.MarketSearchMenu;
 import no.ntnu.group51.view.pages.MarketView;
 
+/**
+ * Controller for the market page.
+ *
+ * <p>Handles stock selection, stock search, and updates the market view
+ * when the game model changes.
+ */
 public class MarketController implements Observer {
 
   private final GameModel gameModel;
@@ -15,6 +21,14 @@ public class MarketController implements Observer {
   private final TradePanelController tradePanelController;
   private final MarketHoldingInfoController holdingInfoController;
 
+  /**
+   * Creates a market controller.
+   *
+   * @param gameModel    the game model
+   * @param marketView   the market view
+   * @param tradeService the trade service used by the trade panel
+   * @throws IllegalArgumentException if any argument is null
+   */
   public MarketController(
       GameModel gameModel,
       MarketView marketView,
@@ -70,16 +84,21 @@ public class MarketController implements Observer {
   }
 
   private void updateSearchMenu(MarketSearchMenu searchMenu) {
+    if (searchMenu == null) {
+      throw new IllegalArgumentException("Search menu cannot be null.");
+    }
     searchMenu.updateStocks(
         gameModel.getExchange().findStocks(searchMenu.getSearchText())
     );
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update() {
     updateView();
   }
-
 
   private void updateView() {
     Stock selectedStock = getSelectedOrFirstStock();

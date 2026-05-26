@@ -12,11 +12,21 @@ import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.model.transaction.TransactionArchive;
 
+/**
+ * Creates transaction summaries and transaction page statistics for UI presentation.
+ */
 public class TransactionService {
 
   private final TransactionNoteService noteService = new TransactionNoteService();
   private static final int MONEY_SCALE = 2;
 
+  /**
+   * Creates summaries for all transactions in a player's archive.
+   *
+   * @param player the player whose transactions should be summarized
+   * @return a list of transaction summaries
+   * @throws IllegalArgumentException if player is null
+   */
   public List<TransactionSummary> createTransactionSummaries(Player player) {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null.");
@@ -29,6 +39,13 @@ public class TransactionService {
         .toList();
   }
 
+  /**
+   * Creates aggregated transaction statistics for a player.
+   *
+   * @param player the player whose transaction statistics should be calculated
+   * @return a transaction page summary
+   * @throws IllegalArgumentException if player is null
+   */
   public TransactionPageSummary createPageSummary(Player player) {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null.");

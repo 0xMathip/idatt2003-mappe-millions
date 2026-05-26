@@ -17,6 +17,9 @@ import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * Trading panel UI for placing regular and leveraged trades.
+ */
 public class TradePanel implements View {
   private final VBox root = new VBox();
 
@@ -40,7 +43,9 @@ public class TradePanel implements View {
   private final Button leverage20Button =
       createButton("20x", StyleClass.TRADE_PANEL_LEVERAGE_BUTTON);
 
-
+  /**
+   * Creates the trade panel.
+   */
   public TradePanel() {
     createLayout();
     updateTradeMode(TradeMode.AMOUNT);
@@ -106,6 +111,12 @@ public class TradePanel implements View {
     return button;
   }
 
+  /**
+   * Updates the displayed available cash.
+   *
+   * @param cash the available cash amount
+   * @throws IllegalArgumentException if cash is null
+   */
   public void setCash(BigDecimal cash) {
     if (cash == null) {
       throw new IllegalArgumentException("Cash cannot be null.");
@@ -113,6 +124,12 @@ public class TradePanel implements View {
     cashLabel.setText(CurrencyFormatter.format(cash));
   }
 
+  /**
+   * Updates the selected trade mode and related UI labels.
+   *
+   * @param tradeMode the active trade mode
+   * @throws IllegalArgumentException if tradeMode is null
+   */
   public void updateTradeMode(TradeMode tradeMode) {
     if (tradeMode == null) {
       throw new IllegalArgumentException("Trade mode cannot be null.");
@@ -134,6 +151,12 @@ public class TradePanel implements View {
     }
   }
 
+  /**
+   * Updates the selected leverage state in the UI.
+   *
+   * @param leverage the active leverage level
+   * @throws IllegalArgumentException if leverage is null
+   */
   public void updateLeverage(Leverage leverage) {
     if (leverage == null) {
       throw new IllegalArgumentException("Leverage cannot be null.");
@@ -151,6 +174,12 @@ public class TradePanel implements View {
     }
   }
 
+  /**
+   * Updates the estimated trade output text.
+   *
+   * @param text the estimate text
+   * @throws IllegalArgumentException if text is null or blank
+   */
   public void setEstimateText(String text) {
     if (text == null || text.isBlank()) {
       throw new IllegalArgumentException("Text cannot be null or blank.");
@@ -159,14 +188,28 @@ public class TradePanel implements View {
     estimateValueLabel.setText(text);
   }
 
+  /**
+   * Returns the current trade input text.
+   *
+   * @return the entered input text
+   */
   public String getInputText() {
     return inputField.getText();
   }
 
+  /**
+   * Clears the trade input field.
+   */
   public void clearInput() {
     inputField.clear();
   }
 
+  /**
+   * Sets the action to run when the buy button is pressed.
+   *
+   * @param handler the buy handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnBuy(Runnable handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -175,6 +218,12 @@ public class TradePanel implements View {
     buyButton.setOnAction(e -> handler.run());
   }
 
+  /**
+   * Sets the action to run when the sell button is pressed.
+   *
+   * @param handler the sell handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnSell(Runnable handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -183,6 +232,12 @@ public class TradePanel implements View {
     sellButton.setOnAction(e -> handler.run());
   }
 
+  /**
+   * Sets the action to run when the trade mode changes.
+   *
+   * @param handler the trade mode handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnTradeModeChanged(Consumer<TradeMode> handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -192,6 +247,12 @@ public class TradePanel implements View {
     amountButton.setOnAction(e -> handler.accept(TradeMode.AMOUNT));
   }
 
+  /**
+   * Sets the action to run when the leverage selection changes.
+   *
+   * @param handler the leverage change handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnLeverageChanged(Consumer<Leverage> handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -203,6 +264,12 @@ public class TradePanel implements View {
     leverage20Button.setOnAction(event -> handler.accept(Leverage.X20));
   }
 
+  /**
+   * Sets the action to run when the trade input changes.
+   *
+   * @param handler the input change handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnInputChanged(Runnable handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -213,6 +280,9 @@ public class TradePanel implements View {
     );
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

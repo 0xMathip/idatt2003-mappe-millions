@@ -8,6 +8,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -58,7 +59,7 @@ public class TopMovers {
       topMover.setText("Top Gainer");
       topMover.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_GAINER);
 
-      gain.setText("+" + movers.getFirst().getLatestPriceChangePercent() + "%");
+      gain.setText(PercentFormatter.format(movers.getFirst().getLatestPriceChangePercent()));
       gain.getStyleClass().add(StyleClass.DASHBOARD_MOVERS_GAINER);
 
       circle.getStyleClass().add(StyleClass.FILLED_CIRCLE_GREEN);

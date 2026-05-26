@@ -15,17 +15,31 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * UI card displaying a stock's historical price development as an area chart.
+ */
 public class StockChartCard implements View {
   private final StackPane root = new StackPane();
   private final boolean showLabels;
   private AreaChart<Number, Number> stockChart;
 
+  /**
+   * Creates a stock chart card.
+   *
+   * @param showLabels whether axis labels should be visible
+   */
   public StockChartCard(boolean showLabels) {
     this.showLabels = showLabels;
 
     root.setAlignment(Pos.CENTER_LEFT);
   }
 
+  /**
+   * Updates the chart with the selected stock's price history.
+   *
+   * @param stock the stock to display
+   * @throws IllegalArgumentException if stock is null
+   */
   public void updateStock(Stock stock) {
     if (stock == null) {
       throw new IllegalArgumentException("Stock cannot be null.");
@@ -33,10 +47,14 @@ public class StockChartCard implements View {
     updateDisplay(stock);
   }
 
+  /**
+   * Clears the chart.
+   */
   public void clear() {
     root.getChildren().clear();
     stockChart = null;
   }
+
 
   private void updateDisplay(Stock stock) {
     root.getChildren().clear();
@@ -132,6 +150,12 @@ public class StockChartCard implements View {
 
   }
 
+  /**
+   * Adds a style class to the chart root.
+   *
+   * @param style the style class to add
+   * @throws IllegalArgumentException if style is null or blank
+   */
   public void addRootStyleClass(String style) {
     if (style == null || style.isBlank()) {
       throw new IllegalArgumentException("Style cannot be null or blank.");
@@ -139,6 +163,9 @@ public class StockChartCard implements View {
     root.getStyleClass().add(style);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

@@ -13,12 +13,26 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.LeveragedPosition;
 
+/**
+ * Creates summarized portfolio position data for UI presentation.
+ *
+ * <p>Supports both regular stock positions and leveraged positions.
+ */
 public class PositionService {
 
   private static final int MONEY_SCALE = 2;
   private static final int PERCENT_SCALE = 2;
   private static final BigDecimal ONE_HUNDRED = new BigDecimal("100");
 
+  /**
+   * Creates summaries for all positions in a portfolio.
+   *
+   * <p>Includes both regular share positions and leveraged positions.
+   *
+   * @param portfolio the portfolio to summarize
+   * @return a list of position summaries
+   * @throws IllegalArgumentException if portfolio is null
+   */
   public List<PositionSummary> createPositionSummaries(Portfolio portfolio) {
     if (portfolio == null) {
       throw new IllegalArgumentException("Portfolio cannot be null.");
@@ -39,6 +53,14 @@ public class PositionService {
     return summaries;
   }
 
+  /**
+   * Creates a summary for a regular stock position.
+   *
+   * @param stock the stock being summarized
+   * @param shares the owned shares for that stock
+   * @return a position summary
+   * @throws IllegalArgumentException if stock is null, or shares is null or empty
+   */
   public PositionSummary createPositionSummary(Stock stock, List<Share> shares) {
     if (stock == null) {
       throw new IllegalArgumentException("Stock cannot be null.");
@@ -90,8 +112,12 @@ public class PositionService {
     BigDecimal totalInvested = position.getMarginRequired();
     BigDecimal averageBuyPrice = share.getPurchasePrice();
     BigDecimal currentPrice = stock.getSalesPrice();
-    BigDecimal positionValue = calculator.calculateTotal().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
-    BigDecimal profitLoss = positionValue.subtract(totalInvested).setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+
+    BigDecimal positionValue =
+        calculator.calculateTotal().setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+    BigDecimal profitLoss =
+        positionValue.subtract(totalInvested).setScale(MONEY_SCALE, RoundingMode.HALF_UP);
+
     BigDecimal roiPercent = calculateRoiPercent(profitLoss, totalInvested);
 
     return new PositionSummary(

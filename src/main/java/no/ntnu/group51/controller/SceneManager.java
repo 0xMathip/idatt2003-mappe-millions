@@ -17,6 +17,9 @@ public class SceneManager {
    * @param scene The scene of the stage.
    */
   public SceneManager(Scene scene) {
+    if (scene == null) {
+      throw new IllegalArgumentException("Scene cannot be null.");
+    }
     this.scene = scene;
   }
 
@@ -26,6 +29,9 @@ public class SceneManager {
    * @param view The view you want to set the scene to
    */
   public void changeScene(View view) {
+    if (view == null) {
+      throw new IllegalArgumentException("View cannot be null.");
+    }
     scene.setRoot(view.getRoot());
   }
 

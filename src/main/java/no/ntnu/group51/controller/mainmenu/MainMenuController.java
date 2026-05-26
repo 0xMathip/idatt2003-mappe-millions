@@ -8,7 +8,7 @@ import no.ntnu.group51.view.GameView;
 import no.ntnu.group51.view.pages.MainMenuView;
 
 /**
- * Class for the main menu controller.
+ * Controller for the main menu view.
  */
 public class MainMenuController {
 
@@ -17,13 +17,24 @@ public class MainMenuController {
   private final SceneManager sceneManager;
 
   /**
-   * Creates the controller for the main menu and sets up the buttons.
+   * Creates the main menu controller.
    *
-   * @param model The persistent model for the game.
-   * @param view The view for the main menu.
-   * @param sceneManager The scene manager for the program with access to the scene.
+   * @param model        the game model
+   * @param view         the main menu view
+   * @param sceneManager the scene manager
+   * @throws IllegalArgumentException if any argument is null
    */
   public MainMenuController(GameModel model, MainMenuView view, SceneManager sceneManager) {
+    if (model == null) {
+      throw new IllegalArgumentException("Game model cannot be null.");
+    }
+    if (view == null) {
+      throw new IllegalArgumentException("View cannot be null.");
+    }
+    if (sceneManager == null) {
+      throw new IllegalArgumentException("Scene manager cannot be null.");
+    }
+
     this.model = model;
     this.view = view;
     this.sceneManager = sceneManager;
@@ -31,10 +42,9 @@ public class MainMenuController {
   }
 
   /**
-   * Sets up the buttons on the main menu.
+   * Configures the main menu button actions.
    */
-  public void setupButtons() {
-
+  private void setupButtons() {
     view.setOnNewGame(e -> {
       GameView gameView = new GameView();
       new GameViewController(model, gameView, sceneManager);

@@ -1,29 +1,39 @@
 package no.ntnu.group51.app;
 
-import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.controller.mainmenu.MainMenuController;
+import no.ntnu.group51.controller.SceneManager;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.MainMenuView;
 
 /**
- * Class for a method that is called in the MainApp class.
+ * Initializes the application startup flow.
  */
-public class ApplicationStarter {
+public final class ApplicationStarter {
 
   /**
-   * Method is called in the MainApp class and collects everything needed to initialize the app
-   * so that the MainApp class stays slim.
+   * Prevents instantiation of this utility class.
+   */
+  private ApplicationStarter() {
+  }
+
+  /**
+   * Initializes the application and loads the main menu scene.
    *
-   * @param model The persistent model for the game.
-   * @param sceneManager The scene manager following through the game with access to the scene.
+   * @param model the game model
+   * @param sceneManager the scene manager
+   * @throws IllegalArgumentException if model or sceneManager is null
    */
   public static void initialize(GameModel model, SceneManager sceneManager) {
+    if (model == null) {
+      throw new IllegalArgumentException("Game model cannot be null.");
+    }
 
-    MainMenuView mainMenuView = new MainMenuView(sceneManager, model);
+    if (sceneManager == null) {
+      throw new IllegalArgumentException("Scene manager cannot be null.");
+    }
+    MainMenuView mainMenuView = new MainMenuView();
 
-    MainMenuController mainMenuController = new MainMenuController(
-        model, mainMenuView, sceneManager
-    );
+    new MainMenuController(model, mainMenuView, sceneManager);
 
     sceneManager.changeScene(mainMenuView);
 

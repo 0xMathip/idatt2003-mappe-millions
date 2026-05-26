@@ -7,7 +7,6 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Stock;
@@ -19,6 +18,10 @@ import no.ntnu.group51.view.components.market.TradePanel;
 import no.ntnu.group51.view.components.shared.StockChartCard;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * Market page view containing stock selection,
+ * holdings information, trading controls, and chart display.
+ */
 public class MarketView implements View {
 
   private final StackPane root = new StackPane();
@@ -34,6 +37,9 @@ public class MarketView implements View {
 
   private Runnable onStockSelectorClicked = () -> {};
 
+  /**
+   * Creates the market view.
+   */
   public MarketView() {
     this.stockSelectorCard = new StockSelectorCard();
     this.tradePanel = new TradePanel();
@@ -99,6 +105,12 @@ public class MarketView implements View {
     stockSelectorCard.getRoot().setOnMouseClicked(event -> onStockSelectorClicked.run());
   }
 
+  /**
+   * Displays the stock search menu as an overlay.
+   *
+   * @param searchMenu the search menu to display
+   * @throws IllegalArgumentException if searchMenu is null
+   */
   public void showStockSearchMenu(MarketSearchMenu searchMenu) {
     if (searchMenu == null) {
       throw new IllegalArgumentException("Search menu cannot be null.");
@@ -125,6 +137,9 @@ public class MarketView implements View {
     stockSearchMenu.setOnClose(this::closeStockSearchMenu);
   }
 
+  /**
+   * Closes the active stock search menu if one is open.
+   */
   public void closeStockSearchMenu() {
     if (stockSearchMenu == null) {
       return;
@@ -141,11 +156,26 @@ public class MarketView implements View {
     stockSearchMenu = null;
   }
 
+  /**
+   * Updates the selected stock display and chart.
+   *
+   * @param stock the selected stock
+   * @throws IllegalArgumentException if stock is null
+   */
   public void updateSelectedStock(Stock stock) {
+    if (stock == null) {
+      throw new IllegalArgumentException("Stock cannot be null.");
+    }
     stockSelectorCard.updateStock(stock);
     stockChartCard.updateStock(stock);
   }
 
+  /**
+   * Sets the action triggered when the stock selector is clicked.
+   *
+   * @param handler the click handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnStockSelectorClicked(Runnable handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -154,27 +184,53 @@ public class MarketView implements View {
     this.onStockSelectorClicked = handler;
   }
 
+  /**
+   * Returns the stock selector card.
+   *
+   * @return the stock selector card
+   */
   public StockSelectorCard getStockSelectorCard() {
     return stockSelectorCard;
   }
 
+  /**
+   * Returns the trade panel.
+   *
+   * @return the trade panel
+   */
   public TradePanel getTradePanel() {
     return tradePanel;
   }
 
+  /**
+   * Returns the stock chart card.
+   *
+   * @return the stock chart card
+   */
   public StockChartCard getStockChartCard() {
     return stockChartCard;
   }
 
+  /**
+   * Returns the holding info card.
+   *
+   * @return the holding info card
+   */
   public MarketHoldingInfoCard getHoldingInfoCard() {
     return holdingInfoCard;
   }
 
+  /**
+   * Clears the selected stock and stock chart.
+   */
   public void clear() {
     stockSelectorCard.clear();
     stockChartCard.clear();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

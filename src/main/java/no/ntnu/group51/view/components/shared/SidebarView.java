@@ -18,7 +18,7 @@ import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
- * Class for the sidebar.
+ * Sidebar navigation view for the main application.
  */
 public class SidebarView implements View {
 
@@ -38,7 +38,7 @@ public class SidebarView implements View {
   private Image speculator = new Image("/images/speculator.png");
 
   /**
-   * Creates a new sidebar view.
+   * Creates the sidebar view.
    */
   public SidebarView() {
 
@@ -160,77 +160,90 @@ public class SidebarView implements View {
     root.setSpacing(15);
     root.setAlignment(Pos.CENTER);
     root.setPrefWidth(362);
-    root.setStyle("-fx-background-color: #171717");
+    root.getStyleClass().add(StyleClass.SIDEBAR_PANEL);
 
   }
 
   /**
-   * Sets an action on the dashboard button.
+   * Sets the dashboard button action.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
    */
   public void setOnDashboardButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     dashboardButton.setOnAction(action);
   }
 
   /**
-   * Sets an action on the market button.
+   * Sets the market button action.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
    */
   public void setOnMarketButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     marketButton.setOnAction(action);
   }
 
   /**
-   * Sets an action on the portfolio button.
+   * Sets the transaction button action.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
    */
   public void setOnPortfolioButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     portfolioButton.setOnAction(action);
   }
 
   /**
-   * Sets an action on the transaction button.
+   * Sets the transaction button action.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
    */
   public void setOnTransactionButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     transactionsButton.setOnAction(action);
   }
 
   /**
-   * Sets the current week on the top of the sidebar.
+   * Updates the displayed current week.
    *
-   * @param week The week you want to set it to.
+   * @param week the current week
    */
   public void setCurrentWeek(int week) {
     currentWeek.setText("Week " + week);
   }
 
-  /**
-   * Sets an action on the pause button.
-   *
-   * @param action The action you want to happen.
-   */
   public void setOnPauseButton(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Handler cannot be null.");
+    }
     pauseButton.setOnAction(action);
   }
 
   /**
-   * Sets the current level on the sidebar.
+   * Updates the displayed current player level.
    *
-   * @param level The level you want to set it to.
+   * @param level the current player level
    */
   public void setCurrentLevelLabel(PlayerLevel level) {
+    if (level == null) {
+      throw new IllegalArgumentException("Level cannot be null.");
+    }
     currentLevelLabel.setText(level.toString());
   }
 
   /**
-   * Sets the next level on the sidebar.
+   * Updates the displayed next player level.
    *
-   * @param level The level you want to set it to.
+   * @param level the next player level
    */
   public void setNextLevelLabel(PlayerLevel level) {
     if (level != PlayerLevel.NOVICE) {
@@ -261,34 +274,36 @@ public class SidebarView implements View {
   }
 
   /**
-   * Method to toggle the dashboard button.
+   * Selects the dashboard button.
    */
   public void toggleDashboard() {
     dashboardButton.setSelected(true);
   }
 
   /**
-   * Method to toggle the market button.
+   * Selects the market button.
    */
   public void toggleMarket() {
     marketButton.setSelected(true);
   }
 
   /**
-   * Method to toggle the portfolio button.
+   * Selects the portfolio button.
    */
   public void togglePortfolio() {
     portfolioButton.setSelected(true);
   }
 
   /**
-   * Method to toggle the transaction button.
+   * Selects the transaction button.
    */
   public void toggleTransaction() {
     transactionsButton.setSelected(true);
   }
 
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

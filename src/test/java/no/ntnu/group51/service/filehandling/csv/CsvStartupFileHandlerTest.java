@@ -25,8 +25,8 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
     Files.writeString(tempFile,
-        "AAPL,Apple,100\n" +
-             "GOOG,Google,125");
+        "AAPL,Apple,100,no-icon\n" +
+            "GOOG,Google,125,no-icon");
 
     List<Stock> stocks = csv.readStocks(tempFile);
 
@@ -49,9 +49,9 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
     Files.writeString(tempFile,
-        "AAPL,Apple,100\n" +
+        "AAPL,Apple,100,no-icon\n" +
             "#a cool comment\n" +
-            "GOOG,Google,125\n"+
+            "GOOG,Google,125,no-icon\n" +
             "\n");
 
     List<Stock> stocks = csv.readStocks(tempFile);
@@ -85,8 +85,8 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
     Files.writeString(tempFile,
-        "AAPL,Apple,DefinitelyNotANumber\n" +
-            "GOOG,Google,125");
+        "AAPL,Apple,NotANumber,no-icon\n" +
+            "GOOG,Google,125,no-icon");
 
     assertThrows(IllegalArgumentException.class,
         () -> csv.readStocks(tempFile));
@@ -97,8 +97,8 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
     Files.writeString(tempFile,
-        "AAPL,Apple,100\n" +
-            ",Google,125");
+        "AAPL,Apple,100,no-icon\n" +
+            ",Google,125,no-icon");
 
     assertThrows(IllegalArgumentException.class,
         () -> csv.readStocks(tempFile));
@@ -109,8 +109,8 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
     Files.writeString(tempFile,
-        "AAPL,,100\n" +
-            "GOOG,Google,125");
+        "AAPL,Apple,100,no-icon\n" +
+            ",Google,125,no-icon");
 
     assertThrows(IllegalArgumentException.class,
         () -> csv.readStocks(tempFile));
@@ -121,15 +121,15 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
 
     List<Stock> stocks = List.of(
-        new Stock("AAPL", "Apple", new BigDecimal("4.7392781")),
-        new Stock("GOOG", "Google", new BigDecimal("6.53433")));
+        new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon"),
+        new Stock("GOOG", "Google", new BigDecimal("6.53433"), "no-icon"));
 
     csv.writeStocks(tempFile, stocks);
 
     String content = Files.readString(tempFile);
     String lineSep = System.lineSeparator();
-    String expected = "AAPL,Apple,4.7392781" + lineSep
-                    + "GOOG,Google,6.53433" + lineSep;
+    String expected = "AAPL,Apple,4.7392781,no-icon" + lineSep
+        + "GOOG,Google,6.53433,no-icon" + lineSep;
     assertEquals(expected, content);
   }
 
@@ -151,7 +151,7 @@ class CsvStartupFileHandlerTest {
     Path tempFile = Files.createTempFile("stocks", ".csv");
     List<Stock> stocks = new ArrayList<>();
 
-    stocks.add(new Stock("AAPL", "Apple", new BigDecimal("4.7392781")));
+    stocks.add(new Stock("AAPL", "Apple", new BigDecimal("4.7392781"), "no-icon"));
     stocks.add(null);
 
     assertThrows(IllegalArgumentException.class,

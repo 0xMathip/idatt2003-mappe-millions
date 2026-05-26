@@ -9,12 +9,18 @@ import no.ntnu.group51.view.components.shared.SearchMenu;
 import no.ntnu.group51.view.components.shared.SearchRow;
 import no.ntnu.group51.view.factories.PortfolioRowFactory;
 
+/**
+ * Search menu for displaying and selecting portfolio positions.
+ */
 public class PortfolioSearchMenu implements View {
   private final SearchMenu root;
   private List<PositionSummary> positions = List.of();
   private Consumer<PositionSummary> onPositionSelected = position -> {
   };
 
+  /**
+   * Creates the portfolio search menu.
+   */
   public PortfolioSearchMenu() {
     this.root = new SearchMenu("⌕ Search portfolio", false);
 
@@ -23,6 +29,12 @@ public class PortfolioSearchMenu implements View {
     );
   }
 
+  /**
+   * Updates the displayed portfolio positions.
+   *
+   * @param positions the position summaries to display
+   * @throws IllegalArgumentException if positions is null
+   */
   public void updatePositions(List<PositionSummary> positions) {
     if (positions == null) {
       throw new IllegalArgumentException("Position summary cannot be null.");
@@ -61,6 +73,12 @@ public class PortfolioSearchMenu implements View {
         || position.stock().getCompany().toLowerCase().contains(lowerCase);
   }
 
+  /**
+   * Sets the action to run when a portfolio position is selected.
+   *
+   * @param handler the selection handler
+   * @throws IllegalArgumentException if handler is null
+   */
   public void setOnPositionSelected(Consumer<PositionSummary> handler) {
     if (handler == null) {
       throw new IllegalArgumentException("Handler cannot be null.");
@@ -69,6 +87,9 @@ public class PortfolioSearchMenu implements View {
     this.onPositionSelected = handler;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

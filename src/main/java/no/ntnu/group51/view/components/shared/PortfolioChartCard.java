@@ -14,17 +14,31 @@ import javafx.util.StringConverter;
 import no.ntnu.group51.view.View;
 import no.ntnu.group51.view.util.StyleClass;
 
+/**
+ * UI card displaying portfolio net worth history as an area chart.
+ */
 public class PortfolioChartCard implements View {
 
   private final StackPane root = new StackPane();
   private final boolean showLabels;
   private AreaChart<Number, Number> portfolioChart;
 
+  /**
+   * Creates a portfolio chart card.
+   *
+   * @param showLabels whether axis labels should be visible
+   */
   public PortfolioChartCard(boolean showLabels) {
     this.showLabels = showLabels;
     root.setAlignment(Pos.CENTER_LEFT);
   }
 
+  /**
+   * Updates the chart with net worth history values.
+   *
+   * @param netWorthHistory the net worth values to display
+   * @throws IllegalArgumentException if netWorthHistory is null or empty
+   */
   public void updateValues(List<BigDecimal> netWorthHistory) {
     if (netWorthHistory == null) {
       throw new IllegalArgumentException("Net worth history cannot be null.");
@@ -36,6 +50,9 @@ public class PortfolioChartCard implements View {
     updateDisplay(netWorthHistory);
   }
 
+  /**
+   * Clears the chart.
+   */
   public void clear() {
     root.getChildren().clear();
     portfolioChart = null;
@@ -134,6 +151,12 @@ public class PortfolioChartCard implements View {
     return series;
   }
 
+  /**
+   * Adds a style class to the chart root.
+   *
+   * @param style the style class to add
+   * @throws IllegalArgumentException if style is null or blank
+   */
   public void addRootStyleClass(String style) {
     if (style == null || style.isBlank()) {
       throw new IllegalArgumentException("Style cannot be null or blank.");
@@ -142,6 +165,9 @@ public class PortfolioChartCard implements View {
     root.getStyleClass().add(style);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;

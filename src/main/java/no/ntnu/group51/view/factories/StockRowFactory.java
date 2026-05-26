@@ -8,16 +8,35 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.view.components.shared.SearchRow;
+import no.ntnu.group51.view.util.CurrencyFormatter;
+import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.PriceStyleHelper;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ * Factory for creating stock rows used in search menus.
+ */
 public final class StockRowFactory {
 
+  /**
+   * Prevents instantiation of this utility class.
+   */
   private StockRowFactory() {
   }
 
+  /**
+   * Creates a stock row for a search menu.
+   *
+   * @param stock the stock to display
+   * @return a search row representing the stock
+   * @throws IllegalArgumentException if stock is null
+   */
   public static SearchRow createStockRow(Stock stock) {
+    if (stock == null) {
+      throw new IllegalArgumentException("Stock cannot be null.");
+    }
+
     SearchRow row = new SearchRow(55, 30, 15, 10);
 
     Label ticker = new Label(stock.getSymbol());
@@ -26,16 +45,18 @@ public final class StockRowFactory {
     Label company = new Label(stock.getCompany());
     company.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_COMPANY);
 
-    Label price = new Label("$" + stock.getSalesPrice().toString());
+    Label price = new Label(CurrencyFormatter.format(stock.getSalesPrice()));
     price.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_PRICE);
 
     BigDecimal latestChange = stock.getLatestPriceChange();
 
-    Label priceChange = new Label(valueExpression(latestChange, "$"));
+    Label priceChange = new Label(CurrencyFormatter.format(latestChange));
     priceChange.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_CHANGE);
 
-    Label priceChangePercentage = new Label("(" +
-        valueExpression(stock.getLatestPriceChangePercent(),"%") + ")");
+    Label priceChangePercentage = new Label(
+        "(" + PercentFormatter.format(stock.getLatestPriceChangePercent()) + ")"
+    );
+
     priceChangePercentage.getStyleClass().add(StyleClass.FACTORY_SEARCH_ROW_CHANGE_PERCENT);
 
     HBox changeBox = new HBox(6, priceChange, priceChangePercentage);
@@ -60,23 +81,5 @@ public final class StockRowFactory {
     GridPane.setHalignment(arrowIcon, HPos.CENTER);
 
     return row;
-  }
-
-
-  private static String valueExpression(BigDecimal value, String symbol) {
-    BigDecimal absValue = value.abs().stripTrailingZeros();
-
-    String prefix = "$".equals(symbol) ? symbol : "";
-    String suffix = "%".equals(symbol) ? symbol : "";
-
-    if (value.signum() > 0) {
-      return "+" + prefix + absValue + suffix;
-    }
-
-    if (value.signum() < 0 ) {
-      return "-" + prefix + absValue + suffix;
-    }
-
-    return prefix + absValue.toString() + suffix;
   }
 }

@@ -35,11 +35,13 @@ import no.ntnu.group51.view.util.StyleClass;
  */
 public class DashboardView implements View {
 
-  private final GridPane root =  new GridPane();
+  private final GridPane root = new GridPane();
   private final DashboardPortfolioPanel dashboardPortfolioPanel = new DashboardPortfolioPanel();
-  private final DashboardTransactionPanel dashboardTransactionPanel = new DashboardTransactionPanel();
+  private final DashboardTransactionPanel dashboardTransactionPanel =
+      new DashboardTransactionPanel();
   private final DashboardTopMoversPanel dashboardTopMoversPanel = new DashboardTopMoversPanel();
-  private final DashboardCashStatsSection dashboardCashStatsSection = new DashboardCashStatsSection();
+  private final DashboardCashStatsSection dashboardCashStatsSection =
+      new DashboardCashStatsSection();
   private final PortfolioChartCard portfolioChartCard = new PortfolioChartCard(false);
   private final DiffOverWeeks diffOverWeeks = new DiffOverWeeks();
   private final ActionsPanel actionsPanel = new ActionsPanel();
@@ -97,7 +99,7 @@ public class DashboardView implements View {
     rightSide.setSpacing(40);
     rightSide.setAlignment(Pos.BOTTOM_LEFT);
 
-    root.setStyle("-fx-background-color: black;");
+    root.getStyleClass().add(StyleClass.PAGE_LAYOUT);
     root.setPadding(new Insets(20, 0, 0, 46));
 
     ColumnConstraints left = new ColumnConstraints();
@@ -113,13 +115,14 @@ public class DashboardView implements View {
   }
 
   /**
-   * Creates transaction listings from a list of transactions.
+   * Updates the dashboard transaction list.
    *
-   * @param transactions The list of transactions you want to create listings for.
+   * @param transactions the transactions to display
+   * @throws IllegalArgumentException if transactions is null
    */
   public void createTransactionListings(List<Transaction> transactions) {
     if (transactions == null) {
-      throw new IllegalArgumentException("transactions cannot be null");
+      throw new IllegalArgumentException("Transactions cannot be null.");
     }
 
     dashboardTransactionPanel.clearListings();
@@ -138,54 +141,81 @@ public class DashboardView implements View {
   }
 
   /**
-   * Adds a gainer and a loser from an exchange.
+   * Updates the dashboard top movers section.
    *
-   * @param exchange The exchange you want to get the gainers and losers from.
+   * @param exchange the exchange used to fetch movers
+   * @throws IllegalArgumentException if exchange is null
    */
   public void addMovers(Exchange exchange) {
+    if (exchange == null) {
+      throw new IllegalArgumentException("Exchange cannot be null.");
+    }
     dashboardTopMoversPanel.clearMovers();
     dashboardTopMoversPanel.addToPanel(TopMovers.createMover("gainer", exchange.getGainers(1)));
     dashboardTopMoversPanel.addToPanel(TopMovers.createMover("loser", exchange.getLosers(1)));
   }
 
   /**
-   * Creates panels for Net Worth and Available cash using data from the game model.
+   * Updates the dashboard cash statistics section.
    *
-   * @param model The game model you want to retrieve the data from.
+   * @param model the game model containing player values
+   * @throws IllegalArgumentException if model is null
    */
   public void addCashPanel(GameModel model) {
+    if (model == null) {
+      throw new IllegalArgumentException("Game model cannot be null.");
+    }
     dashboardCashStatsSection.clearPanel();
-    dashboardCashStatsSection.setPanel(CashPanel.createCashPanel("Net Worth", model.getPlayer().getNetWorth()));
-    dashboardCashStatsSection.setPanel(CashPanel.createCashPanel("Available cash", model.getPlayer().getMoney()));
+    dashboardCashStatsSection.setPanel(
+        CashPanel.createCashPanel("Net Worth", model.getPlayer().getNetWorth()));
+    dashboardCashStatsSection.setPanel(
+        CashPanel.createCashPanel("Available cash", model.getPlayer().getMoney()));
   }
 
   /**
-   * Sets an action on pressing the market button.
+   * Sets the action for the market navigation button.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
+   * @throws IllegalArgumentException if action is null
    */
   public void setOnMarketPress(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     dashboardTopMoversPanel.setOnViewMarket(action);
   }
 
   /**
-   * Sets an action on pressing the transaction button.
+   * Sets the action for the transaction navigation button.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
+   * @throws IllegalArgumentException if action is null
    */
   public void setOnTransactionPress(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     dashboardTransactionPanel.setOnViewAll(action);
   }
 
   /**
-   * Sets an action on pressing the advance week button.
+   * Sets the action for the advance week button.
    *
-   * @param action The action you want to happen.
+   * @param action the action handler
+   * @throws IllegalArgumentException if action is null
    */
   public void setOnAdvanceWeekPress(EventHandler<ActionEvent> action) {
+    if (action == null) {
+      throw new IllegalArgumentException("Action cannot be null.");
+    }
     actionsPanel.setOnAdvanceWeek(action);
   }
 
+  /**
+   * Updates the portfolio net worth chart.
+   *
+   * @param netWorthHistory the recorded net worth history
+   */
   public void updatePortfolioChart(List<BigDecimal> netWorthHistory) {
     if (netWorthHistory == null || netWorthHistory.isEmpty()) {
       portfolioChartCard.clear();
@@ -195,6 +225,13 @@ public class DashboardView implements View {
     portfolioChartCard.updateValues(netWorthHistory);
   }
 
+  /**
+   * Updates the dashboard portfolio summary panel.
+   *
+   * @param shares the owned shares
+   * @param totalInvested the total invested amount
+   * @param returnPercent the return percentage
+   */
   public void updatePortfolioPanel(
       List<Share> shares,
       BigDecimal totalInvested,
@@ -207,6 +244,13 @@ public class DashboardView implements View {
     );
   }
 
+  /**
+   * Updates the performance difference summary.
+   *
+   * @param thisWeek the current week change
+   * @param last4Weeks the four-week change
+   * @param allTime the all-time change
+   */
   public void updateDiffOverWeeks(
       BigDecimal thisWeek,
       BigDecimal last4Weeks,
@@ -215,6 +259,9 @@ public class DashboardView implements View {
     diffOverWeeks.updateDifferences(thisWeek, last4Weeks, allTime);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Parent getRoot() {
     return root;
