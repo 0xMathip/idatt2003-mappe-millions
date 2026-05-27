@@ -129,50 +129,6 @@ public class Player {
   }
 
   /**
-   * Updates the player's level based on current XP.
-   */
-  public void updateLevel() {
-    if (getXp().compareTo(xpRequired[0]) < 0) {
-      this.playerLevel = PlayerLevel.NOVICE;
-
-    } else if (getXp().compareTo(xpRequired[0]) > 0 && getXp().compareTo(xpRequired[1]) < 0) {
-      this.playerLevel = PlayerLevel.INVESTOR;
-
-    } else {
-      this.playerLevel = PlayerLevel.SPECULATOR;
-    }
-  }
-
-  /**
-   * Used to do checks for the player level after events such as
-   * a transaction or going to the stats page. Think of it as something
-   * that updates the player level when conditions are met.
-   *
-   * @param totalWeeks The total weeks the player has been trading
-
-  public void updatePlayerLevel(int totalWeeks) {
-    if (this.playerLevel == PlayerLevel.INVESTOR
-        && totalWeeks >= 20
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) >= 0) {
-      setPlayerLevel(PlayerLevel.SPECULATOR);
-
-    } else if (this.playerLevel == PlayerLevel.NOVICE
-        && totalWeeks >= 10
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(1.2))) >= 0) {
-      this.playerLevel = PlayerLevel.INVESTOR;
-
-    } else if (this.playerLevel == PlayerLevel.SPECULATOR
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(2))) <= 0) {
-      this.playerLevel = PlayerLevel.INVESTOR;
-
-    } else if (this.playerLevel == PlayerLevel.INVESTOR
-        && getNetWorth().compareTo(this.startingMoney.multiply(BigDecimal.valueOf(1.2))) <= 0) {
-      this.playerLevel = PlayerLevel.NOVICE;
-    }
-  }
-  */
-
-  /**
    * Returns the player's current level.
    *
    * @return the player's level
@@ -233,15 +189,6 @@ public class Player {
    */
   public BigDecimal getNetWorth() {
     return money.add(portfolio.getPortfolioNetWorth());
-  }
-
-  /**
-   * Sets the player's current level.
-   *
-   * @param playerLevel the level to assign
-   */
-  public void setPlayerLevel(PlayerLevel playerLevel) {
-    this.playerLevel = playerLevel;
   }
 
 }
