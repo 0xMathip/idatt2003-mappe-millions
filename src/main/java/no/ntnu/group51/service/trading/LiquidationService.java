@@ -35,7 +35,7 @@ public class LiquidationService {
    * and recorded in the transaction archive.
    *
    * @param player the player whose portfolio should be checked
-   * @param week the current trading week
+   * @param week   the current trading week
    * @throws IllegalArgumentException if player is null or week is not positive
    */
   public void checkLiquidations(Player player, int week) {

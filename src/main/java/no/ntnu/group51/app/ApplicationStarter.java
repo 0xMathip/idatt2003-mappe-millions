@@ -1,7 +1,7 @@
 package no.ntnu.group51.app;
 
-import no.ntnu.group51.controller.mainmenu.MainMenuController;
 import no.ntnu.group51.controller.SceneManager;
+import no.ntnu.group51.controller.mainmenu.MainMenuController;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.view.pages.MainMenuView;
 

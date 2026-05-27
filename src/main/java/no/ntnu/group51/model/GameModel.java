@@ -6,7 +6,6 @@ import java.util.List;
 import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stock.Stock;
-import no.ntnu.group51.model.transaction.Transaction;
 
 /**
  * Represents the shared game state used by controllers and views.

@@ -2,11 +2,9 @@ package no.ntnu.group51.controller.sidebar;
 
 import java.math.RoundingMode;
 import javafx.application.Platform;
-import no.ntnu.group51.controller.dashboard.DashboardController;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.player.PlayerLevel;
 import no.ntnu.group51.view.components.shared.SidebarView;
-
 import java.math.BigDecimal;
 
 /**
@@ -21,7 +19,7 @@ public class SidebarController {
    * Creates a sidebar controller and sets up the necessary buttons.
    *
    * @param model The persistent model of the game.
-   * @param view The sidebar view.
+   * @param view  The sidebar view.
    */
   public SidebarController(GameModel model, SidebarView view) {
     this.model = model;
@@ -56,11 +54,21 @@ public class SidebarController {
     updateSidebar();
   }
 
+  /**
+   * Runs a runnable when the portfolio button is clicked.
+   *
+   * @param runnable The runnable to run.
+   */
   public void setOnPortfolio(Runnable runnable) {
     view.setOnPortfolioButton(e -> runnable.run());
     updateSidebar();
   }
 
+  /**
+   * Runs a runnable when the transaction button is clicked.
+   *
+   * @param runnable The runnable to run.
+   */
   public void setOnTransaction(Runnable runnable) {
     view.setOnTransactionButton(e -> runnable.run());
     updateSidebar();

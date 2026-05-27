@@ -10,14 +10,12 @@ import no.ntnu.group51.model.transaction.Liquidation;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
-import no.ntnu.group51.model.transaction.TransactionArchive;
 
 /**
  * Creates transaction summaries and transaction page statistics for UI presentation.
  */
 public class TransactionService {
 
-  private final TransactionNoteService noteService = new TransactionNoteService();
   private static final int MONEY_SCALE = 2;
 
   /**
@@ -98,18 +96,22 @@ public class TransactionService {
         stock,
         share.getQuantity(),
         share.getPurchasePrice(),
-        transaction.getCalculator().calculateGross().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
-        transaction.getCalculator().calculateCommission().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
-        transaction.getCalculator().calculateTax().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
-        transaction.getCalculator().calculateTotal().setScale(MONEY_SCALE, RoundingMode.HALF_UP),
+        transaction.getCalculator()
+            .calculateGross()
+            .setScale(MONEY_SCALE, RoundingMode.HALF_UP),
+        transaction.getCalculator()
+            .calculateCommission()
+            .setScale(MONEY_SCALE, RoundingMode.HALF_UP),
+        transaction.getCalculator()
+            .calculateTax()
+            .setScale(MONEY_SCALE, RoundingMode.HALF_UP),
+        transaction.getCalculator()
+            .calculateTotal()
+            .setScale(MONEY_SCALE, RoundingMode.HALF_UP),
         type,
         note,
         transaction.getWeek()
     );
-  }
-
-  private boolean isLeveraged(Transaction transaction) {
-    return transaction.getShare().getQuantity().scale() > 0;
   }
 
 }

@@ -3,7 +3,6 @@ package no.ntnu.group51.model.calculator;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.trading.Leverage;

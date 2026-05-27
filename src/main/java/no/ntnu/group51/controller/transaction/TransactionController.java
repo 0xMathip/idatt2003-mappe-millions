@@ -9,11 +9,22 @@ import no.ntnu.group51.service.transaction.TransactionService;
 import no.ntnu.group51.service.transaction.TransactionSummary;
 import no.ntnu.group51.view.pages.TransactionView;
 
+/**
+ * Controller responsible for managing the transactions page.
+ */
 public class TransactionController implements Observer {
   private final GameModel gameModel;
   private final TransactionView transactionView;
   private final TransactionService transactionService;
 
+  /**
+   * Creates a transaction controller.
+   *
+   * @param gameModel the game model containing the current game state
+   * @param transactionView the transaction view managed by this controller
+   * @param transactionService the service used to generate transaction summaries
+   * @throws IllegalArgumentException if any argument is null
+   */
   public TransactionController(
       GameModel gameModel,
       TransactionView transactionView,
@@ -43,12 +54,19 @@ public class TransactionController implements Observer {
     updateView();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update() {
     updateView();
   }
 
-  public void updateView() {
+  /**
+   * Refreshes the transaction page with the latest transaction summaries
+   * and updates the selected transaction details.
+   */
+  private void updateView() {
     Player player = gameModel.getPlayer();
 
     TransactionPageSummary pageSummary =

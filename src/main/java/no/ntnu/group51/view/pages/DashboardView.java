@@ -1,6 +1,7 @@
 package no.ntnu.group51.view.pages;
 
 import java.math.BigDecimal;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,8 +17,6 @@ import no.ntnu.group51.model.exchange.Exchange;
 import no.ntnu.group51.model.stock.Share;
 import no.ntnu.group51.model.transaction.Transaction;
 import no.ntnu.group51.view.View;
-
-import java.util.List;
 import no.ntnu.group51.view.components.dashboard.ActionsPanel;
 import no.ntnu.group51.view.components.dashboard.CashPanel;
 import no.ntnu.group51.view.components.dashboard.DashboardCashStatsSection;

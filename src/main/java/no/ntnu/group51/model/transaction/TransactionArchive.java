@@ -57,6 +57,15 @@ public class TransactionArchive {
   }
 
   /**
+   * Returns all transactions in the archive.
+   *
+   * @return a copy of all transactions
+   */
+  public List<Transaction> getTransactions() {
+    return transactions;
+  }
+
+  /**
    * Filters transactions first by the given week,
    * then by type Purchase,
    * then converts the transactions to type Purchase.
@@ -155,15 +164,6 @@ public class TransactionArchive {
     }
 
     return false;
-  }
-
-  /**
-   * Returns all transactions in the archive.
-   *
-   * @return a copy of all transactions
-   */
-  public List<Transaction> getTransactions() {
-    return transactions;
   }
 
   /**

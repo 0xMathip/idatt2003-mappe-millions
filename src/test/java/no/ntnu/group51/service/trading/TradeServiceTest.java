@@ -10,7 +10,6 @@ import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.TradeMode;
 import no.ntnu.group51.model.trading.TradeType;
 import no.ntnu.group51.model.transaction.Purchase;
-import no.ntnu.group51.model.transaction.Sale;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

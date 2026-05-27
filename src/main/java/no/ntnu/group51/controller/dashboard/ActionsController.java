@@ -3,10 +3,8 @@ package no.ntnu.group51.controller.dashboard;
 import no.ntnu.group51.controller.sidebar.SidebarController;
 import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.service.trading.LiquidationService;
-import no.ntnu.group51.view.pages.DashboardView;
 import no.ntnu.group51.view.components.shared.SidebarView;
-
-import java.math.BigDecimal;
+import no.ntnu.group51.view.pages.DashboardView;
 
 /**
  * The controller for the different actions you can press on the dashboard.

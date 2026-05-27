@@ -1,7 +1,5 @@
 package no.ntnu.group51.model.transaction;
 
-import java.math.BigDecimal;
-import java.util.List;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.model.stock.Share;
 

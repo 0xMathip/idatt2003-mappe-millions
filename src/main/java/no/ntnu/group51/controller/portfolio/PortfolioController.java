@@ -5,8 +5,8 @@ import no.ntnu.group51.model.GameModel;
 import no.ntnu.group51.model.Observer;
 import no.ntnu.group51.model.player.Player;
 import no.ntnu.group51.service.portfolio.PortfolioService;
-import no.ntnu.group51.service.portfolio.PositionService;
 import no.ntnu.group51.service.portfolio.PortfolioSummary;
+import no.ntnu.group51.service.portfolio.PositionService;
 import no.ntnu.group51.service.portfolio.PositionSummary;
 import no.ntnu.group51.view.pages.PortfolioView;
 

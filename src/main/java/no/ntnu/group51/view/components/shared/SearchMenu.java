@@ -1,7 +1,6 @@
 package no.ntnu.group51.view.components.shared;
 
 import java.util.List;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;

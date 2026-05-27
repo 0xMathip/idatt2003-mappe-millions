@@ -5,16 +5,24 @@ package no.ntnu.group51.model.trading;
  */
 public enum Leverage {
 
-  /** No leverage. */
+  /**
+   * No leverage.
+   */
   OFF(1),
 
-  /** 5x leverage. */
+  /**
+   * 5x leverage.
+   */
   X5(5),
 
-  /** 10x leverage. */
+  /**
+   * 10x leverage.
+   */
   X10(10),
 
-  /** 20x leverage. */
+  /**
+   * 20x leverage.
+   */
   X20(20);
 
   private final int multiplier;
@@ -33,7 +41,7 @@ public enum Leverage {
    *
    * @return the leverage multiplier
    */
-  public int getMultiplier(){
+  public int getMultiplier() {
     return multiplier;
   }
 }

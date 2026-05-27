@@ -22,7 +22,7 @@ public class MainApp extends Application {
   private static final int WINDOW_WIDTH = 1920;
   private static final int WINDOW_HEIGHT = 1080;
   private static final String DEFAULT_PLAYER_NAME = "Player";
-  private static final BigDecimal DEFAULT_STARTING_CAPITAL = new BigDecimal("3000");
+  private static final BigDecimal DEFAULT_STARTING_CAPITAL = new BigDecimal("2000");
   private static final String DEFAULT_EXCHANGE_NAME = "NASDAQ";
   private static final Path DEFAULT_STOCK_FILE = Path.of("src/main/resources/sp500.csv");
 

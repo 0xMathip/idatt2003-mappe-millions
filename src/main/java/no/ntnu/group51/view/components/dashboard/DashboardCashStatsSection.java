@@ -1,7 +1,5 @@
 package no.ntnu.group51.view.components.dashboard;
 
-import java.math.BigDecimal;
-
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;

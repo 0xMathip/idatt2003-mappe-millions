@@ -1,5 +1,6 @@
 package no.ntnu.group51.view.components.dashboard;
 
+import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -12,8 +13,6 @@ import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
-
-import java.util.List;
 
 /**
  * Class for creating the top movers on the dashboard.

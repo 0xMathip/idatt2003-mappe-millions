@@ -2,7 +2,6 @@ package no.ntnu.group51.model.player;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-
 import no.ntnu.group51.model.portfolio.Portfolio;
 import no.ntnu.group51.model.transaction.TransactionArchive;
 
@@ -59,10 +58,20 @@ public class Player {
     xp = xp.add(amount);
   }
 
+  /**
+   * Returns the player's current XP.
+   *
+   * @return the current XP
+   */
   public BigDecimal getXp() {
     return xp;
   }
 
+  /**
+   * Returns the XP required to reach the next level.
+   *
+   * @return the XP threshold for the current level
+   */
   public BigDecimal getXpRequired() {
     if (playerLevel == PlayerLevel.NOVICE) {
       return xpRequired[0];
@@ -89,6 +98,9 @@ public class Player {
     }
   }
 
+  /**
+   * Updates the player's level based on current XP.
+   */
   public void levelUp() {
     if (getXp().compareTo(xpRequired[0]) < 0) {
       this.playerLevel = PlayerLevel.NOVICE;
@@ -116,6 +128,9 @@ public class Player {
     this.money = this.money.subtract(money);
   }
 
+  /**
+   * Updates the player's level based on current XP.
+   */
   public void updateLevel() {
     if (getXp().compareTo(xpRequired[0]) < 0) {
       this.playerLevel = PlayerLevel.NOVICE;
@@ -157,34 +172,74 @@ public class Player {
   }
   */
 
+  /**
+   * Returns the player's current level.
+   *
+   * @return the player's level
+   */
   public PlayerLevel getPlayerLevel() {
     return this.playerLevel;
   }
 
+  /**
+   * Returns the player's name.
+   *
+   * @return the player's name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Returns the player's current money balance.
+   *
+   * @return the current money
+   */
   public BigDecimal getMoney() {
     return money;
   }
 
+  /**
+   * Returns the player's starting capital.
+   *
+   * @return the starting money
+   */
   public BigDecimal getStartingMoney() {
     return startingMoney;
   }
 
+  /**
+   * Returns the player's portfolio.
+   *
+   * @return the portfolio
+   */
   public Portfolio getPortfolio() {
     return portfolio;
   }
 
+  /**
+   * Returns the player's transaction archive.
+   *
+   * @return the transaction archive
+   */
   public TransactionArchive getTransactionArchive() {
     return transactionArchive;
   }
 
+  /**
+   * Returns the player's total net worth.
+   *
+   * @return the sum of cash and portfolio value
+   */
   public BigDecimal getNetWorth() {
     return money.add(portfolio.getPortfolioNetWorth());
   }
 
+  /**
+   * Sets the player's current level.
+   *
+   * @param playerLevel the level to assign
+   */
   public void setPlayerLevel(PlayerLevel playerLevel) {
     this.playerLevel = playerLevel;
   }

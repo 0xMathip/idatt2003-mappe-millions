@@ -101,6 +101,16 @@ public final class StatCardFactory {
         StyleClass.FACTORY_STAT_CARD_TOP_TEXT, null);
   }
 
+  /**
+   * Creates a text-based statistic card with optional subtitle.
+   *
+   * @param title the card title
+   * @param value the displayed value
+   * @param subtitle the subtitle text
+   * @param valueStyle the value style class
+   * @param subtitleStyle the subtitle style class
+   * @return the created card
+   */
   public static VBox createTextCard(
       String title,
       String value,

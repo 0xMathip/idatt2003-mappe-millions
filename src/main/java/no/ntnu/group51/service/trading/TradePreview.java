@@ -1,8 +1,6 @@
 package no.ntnu.group51.service.trading;
 
 import java.math.BigDecimal;
-import no.ntnu.group51.model.player.Player;
-import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.trading.Leverage;
 import no.ntnu.group51.model.trading.LeveragedPosition;
 import no.ntnu.group51.model.trading.TradeMode;

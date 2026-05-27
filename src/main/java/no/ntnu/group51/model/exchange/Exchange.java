@@ -14,7 +14,6 @@ import no.ntnu.group51.model.stock.Stock;
 import no.ntnu.group51.model.transaction.Purchase;
 import no.ntnu.group51.model.transaction.Sale;
 import no.ntnu.group51.model.transaction.Transaction;
-import no.ntnu.group51.model.xp.XpCalc;
 
 /**
  * Represents a stock exchange.

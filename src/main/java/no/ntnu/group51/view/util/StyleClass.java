@@ -1,6 +1,11 @@
 package no.ntnu.group51.view.util;
 
-
+/**
+ * Utility class containing constant string identifiers for CSS style classes.
+ *
+ * <p>These constants are used throughout the application to apply consistent styling
+ * to UI components via CSS rules.
+ */
 public final class StyleClass {
   private StyleClass() {
   }
@@ -12,7 +17,6 @@ public final class StyleClass {
   public static final String PORTFOLIO_VIEW = "portfolio-view";
   public static final String TRANSACTION_VIEW = "transaction-view";
   public static final String MARKET_VIEW = "market-view";
-  public static final String DASHBOARD_VIEW = "dashboard-view";
 
   // ==================== GLOBAL ====================
   public static final String CARD = "card";
@@ -71,14 +75,15 @@ public final class StyleClass {
   // ==================== PORTFOLIO VIEW ====================
   public static final String PORTFOLIO_STAT_VALUE = "portfolio-stat-value";
   public static final String PORTFOLIO_STAT_VALUE_WITH_STATE = "portfolio-stat-value-with-state";
-  public static final String PORTFOLIO_STAT_CARD_BOTTOM_TEXT = "portfolio-stat-card-bottom-text";
-  public static final String PORTFOLIO_STAT_CARD_BOTTOM_TEXT_WITH_STATE = "portfolio-stat-card-bottom-text-with-state";
+  public static final String PORTFOLIO_STAT_CARD_BOTTOM_TEXT_WITH_STATE
+      = "portfolio-stat-card-bottom-text-with-state";
 
   public static final String PORTFOLIO_DETAILS_PRICE = "portfolio-details-price";
   public static final String PORTFOLIO_DETAILS_CHANGE = "portfolio-details-change";
   public static final String PORTFOLIO_DETAILS_STAT_LABEL = "portfolio-details-stat-label";
   public static final String PORTFOLIO_DETAILS_STAT_VALUE = "portfolio-details-stat-value";
-  public static final String PORTFOLIO_DETAILS_STAT_VALUE_WITH_STATE = "portfolio-details-stat-value-with-state";
+  public static final String PORTFOLIO_DETAILS_STAT_VALUE_WITH_STATE
+      = "portfolio-details-stat-value-with-state";
   public static final String PORTFOLIO_DETAILS_STATS_GRID = "portfolio-details-stats-grid";
   public static final String PORTFOLIO_DETAILS_STOCK_CHART = "portfolio-details-stock-chart";
   public static final String PORTFOLIO_DETAILS_PNL = "portfolio-details-pnl";
@@ -108,7 +113,8 @@ public final class StyleClass {
   public static final String FACTORY_SEARCH_ROW_COMPANY = "factory-search-row-company";
   public static final String FACTORY_SEARCH_ROW_PRICE = "factory-search-row-price";
   public static final String FACTORY_SEARCH_ROW_CHANGE = "factory-search-row-change";
-  public static final String FACTORY_SEARCH_ROW_CHANGE_PERCENT = "factory-search-row-change-percent";
+  public static final String FACTORY_SEARCH_ROW_CHANGE_PERCENT
+      = "factory-search-row-change-percent";
   public static final String FACTORY_SEARCH_ROW_ARROW = "factory-search-row-arrow";
 
   public static final String FACTORY_TRANSACTION_STATUS = "factory-transaction-status";
@@ -126,7 +132,8 @@ public final class StyleClass {
 
   // ==================== TRANSACTION VIEW ====================
   public static final String TRANSACTION_STAT_VALUE = "transaction-stat-value";
-  public static final String TRANSACTION_STAT_CARD_BOTTOM_TEXT = "transaction-stat-card-bottom-text";
+  public static final String TRANSACTION_STAT_CARD_BOTTOM_TEXT
+      = "transaction-stat-card-bottom-text";
 
   public static final String TRANSACTION_DETAILS = "transaction-details";
   public static final String TRANSACTION_DETAILS_TICKER = "transaction-details-ticker";
@@ -142,7 +149,6 @@ public final class StyleClass {
   public static final String TRANSACTION_DETAILS_NOTEBOX = "transaction-details-notebox";
 
   // ==================== DASHBOARD ====================
-  public static final String DASHBOARD_TITLE = "dashboard-title";
   public static final String DASHBOARD_PORTFOLIO = "dashboard-portfolio";
   public static final String DASHBOARD_PORTFOLIO_BOTTOM_TEXT = "dashboard-portfolio-bottom-text";
   public static final String SEPARATOR = "separator";
@@ -155,9 +161,11 @@ public final class StyleClass {
   public static final String DASHBOARD_EMPTY_TRANSACTION = "dashboard-empty-transaction";
   public static final String DASHBOARD_CASH_STAT_AMOUNT = "dashboard-cash-stat-amount";
   public static final String DASHBOARD_CASH_STAT_WINDOW = "dashboard-cash-stat-window";
-  public static final String DASHBOARD_PORTFOLIO_SYMBOL = "dashboard-portfolio-symbol";
+  public static final String DASHBOARD_PORTFOLIO_SYMBOL
+      = "dashboard-portfolio-symbol";
   public static final String DASHBOARD_PORTFOLIO_SUBTEXT = "dashboard-portfolio-subtext";
-  public static final String DASHBOARD_PORTFOLIO_AMOUNT_SHARES = "dashboard-portfolio-amount-shares";
+  public static final String DASHBOARD_PORTFOLIO_AMOUNT_SHARES
+      = "dashboard-portfolio-amount-shares";
   public static final String DASHBOARD_PORTFOLIO_AMOUNT_CASH = "dashboard-portfolio-amount-cash";
   public static final String DASHBOARD_PORTFOLIO_DIFF = "dashboard-portfolio-diff";
   public static final String DASHBOARD_PORTFOLIO_ICON = "dashboard-portfolio-icon";

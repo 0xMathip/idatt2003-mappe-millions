@@ -9,8 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Share;
@@ -73,6 +71,17 @@ public class DashboardPortfolioPanel implements View {
     updateBottomValues(BigDecimal.ZERO, BigDecimal.ZERO);
   }
 
+  /**
+   * Updates the portfolio listing and summary values shown on the dashboard.
+   *
+   * <p>Clears the current portfolio rows, shows an empty state if there are no shares,
+   * and otherwise renders all holdings sorted by current value.</p>
+   *
+   * @param shares the shares to display
+   * @param totalInvested the total amount invested in the portfolio
+   * @param returnPercent the portfolio return percentage
+   * @throws IllegalArgumentException if any argument is null
+   */
   public void updatePortfolio(
       List<Share> shares,
       BigDecimal totalInvested,
