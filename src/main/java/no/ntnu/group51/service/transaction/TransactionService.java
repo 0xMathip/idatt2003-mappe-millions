@@ -91,7 +91,7 @@ public class TransactionService {
 
     String note = transaction instanceof Liquidation
         ? "Liquidated."
-        : noteService.createNote(transaction, isLeveraged(transaction));
+        : (transaction instanceof Purchase ? "Position opened." : "Position closed.");
 
     return new TransactionSummary(
         transaction,

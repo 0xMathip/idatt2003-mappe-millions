@@ -8,6 +8,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import no.ntnu.group51.model.stock.Stock;
+import no.ntnu.group51.view.util.CurrencyFormatter;
 import no.ntnu.group51.view.util.PercentFormatter;
 import no.ntnu.group51.view.util.StyleClass;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -47,7 +48,7 @@ public class TopMovers {
     VBox gainAmount = new VBox();
     Label gain = new Label();
 
-    Label amount = new Label("$" + movers.getFirst().getLatestPriceChange());
+    Label amount = new Label(CurrencyFormatter.format(movers.getFirst().getLatestPriceChange()));
     amount.getStyleClass().add(StyleClass.DASHBOARD_SUBTEXT);
 
     gainAmount.getChildren().addAll(gain, amount);

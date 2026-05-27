@@ -53,10 +53,9 @@ public class LiquidationService {
   }
 
   private void liquidate(Player player, LeveragedPosition position, int week) {
-    player.getPortfolio().removeLeveragedPosition(position);
-
     Transaction liquidation = new Liquidation(position.getShare(), week);
     liquidation.commit(player);
+    player.getPortfolio().removeLeveragedPosition(position);
     player.getTransactionArchive().add(liquidation);
   }
 }

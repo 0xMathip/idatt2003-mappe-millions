@@ -39,31 +39,6 @@ public class Liquidation extends Sale {
       throw new IllegalArgumentException("Player cannot be null.");
     }
 
-    List<Share> sharesOfStock = player.getPortfolio().getShares(share.getStock().getSymbol());
-
-    if (sharesOfStock.isEmpty()) {
-      throw new IllegalStateException("You don't own any shares of " + share.getStock().getSymbol());
-    }
-
-    Share portfolioShare = sharesOfStock.get(0);
-
-    if (portfolioShare.getQuantity().compareTo(share.getQuantity()) >= 0) {
-      player.getPortfolio().removeShare(portfolioShare);
-      player.addMoney(share.getStock().getSalesPrice().multiply(share.getQuantity()));
-
-      BigDecimal remaining = portfolioShare.getQuantity().subtract(share.getQuantity());
-      if (remaining.compareTo(BigDecimal.ZERO) > 0) {
-        Share remainingShare =
-            new Share(share.getStock(), remaining, portfolioShare.getPurchasePrice());
-        player.getPortfolio().addShare(remainingShare);
-      }
-
-      committed = true;
-    } else {
-      throw new IllegalStateException(
-          "You don't own " + share.getQuantity()
-              + " shares of " + share.getStock().getSymbol()
-      );
-    }
+    committed = true;
   }
 }

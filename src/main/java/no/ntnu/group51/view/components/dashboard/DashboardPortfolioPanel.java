@@ -66,7 +66,7 @@ public class DashboardPortfolioPanel implements View {
 
     root.getChildren().addAll(portView, separator, bottom);
     root.setAlignment(Pos.CENTER);
-    portView.setSpacing(30);
+    portView.setSpacing(20);
     root.getStyleClass().add(StyleClass.DASHBOARD_PORTFOLIO);
 
     showEmptyPortfolio();
@@ -118,6 +118,7 @@ public class DashboardPortfolioPanel implements View {
     Label emptyPortfolio = new Label("No shares in your portfolio");
     emptyPortfolio.getStyleClass().add(StyleClass.DASHBOARD_EMPTY_PORTFOLIO);
     emptyPortfolio.setAlignment(Pos.CENTER);
+    emptyPortfolio.setTranslateX(125);
     portView.getChildren().add(emptyPortfolio);
   }
 
